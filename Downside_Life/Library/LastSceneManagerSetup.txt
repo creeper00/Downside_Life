@@ -1,4 +1,5 @@
 sceneSetups:
-- path: "C:/Users/user/Desktop/\uB208\uC744 \uB5A0\uBCF4\uB2C8/open-eye/open-eye/Assets/Scenes/MainMenuScene.unity"
+- path: Assets/Scenes/Main.unity
   isLoaded: 1
   isActive: 1
+  isSubScene: 0
