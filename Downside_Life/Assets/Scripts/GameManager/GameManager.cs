@@ -12,120 +12,167 @@ public partial class GameManager : MonoBehaviour
 
     [Header("초기화 값")]
     [SerializeField]
-    private int richMoneyInitialize;        //부자의 초기 재산
+    private int richMoneyInitialize;                    //부자의 초기 재산
     [SerializeField]
-    private int richMoneyUpperBound;            //부자의 재산이 이 값을 넘어가면 배드 엔딩
+    private int richMoneyUpperBound;                    //부자의 재산이 이 값을 넘어가면 배드 엔딩
 
     [Header("게임 데이터")]
     [HideInInspector]
-    public Phase phase;
-    private int playerMoney;
-    private int playerSalary = 10;
-    private int richMoney;
-    private int richSalary;
+    public Phase phase;                                 //현재 페이즈
+    [HideInInspector]
+    public int playerMoney, playerSalary = 10;          //현재 플레이어의 재산, 플레이어가 이번 턴이 끝날 때 얻을 재산
+    [HideInInspector]
+    public int richMoney, richSalary;                   //부자의 재산, 부자가 이번 턴이 끝날 때 얻을 재산
+    [HideInInspector]
+    public int friendy;                                 //친밀도
+    
 
     [Header("게임 오브젝트")]
     [SerializeField]
     private Camera mainCamera;
+
     [Header("Screen")]
     [SerializeField]
-    private GameObject mainScreen;
-    [SerializeField]
-    private GameObject gangScreen;
-    [SerializeField]
-    private GameObject robScreen;
-    [SerializeField]
-    private GameObject sagiScreen;
-    [SerializeField]
-    private GameObject snakeScreen;
-    [SerializeField]
-    private PlayerStatus PlayerStatus;
+    private GameObject mainScreen, gangScreen, robScreen, sagiScreen, snakeScreen;      //각 스크린들 지정
 
-    //이거 필요한가?
+    [Header("status")]
+    public PlayerStatusText playerStatusText;
+    public GangsterStatusText gangsterStatusText;
+    public RobStatusText robStatusText;
+
     public static GameManager instance;
-
     
     private void Awake()
     {
         instance = this;
+        mainScreen.SetActive(true);
+        gangScreen.SetActive(false);
+        robScreen.SetActive(false);
+        sagiScreen.SetActive(false);
+        snakeScreen.SetActive(false);
     }
+
     void Start()
     {
         phase = Phase.phase1;
         richMoney = richMoneyInitialize;
         playerMoney = 0;
-        PlayerStatus.showPlayerStatus(playerMoney);
+        playerRobMoneySkill = 1;
+        playerRobSuccessSkill = 1;
+        playerStatusText.showPlayerStatus(playerMoney);
+        friendy = 100;
+
+        gangsterNumber = new int[4] { 0, 0, 0, 0 };
     }
+
     public enum Phase
     {
-        phase1,
-        phase2
+        phase1, phase2
     }
 
     public enum RoundState
     {
-        RichPhase,
-        PlayerPhase
+        RichPhase, PlayerPhase
     }
+
+    public enum Screens
+    {
+        main, sagi, gang, rob, snake
+    }
+
     public RoundState CurrentState
     {
         get;
         private set;
     }
 
-    public enum Screens
-    {
-        main,
-        sagi,
-        gang,
-        rob,
-        snake
-    }
     public void ChangePhase()
     {
-        switch((int)CurrentState)
+        switch(CurrentState)
         {
-            case 0:
+            case RoundState.RichPhase:
                 PlayerPhase();
                 break;
-            case 1:
+            case RoundState.PlayerPhase:
                 RichPhase();
                 break;
         }
     }
+
     private void RichPhase()
     {
         CurrentState = RoundState.RichPhase;
         richMoney += richSalary;
         ChangePhase();
     }
+
     private void PlayerPhase()
     {
+        Debug.Log("money" + playerMoney);
         playerMoney += playerSalary;
-        PlayerStatus.showPlayerStatus(playerMoney);
+        playerStatusText.showPlayerStatus(playerMoney);
         CurrentState = RoundState.PlayerPhase;
     }
+
     public void GotoScreen(Screens screen)
     {
+        ChangeScreen(screen);
+    }
+
+    private void ChangeScreen(Screens screen)
+    {
+        mainScreen.SetActive(false);
+        gangScreen.SetActive(false);
+        sagiScreen.SetActive(false);
+        robScreen.SetActive(false);
+        snakeScreen.SetActive(false);
         switch (screen)
         {
             case Screens.main:
-                mainCamera.transform.position = mainScreen.transform.position;
+                mainScreen.SetActive(true);
+                playerStatusText.showPlayerStatus(playerMoney);
                 break;
             case Screens.gang:
-                mainCamera.transform.position = gangScreen.transform.position;
+                gangScreen.SetActive(true);
+                gangsterStatusText.showGangsterNumber();
                 break;
             case Screens.sagi:
-                mainCamera.transform.position = sagiScreen.transform.position;
+                sagiScreen.SetActive(true);
                 break;
             case Screens.rob:
-                mainCamera.transform.position = robScreen.transform.position;
+                robScreen.SetActive(true);
+                playerStatusText.showPlayerRobSkillStatus(playerRobMoneySkill, playerRobSuccessSkill);
                 break;
             case Screens.snake:
-                mainCamera.transform.position = snakeScreen.transform.position;
+                snakeScreen.SetActive(true);
                 break;
         }
-        mainCamera.transform.position += new Vector3(0, 0, -10);
+    }
+
+    [Header("갱단 관리")]
+    public int[] gangsterCost = new int[4];
+    [HideInInspector]
+    public int[] gangsterNumber;
+
+    [System.Serializable]
+    public class FloorSuccessRate { public int[] successRate = new int[4]; }
+
+    [Header("도둑질 관련")]
+    public FloorSuccessRate[] floorSuccessRate = new FloorSuccessRate[5];
+    public int[] floorMoney = new int[5];           //각 층에서 얻을 수 있는 돈의 양
+    public int moneyPercentage;                     //섬세한 손길 1레벨당 늘어나는 돈 회수 비율
+    public int failFriendyDecrease;
+    [HideInInspector]
+    public int floorLevel;
+    [HideInInspector]
+    public int playerRobMoneySkill, playerRobSuccessSkill;
+    public int playerRobMoneySkillUpperBound, playerRobSuccessSkillUpperBound;
+
+    /*   기타 함수   */
+
+    public void NotEnoughMoney()
+    {
+        
     }
 
     private void StartPhase2()
@@ -133,3 +180,4 @@ public partial class GameManager : MonoBehaviour
         phase = Phase.phase2;
     }
 }
+
