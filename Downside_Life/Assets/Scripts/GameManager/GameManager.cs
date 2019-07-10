@@ -19,105 +19,117 @@ public partial class GameManager : MonoBehaviour
     [Header("게임 데이터")]
     [HideInInspector]
     public Phase phase;
-    [HideInInspector]
-    public int playerMoney;
-    [HideInInspector]
-    public int richMoney;
-    [HideInInspector]
-    public int richSalary;
+    private int playerMoney;
+    private int playerSalary = 10;
+    private int richMoney;
+    private int richSalary;
 
     [Header("게임 오브젝트")]
     [SerializeField]
     private Camera mainCamera;
+    [Header("Screen")]
+    [SerializeField]
+    private GameObject mainScreen;
+    [SerializeField]
+    private GameObject gangScreen;
+    [SerializeField]
+    private GameObject robScreen;
+    [SerializeField]
+    private GameObject sagiScreen;
+    [SerializeField]
+    private GameObject snakeScreen;
+    [SerializeField]
+    private PlayerStatus PlayerStatus;
 
     //이거 필요한가?
     public static GameManager instance;
 
+    
     private void Awake()
     {
         instance = this;
     }
-
     void Start()
     {
         phase = Phase.phase1;
         richMoney = richMoneyInitialize;
         playerMoney = 0;
-        
-        //richSalary = 
+        PlayerStatus.showPlayerStatus(playerMoney);
     }
-
-    void Update()
-    {
-
-    }
-
     public enum Phase
     {
         phase1,
         phase2
     }
 
-    public enum Endings
+    public enum RoundState
     {
-        richTooBig,
-        richResurrect,
-        success,
-        love
+        RichPhase,
+        PlayerPhase
+    }
+    public RoundState CurrentState
+    {
+        get;
+        private set;
     }
 
-    public enum Scenes
+    public enum Screens
     {
         main,
-        playerHouse,
-        richHouse
+        sagi,
+        gang,
+        rob,
+        snake
     }
-
-    public void GotoScene(Scenes scene)
+    public void ChangePhase()
     {
-        switch (scene)
+        switch((int)CurrentState)
         {
-            case Scenes.main:
-                mainCamera.transform.position = new Vector3(0, 0, -10);
+            case 0:
+                PlayerPhase();
                 break;
-            case Scenes.playerHouse:
-                mainCamera.transform.position = new Vector3(30, 0, -10);
-                break;
-            case Scenes.richHouse:
-                mainCamera.transform.position = new Vector3(-30, 0, -10);
+            case 1:
+                RichPhase();
                 break;
         }
     }
-
-    public void TurnOver()
+    private void RichPhase()
     {
-        //부자 월급 변화? 이거는 공장 수입 합이니까 이때 변화하진 않을 것 같고
-
-        //부자 월급만큼 부자 재산에 추가
+        CurrentState = RoundState.RichPhase;
         richMoney += richSalary;
-
-        //플레이어 돈 변화
-
-        //부자 돈이 일정 수준을 넘어가면 게임 종료
-        if ( richMoney >= richMoneyUpperBound)
+        ChangePhase();
+    }
+    private void PlayerPhase()
+    {
+        playerMoney += playerSalary;
+        PlayerStatus.showPlayerStatus(playerMoney);
+        CurrentState = RoundState.PlayerPhase;
+    }
+    public void GotoScreen(Screens screen)
+    {
+        switch (screen)
         {
-            Ending(Endings.richTooBig);
+            case Screens.main:
+                mainCamera.transform.position = mainScreen.transform.position;
+                break;
+            case Screens.gang:
+                mainCamera.transform.position = gangScreen.transform.position;
+                break;
+            case Screens.sagi:
+                mainCamera.transform.position = sagiScreen.transform.position;
+                break;
+            case Screens.rob:
+                mainCamera.transform.position = robScreen.transform.position;
+                break;
+            case Screens.snake:
+                mainCamera.transform.position = snakeScreen.transform.position;
+                break;
         }
-
-        //부자 월급이 0보다 작으면 페이즈 전환
-        if ( phase == Phase.phase1 && richSalary < 0)
-        {
-            StartPhase2();
-        }
+        mainCamera.transform.position += new Vector3(0, 0, -10);
     }
 
     private void StartPhase2()
     {
         phase = Phase.phase2;
-    }
-
-    public void Ending(Endings ending)
-    {
-
     }
 }
