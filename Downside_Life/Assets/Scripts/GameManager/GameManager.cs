@@ -10,8 +10,6 @@ public partial class GameManager : MonoBehaviour
 
     //ArrayList는 할당을 해 줘야지 보임
 
-    
-
     [Header("초기화 값")]
     [SerializeField]
     private int richMoneyInitialize;        //부자의 초기 재산
