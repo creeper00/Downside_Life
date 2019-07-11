@@ -20,7 +20,7 @@ public partial class GameManager : MonoBehaviour
     [HideInInspector]
     public Phase phase;                                 //현재 페이즈
     [HideInInspector]
-    public int playerMoney, playerSalary = 10;          //현재 플레이어의 재산, 플레이어가 이번 턴이 끝날 때 얻을 재산
+    public int playerMoney, playerSalary;               //현재 플레이어의 재산, 플레이어가 이번 턴이 끝날 때 얻을 재산
     [HideInInspector]
     public int richMoney, richSalary;                   //부자의 재산, 부자가 이번 턴이 끝날 때 얻을 재산
     [HideInInspector]
@@ -57,12 +57,16 @@ public partial class GameManager : MonoBehaviour
         phase = Phase.phase1;
         richMoney = richMoneyInitialize;
         playerMoney = 0;
+                                                playerSalary = 10000;
         playerRobMoneySkill = 1;
         playerRobSuccessSkill = 1;
         playerStatusText.showPlayerStatus(playerMoney);
         friendy = 100;
 
         gangsterNumber = new int[4] { 0, 0, 0, 0 };
+
+        sagiHired = new bool[4] { false, false, false, false };
+        sagiAttatched = new bool[4] { false, false, false, false };
     }
 
     public enum Phase
@@ -102,13 +106,24 @@ public partial class GameManager : MonoBehaviour
     private void RichPhase()
     {
         CurrentState = RoundState.RichPhase;
+        int sagiMoney = 0;
+        for (int i = 0; i < 4; ++i)
+        {
+            if (sagiAttatched[i]) sagiMoney += (int)((double)richMoney * sagiPercentage[i] * 0.01);
+        }
+        int snakeMoney = 0;
+        for ( int i = 0; i < 4; ++i)
+        {
+
+        }
+        richSalary -= (sagiMoney + snakeMoney);
+        playerSalary += (sagiMoney + snakeMoney);
         richMoney += richSalary;
         ChangePhase();
     }
 
     private void PlayerPhase()
     {
-        Debug.Log("money" + playerMoney);
         playerMoney += playerSalary;
         playerStatusText.showPlayerStatus(playerMoney);
         CurrentState = RoundState.PlayerPhase;
@@ -167,6 +182,13 @@ public partial class GameManager : MonoBehaviour
     [HideInInspector]
     public int playerRobMoneySkill, playerRobSuccessSkill;
     public int playerRobMoneySkillUpperBound, playerRobSuccessSkillUpperBound;
+
+    [Header("사기꾼 관리")]
+    public int[] sagiHireCost = new int[4];
+    public int[] sagiAttatchCost = new int[4];
+    public int[] sagiPercentage = new int[4];
+    [HideInInspector]
+    public bool[] sagiHired = new bool[4], sagiAttatched = new bool[4];
 
     /*   기타 함수   */
 

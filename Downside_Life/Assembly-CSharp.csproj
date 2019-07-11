@@ -63,6 +63,12 @@
     <Compile Include="Assets\Scripts\UI\RichStatus.cs" />
     <Compile Include="Assets\Scripts\UI\RobButton.cs" />
     <Compile Include="Assets\Scripts\UI\RobStatusText.cs" />
+    <Compile Include="Assets\Scripts\UI\Sagi\AgreeScreen.cs" />
+    <Compile Include="Assets\Scripts\UI\Sagi\NoButton.cs" />
+    <Compile Include="Assets\Scripts\UI\Sagi\PerformanceText.cs" />
+    <Compile Include="Assets\Scripts\UI\Sagi\SagiAttatchButton.cs" />
+    <Compile Include="Assets\Scripts\UI\Sagi\SagiHireButton.cs" />
+    <Compile Include="Assets\Scripts\UI\Sagi\YesButton.cs" />
     <Compile Include="Assets\Scripts\UI\ScreenChangeButton.cs" />
     <Compile Include="Assets\Scripts\UI\TurnEndButton.cs" />
     <Reference Include="Unity.Timeline.Editor">

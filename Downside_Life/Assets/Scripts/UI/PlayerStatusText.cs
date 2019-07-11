@@ -14,7 +14,7 @@ public class PlayerStatusText : MonoBehaviour
 
     public void showPlayerStatus(int playerMoney)
     {
-        this.playerMoneyText.text = string.Format("현재자산 : {0}원", playerMoney);
+        this.playerMoneyText.text = string.Format("현재자산 : {0}억 원", playerMoney);
     }
     public void showPlayerRobSkillStatus(int playerRobMoneySkill, int playerRobSuccessSkill)
     {
