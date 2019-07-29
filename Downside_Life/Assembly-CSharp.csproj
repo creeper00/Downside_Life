@@ -56,9 +56,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\Scripts\TitleButtons\ExitButtonScript.cs" />
-     <Compile Include="Assets\Scripts\TitleButtons\MainGameButtonScript.cs" />
-     <Compile Include="Assets\Scripts\TitleManager.cs" />
+     <Compile Include="Assets\Scripts\TitleScene\ExitButtonScript.cs" />
+     <Compile Include="Assets\Scripts\TitleScene\MainGameButtonScript.cs" />
+     <Compile Include="Assets\Scripts\TitleScene\TitleManager.cs" />
+     <Compile Include="Assets\Scripts\UI\EndTurnButton.cs" />
+     <Compile Include="Assets\Scripts\UI\ManageButtons.cs" />
+     <Compile Include="Assets\Scripts\UI\RichMoneyBar.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/user/Desktop/내리막길 인생/DownSide_Life/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
