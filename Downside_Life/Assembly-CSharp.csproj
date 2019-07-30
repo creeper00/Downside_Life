@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\TitleScene\ExitButtonScript.cs" />
      <Compile Include="Assets\Scripts\TitleScene\MainGameButtonScript.cs" />
      <Compile Include="Assets\Scripts\TitleScene\TitleManager.cs" />
+     <Compile Include="Assets\Scripts\UI\DownWardUIButtons.cs" />
      <Compile Include="Assets\Scripts\UI\EndTurnButton.cs" />
      <Compile Include="Assets\Scripts\UI\ManageButtons.cs" />
      <Compile Include="Assets\Scripts\UI\RichMoneyBar.cs" />

@@ -24,9 +24,12 @@ public partial class GameManager : MonoBehaviour
 
     public enum Screen
     {
-        main, crook, snake, gang, robber
+        main, factories, richHouse
     }
 
+    //카메라 관련
+    public GameObject mainCamera;
+    private Vector3 cameraPositionMain, cameraPositionFactories, cameraPositionRichHouse;
     public Screen currentScreen;
 
     //부자의 스탯
@@ -38,9 +41,14 @@ public partial class GameManager : MonoBehaviour
     [SerializeField]
     private double richDesperateBound;
 
+    //UI
+    [SerializeField]
+    private GameObject ManageButtons;
     public GameObject richMoneyBar;
+    [SerializeField]
+    private GameObject gotoFactoriesButton, gotoRichHouseButton, openGangManageButton, openRobberManageButton;
 
-    private Vector3 cameraPositionMain, cameraPositionCrook, cameraPositionSnake, cameraPositionGang, cameraPositionRobber;
+    
 
     private void Awake()
     {
@@ -48,16 +56,13 @@ public partial class GameManager : MonoBehaviour
 
         currentScreen = Screen.main;
 
-        cameraPositionMain = GameObject.Find("main").GetComponent<Transform>().position;
+        cameraPositionMain = GameObject.Find("Main").GetComponent<Transform>().position;
+        cameraPositionFactories = GameObject.Find("Factories").GetComponent<Transform>().position;
+        cameraPositionRichHouse = GameObject.Find("RichHouse").GetComponent<Transform>().position;
 
         richMoney = richInitialMoney;
 
         richSalary = -100;
-    }
-
-    void Start()
-    {
-
     }
 
     public void EndTurn()
@@ -74,6 +79,37 @@ public partial class GameManager : MonoBehaviour
 
         if (richMoney >= richMoneyBound) Ending(Endings.tooBig);
         if (richDesperate >= richDesperateBound) Ending(Endings.dropped);
+    }
+
+    public void ChangeScreen(Screen screen)
+    {
+        currentScreen = screen;
+        switch (screen)
+        {
+            case Screen.main:
+                mainCamera.transform.position = cameraPositionMain;
+                SetUIButtons(true, true, false, false);
+                ManageButtons.SetActive(true);
+                break;
+            case Screen.factories:
+                mainCamera.transform.position = cameraPositionFactories;
+                SetUIButtons(false, true, true, false);
+                ManageButtons.SetActive(false);
+                break;
+            case Screen.richHouse:
+                mainCamera.transform.position = cameraPositionRichHouse;
+                SetUIButtons(true, false, false, true);
+                ManageButtons.SetActive(false);
+                break;
+        }
+    }
+
+    private void SetUIButtons(bool gotoFactories, bool gotoRichHouse, bool openGangManage, bool openRobberManage)
+    {
+        gotoFactoriesButton.SetActive(gotoFactories);
+        gotoRichHouseButton.SetActive(gotoRichHouse);
+        openGangManageButton.SetActive(openGangManage);
+        openRobberManageButton.SetActive(openRobberManage);
     }
 
     public void Ending(Endings ending)
