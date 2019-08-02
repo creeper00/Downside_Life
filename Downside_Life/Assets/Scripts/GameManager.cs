@@ -24,12 +24,12 @@ public partial class GameManager : MonoBehaviour
 
     public enum Screen
     {
-        main, factories, richHouse
+        main, techtree, units, store, factories, richHouse
     }
 
     //카메라 관련
     public GameObject mainCamera;
-    private Vector3 cameraPositionMain, cameraPositionFactories, cameraPositionRichHouse;
+    private Vector3 cameraPositionMain, cameraPositionTechTree, cameraPositionUnits, cameraPositionStore, cameraPositionFactories, cameraPositionRichHouse;
     public Screen currentScreen;
 
     //부자의 스탯
@@ -43,10 +43,9 @@ public partial class GameManager : MonoBehaviour
 
     //UI
     [SerializeField]
-    private GameObject ManageButtons;
     public GameObject richMoneyBar;
     [SerializeField]
-    private GameObject gotoFactoriesButton, gotoRichHouseButton, openGangManageButton, openRobberManageButton;
+    private GameObject gotoFactoriesButton, gotoRichHouseButton;
 
     
 
@@ -57,6 +56,9 @@ public partial class GameManager : MonoBehaviour
         currentScreen = Screen.main;
 
         cameraPositionMain = GameObject.Find("Main").GetComponent<Transform>().position;
+        cameraPositionTechTree = GameObject.Find("TechTree").GetComponent<Transform>().position;
+        cameraPositionUnits = GameObject.Find("Units").GetComponent<Transform>().position;
+        cameraPositionStore = GameObject.Find("Store").GetComponent<Transform>().position;
         cameraPositionFactories = GameObject.Find("Factories").GetComponent<Transform>().position;
         cameraPositionRichHouse = GameObject.Find("RichHouse").GetComponent<Transform>().position;
 
@@ -88,29 +90,25 @@ public partial class GameManager : MonoBehaviour
         {
             case Screen.main:
                 mainCamera.transform.position = cameraPositionMain;
-                SetUIButtons(true, true, false, false);
-                ManageButtons.SetActive(true);
+                break;
+            case Screen.techtree:
+                mainCamera.transform.position = cameraPositionTechTree;
+                break;
+            case Screen.units:
+                mainCamera.transform.position = cameraPositionUnits;
+                break;
+            case Screen.store:
+                mainCamera.transform.position = cameraPositionStore;
                 break;
             case Screen.factories:
                 mainCamera.transform.position = cameraPositionFactories;
-                SetUIButtons(false, true, true, false);
-                ManageButtons.SetActive(false);
                 break;
             case Screen.richHouse:
                 mainCamera.transform.position = cameraPositionRichHouse;
-                SetUIButtons(true, false, false, true);
-                ManageButtons.SetActive(false);
                 break;
         }
     }
 
-    private void SetUIButtons(bool gotoFactories, bool gotoRichHouse, bool openGangManage, bool openRobberManage)
-    {
-        gotoFactoriesButton.SetActive(gotoFactories);
-        gotoRichHouseButton.SetActive(gotoRichHouse);
-        openGangManageButton.SetActive(openGangManage);
-        openRobberManageButton.SetActive(openRobberManage);
-    }
 
     public void Ending(Endings ending)
     {

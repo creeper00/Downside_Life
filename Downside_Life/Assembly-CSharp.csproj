@@ -61,7 +61,6 @@
      <Compile Include="Assets\Scripts\TitleScene\TitleManager.cs" />
      <Compile Include="Assets\Scripts\UI\DownWardUIButtons.cs" />
      <Compile Include="Assets\Scripts\UI\EndTurnButton.cs" />
-     <Compile Include="Assets\Scripts\UI\ManageButtons.cs" />
      <Compile Include="Assets\Scripts\UI\RichMoneyBar.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/user/Desktop/내리막길 인생/DownSide_Life/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
