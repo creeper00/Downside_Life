@@ -46,12 +46,16 @@ public partial class GameManager : MonoBehaviour
     public GameObject richMoneyBar;
     [SerializeField]
     private GameObject gotoFactoriesButton, gotoRichHouseButton;
+    [HideInInspector]
+    public int playerMoney;
+    private int turn;
 
     
 
     private void Awake()
     {
         instance = this;
+        turn = 0;
 
         currentScreen = Screen.main;
 
@@ -69,7 +73,7 @@ public partial class GameManager : MonoBehaviour
 
     public void EndTurn()
     {
-        
+        turn++;
         int lastRichMoney = richMoney;
         //richSalary = 
         richMoney += richSalary;
