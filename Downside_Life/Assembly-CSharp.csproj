@@ -55,14 +55,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\CommonUI\DownWardUIButtons.cs" />
+     <Compile Include="Assets\Scripts\CommonUI\EndTurnButton.cs" />
+     <Compile Include="Assets\Scripts\CommonUI\RichMoneyBar.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Technology.cs" />
      <Compile Include="Assets\Scripts\TitleScene\ExitButtonScript.cs" />
      <Compile Include="Assets\Scripts\TitleScene\MainGameButtonScript.cs" />
      <Compile Include="Assets\Scripts\TitleScene\TitleManager.cs" />
-     <Compile Include="Assets\Scripts\UI\DownWardUIButtons.cs" />
-     <Compile Include="Assets\Scripts\UI\EndTurnButton.cs" />
-     <Compile Include="Assets\Scripts\UI\RichMoneyBar.cs" />
+     <Compile Include="Assets\Scripts\Units\BookMarks.cs" />
+     <Compile Include="Assets\Scripts\Units\UnitsManager.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/user/Desktop/내리막길 인생/Downside_Life/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

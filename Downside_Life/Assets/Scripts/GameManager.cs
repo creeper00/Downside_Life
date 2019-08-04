@@ -43,6 +43,8 @@ public partial class GameManager : MonoBehaviour
 
     //UI
     [SerializeField]
+    private GameObject CommonCanvas, mainCanvas, techTreeCanvas, unitsCanvas, storeCanvas, richHouseCanvas;
+    [SerializeField]
     public GameObject richMoneyBar;
     [HideInInspector]
     public int playerMoney;
@@ -55,6 +57,7 @@ public partial class GameManager : MonoBehaviour
         turn = 0;
 
         currentScreen = Screen.main;
+        ChangeCanvas();
 
         cameraPositionMain = GameObject.Find("Main").GetComponent<Transform>().position;
         cameraPositionTechTree = GameObject.Find("TechTree").GetComponent<Transform>().position;
@@ -133,8 +136,17 @@ public partial class GameManager : MonoBehaviour
                 GotoRichHouseButton.GetComponent<Image>().color = new Color32(162, 162, 162, 255);
                 break;
         }
+        ChangeCanvas();
     }
 
+    private void ChangeCanvas()
+    {
+        mainCanvas.SetActive(currentScreen == Screen.main);
+        techTreeCanvas.SetActive(currentScreen == Screen.techtree);
+        unitsCanvas.SetActive(currentScreen == Screen.units);
+        storeCanvas.SetActive(currentScreen == Screen.store);
+        richHouseCanvas.SetActive(currentScreen == Screen.richHouse);
+    }
 
     public void Ending(Endings ending)
     {
