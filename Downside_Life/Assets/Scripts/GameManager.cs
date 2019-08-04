@@ -47,6 +47,7 @@ public partial class GameManager : MonoBehaviour
     [HideInInspector]
     public int playerMoney;
     private int turn;
+    private GameObject GotoMainButton, GotoTechTreeButton, GotoUnitsButton, GotoStoreButton, GotoRichHouseButton;
 
     private void Awake()
     {
@@ -60,6 +61,12 @@ public partial class GameManager : MonoBehaviour
         cameraPositionUnits = GameObject.Find("Units").GetComponent<Transform>().position;
         cameraPositionStore = GameObject.Find("Store").GetComponent<Transform>().position;
         cameraPositionRichHouse = GameObject.Find("RichHouse").GetComponent<Transform>().position;
+
+        GotoMainButton = GameObject.Find("GotoMainButton");
+        GotoTechTreeButton = GameObject.Find("GotoTechTreeButton");
+        GotoUnitsButton = GameObject.Find("GotoUnitsButton");
+        GotoStoreButton = GameObject.Find("GotoStoreButton");
+        GotoRichHouseButton = GameObject.Find("GotoRichHouseButton");
 
         richMoney = richInitialMoney;
 
@@ -84,23 +91,46 @@ public partial class GameManager : MonoBehaviour
 
     public void ChangeScreen(Screen screen)
     {
+        switch(currentScreen)
+        {
+            case Screen.main:
+                GotoMainButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                break;
+            case Screen.techtree:
+                GotoTechTreeButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                break;
+            case Screen.units:
+                GotoUnitsButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                break;
+            case Screen.store:
+                GotoStoreButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                break;
+            case Screen.richHouse:
+                GotoRichHouseButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                break;
+        }
         currentScreen = screen;
         switch (screen)
         {
             case Screen.main:
                 mainCamera.transform.position = cameraPositionMain;
+                GotoMainButton.GetComponent<Image>().color = new Color32(162, 162, 162, 255);
                 break;
             case Screen.techtree:
                 mainCamera.transform.position = cameraPositionTechTree;
+                GotoTechTreeButton.GetComponent<Image>().color = new Color32(162, 162, 162, 255);
                 break;
             case Screen.units:
                 mainCamera.transform.position = cameraPositionUnits;
+                GotoUnitsButton.GetComponent<Image>().color = new Color32(162, 162, 162, 255);
                 break;
             case Screen.store:
                 mainCamera.transform.position = cameraPositionStore;
+                GotoStoreButton.GetComponent<Image>().color = new Color32(162, 162, 162, 255);
                 break;
             case Screen.richHouse:
                 mainCamera.transform.position = cameraPositionRichHouse;
+                GotoRichHouseButton.GetComponent<Image>().color = new Color32(162, 162, 162, 255);
                 break;
         }
     }
