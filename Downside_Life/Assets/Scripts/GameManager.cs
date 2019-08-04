@@ -24,12 +24,12 @@ public partial class GameManager : MonoBehaviour
 
     public enum Screen
     {
-        main, techtree, units, store, factories, richHouse
+        main, techtree, units, store, richHouse
     }
 
     //카메라 관련
     public GameObject mainCamera;
-    private Vector3 cameraPositionMain, cameraPositionTechTree, cameraPositionUnits, cameraPositionStore, cameraPositionFactories, cameraPositionRichHouse;
+    private Vector3 cameraPositionMain, cameraPositionTechTree, cameraPositionUnits, cameraPositionStore, cameraPositionRichHouse;
     public Screen currentScreen;
 
     //부자의 스탯
@@ -44,13 +44,9 @@ public partial class GameManager : MonoBehaviour
     //UI
     [SerializeField]
     public GameObject richMoneyBar;
-    [SerializeField]
-    private GameObject gotoFactoriesButton, gotoRichHouseButton;
     [HideInInspector]
     public int playerMoney;
     private int turn;
-
-    
 
     private void Awake()
     {
@@ -63,7 +59,6 @@ public partial class GameManager : MonoBehaviour
         cameraPositionTechTree = GameObject.Find("TechTree").GetComponent<Transform>().position;
         cameraPositionUnits = GameObject.Find("Units").GetComponent<Transform>().position;
         cameraPositionStore = GameObject.Find("Store").GetComponent<Transform>().position;
-        cameraPositionFactories = GameObject.Find("Factories").GetComponent<Transform>().position;
         cameraPositionRichHouse = GameObject.Find("RichHouse").GetComponent<Transform>().position;
 
         richMoney = richInitialMoney;
@@ -103,9 +98,6 @@ public partial class GameManager : MonoBehaviour
                 break;
             case Screen.store:
                 mainCamera.transform.position = cameraPositionStore;
-                break;
-            case Screen.factories:
-                mainCamera.transform.position = cameraPositionFactories;
                 break;
             case Screen.richHouse:
                 mainCamera.transform.position = cameraPositionRichHouse;

@@ -24,11 +24,6 @@ public class DownWardUIButtons : MonoBehaviour
         GameManager.instance.ChangeScreen(GameManager.Screen.store);
     }
 
-    public void GotoFactories()
-    {
-        GameManager.instance.ChangeScreen(GameManager.Screen.factories);
-    }
-
     public void GotoRichHouse()
     {
         GameManager.instance.ChangeScreen(GameManager.Screen.richHouse);
