@@ -9,6 +9,8 @@ public class Technology : MonoBehaviour
     bool isResearched;
     [SerializeField]
     int neededMoney;
+    [SerializeField]
+    GameObject Information;
 
     private void Start()
     {

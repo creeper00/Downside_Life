@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnitsManager : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class UnitsManager : MonoBehaviour
 
     [SerializeField]
     private GameObject crookTab, snakeTab, gangTab;
+    [SerializeField]
+    private GameObject Slot1, Slot2, Slot3;
+    [SerializeField]
+    private Text RichMoneyChange;
     
     public enum Tabs
     {
