@@ -27,7 +27,7 @@ public partial class GameManager : MonoBehaviour
 
     //UI
     [SerializeField]
-    private GameObject CommonCanvas, mainCanvas, techTreeCanvas, unitsCanvas, storeCanvas, richHouseCanvas,firstFloorCanvas, secondFloorCanvas, thirdFloorCanvas, fourthFloorCanvas, fifthFloorCanvas;
+    private GameObject CommonCanvas, mainCanvas, techTreeCanvas, unitsCanvas, storeCanvas, richHouseCanvas,richHouse, firstFloorCanvas, secondFloorCanvas, thirdFloorCanvas, fourthFloorCanvas, fifthFloorCanvas;
     [SerializeField]
     public GameObject richMoneyBar;
     private GameObject GotoMainButton, GotoTechTreeButton, GotoUnitsButton, GotoStoreButton, GotoRichHouseButton,FirstFloorButton, SecondFloorButton, ThirdFloorButton, FourthFloorButton, FifthFloorButton;
@@ -111,7 +111,8 @@ public partial class GameManager : MonoBehaviour
         techTreeCanvas.SetActive(currentScreen == Screen.techtree);
         unitsCanvas.SetActive(currentScreen == Screen.units);
         storeCanvas.SetActive(currentScreen == Screen.store);
-        richHouseCanvas.SetActive(currentScreen == Screen.richHouse);
+        richHouse.SetActive(currentScreen == Screen.richHouse);
+        richHouseCanvas.SetActive(currentScreen >= Screen.richHouse);
         firstFloorCanvas.SetActive(currentScreen == Screen.firstFloor);
         secondFloorCanvas.SetActive(currentScreen == Screen.secondFloor);
         thirdFloorCanvas.SetActive(currentScreen == Screen.thirdFloor);
