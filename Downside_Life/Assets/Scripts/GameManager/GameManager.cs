@@ -19,7 +19,7 @@ public partial class GameManager : MonoBehaviour
 
     public enum Screen
     {
-        main, techtree, units, store, richHouse
+        main, techtree, units, store, richHouse, fifthFloor, fourthFloor, thirdFloor, secondFloor, firstFloor
     }
 
     public Screen currentScreen;
@@ -27,10 +27,10 @@ public partial class GameManager : MonoBehaviour
 
     //UI
     [SerializeField]
-    private GameObject CommonCanvas, mainCanvas, techTreeCanvas, unitsCanvas, storeCanvas, richHouseCanvas;
+    private GameObject CommonCanvas, mainCanvas, techTreeCanvas, unitsCanvas, storeCanvas, richHouseCanvas,firstFloorCanvas, secondFloorCanvas, thirdFloorCanvas, fourthFloorCanvas, fifthFloorCanvas;
     [SerializeField]
     public GameObject richMoneyBar;
-    private GameObject GotoMainButton, GotoTechTreeButton, GotoUnitsButton, GotoStoreButton, GotoRichHouseButton;
+    private GameObject GotoMainButton, GotoTechTreeButton, GotoUnitsButton, GotoStoreButton, GotoRichHouseButton,FirstFloorButton, SecondFloorButton, ThirdFloorButton, FourthFloorButton, FifthFloorButton;
 
     private void Awake()
     {
@@ -44,6 +44,11 @@ public partial class GameManager : MonoBehaviour
         GotoUnitsButton = GameObject.Find("GotoUnitsButton");
         GotoStoreButton = GameObject.Find("GotoStoreButton");
         GotoRichHouseButton = GameObject.Find("GotoRichHouseButton");
+        FirstFloorButton = GameObject.Find("FirstFloorButton");
+        SecondFloorButton = GameObject.Find("SecondFloorButton");
+        ThirdFloorButton = GameObject.Find("ThirdFloorButton");
+        FourthFloorButton = GameObject.Find("FourthFloorButton");
+        FifthFloorButton = GameObject.Find("FifthFloorButton");
 
         richMoney = richInitialMoney;
 
@@ -68,6 +73,11 @@ public partial class GameManager : MonoBehaviour
                 GotoStoreButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
                 break;
             case Screen.richHouse:
+            case Screen.fifthFloor:
+            case Screen.fourthFloor:
+            case Screen.thirdFloor:
+            case Screen.secondFloor:
+            case Screen.firstFloor:
                 GotoRichHouseButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
                 break;
         }
@@ -100,6 +110,17 @@ public partial class GameManager : MonoBehaviour
         unitsCanvas.SetActive(currentScreen == Screen.units);
         storeCanvas.SetActive(currentScreen == Screen.store);
         richHouseCanvas.SetActive(currentScreen == Screen.richHouse);
+        firstFloorCanvas.SetActive(currentScreen == Screen.firstFloor);
+        secondFloorCanvas.SetActive(currentScreen == Screen.secondFloor);
+        thirdFloorCanvas.SetActive(currentScreen == Screen.thirdFloor);
+        fourthFloorCanvas.SetActive(currentScreen == Screen.fourthFloor);
+        fifthFloorCanvas.SetActive(currentScreen == Screen.fifthFloor);
+    }
+
+    public void ChangeCanvasInHouse(Screen newScreen)
+    {
+        currentScreen = newScreen;
+        ChangeCanvas();
     }
 }
 

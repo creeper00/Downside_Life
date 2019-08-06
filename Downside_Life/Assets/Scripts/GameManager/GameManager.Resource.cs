@@ -11,8 +11,6 @@ public partial class GameManager : MonoBehaviour
     [HideInInspector]
     public int playerSalary;
     [HideInInspector]
-    public int depserate;
-    [HideInInspector]
     public int stamina;
     
     //부자의 스탯
