@@ -1486,7 +1486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d92f61c62c4cbf4a9895690fbd8e3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thiefInfo: {fileID: 0}
+  thiefInfo: {fileID: 991729630}
 --- !u!1 &145260575
 GameObject:
   m_ObjectHideFlags: 0
@@ -2258,7 +2258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d92f61c62c4cbf4a9895690fbd8e3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thiefInfo: {fileID: 0}
+  thiefInfo: {fileID: 991729630}
 --- !u!1 &216949781
 GameObject:
   m_ObjectHideFlags: 0
@@ -3051,7 +3051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d92f61c62c4cbf4a9895690fbd8e3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thiefInfo: {fileID: 0}
+  thiefInfo: {fileID: 991729630}
 --- !u!1 &284210438
 GameObject:
   m_ObjectHideFlags: 0
@@ -6109,7 +6109,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 3.9e-44, y: 2.296e-41, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 2.75508e-40, z: -3.11e-43, w: -1.114e-42}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -6272,7 +6272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d92f61c62c4cbf4a9895690fbd8e3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thiefInfo: {fileID: 0}
+  thiefInfo: {fileID: 991729630}
 --- !u!1 &713766754
 GameObject:
   m_ObjectHideFlags: 0
@@ -7424,7 +7424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d92f61c62c4cbf4a9895690fbd8e3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thiefInfo: {fileID: 0}
+  thiefInfo: {fileID: 991729630}
 --- !u!1 &864145073
 GameObject:
   m_ObjectHideFlags: 0
@@ -8977,7 +8977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d92f61c62c4cbf4a9895690fbd8e3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thiefInfo: {fileID: 0}
+  thiefInfo: {fileID: 991729630}
 --- !u!1 &1035683217
 GameObject:
   m_ObjectHideFlags: 0
@@ -9116,7 +9116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000011444, y: -65.80002}
+  m_AnchoredPosition: {x: 0.000072479, y: 152.3}
   m_SizeDelta: {x: 965.6, y: 72.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1051941868
@@ -10293,7 +10293,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1175709061
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11099,7 +11099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d92f61c62c4cbf4a9895690fbd8e3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thiefInfo: {fileID: 0}
+  thiefInfo: {fileID: 991729630}
 --- !u!1 &1271182752
 GameObject:
   m_ObjectHideFlags: 0
@@ -11691,7 +11691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d92f61c62c4cbf4a9895690fbd8e3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thiefInfo: {fileID: 0}
+  thiefInfo: {fileID: 991729630}
 --- !u!1 &1332455492
 GameObject:
   m_ObjectHideFlags: 0
@@ -11983,7 +11983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d92f61c62c4cbf4a9895690fbd8e3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thiefInfo: {fileID: 0}
+  thiefInfo: {fileID: 991729630}
 --- !u!1 &1347141295
 GameObject:
   m_ObjectHideFlags: 0
@@ -12147,7 +12147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000011444, y: 152.3}
+  m_AnchoredPosition: {x: 0.000011444, y: -65.8}
   m_SizeDelta: {x: 965.6, y: 72.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1348643409
@@ -14538,7 +14538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d92f61c62c4cbf4a9895690fbd8e3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thiefInfo: {fileID: 0}
+  thiefInfo: {fileID: 991729630}
 --- !u!1 &1611048938
 GameObject:
   m_ObjectHideFlags: 0
@@ -14855,7 +14855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1651632707
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15923,7 +15923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d92f61c62c4cbf4a9895690fbd8e3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thiefInfo: {fileID: 0}
+  thiefInfo: {fileID: 991729630}
 --- !u!1 &1880362115
 GameObject:
   m_ObjectHideFlags: 0
@@ -16422,7 +16422,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000072479, y: 79.599976}
+  m_AnchoredPosition: {x: 0.000072479, y: 6.9}
   m_SizeDelta: {x: 965.6, y: 72.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1934814903
@@ -16567,7 +16567,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000011444, y: 6.9}
+  m_AnchoredPosition: {x: 0.000011444, y: 79.60001}
   m_SizeDelta: {x: 965.6, y: 72.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1935442338
@@ -17161,7 +17161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d92f61c62c4cbf4a9895690fbd8e3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thiefInfo: {fileID: 0}
+  thiefInfo: {fileID: 991729630}
 --- !u!1 &1998961198
 GameObject:
   m_ObjectHideFlags: 0
@@ -17534,7 +17534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d92f61c62c4cbf4a9895690fbd8e3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thiefInfo: {fileID: 0}
+  thiefInfo: {fileID: 991729630}
 --- !u!1 &2032299426
 GameObject:
   m_ObjectHideFlags: 0
@@ -18321,7 +18321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d92f61c62c4cbf4a9895690fbd8e3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thiefInfo: {fileID: 0}
+  thiefInfo: {fileID: 991729630}
 --- !u!1 &2134068962
 GameObject:
   m_ObjectHideFlags: 0
@@ -18767,7 +18767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d92f61c62c4cbf4a9895690fbd8e3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thiefInfo: {fileID: 0}
+  thiefInfo: {fileID: 991729630}
 --- !u!1 &2146283658
 GameObject:
   m_ObjectHideFlags: 0
