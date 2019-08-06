@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class UnitInformation : MonoBehaviour
 {
+    public static UnitInformation instance;
     enum Job
     {
         Crook,
@@ -12,6 +12,13 @@ public class UnitInformation : MonoBehaviour
         Gang
     }
 
+
     [SerializeField]
     private Job whatJob;
+
+    private void Start()
+    {
+        instance = this;
+    }
+    
 }

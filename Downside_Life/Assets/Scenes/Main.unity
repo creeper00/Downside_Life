@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1649,8 +1649,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 54.9, y: 10}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 54.9, y: -25.4}
+  m_SizeDelta: {x: 160, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &180534673
 MonoBehaviour:
@@ -2490,6 +2490,7 @@ GameObject:
   - component: {fileID: 239046786}
   - component: {fileID: 239046785}
   - component: {fileID: 239046784}
+  - component: {fileID: 239046788}
   m_Layer: 5
   m_Name: MainCanvas
   m_TagString: Untagged
@@ -2583,6 +2584,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &239046788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239046783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9beb2fbf225b7164d83671930ec0a756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  information: {fileID: 2136208293}
+  crookInfo: {fileID: 2009065886}
+  snakeInfo: {fileID: 180534673}
+  thiefInfo: {fileID: 2084563032}
+  gangInfo: {fileID: 968002835}
 --- !u!1 &255468586
 GameObject:
   m_ObjectHideFlags: 0
@@ -4103,7 +4121,6 @@ MonoBehaviour:
   fifthFloorCanvas: {fileID: 1175709060}
   richMoneyBar: {fileID: 1441065489}
   eventText: {fileID: 1164711797}
-  information: {fileID: 2136208293}
   playerMoney: 0
   playerSalary: 0
   stamina: 0
@@ -5936,7 +5953,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1e-45, y: 0, z: 4.5e-44, w: 0.10546875}
+  m_BoundingSphereOverride: {x: 0, y: 1e-45, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -7926,8 +7943,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 46, y: 7}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 46, y: -25.4}
+  m_SizeDelta: {x: 160, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &968002835
 MonoBehaviour:
@@ -15523,7 +15540,7 @@ GameObject:
   - component: {fileID: 1909511401}
   - component: {fileID: 1909511400}
   m_Layer: 5
-  m_Name: RichInformation
+  m_Name: ThiefInformation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16595,8 +16612,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 46.989998, y: 9.5}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 27.22, y: -25.4}
+  m_SizeDelta: {x: 160, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2009065886
 MonoBehaviour:
@@ -16631,7 +16648,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "LV : 9\n\uD2B9\uC131 : \uC26C\uBC8C\n\uACF5\uACA9 : 1000000\uC6D0"
 --- !u!222 &2009065887
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17251,8 +17268,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48.329956, y: 6.3799973}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 48.329956, y: -25.4}
+  m_SizeDelta: {x: 160, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2084563032
 MonoBehaviour:
