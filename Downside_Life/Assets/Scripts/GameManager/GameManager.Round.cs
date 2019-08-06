@@ -8,5 +8,6 @@ public partial class GameManager : MonoBehaviour
     {
         ResourceManage();
         EventManage();
+        StaminaManage(stamina - 1);
     }
 }
