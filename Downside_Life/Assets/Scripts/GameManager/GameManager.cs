@@ -38,7 +38,7 @@ public partial class GameManager : MonoBehaviour
 
         currentScreen = Screen.main;
         ChangeCanvas();
-        
+        StaminaManage(10);
         GotoMainButton = GameObject.Find("GotoMainButton");
         GotoTechTreeButton = GameObject.Find("GotoTechTreeButton");
         GotoUnitsButton = GameObject.Find("GotoUnitsButton");
@@ -46,7 +46,9 @@ public partial class GameManager : MonoBehaviour
         GotoRichHouseButton = GameObject.Find("GotoRichHouseButton");
 
         richMoney = richInitialMoney;
-
+        playerMoney = 0;
+        ResourceManage();
+        playerSalary = 100;
         richSalary = -100;
     }
 

@@ -11,8 +11,6 @@ public partial class GameManager : MonoBehaviour
     [HideInInspector]
     public int playerSalary;
     [HideInInspector]
-    public int depserate;
-    [HideInInspector]
     public int stamina;
     
     //부자의 스탯
@@ -41,6 +39,24 @@ public partial class GameManager : MonoBehaviour
 
         richDesperate += (double)(lastRichMoney - richMoney) / lastRichMoney;
 
+        desperateGauge.GetComponent<Transform>().localScale = new Vector3((float)richDesperate, 1, 1);
+
         richMoneyBar.GetComponent<RichMoneyBar>().ChangeBar(richMoney, richInitialMoney);
+        //rich
+
+        playerMoney += playerSalary;
+        moneyText.text = playerMoney + "";
+        //player
+
+        
+
+    }
+
+    void StaminaManage(int currentStamina)
+    {
+        stamina = currentStamina;
+        staminaGauge.GetComponent<Transform>().localScale = new Vector3((float)currentStamina / 10, 1, 1);
+        staminaText.text = currentStamina + "/10";
+
     }
 }
