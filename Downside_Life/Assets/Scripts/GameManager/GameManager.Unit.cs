@@ -9,7 +9,22 @@ public partial class GameManager : MonoBehaviour
     List<Snake> snakes;
     List<Snake> addedSnakes;
     List<Gang> gangs;
-    List<Gang> addedGangs;   
+    List<Gang> addedGangs;
+
+    //전체적인 특성
+    [HideInInspector]
+    public int crookAverageLevel, crookMaxLevel;
+    List<string> crookAttribute;//나올 확률은 동일
+
+    [HideInInspector]
+    public int snakeAverageLevel, snakeMaxLevel;
+    List<string> snakeAttribute;
+
+    [HideInInspector]
+    public int gangAverageLevel, gangMaxLevel;
+    List<string> gangAttribute;
+    //
+
     class Crook
     {
         int level;

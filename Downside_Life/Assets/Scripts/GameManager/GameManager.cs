@@ -22,12 +22,19 @@ public partial class GameManager : MonoBehaviour
         main, techtree, units, store, richHouse, fifthFloor, fourthFloor, thirdFloor, secondFloor, firstFloor
     }
 
+    public enum Job
+    {
+        crook,
+        thief,
+        gang,
+        snake
+    }
     public Screen currentScreen;
 
 
     //UI
     [SerializeField]
-    private GameObject CommonCanvas, mainCanvas, techTreeCanvas, unitsCanvas, storeCanvas, richHouseCanvas,richHouse, firstFloorCanvas, secondFloorCanvas, thirdFloorCanvas, fourthFloorCanvas, fifthFloorCanvas;
+    public GameObject CommonCanvas, mainCanvas, techTreeCanvas, unitsCanvas, storeCanvas, richHouseCanvas,richHouse, firstFloorCanvas, secondFloorCanvas, thirdFloorCanvas, fourthFloorCanvas, fifthFloorCanvas, techInfoCanvas;
     [SerializeField]
     public GameObject richMoneyBar;
     private GameObject GotoMainButton, GotoTechTreeButton, GotoUnitsButton, GotoStoreButton, GotoRichHouseButton,FirstFloorButton, SecondFloorButton, ThirdFloorButton, FourthFloorButton, FifthFloorButton;
@@ -35,7 +42,12 @@ public partial class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-
+        crookAverageLevel = 1;
+        crookMaxLevel = 1;
+        snakeAverageLevel = 1;
+        snakeMaxLevel = 1;
+        gangAverageLevel = 1;
+        gangMaxLevel = 1;
         currentScreen = Screen.main;
         ChangeCanvas();
         StaminaManage(10);
@@ -109,6 +121,7 @@ public partial class GameManager : MonoBehaviour
     {
         mainCanvas.SetActive(currentScreen == Screen.main);
         techTreeCanvas.SetActive(currentScreen == Screen.techtree);
+        techInfoCanvas.SetActive(currentScreen != Screen.techtree);
         unitsCanvas.SetActive(currentScreen == Screen.units);
         storeCanvas.SetActive(currentScreen == Screen.store);
         richHouse.SetActive(currentScreen == Screen.richHouse);
