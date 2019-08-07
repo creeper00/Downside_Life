@@ -4,12 +4,12 @@ using UnityEngine;
 
 public partial class GameManager : MonoBehaviour
 {
-    List<Crook> crooks;
-    List<Crook> addedCrooks;
-    List<Snake> snakes;
-    List<Snake> addedSnakes;
-    List<Gang> gangs;
-    List<Gang> addedGangs;
+    public List<Crook> crooks;
+    public List<Crook> addedCrooks;
+    public List<Snake> snakes;
+    public List<Snake> addedSnakes;
+    public List<Gang> gangs;
+    public List<Gang> addedGangs;
 
     //전체적인 특성
     [HideInInspector]
@@ -25,12 +25,12 @@ public partial class GameManager : MonoBehaviour
     List<string> gangAttribute;
     //
 
-    class Crook
+    public class Crook
     {
         int level;
         int attribute;
         int attack;
-        Crook(int level, int attribute)
+        public Crook(int level, int attribute)
         {
             this.level = level;
             this.attribute = attribute;
@@ -38,12 +38,12 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
-    class Snake
+    public class Snake
     {
         int level;
         int attribute;
         int attack;
-        Snake(int level, int attribute)
+        public Snake(int level, int attribute)
         {
             this.level = level;
             this.attribute = attribute;
@@ -51,17 +51,22 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
-    class Gang
+    public class Gang
     {
         int level;
         int attribute;
         int attack;
-        Gang(int level, int attribute)
+        public Gang(int level, int attribute)
         {
             this.level = level;
             this.attribute = attribute;
             attack = level * attribute;
         }
     }
-
+    private void Start()
+    {
+        crooks = new List<Crook>();
+        snakes = new List<Snake>();
+        gangs = new List<Gang>();
+    }
 }
