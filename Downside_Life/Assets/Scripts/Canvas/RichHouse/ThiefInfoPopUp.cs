@@ -26,6 +26,7 @@ public class ThiefInfoPopUp : MonoBehaviour
 
     public void ThiefPopUp()
     {
+        Debug.Log(thiefInfo);
         thiefInfo.SetActive(true);
         getInformation();
     }

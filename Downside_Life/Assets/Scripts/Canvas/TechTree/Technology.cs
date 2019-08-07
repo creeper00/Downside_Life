@@ -5,31 +5,40 @@ using UnityEngine;
 public class Technology : MonoBehaviour
 {
     [SerializeField]
-    List<Technology> previousTechnologies;
-    bool isResearched;
+    public List<Technology> previousTechnologies;
+    [HideInInspector]
+    public bool isResearched;
     [SerializeField]
-    int neededMoney;
+    public int neededMoney;
     [SerializeField]
     GameObject Information;
+    [SerializeField]
+    public GameManager.Job job;
+
+    [SerializeField]
+    TechInfoButtons techUpButton;
+
+    int maxLevelUp;
+    int averageLevelUp;
+    string attributeUnlock;
 
     private void Start()
     {
         isResearched = false;
     }
-    private void OnMouseDown()
+
+    public void TechInfoOpen()
     {
-        for (int i=0; i<previousTechnologies.Capacity; i++)
+        if (isResearched)
         {
-            if (!previousTechnologies[i].isResearched)//선행연구 진행안됨
-            {
-                return;
-            }
-        }
-        if (GameManager.instance.playerMoney < neededMoney)//돈이 모자람
-        {
+            Debug.Log("이미 연구됨");
             return;
         }
-        isResearched = true;
+        GameManager.instance.techInfoCanvas.SetActive(true);
+        techUpButton.tech = this;
+    }
+    public void Upgrade()
+    {
         GameManager.instance.playerMoney -= neededMoney;
     }
 }
