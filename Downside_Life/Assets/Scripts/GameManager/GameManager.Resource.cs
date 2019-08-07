@@ -40,23 +40,24 @@ public partial class GameManager : MonoBehaviour
         richDesperate += (double)(lastRichMoney - richMoney) / lastRichMoney;
 
         desperateGauge.GetComponent<Transform>().localScale = new Vector3((float)richDesperate, 1, 1);
-
         richMoneyBar.GetComponent<RichMoneyBar>().ChangeBar(richMoney, richInitialMoney);
         //rich
 
         playerMoney += playerSalary;
-        moneyText.text = playerMoney + "";
         //player
-
-
-
+        showResources();
     }
 
     void StaminaManage(int currentStamina)
     {
         stamina = currentStamina;
-        staminaGauge.GetComponent<Transform>().localScale = new Vector3((float)currentStamina / 10, 1, 1);
-        staminaText.text = currentStamina + "/10";
+        showResources();
+    }
 
+    public void showResources()
+    {
+        staminaGauge.GetComponent<Transform>().localScale = new Vector3((float)stamina / 10, 1, 1);
+        staminaText.text = stamina + "/10";
+        moneyText.text = playerMoney + "";
     }
 }

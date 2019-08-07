@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class RichHouseManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static RichHouseManager instance;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    public List<string> info;//floor + " " + object + " " + percentage + " " + money
+
+    private void Start()
     {
-        
+        instance = this;
     }
 }

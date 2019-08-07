@@ -1487,6 +1487,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thiefInfo: {fileID: 991729630}
+  thiefInfoText: {fileID: 2113889817}
+  whatFloor: 3
+  whatObject: 0
+  thiefAction: {fileID: 765331421}
 --- !u!1 &145260575
 GameObject:
   m_ObjectHideFlags: 0
@@ -2259,6 +2263,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thiefInfo: {fileID: 991729630}
+  thiefInfoText: {fileID: 2113889817}
+  whatFloor: 4
+  whatObject: 2
+  thiefAction: {fileID: 765331421}
 --- !u!1 &216949781
 GameObject:
   m_ObjectHideFlags: 0
@@ -2547,7 +2555,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &239046784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3052,6 +3060,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thiefInfo: {fileID: 991729630}
+  thiefInfoText: {fileID: 2113889817}
+  whatFloor: 0
+  whatObject: 1
+  thiefAction: {fileID: 765331421}
 --- !u!1 &284210438
 GameObject:
   m_ObjectHideFlags: 0
@@ -3587,6 +3599,7 @@ GameObject:
   - component: {fileID: 425581293}
   - component: {fileID: 425581292}
   - component: {fileID: 425581291}
+  - component: {fileID: 425581295}
   m_Layer: 5
   m_Name: RichHouseCanvas
   m_TagString: Untagged
@@ -3680,6 +3693,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &425581295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425581290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6e37edf677398841917c34a2dc33390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info:
+  - 1 1 100 10000
+  - 1 2 100 10000
+  - 1 3 100 10000
+  - 2 1 70 50000
+  - 2 2 70 50000
+  - 2 3 70 50000
+  - 3 1 50 100000
+  - 3 2 50 100000
+  - 3 3 50 100000
+  - 4 1 30 500000
+  - 4 2 30 500000
+  - 4 3 30 500000
+  - 5 1 20 1000000
+  - 5 2 20 1000000
+  - 5 3 20 1000000
 --- !u!1 &425818890
 GameObject:
   m_ObjectHideFlags: 0
@@ -3852,11 +3893,11 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 772be333f4192d7408eb98a98b0912a2, type: 3}
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3864,7 +3905,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\uC608"
 --- !u!222 &460019250
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6109,7 +6150,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 2.75508e-40, z: -3.11e-43, w: -1.114e-42}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -6273,6 +6314,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thiefInfo: {fileID: 991729630}
+  thiefInfoText: {fileID: 2113889817}
+  whatFloor: 3
+  whatObject: 1
+  thiefAction: {fileID: 765331421}
 --- !u!1 &713766754
 GameObject:
   m_ObjectHideFlags: 0
@@ -6576,6 +6621,7 @@ GameObject:
   - component: {fileID: 765331420}
   - component: {fileID: 765331419}
   - component: {fileID: 765331418}
+  - component: {fileID: 765331421}
   m_Layer: 5
   m_Name: ThiefActionButton
   m_TagString: Untagged
@@ -6596,12 +6642,12 @@ RectTransform:
   m_Children:
   - {fileID: 460019248}
   m_Father: {fileID: 991729631}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220, y: -130}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -60, y: -50}
+  m_SizeDelta: {x: 80, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &765331418
 MonoBehaviour:
@@ -6645,7 +6691,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 765331419}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 765331421}
+        m_MethodName: doThief
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &765331419
@@ -6685,6 +6742,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 765331416}
   m_CullTransparentMesh: 0
+--- !u!114 &765331421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765331416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ae667a174255e4c9701e840c0ba1e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 0
+  percentage: 0
 --- !u!1 &795564250
 GameObject:
   m_ObjectHideFlags: 0
@@ -7425,6 +7496,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thiefInfo: {fileID: 991729630}
+  thiefInfoText: {fileID: 2113889817}
+  whatFloor: 2
+  whatObject: 1
+  thiefAction: {fileID: 765331421}
 --- !u!1 &864145073
 GameObject:
   m_ObjectHideFlags: 0
@@ -8544,9 +8619,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1967549435}
+  - {fileID: 2113889816}
   - {fileID: 765331417}
   - {fileID: 2141999441}
-  - {fileID: 2113889816}
   m_Father: {fileID: 425581294}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8978,6 +9054,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thiefInfo: {fileID: 991729630}
+  thiefInfoText: {fileID: 2113889817}
+  whatFloor: 1
+  whatObject: 2
+  thiefAction: {fileID: 765331421}
 --- !u!1 &1035683217
 GameObject:
   m_ObjectHideFlags: 0
@@ -11100,6 +11180,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thiefInfo: {fileID: 991729630}
+  thiefInfoText: {fileID: 2113889817}
+  whatFloor: 2
+  whatObject: 0
+  thiefAction: {fileID: 765331421}
 --- !u!1 &1271182752
 GameObject:
   m_ObjectHideFlags: 0
@@ -11692,6 +11776,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thiefInfo: {fileID: 991729630}
+  thiefInfoText: {fileID: 2113889817}
+  whatFloor: 3
+  whatObject: 2
+  thiefAction: {fileID: 765331421}
 --- !u!1 &1332455492
 GameObject:
   m_ObjectHideFlags: 0
@@ -11984,6 +12072,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thiefInfo: {fileID: 991729630}
+  thiefInfoText: {fileID: 2113889817}
+  whatFloor: 0
+  whatObject: 2
+  thiefAction: {fileID: 765331421}
 --- !u!1 &1347141295
 GameObject:
   m_ObjectHideFlags: 0
@@ -14539,6 +14631,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thiefInfo: {fileID: 991729630}
+  thiefInfoText: {fileID: 2113889817}
+  whatFloor: 1
+  whatObject: 0
+  thiefAction: {fileID: 765331421}
 --- !u!1 &1611048938
 GameObject:
   m_ObjectHideFlags: 0
@@ -14855,7 +14951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1651632707
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15924,6 +16020,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thiefInfo: {fileID: 991729630}
+  thiefInfoText: {fileID: 2113889817}
+  whatFloor: 1
+  whatObject: 1
+  thiefAction: {fileID: 765331421}
 --- !u!1 &1880362115
 GameObject:
   m_ObjectHideFlags: 0
@@ -16801,6 +16901,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1957353747}
   m_CullTransparentMesh: 0
+--- !u!1 &1967549434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1967549435}
+  - component: {fileID: 1967549437}
+  - component: {fileID: 1967549436}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1967549435
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967549434}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 991729631}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 250, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1967549436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967549434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1967549437
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967549434}
+  m_CullTransparentMesh: 0
 --- !u!1 &1969060270
 GameObject:
   m_ObjectHideFlags: 0
@@ -16995,11 +17169,11 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 772be333f4192d7408eb98a98b0912a2, type: 3}
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -17007,7 +17181,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\uC544\uB2C8\uC624"
 --- !u!222 &1983070514
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17162,6 +17336,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thiefInfo: {fileID: 991729630}
+  thiefInfoText: {fileID: 2113889817}
+  whatFloor: 0
+  whatObject: 0
+  thiefAction: {fileID: 765331421}
 --- !u!1 &1998961198
 GameObject:
   m_ObjectHideFlags: 0
@@ -17535,6 +17713,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thiefInfo: {fileID: 991729630}
+  thiefInfoText: {fileID: 2113889817}
+  whatFloor: 2
+  whatObject: 2
+  thiefAction: {fileID: 765331421}
 --- !u!1 &2032299426
 GameObject:
   m_ObjectHideFlags: 0
@@ -18026,12 +18208,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 991729631}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2113889817
 MonoBehaviour:
@@ -18054,19 +18236,19 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 772be333f4192d7408eb98a98b0912a2, type: 3}
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 3
+    m_MaxSize: 42
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "\uD655\uB960 : 100%\n\uB3C8 : 2147483647"
 --- !u!222 &2113889818
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18322,6 +18504,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thiefInfo: {fileID: 991729630}
+  thiefInfoText: {fileID: 2113889817}
+  whatFloor: 4
+  whatObject: 1
+  thiefAction: {fileID: 765331421}
 --- !u!1 &2134068962
 GameObject:
   m_ObjectHideFlags: 0
@@ -18437,7 +18623,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 366, y: -130}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2139399189
@@ -18509,12 +18695,12 @@ RectTransform:
   m_Children:
   - {fileID: 1983070512}
   m_Father: {fileID: 991729631}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.74300003, y: 0.31944448}
-  m_AnchorMax: {x: 0.74300003, y: 0.31944448}
-  m_AnchoredPosition: {x: 28, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 60, y: -50}
+  m_SizeDelta: {x: 80, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2141999442
 MonoBehaviour:
@@ -18528,7 +18714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c1b00d559f53745afa72cb59867e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thiefInfo: {fileID: 0}
+  thiefInfo: {fileID: 991729630}
 --- !u!114 &2141999443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18768,6 +18954,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thiefInfo: {fileID: 991729630}
+  thiefInfoText: {fileID: 2113889817}
+  whatFloor: 4
+  whatObject: 0
+  thiefAction: {fileID: 765331421}
 --- !u!1 &2146283658
 GameObject:
   m_ObjectHideFlags: 0
