@@ -10,54 +10,52 @@ public class UnitsManager : MonoBehaviour
     [SerializeField]
     private GameObject crookTab, snakeTab, gangTab;
     [SerializeField]
-    private GameObject Slot1, Slot2, Slot3;
-    [SerializeField]
     private Text RichMoneyChange;
-
     [SerializeField]
     Transform prefab;
     [SerializeField]
-    GameObject parent;
+    GameObject contents;
 
     public void resetScrollView()
     {
-        foreach (Transform child in parent.GetComponent<Transform>())
+        foreach (Transform child in contents.GetComponent<Transform>())
         {
             Destroy(child.gameObject);
         }
     }
     public void showCrooks()
     {
-        parent.GetComponent<RectTransform>().sizeDelta = new Vector3(0, 0, 0);
+        contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, 0, 0);
         Debug.Log("Capacity : " + GameManager.instance.crooks.Count);
         for (int i = 0; i < GameManager.instance.crooks.Count; i++)
         {
-            Instantiate(prefab, parent.transform);
-            parent.GetComponent<RectTransform>().sizeDelta = new Vector3(0, parent.GetComponent<RectTransform>().sizeDelta.y + 140, 0);
+            Instantiate(prefab, contents.transform);
+            contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, contents.GetComponent<RectTransform>().sizeDelta.y + 120, 0);
         }
     }
 
     public void showSnakes()
     {
-        parent.GetComponent<RectTransform>().sizeDelta = new Vector3(0, 0, 0);
+        contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, 0, 0);
         Debug.Log("Capacity : " + GameManager.instance.snakes.Count);
         for (int i = 0; i < GameManager.instance.snakes.Count; i++)
         {
-            Instantiate(prefab, parent.transform);
-            parent.GetComponent<RectTransform>().sizeDelta = new Vector3(0, parent.GetComponent<RectTransform>().sizeDelta.y + 140, 0);
+            Instantiate(prefab, contents.transform);
+            contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, contents.GetComponent<RectTransform>().sizeDelta.y + 140, 0);
         }
     }
 
     public void showGangs()
     {
-        parent.GetComponent<RectTransform>().sizeDelta = new Vector3(0, 0, 0);
+        contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, 0, 0);
         Debug.Log("Capacity : " + GameManager.instance.gangs.Count);
         for (int i = 0; i < GameManager.instance.gangs.Count; i++)
         {
-            Instantiate(prefab, parent.transform);
-            parent.GetComponent<RectTransform>().sizeDelta = new Vector3(0, parent.GetComponent<RectTransform>().sizeDelta.y + 140, 0);
+            Instantiate(prefab, contents.transform);
+            contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, contents.GetComponent<RectTransform>().sizeDelta.y + 140, 0);
         }
     }
+
     public enum Tabs
     {
         crook, snake, gang
