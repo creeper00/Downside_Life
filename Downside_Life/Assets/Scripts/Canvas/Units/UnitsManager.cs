@@ -10,7 +10,7 @@ public class UnitsManager : MonoBehaviour
     [SerializeField]
     private GameObject crookTab, snakeTab, gangTab;
     [SerializeField]
-    private Text RichMoneyChange;
+    private GameObject RichMoneyChange;
     [SerializeField]
     Transform prefab;
     [SerializeField]
