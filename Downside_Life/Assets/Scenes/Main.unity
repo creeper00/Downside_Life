@@ -332,7 +332,11 @@ MonoBehaviour:
   snakeTab: {fileID: 815694091}
   gangTab: {fileID: 744938861}
   RichMoneyChange: {fileID: 542613673}
-  prefab: {fileID: 7394603286920671126, guid: 82072a462373dc3459cc9acfe9f64f10, type: 3}
+  prefab: {fileID: 3889891694774459003, guid: cdee7a03bc8852e41b5559c2dca5b382, type: 3}
+  crookPrefab: {fileID: 3889891694774459003, guid: cdee7a03bc8852e41b5559c2dca5b382,
+    type: 3}
+  snakePrefab: {fileID: 0}
+  gangPrefab: {fileID: 0}
   contents: {fileID: 855708146}
 --- !u!1 &14165253
 GameObject:
@@ -9013,7 +9017,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: -24.99997}
+  m_AnchoredPosition: {x: 0.000015258789, y: -24.997776}
   m_SizeDelta: {x: 0, y: 298.6}
   m_Pivot: {x: 0.5, y: 0.95}
 --- !u!212 &855708148
@@ -15980,7 +15984,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 702649414}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.90609497
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
