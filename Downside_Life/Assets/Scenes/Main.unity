@@ -4275,6 +4275,7 @@ GameObject:
   - component: {fileID: 412093506}
   - component: {fileID: 412093508}
   - component: {fileID: 412093507}
+  - component: {fileID: 412093509}
   m_Layer: 5
   m_Name: Slot2
   m_TagString: Untagged
@@ -4338,6 +4339,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412093505}
   m_CullTransparentMesh: 0
+--- !u!114 &412093509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412093505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 377e603d34dcdc24c915f994a4014d62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &422527293
 GameObject:
   m_ObjectHideFlags: 0
@@ -8471,6 +8484,7 @@ GameObject:
   - component: {fileID: 801360608}
   - component: {fileID: 801360610}
   - component: {fileID: 801360609}
+  - component: {fileID: 801360611}
   m_Layer: 5
   m_Name: Slot3
   m_TagString: Untagged
@@ -8534,6 +8548,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801360607}
   m_CullTransparentMesh: 0
+--- !u!114 &801360611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801360607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 377e603d34dcdc24c915f994a4014d62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &803564759
 GameObject:
   m_ObjectHideFlags: 0
@@ -9017,7 +9043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: -24.99973}
+  m_AnchoredPosition: {x: 0.000015258789, y: -24.999975}
   m_SizeDelta: {x: 0, y: 298.6}
   m_Pivot: {x: 0.5, y: 0.95}
 --- !u!212 &855708148
@@ -10170,7 +10196,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7725caeb6eff1ab4c87eab353daa36e7, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -15984,7 +16010,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 702649414}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.999891
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -20137,6 +20163,7 @@ GameObject:
   - component: {fileID: 1998961199}
   - component: {fileID: 1998961201}
   - component: {fileID: 1998961200}
+  - component: {fileID: 1998961202}
   m_Layer: 5
   m_Name: 'Slot1  '
   m_TagString: Untagged
@@ -20200,6 +20227,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1998961198}
   m_CullTransparentMesh: 0
+--- !u!114 &1998961202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998961198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 377e603d34dcdc24c915f994a4014d62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2009065884
 GameObject:
   m_ObjectHideFlags: 0

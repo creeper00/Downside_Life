@@ -5,16 +5,16 @@ using UnityEngine;
 public partial class GameManager : MonoBehaviour
 {
     public List<Crook> crooks;
-    public List<Crook> addedCrooks;
+    public Crook[] addedCrooks = new Crook[3];
     public List<Snake> snakes;
-    public List<Snake> addedSnakes;
+    public Snake[] addedSnake = new Snake[3];
     public List<Gang> gangs;
-    public List<Gang> addedGangs;
+    public Gang[] addedGang = new Gang[3];
 
-    //전체적인 특성
+    [Header("전체적인 특성")]
     [HideInInspector]
     public int crookAverageLevel, crookMaxLevel;
-    List<string> crookAttribute;//나올 확률은 동일
+    List<string> crookAttribute;                //나올 확률은 동일
 
     [HideInInspector]
     public int snakeAverageLevel, snakeMaxLevel;
@@ -23,7 +23,7 @@ public partial class GameManager : MonoBehaviour
     [HideInInspector]
     public int gangAverageLevel, gangMaxLevel;
     List<string> gangAttribute;
-    //
+    
 
     public class Crook
     {

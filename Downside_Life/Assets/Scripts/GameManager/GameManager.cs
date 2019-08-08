@@ -32,16 +32,17 @@ public partial class GameManager : MonoBehaviour
     public Screen currentScreen;
 
 
-    //UI
-    [SerializeField]
-    public GameObject CommonCanvas, mainCanvas, techTreeCanvas, unitsCanvas, storeCanvas, richHouseCanvas,richHouse, firstFloorCanvas, secondFloorCanvas, thirdFloorCanvas, fourthFloorCanvas, fifthFloorCanvas, techInfoCanvas;
-    [SerializeField]
+    [Header("Canvas")]
+    public GameObject CommonCanvas;
+    public GameObject mainCanvas, techTreeCanvas, unitsCanvas, storeCanvas, richHouseCanvas,richHouse, firstFloorCanvas, secondFloorCanvas, thirdFloorCanvas, fourthFloorCanvas, fifthFloorCanvas, techInfoCanvas;
+    [Header("기타 UI")]
     public GameObject richMoneyBar;
     private GameObject GotoMainButton, GotoTechTreeButton, GotoUnitsButton, GotoStoreButton, GotoRichHouseButton,FirstFloorButton, SecondFloorButton, ThirdFloorButton, FourthFloorButton, FifthFloorButton;
 
     private void Awake()
     {
         instance = this;
+
         crookAverageLevel = 1;
         crookMaxLevel = 1;
         snakeAverageLevel = 1;
@@ -51,11 +52,13 @@ public partial class GameManager : MonoBehaviour
         currentScreen = Screen.main;
         ChangeCanvas();
         StaminaManage(10);
+        
         GotoMainButton = GameObject.Find("GotoMainButton");
         GotoTechTreeButton = GameObject.Find("GotoTechTreeButton");
         GotoUnitsButton = GameObject.Find("GotoUnitsButton");
         GotoStoreButton = GameObject.Find("GotoStoreButton");
         GotoRichHouseButton = GameObject.Find("GotoRichHouseButton");
+
         FirstFloorButton = GameObject.Find("FirstFloorButton");
         SecondFloorButton = GameObject.Find("SecondFloorButton");
         ThirdFloorButton = GameObject.Find("ThirdFloorButton");
@@ -72,19 +75,21 @@ public partial class GameManager : MonoBehaviour
 
     public void ChangeScreen(Screen screen)
     {
-        switch(currentScreen)
+        Color32 noColor = new Color32(255, 255, 255, 255);
+        Color32 darkColor = new Color32(162, 162, 162, 255);
+        switch (currentScreen)
         {
             case Screen.main:
-                GotoMainButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                GotoMainButton.GetComponent<Image>().color = noColor;
                 break;
             case Screen.techtree:
-                GotoTechTreeButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                GotoTechTreeButton.GetComponent<Image>().color = noColor;
                 break;
             case Screen.units:
-                GotoUnitsButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                GotoUnitsButton.GetComponent<Image>().color = noColor;
                 break;
             case Screen.store:
-                GotoStoreButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                GotoStoreButton.GetComponent<Image>().color = noColor;
                 break;
             case Screen.richHouse:
             case Screen.fifthFloor:
@@ -92,26 +97,26 @@ public partial class GameManager : MonoBehaviour
             case Screen.thirdFloor:
             case Screen.secondFloor:
             case Screen.firstFloor:
-                GotoRichHouseButton.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                GotoRichHouseButton.GetComponent<Image>().color = noColor;
                 break;
         }
         currentScreen = screen;
         switch (screen)
         {
             case Screen.main:
-                GotoMainButton.GetComponent<Image>().color = new Color32(162, 162, 162, 255);
+                GotoMainButton.GetComponent<Image>().color = darkColor;
                 break;
             case Screen.techtree:
-                GotoTechTreeButton.GetComponent<Image>().color = new Color32(162, 162, 162, 255);
+                GotoTechTreeButton.GetComponent<Image>().color = darkColor;
                 break;
             case Screen.units:
-                GotoUnitsButton.GetComponent<Image>().color = new Color32(162, 162, 162, 255);
+                GotoUnitsButton.GetComponent<Image>().color = darkColor;
                 break;
             case Screen.store:
-                GotoStoreButton.GetComponent<Image>().color = new Color32(162, 162, 162, 255);
+                GotoStoreButton.GetComponent<Image>().color = darkColor;
                 break;
             case Screen.richHouse:
-                GotoRichHouseButton.GetComponent<Image>().color = new Color32(162, 162, 162, 255);
+                GotoRichHouseButton.GetComponent<Image>().color = darkColor;
                 break;
         }
         ChangeCanvas();

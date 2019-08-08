@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public partial class GameManager : MonoBehaviour
 {
-    //플레이어의 스탯
+    [Header("플레이어의 스탯")]
     [HideInInspector]
     public int playerMoney;
     [HideInInspector]
@@ -13,7 +13,7 @@ public partial class GameManager : MonoBehaviour
     [HideInInspector]
     public int stamina;
 
-    //부자의 스탯
+    [Header("부자의 스탯")]
     public int richInitialMoney;
     private int richMoney, richSalary;
     public double richDesperate;
@@ -23,13 +23,13 @@ public partial class GameManager : MonoBehaviour
     private double richDesperateBound;
 
     [SerializeField]
-    GameObject desperateGauge;
+    private GameObject desperateGauge;
     [SerializeField]
-    GameObject staminaGauge;
+    private GameObject staminaGauge;
     [SerializeField]
-    Text moneyText;
+    private Text moneyText;
     [SerializeField]
-    Text staminaText;
+    private Text staminaText;
 
     void ResourceManage()
     {

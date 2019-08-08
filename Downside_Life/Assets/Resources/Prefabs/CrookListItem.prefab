@@ -388,9 +388,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd6fec8d7e1f504c9e48f5623c8a751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
-  translucencePrefab: {fileID: 7753215623921846628, guid: 4f09a5b536bb59347b46913feeebacb8,
-    type: 3}
 --- !u!1 &3889891696426829022
 GameObject:
   m_ObjectHideFlags: 0

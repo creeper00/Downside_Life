@@ -8,7 +8,9 @@ public class UnitDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 {
     [SerializeField]
     private static GameObject canvas;
-    private GameObject itemBeingDragged;
+    [HideInInspector]
+    public static GameObject itemBeingDragged;
+    private Transform initialParent;
 
     void Awake()
     {
@@ -19,6 +21,10 @@ public class UnitDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         itemBeingDragged = Instantiate(gameObject.transform.Find("Icon").gameObject, canvas.transform);
         itemBeingDragged.GetComponent<Image>().color = new Color32(255, 255, 255, 128);
+        itemBeingDragged.AddComponent<CanvasGroup>();
+        itemBeingDragged.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+        initialParent = itemBeingDragged.transform.parent;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -28,7 +34,16 @@ public class UnitDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        GameObject.Destroy(itemBeingDragged);
+        if (itemBeingDragged.transform.parent == initialParent)
+        {
+            Debug.Log("same");
+            GameObject.Destroy(itemBeingDragged);
+        }
+        else
+        {
+            Debug.Log("different");
+        }
         itemBeingDragged = null;
+        //GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 }
