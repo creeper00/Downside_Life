@@ -12,7 +12,7 @@ public class UnitsManager : MonoBehaviour
     [SerializeField]
     private GameObject RichMoneyChange;
     [SerializeField]
-    Transform prefab;
+    Transform prefab, crookPrefab, snakePrefab, gangPrefab;
     [SerializeField]
     GameObject contents;
 
@@ -25,12 +25,15 @@ public class UnitsManager : MonoBehaviour
     }
     public void showCrooks()
     {
-        contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, 0, 0);
-        Debug.Log("Capacity : " + GameManager.instance.crooks.Count);
-        for (int i = 0; i < GameManager.instance.crooks.Count; i++)
+        contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.crooks.Count * 140, 0);
+        //Debug.Log("Capacity : " + GameManager.instance.crooks.Count);
+        int index = 0;
+        foreach (var unit in GameManager.instance.crooks)
         {
-            Instantiate(prefab, contents.transform);
-            contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, contents.GetComponent<RectTransform>().sizeDelta.y + 120, 0);
+            var listItemObject = Instantiate(prefab, contents.transform);
+            var crookItemList = listItemObject.GetComponent<CrookListItem>();
+            crookItemList.SetUnitInformation(index, unit);
+            ++index;
         }
     }
 

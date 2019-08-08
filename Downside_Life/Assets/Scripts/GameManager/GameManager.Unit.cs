@@ -27,14 +27,18 @@ public partial class GameManager : MonoBehaviour
 
     public class Crook
     {
-        int level;
-        int attribute;
-        int attack;
-        public Crook(int level, int attribute)
+        bool attatched;                             //부자에게 붙어 있는가
+        public int level;                           //사기꾼의 레벨
+        public int richConstantDown;                //매 턴 깎는 상수 값
+        public float richPercentageDown;            //매 턴 깎는 비율 값
+        public float playerPercentageUp;            //깎은 돈 중 가져오는 비율
+        public Crook(int level, int attribute, float richPercentageDown, float playerPercentageUp)
         {
+            attatched = false;
             this.level = level;
-            this.attribute = attribute;
-            attack = level * attribute;
+            richConstantDown = level * attribute;
+            this.richPercentageDown = richPercentageDown;
+            this.playerPercentageUp = playerPercentageUp;
         }
     }
 
