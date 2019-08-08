@@ -131,7 +131,7 @@ public partial class GameManager : MonoBehaviour
         thirdFloorCanvas.SetActive(currentScreen == Screen.thirdFloor);
         fourthFloorCanvas.SetActive(currentScreen == Screen.fourthFloor);
         fifthFloorCanvas.SetActive(currentScreen == Screen.fifthFloor);
-        UnitsManager.instance.resetScrollView();
+        if(currentScreen == Screen.units) UnitsManager.instance.resetScrollView();
     }
 
     public void ChangeCanvasInHouse(Screen newScreen)
