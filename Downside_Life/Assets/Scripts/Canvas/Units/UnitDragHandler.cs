@@ -10,7 +10,7 @@ public class UnitDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private static GameObject canvas;
     [HideInInspector]
     public static GameObject itemBeingDragged;
-    private Transform initialParent;
+    //private Transform initialParent;
 
     void Awake()
     {
@@ -24,7 +24,7 @@ public class UnitDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         itemBeingDragged.AddComponent<CanvasGroup>();
         itemBeingDragged.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-        initialParent = itemBeingDragged.transform.parent;
+        //initialParent = itemBeingDragged.transform.parent;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -34,6 +34,8 @@ public class UnitDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        /*
+         * 초기 테스트용 코드
         if (itemBeingDragged.transform.parent == initialParent)
         {
             Debug.Log("same");
@@ -43,7 +45,11 @@ public class UnitDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             Debug.Log("different");
         }
+        */
+
+        GameObject.Destroy(itemBeingDragged);
         itemBeingDragged = null;
+
         //GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 }

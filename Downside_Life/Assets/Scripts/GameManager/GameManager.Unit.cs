@@ -5,11 +5,11 @@ using UnityEngine;
 public partial class GameManager : MonoBehaviour
 {
     public List<Crook> crooks;
-    public Crook[] addedCrooks = new Crook[3];
+    public Crook[] attatchedCrooks = new Crook[3];
     public List<Snake> snakes;
-    public Snake[] addedSnake = new Snake[3];
+    public Snake[] attatchedSnakes = new Snake[3];
     public List<Gang> gangs;
-    public Gang[] addedGang = new Gang[3];
+    public Gang[] attatchedGangs = new Gang[3];
 
     [Header("전체적인 특성")]
     [HideInInspector]
@@ -23,7 +23,6 @@ public partial class GameManager : MonoBehaviour
     [HideInInspector]
     public int gangAverageLevel, gangMaxLevel;
     List<string> gangAttribute;
-    
 
     public class Crook
     {
@@ -40,6 +39,21 @@ public partial class GameManager : MonoBehaviour
             this.richPercentageDown = richPercentageDown;
             this.playerPercentageUp = playerPercentageUp;
         }
+    }
+
+    public void moveCrookToSlot(int crookIndex, int slotIndex)
+    {
+        if (attatchedCrooks[slotIndex] == null)
+        {
+            Crook movingCrook = crooks[crookIndex];
+            crooks.RemoveAt(crookIndex);
+            attatchedCrooks[slotIndex] = movingCrook;
+        }
+        else
+        {
+
+        }
+        
     }
 
     public class Snake

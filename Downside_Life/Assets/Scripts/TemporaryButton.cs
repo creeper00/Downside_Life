@@ -12,6 +12,7 @@ public class TemporaryButton : MonoBehaviour
     public void addCrooks()
     {
         GameManager.instance.crooks.Add(new GameManager.Crook(1, 10000, 0.01f, 0.02f));
+        UnitsManager.instance.showCrooks();
     }
 
     public void addSnakes()

@@ -15,6 +15,4 @@ public class CrookListItem : MonoBehaviour
         transform.Find("Stat").GetComponent<Text>().text = crook.richPercentageDown + "% + " + crook.richConstantDown;
         transform.Find("Return").GetComponent<Text>().text = crook.playerPercentageUp + "% 환급";
     }
-
-
 }

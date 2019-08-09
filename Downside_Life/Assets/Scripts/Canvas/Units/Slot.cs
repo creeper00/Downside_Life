@@ -5,6 +5,9 @@ using UnityEngine.EventSystems;
 
 public class Slot : MonoBehaviour, IDropHandler
 {
+    [SerializeField]
+    private GameObject slotPrefab;
+
     public GameObject item
     {
         get
@@ -25,7 +28,8 @@ public class Slot : MonoBehaviour, IDropHandler
         Debug.Log("detected drop");
         if ( item == null )
         {
-            UnitDragHandler.itemBeingDragged.transform.SetParent(transform);
+            GameObject slotObject = Instantiate(slotPrefab, transform);
+            //UnitDragHandler.itemBeingDragged.transform.SetParent(transform);
         }
     }
 }
