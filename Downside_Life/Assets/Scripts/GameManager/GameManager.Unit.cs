@@ -6,22 +6,25 @@ public partial class GameManager : MonoBehaviour
 {
     public List<Crook> crooks;
     public Crook[] attatchedCrooks = new Crook[3];
+    public List<Crook> sellingCrooks;
     public List<Snake> snakes;
     public Snake[] attatchedSnakes = new Snake[3];
     public List<Gang> gangs;
     public Gang[] attatchedGangs = new Gang[3];
 
+    public List<string> crookAttributes;
+
     [Header("전체적인 특성")]
     [HideInInspector]
-    public int crookAverageLevel, crookMaxLevel;
+    public int crookAverageLevel, crookMaxLevel, crookStoreSellingNumber;
     List<string> crookAttribute;                //나올 확률은 동일
 
     [HideInInspector]
-    public int snakeAverageLevel, snakeMaxLevel;
+    public int snakeAverageLevel, snakeMaxLevel, snakeStoreSellingNumber;
     List<string> snakeAttribute;
 
     [HideInInspector]
-    public int gangAverageLevel, gangMaxLevel;
+    public int gangAverageLevel, gangMaxLevel, gangStoreSellingNumber;
     List<string> gangAttribute;
 
     public class Crook
@@ -31,13 +34,15 @@ public partial class GameManager : MonoBehaviour
         public int richConstantDown;                //매 턴 깎는 상수 값
         public float richPercentageDown;            //매 턴 깎는 비율 값
         public float playerPercentageUp;            //깎은 돈 중 가져오는 비율
-        public Crook(int level, int attribute, float richPercentageDown, float playerPercentageUp)
+        public int attribute;
+        public Crook(int level, int attribute)
         {
             attatched = false;
             this.level = level;
             richConstantDown = level * attribute;
-            this.richPercentageDown = richPercentageDown;
-            this.playerPercentageUp = playerPercentageUp;
+            this.attribute = attribute;
+            richPercentageDown = 1;//계산식 필요합니다
+            playerPercentageUp = 1;//계산식 필요합니다
         }
     }
 
@@ -84,7 +89,35 @@ public partial class GameManager : MonoBehaviour
     private void Start()
     {
         crooks = new List<Crook>();
+        
+        crookAttributes = new List<string>();
         snakes = new List<Snake>();
         gangs = new List<Gang>();
+        crookStoreSellingNumber = 3;
     }
+
+    public void crookReroll()
+    {
+        sellingCrooks = new List<Crook>();
+        for (int i=0; i<crookStoreSellingNumber; i++)
+        {
+            sellingCrooks.Add(new Crook(Random.Range(2 * crookAverageLevel - crookMaxLevel, crookMaxLevel), Random.Range(0, crookAttributes.Count)));
+        }
+        StoreManager.instance.showStoreCrooks();
+    }
+    public void snakeReroll()
+    {
+        for (int i = 0; i < crookStoreSellingNumber; i++)
+        {
+            sellingCrooks[i] = new Crook(Random.Range(2 * crookAverageLevel - crookMaxLevel, crookMaxLevel), Random.Range(0, crookAttributes.Count));
+        }
+    }
+    public void gangReroll()
+    {
+        for (int i = 0; i < crookStoreSellingNumber; i++)
+        {
+            sellingCrooks[i] = new Crook(Random.Range(2 * crookAverageLevel - crookMaxLevel, crookMaxLevel), Random.Range(0, crookAttributes.Count));
+        }
+    }
+
 }

@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class TemporaryButton : MonoBehaviour
 {
-    [SerializeField]
-    Transform prefab;
-    [SerializeField]
-    GameObject parent;
+    GameObject buyInfo;
+    GameManager.Crook crook;
 
+    public void showBuyInfo()
+    {
+        buyInfo = StoreManager.instance.buyInfo;
+        buyInfo.SetActive(true);
+        StoreManager.instance.buyYes.crook = crook;
+    }
     public void addCrooks()
     {
-        GameManager.instance.crooks.Add(new GameManager.Crook(1, 10000, 0.01f, 0.02f));
+        GameManager.instance.crooks.Add(new GameManager.Crook(1, 10000));
         UnitsManager.instance.showCrooks();
     }
 
@@ -23,5 +27,10 @@ public class TemporaryButton : MonoBehaviour
     public void addGangs()
     {
         GameManager.instance.gangs.Add(new GameManager.Gang(1, 1));
+    }
+
+    public void setUnitInformation(int index, GameManager.Crook crook)
+    {
+        this.crook = crook;
     }
 }

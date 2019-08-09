@@ -4,16 +4,50 @@ using UnityEngine;
 using UnityEngine.UI;
 public class StoreManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static StoreManager instance;
 
-    void Start()
+
+    [SerializeField]
+    GameObject crookStoreViewPort, snakeStoreViewPort, gangStoreViewPort;
+    [SerializeField]
+    public GameObject buyInfo;
+    [SerializeField]
+    public BuyButton buyYes;
+    [SerializeField]
+    Transform prefab;
+
+    public void Start()
     {
-        
+        instance = this;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void resetScrollView()
     {
-        
+        foreach (Transform child in crookStoreViewPort.GetComponent<Transform>())
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in snakeStoreViewPort.GetComponent<Transform>())
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in gangStoreViewPort.GetComponent<Transform>())
+        {
+            Destroy(child.gameObject);
+        }
+    }
+    public void showStoreCrooks()
+    {
+        resetScrollView();
+        crookStoreViewPort.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.crookStoreSellingNumber * 270, 0, 0);
+        int index = 0;
+        foreach (var unit in GameManager.instance.sellingCrooks)
+        {
+            var listStoreItemObject = Instantiate(prefab, crookStoreViewPort.transform);
+            var storeItemList = listStoreItemObject.GetComponent<TemporaryButton>();
+            storeItemList.setUnitInformation(index, unit);
+//            var crookItemList = listItemObject.GetComponent<CrookListItem>();
+ //           crookItemList.SetUnitInformation(index, unit);
+            ++index;
+        }
     }
 }
