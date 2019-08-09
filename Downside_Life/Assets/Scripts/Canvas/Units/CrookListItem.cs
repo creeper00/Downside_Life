@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class CrookListItem : MonoBehaviour
 {
-    private int index;
+    [HideInInspector]
+    public int index;
 
     public void SetUnitInformation(int index, GameManager.Crook crook)
     {

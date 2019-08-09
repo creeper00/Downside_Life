@@ -25,6 +25,7 @@ public class UnitsManager : MonoBehaviour
     }
     public void showCrooks()
     {
+        resetScrollView();
         contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.crooks.Count * 140, 0);
         //Debug.Log("Capacity : " + GameManager.instance.crooks.Count);
         int index = 0;
@@ -39,6 +40,7 @@ public class UnitsManager : MonoBehaviour
 
     public void showSnakes()
     {
+        resetScrollView();
         contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, 0, 0);
         Debug.Log("Capacity : " + GameManager.instance.snakes.Count);
         for (int i = 0; i < GameManager.instance.snakes.Count; i++)
@@ -50,6 +52,7 @@ public class UnitsManager : MonoBehaviour
 
     public void showGangs()
     {
+        resetScrollView();
         contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, 0, 0);
         Debug.Log("Capacity : " + GameManager.instance.gangs.Count);
         for (int i = 0; i < GameManager.instance.gangs.Count; i++)

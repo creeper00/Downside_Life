@@ -9,7 +9,11 @@ public class UnitDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     [SerializeField]
     private static GameObject canvas;
     [HideInInspector]
-    public static GameObject itemBeingDragged;
+    public static GameObject unitBeingDragged;
+    [HideInInspector]
+    public static int itemBeingDraggedIndex;
+    private Color32 halfTransparentColor = new Color32(255, 255, 255, 128);
+
     //private Transform initialParent;
 
     void Awake()
@@ -19,17 +23,18 @@ public class UnitDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        itemBeingDragged = Instantiate(gameObject.transform.Find("Icon").gameObject, canvas.transform);
-        itemBeingDragged.GetComponent<Image>().color = new Color32(255, 255, 255, 128);
-        itemBeingDragged.AddComponent<CanvasGroup>();
-        itemBeingDragged.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        unitBeingDragged = Instantiate(gameObject.transform.Find("Icon").gameObject, canvas.transform);
+        unitBeingDragged.GetComponent<Image>().color = halfTransparentColor;
+        unitBeingDragged.AddComponent<CanvasGroup>();
+        unitBeingDragged.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        itemBeingDraggedIndex = gameObject.GetComponent<CrookListItem>().index;
 
         //initialParent = itemBeingDragged.transform.parent;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        itemBeingDragged.transform.position = Input.mousePosition;
+        unitBeingDragged.transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -47,8 +52,11 @@ public class UnitDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
         */
 
-        GameObject.Destroy(itemBeingDragged);
-        itemBeingDragged = null;
+        if (unitBeingDragged != null )
+        {
+            GameObject.Destroy(unitBeingDragged);
+            unitBeingDragged = null;
+        }
 
         //GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
