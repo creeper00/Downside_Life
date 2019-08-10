@@ -4,29 +4,51 @@ using UnityEngine;
 
 public class FloorButton : MonoBehaviour
 {
+    [SerializeField]
+    public GameObject GoBackButton;
     public void GotoFirstFloor()
     {
-        if(GameManager.instance.stamina >= 3) GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.firstFloor);
+        if (GameManager.instance.stamina >= 3)
+        {
+            GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.firstFloor);
+            
+        } 
         else { GameManager.instance.notEnoughStaminaCanvas.SetActive(true); }
     }
     public void GotoSecondFloor()
     {
-        if (GameManager.instance.stamina >= 3) GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.secondFloor);
+        if (GameManager.instance.stamina >= 3)
+        {
+            GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.secondFloor);
+            
+        }
         else { GameManager.instance.notEnoughStaminaCanvas.SetActive(true); }
     }
     public void GotoThirdFloor()
     {
-        if (GameManager.instance.stamina >= 3) GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.thirdFloor);
+        if (GameManager.instance.stamina >= 3)
+        {
+            GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.thirdFloor);
+            
+        }
         else { GameManager.instance.notEnoughStaminaCanvas.SetActive(true); }
     }
     public void GotoFourthFloor()
     {
-        if (GameManager.instance.stamina >= 3) GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.fourthFloor);
+        if (GameManager.instance.stamina >= 3)
+        {
+            GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.fourthFloor);
+            
+        }
         else { GameManager.instance.notEnoughStaminaCanvas.SetActive(true); }
     }
     public void GotoFifthFloor()
     {
-        if (GameManager.instance.stamina >= 3) GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.fifthFloor);
+        if (GameManager.instance.stamina >= 3)
+        {
+            GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.fifthFloor);
+            
+        }
         else { GameManager.instance.notEnoughStaminaCanvas.SetActive(true); }
     }
 }

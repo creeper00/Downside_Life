@@ -11,5 +11,6 @@ public class CommonUIManager : MonoBehaviour
     void Awake()
     {
         panel = GameObject.Find("NotEnoughStaminaPanel");
+        panel.SetActive(true);
     }
 }
