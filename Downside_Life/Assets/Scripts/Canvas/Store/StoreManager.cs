@@ -16,9 +16,12 @@ public class StoreManager : MonoBehaviour
     [SerializeField]
     Transform prefab;
 
+    public bool[] isBuyed;
+
     public void Start()
     {
         instance = this;
+        isBuyed = new bool[GameManager.instance.crookStoreSellingNumber];
     }
     public void resetScrollView()
     {
@@ -45,9 +48,7 @@ public class StoreManager : MonoBehaviour
             var listStoreItemObject = Instantiate(prefab, crookStoreViewPort.transform);
             var storeItemList = listStoreItemObject.GetComponent<TemporaryButton>();
             storeItemList.setUnitInformation(index, unit);
-//            var crookItemList = listItemObject.GetComponent<CrookListItem>();
- //           crookItemList.SetUnitInformation(index, unit);
-            ++index;
+            index++;
         }
     }
 }

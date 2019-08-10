@@ -104,6 +104,10 @@ public partial class GameManager : MonoBehaviour
             sellingCrooks.Add(new Crook(Random.Range(2 * crookAverageLevel - crookMaxLevel, crookMaxLevel), Random.Range(0, crookAttributes.Count)));
         }
         StoreManager.instance.showStoreCrooks();
+        for (int i=0; i<crookStoreSellingNumber; i++)
+        {
+            StoreManager.instance.isBuyed[i] = false;
+        }
     }
     public void snakeReroll()
     {
