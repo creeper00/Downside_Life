@@ -5,15 +5,23 @@ using UnityEngine.UI;
 
 public class TemporaryButton : MonoBehaviour
 {
+    int index;
+    bool isBuyed;
     GameObject buyInfo;
     GameManager.Crook crook;
 
     public void showBuyInfo()
     {
-        buyInfo = StoreManager.instance.buyInfo;
-        buyInfo.SetActive(true);
-        StoreManager.instance.buyYes.crook = crook;
+        
+        if (!StoreManager.instance.isBuyed[index])
+        {
+            buyInfo = StoreManager.instance.buyInfo;
+            buyInfo.SetActive(true);
+            StoreManager.instance.buyYes.crook = crook;
+            StoreManager.instance.buyYes.index = index;
+        }
     }
+
     public void addCrooks()
     {
         GameManager.instance.crooks.Add(new GameManager.Crook(1, 10000));
@@ -33,9 +41,8 @@ public class TemporaryButton : MonoBehaviour
     public void setUnitInformation(int index, GameManager.Crook crook)
     {
         this.crook = crook;
-        
-        transform.Find("Level").GetComponent<Text>().text = "Lv : " + crook.level;
 
-        
+        this.index = index;
+        transform.Find("Level").GetComponent<Text>().text = "Lv : " + crook.level;
     }
 }
