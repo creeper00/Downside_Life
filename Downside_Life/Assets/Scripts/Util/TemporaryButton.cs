@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TemporaryButton : MonoBehaviour
 {
@@ -32,5 +33,9 @@ public class TemporaryButton : MonoBehaviour
     public void setUnitInformation(int index, GameManager.Crook crook)
     {
         this.crook = crook;
+        
+        transform.Find("Level").GetComponent<Text>().text = "Lv : " + crook.level;
+
+        
     }
 }
