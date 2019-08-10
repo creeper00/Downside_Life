@@ -6,22 +6,27 @@ public class FloorButton : MonoBehaviour
 {
     public void GotoFirstFloor()
     {
-        GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.firstFloor);
+        if(GameManager.instance.stamina >= 3) GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.firstFloor);
+        else { GameManager.instance.notEnoughStaminaPanel.SetActive(true); }
     }
     public void GotoSecondFloor()
     {
-        GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.secondFloor);
+        if (GameManager.instance.stamina >= 3) GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.secondFloor);
+        else { GameManager.instance.notEnoughStaminaPanel.SetActive(true); }
     }
     public void GotoThirdFloor()
     {
-        GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.thirdFloor);
+        if (GameManager.instance.stamina >= 3) GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.thirdFloor);
+        else { GameManager.instance.notEnoughStaminaPanel.SetActive(true); }
     }
     public void GotoFourthFloor()
     {
-        GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.fourthFloor);
+        if (GameManager.instance.stamina >= 3) GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.fourthFloor);
+        else { GameManager.instance.notEnoughStaminaPanel.SetActive(true); }
     }
     public void GotoFifthFloor()
     {
-        GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.fifthFloor);
+        if (GameManager.instance.stamina >= 3) GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.fifthFloor);
+        else { GameManager.instance.notEnoughStaminaPanel.SetActive(true); }
     }
 }
