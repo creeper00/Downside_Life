@@ -25,7 +25,7 @@ public partial class GameManager : MonoBehaviour
     public enum Job
     {
         crook,
-        thief,
+        robber,
         gang,
         snake
     }
@@ -51,7 +51,7 @@ public partial class GameManager : MonoBehaviour
         gangAverageLevel = 1;
         gangMaxLevel = 1;
         currentScreen = Screen.main;
-        ChangeCanvas();
+        
         StaminaManage(10);
         
         GotoMainButton = GameObject.Find("GotoMainButton");
@@ -71,6 +71,17 @@ public partial class GameManager : MonoBehaviour
         ResourceManage();
         playerSalary = 100;
         richSalary = -100;
+    }
+
+    private void Start()
+    {
+        ChangeCanvas();
+
+        //GameManager.Units
+        crooks = new List<Crook>();
+        crookAttributes = new List<string>();
+        snakes = new List<Snake>();
+        gangs = new List<Gang>();
     }
 
 

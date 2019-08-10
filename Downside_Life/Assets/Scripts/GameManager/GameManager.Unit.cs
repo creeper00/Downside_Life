@@ -14,9 +14,18 @@ public partial class GameManager : MonoBehaviour
 
     public List<string> crookAttributes;
 
+    [Header("유닛 관리 관련 상수")]
+    [SerializeField]
+    private int unitAttatchStaminaDecrease;
+    [SerializeField]
+    private int unitRetireStaminaDecrease;
+
+
     [Header("전체적인 특성")]
+    [SerializeField]
+    public int crookStoreSellingNumber;
     [HideInInspector]
-    public int crookAverageLevel, crookMaxLevel, crookStoreSellingNumber;
+    public int crookAverageLevel, crookMaxLevel;
     List<string> crookAttribute;                //나올 확률은 동일
 
     [HideInInspector]
@@ -41,8 +50,8 @@ public partial class GameManager : MonoBehaviour
             this.level = level;
             richConstantDown = level * attribute;
             this.attribute = attribute;
-            richPercentageDown = 1;//계산식 필요합니다
-            playerPercentageUp = 1;//계산식 필요합니다
+            richPercentageDown = 1;         //계산식 필요합니다
+            playerPercentageUp = 1;         //계산식 필요합니다
         }
     }
 
@@ -56,9 +65,37 @@ public partial class GameManager : MonoBehaviour
         }
         else
         {
-
+            Debug.Log("Unit in the slot must retire first!!!");
         }
         
+    }
+
+    public void Retire(GameManager.Job kindOfUnit, int index)
+    {
+        switch(kindOfUnit)
+        {
+            case Job.crook:
+                if (attatchedCrooks[index] != null)
+                {
+                    attatchedCrooks[index] = null;
+                    UnitsManager.instance.DeleteSlot(UnitsManager.Tabs.crook, index);
+                }
+                break;
+            case Job.snake:
+                if (attatchedSnakes[index] != null)
+                {
+                    attatchedSnakes[index] = null;
+                    UnitsManager.instance.DeleteSlot(UnitsManager.Tabs.snake, index);
+                }
+                break;
+            case Job.robber:
+                Debug.Log("Robber can't be attatched!!!");
+                break;
+            case Job.gang:
+                Debug.Log("Gang can't Retire!!!");
+                break;
+        }
+        UnitsManager.instance.UpdateRichMoneyChange();
     }
 
     public class Snake
@@ -86,15 +123,7 @@ public partial class GameManager : MonoBehaviour
             attack = level * attribute;
         }
     }
-    private void Start()
-    {
-        crooks = new List<Crook>();
-        
-        crookAttributes = new List<string>();
-        snakes = new List<Snake>();
-        gangs = new List<Gang>();
-        crookStoreSellingNumber = 3;
-    }
+    
 
     public void crookReroll()
     {

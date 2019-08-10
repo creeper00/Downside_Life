@@ -18,7 +18,7 @@ public class StoreManager : MonoBehaviour
 
     public bool[] isBuyed;
 
-    public void Start()
+    public void Awake()
     {
         instance = this;
         isBuyed = new bool[GameManager.instance.crookStoreSellingNumber];

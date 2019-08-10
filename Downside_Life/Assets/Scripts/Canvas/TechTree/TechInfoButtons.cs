@@ -53,7 +53,7 @@ public class TechInfoButtons : MonoBehaviour
             case GameManager.Job.snake:
                 Debug.Log(tech.job);
                 break;
-            case GameManager.Job.thief:
+            case GameManager.Job.robber:
                 Debug.Log(tech.job);
                 break;
         }

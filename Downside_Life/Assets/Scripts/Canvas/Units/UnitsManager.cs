@@ -10,11 +10,25 @@ public class UnitsManager : MonoBehaviour
     [SerializeField]
     private GameObject crookTab, snakeTab, gangTab;
     [SerializeField]
-    private GameObject RichMoneyChange;
+    private Text RichMoneyChange;
     [SerializeField]
     Transform prefab, crookPrefab, snakePrefab, gangPrefab;
     [SerializeField]
     GameObject contents;
+
+    public enum Tabs
+    {
+        crook, snake, gang
+    }
+
+    private Tabs currentTab;
+
+    void Awake()
+    {
+        instance = this;
+        currentTab = Tabs.crook;
+        ShowTab();
+    }
 
     public void resetScrollView()
     {
@@ -62,18 +76,25 @@ public class UnitsManager : MonoBehaviour
         }
     }
 
-    public enum Tabs
+    public void DeleteSlot(Tabs tab, int slotIndex)
     {
-        crook, snake, gang
+        switch(tab)
+        {
+            case Tabs.crook:
+                GameObject.Destroy(crookTab.transform.Find("Slot" + slotIndex).GetChild(slotIndex).gameObject);
+                break;
+            case Tabs.snake:
+                GameObject.Destroy(snakeTab.transform.Find("Slot" + slotIndex).GetChild(slotIndex).gameObject);
+                break;
+            default:
+                Debug.Log("Incorrect unit type.");
+                break;
+        }
     }
 
-    private Tabs currentTab;
-
-    void Awake()
+    public void UpdateRichMoneyChange()
     {
-        instance = this;
-        currentTab = Tabs.crook;
-        ShowTab();
+        
     }
 
     public void ChangeTab(Tabs tab)

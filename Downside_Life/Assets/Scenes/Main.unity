@@ -333,7 +333,7 @@ MonoBehaviour:
   crookTab: {fileID: 1981285471}
   snakeTab: {fileID: 804796170}
   gangTab: {fileID: 789268898}
-  RichMoneyChange: {fileID: 542613673}
+  RichMoneyChange: {fileID: 562164547}
   prefab: {fileID: 3889891694774459003, guid: cdee7a03bc8852e41b5559c2dca5b382, type: 3}
   crookPrefab: {fileID: 3889891694774459003, guid: cdee7a03bc8852e41b5559c2dca5b382,
     type: 3}
@@ -2300,8 +2300,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 905367988}
   m_HandleRect: {fileID: 905367987}
   m_Direction: 2
-  m_Value: -0.014282739
-  m_Size: 0.20690958
+  m_Value: -0.00000068570716
+  m_Size: 0.29533333
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2975,7 +2975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &236398623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3084,7 +3084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &239046784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4400,6 +4400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377e603d34dcdc24c915f994a4014d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kindOfUnit: 0
   slotPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
     type: 3}
   slotIndex: 1
@@ -4873,7 +4874,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 214.41933}
+  m_AnchoredPosition: {x: 0, y: 211.40015}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &458409755
@@ -5693,9 +5694,11 @@ MonoBehaviour:
   moneyText: {fileID: 352180210}
   staminaText: {fileID: 872225099}
   crookAttributes: []
+  unitAttatchStaminaDecrease: 0
+  unitRetireStaminaDecrease: 0
+  crookStoreSellingNumber: 3
   crookAverageLevel: 0
   crookMaxLevel: 0
-  crookStoreSellingNumber: 0
   snakeAverageLevel: 0
   snakeMaxLevel: 0
   snakeStoreSellingNumber: 0
@@ -6295,7 +6298,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 214.41936}
+  m_AnchoredPosition: {x: 0, y: 211.40018}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &579416256
@@ -6720,7 +6723,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1146072592}
   m_HandleRect: {fileID: 1146072591}
   m_Direction: 2
-  m_Value: -1096.3015
+  m_Value: -18048.123
   m_Size: 0.29533333
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7188,8 +7191,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1215498307}
   m_HandleRect: {fileID: 1215498306}
   m_Direction: 2
-  m_Value: -0.014282594
-  m_Size: 0.20690948
+  m_Value: -0.0000008300666
+  m_Size: 0.29533333
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9082,6 +9085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377e603d34dcdc24c915f994a4014d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kindOfUnit: 0
   slotPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
     type: 3}
   slotIndex: 2
@@ -9565,7 +9569,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: -12.288432}
+  m_AnchoredPosition: {x: 0.000015258789, y: -22.730024}
   m_SizeDelta: {x: 0, y: 298.6}
   m_Pivot: {x: 0.5, y: 0.95}
 --- !u!212 &855708148
@@ -10757,7 +10761,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 214.41939}
+  m_AnchoredPosition: {x: 0, y: 211.40018}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &945099058
@@ -11332,8 +11336,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 93586539}
   m_HandleRect: {fileID: 93586538}
   m_Direction: 2
-  m_Value: -0.014282739
-  m_Size: 0.20690939
+  m_Value: -0.000000974426
+  m_Size: 0.29533333
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11645,7 +11649,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 214.41934}
+  m_AnchoredPosition: {x: 0, y: 211.4002}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1014601190
@@ -11729,8 +11733,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1431901107}
   m_HandleRect: {fileID: 1431901106}
   m_Direction: 2
-  m_Value: -0.014282739
-  m_Size: 0.20690958
+  m_Value: -0.00000068570716
+  m_Size: 0.29533333
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12419,8 +12423,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 85783350}
   m_HandleRect: {fileID: 85783349}
   m_Direction: 2
-  m_Value: -0.014282739
-  m_Size: 0.20690958
+  m_Value: -0.00000068570716
+  m_Size: 0.29533333
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13345,7 +13349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 231969.55}
+  m_AnchoredPosition: {x: 0, y: 3815584.5}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1165022145
@@ -17370,8 +17374,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 702649415}
   m_HandleRect: {fileID: 702649414}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.79820246
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -18079,7 +18083,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 214.41934}
+  m_AnchoredPosition: {x: 0, y: 211.4002}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1540697115
@@ -22412,6 +22416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377e603d34dcdc24c915f994a4014d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kindOfUnit: 0
   slotPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
     type: 3}
   slotIndex: 0

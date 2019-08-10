@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class Slot : MonoBehaviour, IDropHandler
 {
     [SerializeField]
+    private GameManager.Job kindOfUnit;
+    [SerializeField]
     private GameObject slotPrefab;
     [SerializeField]
     private int slotIndex;
@@ -46,8 +48,10 @@ public class Slot : MonoBehaviour, IDropHandler
         GameManager.Crook currentCrook = GameManager.instance.attatchedCrooks[slotIndex];
         item.transform.Find("Level").GetComponent<Text>().text = "Lv " + currentCrook.level + "사기꾼";
 
-        item.transform.Find("MoneySteal").GetComponent<Text>().text = currentCrook.richPercentageDown + "% + " + currentCrook.richConstantDown + " 공격";
-        item.transform.Find("ReturnPercentage").GetComponent<Text>().text = currentCrook.playerPercentageUp + "% 환급";
-        item.transform.Find("Ability").GetComponent<Text>().text = "특수능력 없음";
+        item.transform.Find("MoneyStealPercentageText").GetComponent<Text>().text = currentCrook.richPercentageDown + "%";
+        item.transform.Find("MoneyStealConstantText").GetComponent<Text>().text = currentCrook.richConstantDown.ToString();
+        item.transform.Find("ReturnPercentageText").GetComponent<Text>().text = currentCrook.playerPercentageUp + "%";
+
+        item.transform.Find("RetireButton").GetComponent<RetireButton>().InitializeRetireButton(kindOfUnit, slotIndex);
     }
 }
