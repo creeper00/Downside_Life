@@ -32,7 +32,7 @@ public partial class GameManager : MonoBehaviour
     public Screen currentScreen;
 
     [SerializeField]
-    public GameObject notEnoughStaminaPanel;
+    public GameObject notEnoughStaminaCanvas;
     [Header("Canvas")]
     public GameObject CommonCanvas;
     public GameObject mainCanvas, techTreeCanvas, unitsCanvas, storeCanvas, richHouseCanvas,richHouse, firstFloorCanvas, secondFloorCanvas, thirdFloorCanvas, fourthFloorCanvas, fifthFloorCanvas, techInfoCanvas;
