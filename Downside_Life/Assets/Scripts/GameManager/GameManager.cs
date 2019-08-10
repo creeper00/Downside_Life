@@ -43,8 +43,8 @@ public partial class GameManager : MonoBehaviour
     {
         instance = this;
 
-        crookAverageLevel = 1;
-        crookMaxLevel = 1;
+        crookAverageLevel = 50;
+        crookMaxLevel = 100;
         snakeAverageLevel = 1;
         snakeMaxLevel = 1;
         gangAverageLevel = 1;
