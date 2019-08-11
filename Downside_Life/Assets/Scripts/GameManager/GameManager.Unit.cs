@@ -55,18 +55,50 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
-    public void moveCrookToSlot(int crookIndex, int slotIndex)
+    /// <summary>데이터 상에서 유닛을 이동</summary>
+    public void AttatchUnit(Job kindOfUnit, int unitIndex, int slotIndex)
     {
-        if (attatchedCrooks[slotIndex] == null)
+        switch(kindOfUnit)
         {
-            Crook movingCrook = crooks[crookIndex];
-            crooks.RemoveAt(crookIndex);
-            attatchedCrooks[slotIndex] = movingCrook;
+            case Job.crook:
+                if (attatchedCrooks[slotIndex] == null)
+                {
+                    Crook movingCrook = crooks[unitIndex];
+                    crooks.RemoveAt(unitIndex);
+                    attatchedCrooks[slotIndex] = movingCrook;
+                }
+                else
+                {
+                    Debug.Log("Crook in the slot must retire first!!!");
+                }
+                break;
+            case Job.snake:
+                if (attatchedSnakes[slotIndex] == null)
+                {
+                    Snake movingSnake = snakes[unitIndex];
+                    snakes.RemoveAt(unitIndex);
+                    attatchedSnakes[slotIndex] = movingSnake;
+                }
+                else
+                {
+                    Debug.Log("Snake in the slot must retire first!!!");
+                }
+                break;
+            case Job.gang:
+                if (attatchedGangs[slotIndex] == null)
+                {
+                    Gang movingGang = gangs[unitIndex];
+                    gangs.RemoveAt(unitIndex);
+                    attatchedGangs[slotIndex] = movingGang;
+                }
+                else
+                {
+                    Debug.Log("Gang in the slot must retire first!!!");
+                }
+                break;
         }
-        else
-        {
-            Debug.Log("Unit in the slot must retire first!!!");
-        }
+
+        
         
     }
 

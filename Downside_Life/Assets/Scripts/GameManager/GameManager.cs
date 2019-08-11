@@ -139,7 +139,18 @@ public partial class GameManager : MonoBehaviour
         mainCanvas.SetActive(currentScreen == Screen.main);
         techTreeCanvas.SetActive(currentScreen == Screen.techtree);
         techInfoCanvas.SetActive(currentScreen != Screen.techtree);
-        unitsCanvas.SetActive(currentScreen == Screen.units);
+
+        if (currentScreen == Screen.units )
+        {
+
+            unitsCanvas.SetActive(true);
+            unitsCanvas.GetComponent<UnitsManager>().showCrooks();
+        }
+        else
+        {
+            unitsCanvas.SetActive(false);
+        }
+
         storeCanvas.SetActive(currentScreen == Screen.store);
         richHouse.SetActive(currentScreen == Screen.richHouse);
         richHouseCanvas.SetActive(currentScreen >= Screen.richHouse);

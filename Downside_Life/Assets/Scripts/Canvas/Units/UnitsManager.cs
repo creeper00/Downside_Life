@@ -37,6 +37,8 @@ public class UnitsManager : MonoBehaviour
             Destroy(child.gameObject);
         }
     }
+
+    /// <summary>스크롤 뷰를 갱신</summary>
     public void showCrooks()
     {
         resetScrollView();
