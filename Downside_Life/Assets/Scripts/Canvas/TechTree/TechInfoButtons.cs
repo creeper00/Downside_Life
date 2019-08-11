@@ -33,8 +33,9 @@ public class TechInfoButtons : MonoBehaviour
             }
         }
 
-        if (GameManager.instance.playerMoney < tech.neededMoney)
+        if (GameManager.instance.playerMoney < tech.neededMoney)//돈 모자람
         {
+            Debug.Log("돈 모자람");
             return;
         }
         //연구 조건 완료
@@ -45,12 +46,57 @@ public class TechInfoButtons : MonoBehaviour
         switch (tech.job)
         {
             case GameManager.Job.crook:
+                switch (tech.upgrade)
+                {
+                    case Technology.Upgrade.maxLevel:
+                        GameManager.instance.crookMaxLevel += tech.maxLevelUp;
+                        break;
+                    case Technology.Upgrade.attributeUnlock:
+                        GameManager.instance.crookAttributes.Add(tech.attribute);
+                        break;
+                    case Technology.Upgrade.averageLevel:
+                        GameManager.instance.crookAverageLevel += tech.averageLevelUp;
+                        break;
+                    case Technology.Upgrade.storeNumber:
+                        GameManager.instance.crookStoreSellingNumber += tech.storeNumberUp;
+                        break;
+                }
                 Debug.Log(tech.job);
                 break;
             case GameManager.Job.gang:
+                switch (tech.upgrade)
+                {
+                    case Technology.Upgrade.maxLevel:
+                        GameManager.instance.gangMaxLevel += tech.maxLevelUp;
+                        break;
+                    case Technology.Upgrade.attributeUnlock:
+                        GameManager.instance.gangAttributes.Add(tech.attribute);
+                        break;
+                    case Technology.Upgrade.averageLevel:
+                        GameManager.instance.gangAverageLevel += tech.averageLevelUp;
+                        break;
+                    case Technology.Upgrade.storeNumber:
+                        GameManager.instance.gangStoreSellingNumber += tech.storeNumberUp;
+                        break;
+                }
                 Debug.Log(tech.job);
                 break;
             case GameManager.Job.snake:
+                switch (tech.upgrade)
+                {
+                    case Technology.Upgrade.maxLevel:
+                        GameManager.instance.snakeMaxLevel += tech.maxLevelUp;
+                        break;
+                    case Technology.Upgrade.attributeUnlock:
+                        GameManager.instance.snakeAttributes.Add(tech.attribute);
+                        break;
+                    case Technology.Upgrade.averageLevel:
+                        GameManager.instance.snakeAverageLevel += tech.averageLevelUp;
+                        break;
+                    case Technology.Upgrade.storeNumber:
+                        GameManager.instance.snakeStoreSellingNumber += tech.storeNumberUp;
+                        break;
+                }
                 Debug.Log(tech.job);
                 break;
             case GameManager.Job.robber:
