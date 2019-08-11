@@ -15,7 +15,6 @@ public class TemporaryButton : MonoBehaviour
 
     public void showBuyInfo()
     {
-        Debug.Log(job);
         switch(job)
         {
             case GameManager.Job.crook:

@@ -161,6 +161,7 @@ public partial class GameManager : MonoBehaviour
 
     public void crookReroll()
     {
+        Debug.Log(crookStoreSellingNumber);
         sellingCrooks = new List<Crook>();
         for (int i=0; i<crookStoreSellingNumber; i++)
         {
@@ -169,7 +170,7 @@ public partial class GameManager : MonoBehaviour
         StoreManager.instance.showStoreCrooks();
         for (int i=0; i<crookStoreSellingNumber; i++)
         {
-            StoreManager.instance.isCrookBuyed[i] = false;
+            StoreManager.instance.isCrookBuyed.Add(false);
         }
     }
     public void snakeReroll()
@@ -182,7 +183,7 @@ public partial class GameManager : MonoBehaviour
         StoreManager.instance.showStoreSnakes();
         for (int i = 0; i < snakeStoreSellingNumber; i++)
         {
-            StoreManager.instance.isSnakeBuyed[i] = false;
+            StoreManager.instance.isSnakeBuyed.Add(false);
         }
     }
     public void gangReroll()
@@ -195,7 +196,7 @@ public partial class GameManager : MonoBehaviour
         StoreManager.instance.showStoreGangs();
         for (int i = 0; i < gangStoreSellingNumber; i++)
         {
-            StoreManager.instance.isGangBuyed[i] = false;
+            StoreManager.instance.isGangBuyed.Add(false);
         }
     }
 

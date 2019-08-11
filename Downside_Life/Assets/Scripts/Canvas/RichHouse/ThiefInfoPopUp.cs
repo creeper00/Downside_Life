@@ -26,15 +26,12 @@ public class ThiefInfoPopUp : MonoBehaviour
 
     public void ThiefPopUp()
     {
-        Debug.Log(thiefInfo);
         thiefInfo.SetActive(true);
         getInformation();
     }
     public void getInformation()
     {
         string info = RichHouseManager.instance.info[(int)whatFloor * 3 + (int)whatObject];//일단 하드코딩함
-
-        Debug.Log(info);
         string[] strings = info.Split(' ');
 
         int percentage = int.Parse(strings[2]);

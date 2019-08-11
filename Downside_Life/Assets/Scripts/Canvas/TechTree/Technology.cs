@@ -74,7 +74,7 @@ public class Technology : MonoBehaviour
             text.text += "필요 기술 : ";
             for (int i = 0; i < previousTechnologies.Count; i++)
             {
-                text.text += technologyName;
+                text.text += previousTechnologies[i].technologyName;
                 if (i != previousTechnologies.Count - 1)
                 {
                     text.text += ", ";

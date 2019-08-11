@@ -17,15 +17,18 @@ public class StoreManager : MonoBehaviour
     Transform prefab;
 
     [HideInInspector]
-    public bool[] isCrookBuyed, isSnakeBuyed, isGangBuyed;
-    
+    public List<bool> isCrookBuyed, isSnakeBuyed, isGangBuyed;
+
+    float width;
 
     public void Awake()
     {
+        width = crookStoreViewPort.GetComponent<RectTransform>().rect.width;
         instance = this;
-        isCrookBuyed = new bool[GameManager.instance.crookStoreSellingNumber];
-        isSnakeBuyed = new bool[GameManager.instance.snakeStoreSellingNumber];
-        isGangBuyed = new bool[GameManager.instance.gangStoreSellingNumber];
+
+        isCrookBuyed = new List<bool>();
+        isSnakeBuyed = new List<bool>();
+        isGangBuyed = new List<bool>();
     }
     public void resetScrollView(GameManager.Job job)
     {
@@ -52,12 +55,12 @@ public class StoreManager : MonoBehaviour
         }
     }
     public void showStoreCrooks()
-    {
-        float width = crookStoreViewPort.GetComponent<RectTransform>().rect.width;
+    { 
         float spacing = crookStoreViewPort.GetComponent<GridLayoutGroup>().spacing.x;
         resetScrollView(GameManager.Job.crook);
-        crookStoreViewPort.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.crookStoreSellingNumber * 120 - width - spacing, 0, 0);
+        crookStoreViewPort.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.crookStoreSellingNumber * 120 - width - spacing + 1, 0, 0);
         int index = 0;
+        Debug.Log(GameManager.instance.sellingCrooks.Count);
         foreach (var unit in GameManager.instance.sellingCrooks)
         {
             var listStoreItemObject = Instantiate(prefab, crookStoreViewPort.transform);

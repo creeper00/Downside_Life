@@ -61,7 +61,6 @@ public class TechInfoButtons : MonoBehaviour
                         GameManager.instance.crookStoreSellingNumber += tech.storeNumberUp;
                         break;
                 }
-                Debug.Log(tech.job);
                 break;
             case GameManager.Job.gang:
                 switch (tech.upgrade)
@@ -79,7 +78,6 @@ public class TechInfoButtons : MonoBehaviour
                         GameManager.instance.gangStoreSellingNumber += tech.storeNumberUp;
                         break;
                 }
-                Debug.Log(tech.job);
                 break;
             case GameManager.Job.snake:
                 switch (tech.upgrade)
@@ -97,10 +95,8 @@ public class TechInfoButtons : MonoBehaviour
                         GameManager.instance.snakeStoreSellingNumber += tech.storeNumberUp;
                         break;
                 }
-                Debug.Log(tech.job);
                 break;
             case GameManager.Job.robber:
-                Debug.Log(tech.job);
                 break;
         }
         
