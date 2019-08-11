@@ -8,6 +8,7 @@ public class CrookListItem : MonoBehaviour
     [HideInInspector]
     public int index;
 
+    /// <summary>스크롤 뷰의 한 슬롯에 유닛 정보들을 표시</summary>
     public void SetUnitInformation(int index, GameManager.Crook crook)
     {
         this.index = index;
