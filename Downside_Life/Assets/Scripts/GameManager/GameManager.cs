@@ -145,7 +145,7 @@ public partial class GameManager : MonoBehaviour
         {
 
             unitsCanvas.SetActive(true);
-            unitsCanvas.GetComponent<UnitsManager>().showCrooks();
+            UnitsManager.instance.showCrooks();
         }
         else
         {
@@ -160,7 +160,6 @@ public partial class GameManager : MonoBehaviour
         thirdFloorCanvas.SetActive(currentScreen == Screen.thirdFloor);
         fourthFloorCanvas.SetActive(currentScreen == Screen.fourthFloor);
         fifthFloorCanvas.SetActive(currentScreen == Screen.fifthFloor);
-        if(currentScreen == Screen.units) UnitsManager.instance.resetScrollView();
     }
 
     public void ChangeCanvasInHouse(Screen newScreen)

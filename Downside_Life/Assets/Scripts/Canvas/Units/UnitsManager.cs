@@ -41,12 +41,13 @@ public class UnitsManager : MonoBehaviour
     /// <summary>스크롤 뷰를 갱신</summary>
     public void showCrooks()
     {
+        Debug.Log("updating crooks scroll view");
         resetScrollView();
         contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.crooks.Count * 140, 0);
-        //Debug.Log("Capacity : " + GameManager.instance.crooks.Count);
         int index = 0;
         foreach (var unit in GameManager.instance.crooks)
         {
+            Debug.Log("x");
             var listItemObject = Instantiate(prefab, contents.transform);
             var crookItemList = listItemObject.GetComponent<CrookListItem>();
             crookItemList.SetUnitInformation(index, unit);
