@@ -8,17 +8,46 @@ public class TemporaryButton : MonoBehaviour
     int index;
     bool isBuyed;
     GameObject buyInfo;
+    GameManager.Job job;
     GameManager.Crook crook;
+    GameManager.Snake snake;
+    GameManager.Gang gang;
 
     public void showBuyInfo()
     {
-        
-        if (!StoreManager.instance.isBuyed[index])
+        Debug.Log(job);
+        switch(job)
         {
-            buyInfo = StoreManager.instance.buyInfo;
-            buyInfo.SetActive(true);
-            StoreManager.instance.buyYes.crook = crook;
-            StoreManager.instance.buyYes.index = index;
+            case GameManager.Job.crook:
+                if (!StoreManager.instance.isCrookBuyed[index])
+                {
+                    buyInfo = StoreManager.instance.buyInfo;
+                    buyInfo.SetActive(true);
+                    StoreManager.instance.buyYes.job = GameManager.Job.crook;
+                    StoreManager.instance.buyYes.crook = crook;
+                    StoreManager.instance.buyYes.index = index;
+                }
+                break;
+            case GameManager.Job.snake:
+                if (!StoreManager.instance.isSnakeBuyed[index])
+                {
+                    buyInfo = StoreManager.instance.buyInfo;
+                    buyInfo.SetActive(true);
+                    StoreManager.instance.buyYes.job = GameManager.Job.snake;
+                    StoreManager.instance.buyYes.snake = snake;
+                    StoreManager.instance.buyYes.index = index;
+                }
+                break;
+            case GameManager.Job.gang:
+                if (!StoreManager.instance.isGangBuyed[index])
+                {
+                    buyInfo = StoreManager.instance.buyInfo;
+                    buyInfo.SetActive(true);
+                    StoreManager.instance.buyYes.job = GameManager.Job.gang;
+                    StoreManager.instance.buyYes.gang = gang;
+                    StoreManager.instance.buyYes.index = index;
+                }
+                break;
         }
     }
 
@@ -38,11 +67,25 @@ public class TemporaryButton : MonoBehaviour
         GameManager.instance.gangs.Add(new GameManager.Gang(1, 1));
     }
 
-    public void setUnitInformation(int index, GameManager.Crook crook)
+    public void setCrookUnitInformation(int index, GameManager.Crook crook)
     {
+        job = GameManager.Job.crook;
         this.crook = crook;
-
         this.index = index;
         transform.Find("Level").GetComponent<Text>().text = "Lv : " + crook.level;
+    }
+    public void setSnakeUnitInformation(int index, GameManager.Snake snake)
+    {
+        job = GameManager.Job.snake;
+        this.snake = snake;
+        this.index = index;
+        transform.Find("Level").GetComponent<Text>().text = "Lv : " + snake.level;
+    }
+    public void setGangUnitInformation(int index, GameManager.Gang gang)
+    {
+        job = GameManager.Job.gang;
+        this.gang = gang;
+        this.index = index;
+        transform.Find("Level").GetComponent<Text>().text = "Lv : " + gang.level;
     }
 }

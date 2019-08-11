@@ -46,10 +46,10 @@ public partial class GameManager : MonoBehaviour
 
         crookAverageLevel = 50;
         crookMaxLevel = 100;
-        snakeAverageLevel = 1;
-        snakeMaxLevel = 1;
-        gangAverageLevel = 1;
-        gangMaxLevel = 1;
+        snakeAverageLevel = 50;
+        snakeMaxLevel = 100;
+        gangAverageLevel = 50;
+        gangMaxLevel = 100;
         currentScreen = Screen.main;
         
         StaminaManage(10);

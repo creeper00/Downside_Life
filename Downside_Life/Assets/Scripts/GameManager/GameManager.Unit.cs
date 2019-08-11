@@ -5,14 +5,16 @@ using UnityEngine;
 public partial class GameManager : MonoBehaviour
 {
     public List<Crook> crooks;
-    public Crook[] attatchedCrooks = new Crook[3];
     public List<Crook> sellingCrooks;
+    public Crook[] attatchedCrooks = new Crook[3];
     public List<Snake> snakes;
+    public List<Snake> sellingSnakes;
     public Snake[] attatchedSnakes = new Snake[3];
     public List<Gang> gangs;
+    public List<Gang> sellingGangs;
     public Gang[] attatchedGangs = new Gang[3];
 
-    public List<string> crookAttributes;
+    public List<string> crookAttributes, snakeAttributes, gangAttributes;
 
     [Header("유닛 관리 관련 상수")]
     [SerializeField]
@@ -23,17 +25,17 @@ public partial class GameManager : MonoBehaviour
 
     [Header("전체적인 특성")]
     [SerializeField]
-    public int crookStoreSellingNumber;
+    public int crookStoreSellingNumber, gangStoreSellingNumber, snakeStoreSellingNumber;
     [HideInInspector]
     public int crookAverageLevel, crookMaxLevel;
     List<string> crookAttribute;                //나올 확률은 동일
 
     [HideInInspector]
-    public int snakeAverageLevel, snakeMaxLevel, snakeStoreSellingNumber;
+    public int snakeAverageLevel, snakeMaxLevel;
     List<string> snakeAttribute;
 
     [HideInInspector]
-    public int gangAverageLevel, gangMaxLevel, gangStoreSellingNumber;
+    public int gangAverageLevel, gangMaxLevel;
     List<string> gangAttribute;
 
     public class Crook
@@ -132,9 +134,9 @@ public partial class GameManager : MonoBehaviour
 
     public class Snake
     {
-        int level;
-        int attribute;
-        int attack;
+        public int level;
+        public int attribute;
+        public int attack;
         public Snake(int level, int attribute)
         {
             this.level = level;
@@ -145,9 +147,9 @@ public partial class GameManager : MonoBehaviour
 
     public class Gang
     {
-        int level;
-        int attribute;
-        int attack;
+        public int level;
+        public int attribute;
+        public int attack;
         public Gang(int level, int attribute)
         {
             this.level = level;
@@ -167,21 +169,33 @@ public partial class GameManager : MonoBehaviour
         StoreManager.instance.showStoreCrooks();
         for (int i=0; i<crookStoreSellingNumber; i++)
         {
-            StoreManager.instance.isBuyed[i] = false;
+            StoreManager.instance.isCrookBuyed[i] = false;
         }
     }
     public void snakeReroll()
     {
-        for (int i = 0; i < crookStoreSellingNumber; i++)
+        sellingSnakes = new List<Snake>();
+        for (int i = 0; i < snakeStoreSellingNumber; i++)
         {
-            sellingCrooks[i] = new Crook(Random.Range(2 * crookAverageLevel - crookMaxLevel, crookMaxLevel), Random.Range(0, crookAttributes.Count));
+            sellingSnakes.Add(new Snake(Random.Range(2 * snakeAverageLevel - snakeMaxLevel, snakeMaxLevel), Random.Range(0, snakeAttributes.Count)));
+        }
+        StoreManager.instance.showStoreSnakes();
+        for (int i = 0; i < snakeStoreSellingNumber; i++)
+        {
+            StoreManager.instance.isSnakeBuyed[i] = false;
         }
     }
     public void gangReroll()
     {
-        for (int i = 0; i < crookStoreSellingNumber; i++)
+        sellingGangs = new List<Gang>();
+        for (int i = 0; i < gangStoreSellingNumber; i++)
         {
-            sellingCrooks[i] = new Crook(Random.Range(2 * crookAverageLevel - crookMaxLevel, crookMaxLevel), Random.Range(0, crookAttributes.Count));
+            sellingGangs.Add(new Gang(Random.Range(2 * gangAverageLevel - gangMaxLevel, gangMaxLevel), Random.Range(0, gangAttributes.Count)));
+        }
+        StoreManager.instance.showStoreGangs();
+        for (int i = 0; i < gangStoreSellingNumber; i++)
+        {
+            StoreManager.instance.isGangBuyed[i] = false;
         }
     }
 
