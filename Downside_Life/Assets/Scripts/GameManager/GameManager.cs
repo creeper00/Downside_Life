@@ -66,6 +66,7 @@ public partial class GameManager : MonoBehaviour
         FourthFloorButton = GameObject.Find("FourthFloorButton");
         FifthFloorButton = GameObject.Find("FifthFloorButton");
 
+        GotoMainButton.GetComponent<Image>().color = new Color32(162, 162, 162, 255);
         richMoney = richInitialMoney;
         playerMoney = 0;
         ResourceManage();
@@ -155,6 +156,17 @@ public partial class GameManager : MonoBehaviour
     {
         currentScreen = newScreen;
         ChangeCanvas();
+    }
+
+    public IEnumerator Waitfor1secondForStamina()
+    {
+        notEnoughStaminaCanvas.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        notEnoughStaminaCanvas.SetActive(false);
+    }
+    public void NotEnoughStamina()
+    {
+        StartCoroutine(Waitfor1secondForStamina());
     }
 }
 

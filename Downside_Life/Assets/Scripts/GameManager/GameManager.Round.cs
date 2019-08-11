@@ -8,7 +8,7 @@ public partial class GameManager : MonoBehaviour
     {
         ResourceManage();
         EventManage();
-        StaminaManage(stamina - 1);
+        StaminaManage((stamina>2) ? 10 : stamina + 8) ;
         crookReroll();
         gangReroll();
         snakeReroll();
