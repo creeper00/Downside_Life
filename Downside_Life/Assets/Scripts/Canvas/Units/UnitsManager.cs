@@ -55,7 +55,6 @@ public class UnitsManager : MonoBehaviour
     {
         resetScrollView();
         contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, 0, 0);
-        Debug.Log("Capacity : " + GameManager.instance.snakes.Count);
         for (int i = 0; i < GameManager.instance.snakes.Count; i++)
         {
             Instantiate(prefab, contents.transform);
@@ -67,7 +66,6 @@ public class UnitsManager : MonoBehaviour
     {
         resetScrollView();
         contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, 0, 0);
-        Debug.Log("Capacity : " + GameManager.instance.gangs.Count);
         for (int i = 0; i < GameManager.instance.gangs.Count; i++)
         {
             Instantiate(prefab, contents.transform);
@@ -99,19 +97,22 @@ public class UnitsManager : MonoBehaviour
     public void ChangeTab(Tabs tab)
     {
         currentTab = tab;
+        crookTab.SetActive(currentTab == Tabs.crook);
+        snakeTab.SetActive(currentTab == Tabs.snake);
+        gangTab.SetActive(currentTab == Tabs.gang);
         switch (tab)
         {
             case Tabs.crook:
-                crookTab.SetActive(currentTab == Tabs.crook);
                 showCrooks();
+
                 break;
             case Tabs.snake:
-                snakeTab.SetActive(currentTab == Tabs.snake);
                 showSnakes();
+
                 break;
             case Tabs.gang:
-                gangTab.SetActive(currentTab == Tabs.gang);
                 showGangs();
+
                 break;
         }
     }
