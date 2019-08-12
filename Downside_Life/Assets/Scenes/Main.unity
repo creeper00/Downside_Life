@@ -1047,7 +1047,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 78.79, y: 0}
-  m_SizeDelta: {x: 584.73, y: 75}
+  m_SizeDelta: {x: 627.2, y: 75}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &79933615
 MonoBehaviour:
@@ -9506,7 +9506,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -22.729383}
+  m_AnchoredPosition: {x: 0, y: -22.730032}
   m_SizeDelta: {x: -0.000015258789, y: 298.6}
   m_Pivot: {x: 0.5, y: 0.95}
 --- !u!212 &855708148
@@ -10175,8 +10175,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 437.8, y: 14.46}
-  m_SizeDelta: {x: 160, y: 60}
+  m_AnchoredPosition: {x: 396, y: 29}
+  m_SizeDelta: {x: 100, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &872225099
 MonoBehaviour:
@@ -10205,13 +10205,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 9/10
+  m_Text: 10/10
 --- !u!222 &872225100
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11177,7 +11177,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175.4, y: 28.2}
+  m_AnchoredPosition: {x: 183, y: 29.9}
   m_SizeDelta: {x: 180, y: 33}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &983049507
@@ -16216,8 +16216,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -268.84833, y: -20.000015}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: -315, y: -62}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1359864855
 MonoBehaviour:
@@ -16246,7 +16246,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 81
-    m_Alignment: 6
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -17364,8 +17364,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 702649415}
   m_HandleRect: {fileID: 702649414}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.9999959
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

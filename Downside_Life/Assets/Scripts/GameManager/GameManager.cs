@@ -89,7 +89,6 @@ public partial class GameManager : MonoBehaviour
     public void ChangeScreen(Screen screen)
     {
         Color32 noColor = new Color32(255, 255, 255, 255);
-        Color32 darkColor = new Color32(162, 162, 162, 255);
         switch (currentScreen)
         {
             case Screen.main:
@@ -113,7 +112,10 @@ public partial class GameManager : MonoBehaviour
                 GotoRichHouseButton.GetComponent<Image>().color = noColor;
                 break;
         }
+
         currentScreen = screen;
+
+        Color32 darkColor = new Color32(162, 162, 162, 255);
         switch (screen)
         {
             case Screen.main:

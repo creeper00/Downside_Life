@@ -36,7 +36,7 @@ public class UnitsManager : MonoBehaviour
         }
     }
 
-    /// <summary>스크롤 뷰를 갱신</summary>
+    /// <summary>스크롤 뷰를 사기꾼 목록으로 만들고 갱신함</summary>
     public void showCrooks()
     {
         resetScrollView();

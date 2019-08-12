@@ -152,30 +152,56 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>붙인 유닛을 뗌</summary>
-    public void Retire(Job kindOfUnit, int index)
+    /// <summary>붙인 유닛을 뗄 수 있는지 확인</summary>
+    public bool CanRetire(Job kindOfUnit, int index)
     {
-        switch(kindOfUnit)
+        if (!CheckStamina(unitRetireStaminaDecrease)) return false;
+        switch (kindOfUnit)
         {
             case Job.crook:
                 if (attatchedCrooks[index] != null)
                 {
-                    attatchedCrooks[index] = null;
-                    UnitsManager.instance.DeleteSlot(UnitsManager.Tabs.crook, index);
+                    return true;
                 }
-                break;
+                else
+                {
+                    Debug.Log("That crook is not attatched!");
+                    return false;
+                }
             case Job.snake:
                 if (attatchedSnakes[index] != null)
                 {
-                    attatchedSnakes[index] = null;
-                    UnitsManager.instance.DeleteSlot(UnitsManager.Tabs.snake, index);
+                    return true;
                 }
-                break;
+                else
+                {
+                    Debug.Log("That snake is not attatched!");
+                    return false;
+                }
             case Job.robber:
                 Debug.Log("Robber can't be attatched!!!");
-                break;
+                return false;
             case Job.gang:
                 Debug.Log("Gang can't Retire!!!");
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    /// <summary>붙인 유닛을 뗌</summary>
+    public void RetireUnit(Job kindOfUnit, int index)
+    {
+        ConsumeStamina(unitRetireStaminaDecrease);
+        switch(kindOfUnit)
+        {
+            case Job.crook:
+                attatchedCrooks[index] = null;
+                UnitsManager.instance.DeleteSlot(UnitsManager.Tabs.crook, index);
+                break;
+            case Job.snake:
+                attatchedSnakes[index] = null;
+                UnitsManager.instance.DeleteSlot(UnitsManager.Tabs.snake, index);
                 break;
         }
         UnitsManager.instance.UpdateRichMoneyChange();

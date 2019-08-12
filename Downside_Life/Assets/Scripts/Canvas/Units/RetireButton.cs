@@ -16,6 +16,9 @@ public class RetireButton : MonoBehaviour
 
     public void Retire()
     {
-        GameManager.instance.Retire(kindOfUnit, slotIndex);
+        if (GameManager.instance.CanRetire(kindOfUnit, slotIndex))
+        {
+            GameManager.instance.RetireUnit(kindOfUnit, slotIndex);
+        }
     }
 }

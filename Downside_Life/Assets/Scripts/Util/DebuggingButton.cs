@@ -6,6 +6,6 @@ public class DebuggingButton : MonoBehaviour
 {
     public void DebugSomething()
     {
-        UnitsManager.instance.showCrooks();
+        GameManager.instance.ConsumeStamina(1);
     }
 }
