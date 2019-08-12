@@ -100,7 +100,7 @@ public class TechInfoButtons : MonoBehaviour
                 break;
         }
         
-        GameManager.instance.showResources();
+        GameManager.instance.UpdateResourcesUI();
         tech.GetComponent<Image>().color = new Color32(162, 162, 162, 255);
         tech = null;
         techInfo.SetActive(false);

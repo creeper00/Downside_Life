@@ -17,6 +17,5 @@ public partial class GameManager : MonoBehaviour
         {
             MainManager.instance.showInfo(false);
         }
-
     }
 }

@@ -52,7 +52,7 @@ public partial class GameManager : MonoBehaviour
         gangMaxLevel = 100;
         currentScreen = Screen.main;
         
-        StaminaManage(10);
+        SetStamina(10);
         
         GotoMainButton = GameObject.Find("GotoMainButton");
         GotoTechTreeButton = GameObject.Find("GotoTechTreeButton");
@@ -145,7 +145,7 @@ public partial class GameManager : MonoBehaviour
         {
 
             unitsCanvas.SetActive(true);
-            UnitsManager.instance.showCrooks();
+            UnitsManager.instance.ChangeTab(UnitsManager.Tabs.crook);
         }
         else
         {
@@ -166,17 +166,6 @@ public partial class GameManager : MonoBehaviour
     {
         currentScreen = newScreen;
         ChangeCanvas();
-    }
-
-    public IEnumerator Waitfor1secondForStamina()
-    {
-        notEnoughStaminaCanvas.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        notEnoughStaminaCanvas.SetActive(false);
-    }
-    public void NotEnoughStamina()
-    {
-        StartCoroutine(Waitfor1secondForStamina());
     }
 }
 

@@ -26,8 +26,6 @@ public class UnitsManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        currentTab = Tabs.crook;
-        ShowTab();
     }
 
     public void resetScrollView()
@@ -41,13 +39,11 @@ public class UnitsManager : MonoBehaviour
     /// <summary>스크롤 뷰를 갱신</summary>
     public void showCrooks()
     {
-        Debug.Log("updating crooks scroll view");
         resetScrollView();
         contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.crooks.Count * 140, 0);
         int index = 0;
         foreach (var unit in GameManager.instance.crooks)
         {
-            Debug.Log("x");
             var listItemObject = Instantiate(prefab, contents.transform);
             var crookItemList = listItemObject.GetComponent<CrookListItem>();
             crookItemList.SetUnitInformation(index, unit);
@@ -84,10 +80,10 @@ public class UnitsManager : MonoBehaviour
         switch(tab)
         {
             case Tabs.crook:
-                GameObject.Destroy(crookTab.transform.Find("Slot" + slotIndex).GetChild(slotIndex).gameObject);
+                Destroy(crookTab.transform.Find("Slot" + slotIndex).GetChild(0).gameObject);
                 break;
             case Tabs.snake:
-                GameObject.Destroy(snakeTab.transform.Find("Slot" + slotIndex).GetChild(slotIndex).gameObject);
+                Destroy(snakeTab.transform.Find("Slot" + slotIndex).GetChild(0).gameObject);
                 break;
             default:
                 Debug.Log("Incorrect unit type.");
@@ -103,13 +99,20 @@ public class UnitsManager : MonoBehaviour
     public void ChangeTab(Tabs tab)
     {
         currentTab = tab;
-        ShowTab();
-    }
-
-    private void ShowTab()
-    {
-        crookTab.SetActive(currentTab == Tabs.crook);
-        snakeTab.SetActive(currentTab == Tabs.snake);
-        gangTab.SetActive(currentTab == Tabs.gang);
+        switch (tab)
+        {
+            case Tabs.crook:
+                crookTab.SetActive(currentTab == Tabs.crook);
+                showCrooks();
+                break;
+            case Tabs.snake:
+                snakeTab.SetActive(currentTab == Tabs.snake);
+                showSnakes();
+                break;
+            case Tabs.gang:
+                gangTab.SetActive(currentTab == Tabs.gang);
+                showGangs();
+                break;
+        }
     }
 }

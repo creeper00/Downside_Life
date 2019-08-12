@@ -32,7 +32,7 @@ public class ThiefActionButton : MonoBehaviour
             thiefResultText2.text = "";
         }
 
-        GameManager.instance.showResources();
+        GameManager.instance.UpdateResourcesUI();
         GameObject.Find("ThiefInfo").SetActive(false);
         thiefResultPanel.SetActive(true);
     }

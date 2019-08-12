@@ -45,19 +45,68 @@ public partial class GameManager : MonoBehaviour
 
         playerMoney += playerSalary;
         //player
-        showResources();
+        UpdateResourcesUI();
     }
 
-    void StaminaManage(int currentStamina)
+    ///<summary>UI에 표시된 내 재산과 스태미나를 업데이트</summary>
+    public void UpdateResourcesUI()
     {
-        stamina = currentStamina;
-        showResources();
+        UpdateStaminaGauge();
+        UpdateMoneyText();
     }
 
-    public void showResources()
+    ///<summary>UI에 표시된 내 스태미나를 업데이트</summary>
+    public void UpdateStaminaGauge()
     {
         staminaGauge.GetComponent<Transform>().localScale = new Vector3((float)stamina / 10, 1, 1);
         staminaText.text = stamina + "/10";
+    }
+
+    ///<summary>UI에 표시된 내 재산을 업데이트</summary>
+    public void UpdateMoneyText()
+    {
         moneyText.text = playerMoney + "";
+    }
+
+    ///<summary>스태미나 값을 변경하고 UI를 업데이트</summary>
+    public void SetStamina(int currentStamina)
+    {
+        stamina = currentStamina;
+        UpdateStaminaGauge();
+    }
+
+    ///<summary>스태미나를 minusStamina만큼 소모할 수 있으면 true를 반환, 아니면 부족하다는 창을 띄우고 false를 반환</summary>
+    public bool CheckStamina(int minusStamina)
+    {
+        if (minusStamina <= stamina)
+        {
+            return true;
+        }
+        else
+        {
+            NotEnoughStamina(minusStamina);
+            return false;
+        }
+    }
+
+    ///<summary>스태미나를 minusStamina만큼 소모할 수 있으면 소모하고 아니면 부족하다는 창을 띄움</summary>
+    public void ConsumeStamina(int minusStamina)
+    {
+        bool canConsume = CheckStamina(minusStamina);
+        if (canConsume) SetStamina(stamina - minusStamina);
+    }
+
+    ///<summary>스태미나가 부족하다는 창을 띄움</summary>
+    private void NotEnoughStamina(int requireStamina)
+    {
+        StartCoroutine(ShowNotEnoughStaminaWindow(requireStamina));
+    }
+
+    private IEnumerator ShowNotEnoughStaminaWindow(int requireStamina)
+    {
+        notEnoughStaminaCanvas.SetActive(true);
+        notEnoughStaminaCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = "행동력이 부족합니다!\n필요 행동력: " + requireStamina;
+        yield return new WaitForSeconds(1f);
+        notEnoughStaminaCanvas.SetActive(false);
     }
 }

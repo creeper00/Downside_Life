@@ -8,10 +8,10 @@ public class RetireButton : MonoBehaviour
     private GameManager.Job kindOfUnit;
     private int slotIndex;
 
-    public void InitializeRetireButton(GameManager.Job kindOfUnit, int slotindex)
+    public void InitializeRetireButton(GameManager.Job kindOfUnit, int slotIndex)
     {
         this.kindOfUnit = kindOfUnit;
-        this.slotIndex = slotindex;
+        this.slotIndex = slotIndex;
     }
 
     public void Retire()

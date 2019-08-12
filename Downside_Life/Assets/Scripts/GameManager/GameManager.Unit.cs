@@ -25,7 +25,11 @@ public partial class GameManager : MonoBehaviour
 
     [Header("전체적인 특성")]
     [SerializeField]
-    public int crookStoreSellingNumber, gangStoreSellingNumber, snakeStoreSellingNumber;
+    public int crookStoreSellingNumber;
+    [SerializeField]
+    public int gangStoreSellingNumber;
+    [SerializeField]
+    public int snakeStoreSellingNumber;
     [HideInInspector]
     public int crookAverageLevel, crookMaxLevel;
     List<string> crookAttribute;                //나올 확률은 동일
@@ -57,54 +61,99 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>데이터 상에서 유닛을 이동</summary>
-    public void AttatchUnit(Job kindOfUnit, int unitIndex, int slotIndex)
+    public class Snake
     {
-        switch(kindOfUnit)
+        public int level;
+        public int attribute;
+        public int attack;
+        public Snake(int level, int attribute)
+        {
+            this.level = level;
+            this.attribute = attribute;
+            attack = level * attribute;
+        }
+    }
+
+    public class Gang
+    {
+        public int level;
+        public int attribute;
+        public int attack;
+        public Gang(int level, int attribute)
+        {
+            this.level = level;
+            this.attribute = attribute;
+            attack = level * attribute;
+        }
+    }
+
+    /// <summary>유닛을 붙일 수 있는지 확인</summary>
+    public bool CanAttatchUnit(Job kindOfUnit, int slotIndex)
+    {
+        if (!CheckStamina(unitAttatchStaminaDecrease)) return false;
+        switch (kindOfUnit)
         {
             case Job.crook:
                 if (attatchedCrooks[slotIndex] == null)
                 {
-                    Crook movingCrook = crooks[unitIndex];
-                    crooks.RemoveAt(unitIndex);
-                    attatchedCrooks[slotIndex] = movingCrook;
+                    return true;
                 }
                 else
                 {
                     Debug.Log("Crook in the slot must retire first!!!");
+                    return false;
                 }
-                break;
             case Job.snake:
                 if (attatchedSnakes[slotIndex] == null)
                 {
-                    Snake movingSnake = snakes[unitIndex];
-                    snakes.RemoveAt(unitIndex);
-                    attatchedSnakes[slotIndex] = movingSnake;
+                    return true;
                 }
                 else
                 {
                     Debug.Log("Snake in the slot must retire first!!!");
+                    return false;
                 }
-                break;
             case Job.gang:
                 if (attatchedGangs[slotIndex] == null)
                 {
-                    Gang movingGang = gangs[unitIndex];
-                    gangs.RemoveAt(unitIndex);
-                    attatchedGangs[slotIndex] = movingGang;
+                    return true;
                 }
                 else
                 {
                     Debug.Log("Gang in the slot must retire first!!!");
+                    return false;
                 }
-                break;
+            default:
+                return true;
         }
-
-        
-        
     }
 
-    public void Retire(GameManager.Job kindOfUnit, int index)
+    /// <summary>데이터 상에서 유닛을 이동</summary>
+    public void AttatchUnit(Job kindOfUnit, int unitIndex, int slotIndex)
+    {
+        ConsumeStamina(unitAttatchStaminaDecrease);
+        switch(kindOfUnit)
+        {
+            case Job.crook:
+                Crook movingCrook = crooks[unitIndex];
+                crooks.RemoveAt(unitIndex);
+                attatchedCrooks[slotIndex] = movingCrook;
+                break;
+            case Job.snake:
+                Snake movingSnake = snakes[unitIndex];
+                snakes.RemoveAt(unitIndex);
+                attatchedSnakes[slotIndex] = movingSnake;
+                break;
+            case Job.gang:
+                Gang movingGang = gangs[unitIndex];
+                gangs.RemoveAt(unitIndex);
+                attatchedGangs[slotIndex] = movingGang;
+                break;
+        }
+    }
+
+    /// <summary>붙인 유닛을 뗌</summary>
+    public void Retire(Job kindOfUnit, int index)
     {
         switch(kindOfUnit)
         {
@@ -132,31 +181,7 @@ public partial class GameManager : MonoBehaviour
         UnitsManager.instance.UpdateRichMoneyChange();
     }
 
-    public class Snake
-    {
-        public int level;
-        public int attribute;
-        public int attack;
-        public Snake(int level, int attribute)
-        {
-            this.level = level;
-            this.attribute = attribute;
-            attack = level * attribute;
-        }
-    }
-
-    public class Gang
-    {
-        public int level;
-        public int attribute;
-        public int attack;
-        public Gang(int level, int attribute)
-        {
-            this.level = level;
-            this.attribute = attribute;
-            attack = level * attribute;
-        }
-    }
+    
     
 
     public void crookReroll()
