@@ -42,6 +42,7 @@ public partial class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        factories = new List<Factory>();
         instance = this;
 
         crookAverageLevel = 50;

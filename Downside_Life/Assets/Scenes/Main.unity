@@ -5935,6 +5935,7 @@ MonoBehaviour:
   richDesperate: 0
   richMoneyBound: 20000
   richDesperateBound: 100
+  fasterSetupFactory: 0
   desperateGauge: {fileID: 1631985079}
   staminaGauge: {fileID: 983049505}
   moneyText: {fileID: 352180210}
@@ -5945,6 +5946,9 @@ MonoBehaviour:
   crookAttributes: []
   snakeAttributes: []
   gangAttributes: []
+  factoryHealthPerLevel: b80b000088130000581b000028230000f82a0000
+  factoryValue: 00000000000000000a000000050000001e000000
+  factoryIncome: 050000000a0000001e0000003200000064000000
   crookConstantInvolution:
   - 1
   - 1
@@ -8226,7 +8230,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: -0.10546875, y: 0, z: 24, w: 19}
+  m_BoundingSphereOverride: {x: NaN, y: 2.1e-44, z: 4.5918e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

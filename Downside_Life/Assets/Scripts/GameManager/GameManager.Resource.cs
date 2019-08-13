@@ -21,6 +21,9 @@ public partial class GameManager : MonoBehaviour
     private int richMoneyBound;
     [SerializeField]
     private double richDesperateBound;
+    [SerializeField]
+    private int fasterSetupFactory;
+    private int factoryLevelUpCooldown;
 
     [SerializeField]
     private GameObject desperateGauge;
@@ -34,8 +37,10 @@ public partial class GameManager : MonoBehaviour
     void ResourceManage()
     {
         //richSalary = 
-        ChangeDesperate( (double)(-richSalary) / richMoney );
-        richMoney += richSalary;
+        int tempRichSalary = richSalaryIncrease(richSalary);
+
+        ChangeDesperate( (double)(-tempRichSalary) / richMoney );
+        richMoney += tempRichSalary;
 
         desperateGauge.GetComponent<Transform>().localScale = new Vector3((float)richDesperate, 1, 1);
         richMoneyBar.GetComponent<RichMoneyBar>().ChangeBar(richMoney, richInitialMoney);
@@ -121,5 +126,29 @@ public partial class GameManager : MonoBehaviour
         notEnoughStaminaCanvas.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = "행동력이 부족합니다!\n필요 행동력: " + requireStamina;
         yield return new WaitForSeconds(1f);
         notEnoughStaminaCanvas.SetActive(false);
+    }
+    int FactoryCooldown()
+    {
+        if (richDesperate > fasterSetupFactory)
+        {
+            return 2;
+        }
+        else
+        {
+            return 3;
+        }
+    }
+    int richSalaryIncrease(int richSalary)
+    {
+        float ratio = 1;
+        for (int i = 0; i < factories.Count; i++)
+        {
+            if (factories[i].factoryType == Factory.FactoryType.bank)
+            {
+                ratio += factories[i].Calculate();
+            }
+        }
+
+        return (int)(richSalary * ratio);
     }
 }

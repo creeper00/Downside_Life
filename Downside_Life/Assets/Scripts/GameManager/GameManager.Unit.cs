@@ -5,6 +5,39 @@ using UnityEngine;
 
 public partial class GameManager : MonoBehaviour
 {
+    public class Factory
+    {
+        public enum FactoryType
+        {
+            normal,
+            taunt,
+            thief,
+            lawyer,
+            bank
+        }
+        public int level;
+        public int health;
+        public int maxhealth;
+        public int income;
+
+        public FactoryType factoryType;
+        int value;
+
+        public int Calculate()
+        {
+            return value * level;
+        }
+
+        public Factory(FactoryType factoryType, int value)
+        {
+            this.level = 0;
+            this.health = GameManager.instance.factoryHealthPerLevel[level];
+            this.maxhealth = GameManager.instance.factoryHealthPerLevel[level];
+            this.income = GameManager.instance.factoryIncome[level];
+            this.factoryType = factoryType;
+            this.value = value;
+        }
+    }
     public List<Crook> crooks;
     public List<Crook> sellingCrooks;
     public Crook[] attatchedCrooks = new Crook[3];
@@ -20,6 +53,12 @@ public partial class GameManager : MonoBehaviour
     public int crookTechMyPercentageIncrease;
 
     public List<string> crookAttributes, snakeAttributes, gangAttributes;
+
+    [Header("공장")]
+
+    List<Factory> factories;
+    [SerializeField]
+    public List<int> factoryHealthPerLevel, factoryValue, factoryIncome;
 
     [Header("사기꾼 상수 값")]
     [SerializeField]
@@ -333,4 +372,45 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
+    void LevelUpFactories()
+    {
+        if (factoryLevelUpCooldown > 0)
+        {
+            factoryLevelUpCooldown--;
+        }
+        else
+        {
+            int pos = -1;
+            int tempLevel = -1;
+            for (int i = 0; i < factories.Count; i++)
+            {
+                if (tempLevel < factories[i].level && factories[i].level < 5)
+                {
+                    tempLevel = factories[i].level;
+                    pos = i;
+                }
+            }
+            //레벨 제일 높은거 고르기
+            if (pos > -1)
+            {
+                factories[pos].level++;
+            }
+            factoryLevelUpCooldown = FactoryCooldown();
+        }
+    }
+    void SetupFactories()
+    {
+        if (Random.Range(0, 100) < 20)
+        {
+            if (factories.Count > 2)
+            {
+                return;
+            }
+            Debug.Log("Setup new Factory");
+            int temp = Random.Range(0, 5);
+            Debug.Log(temp);
+            factories.Add(new Factory((Factory.FactoryType)temp, factoryValue[temp]));
+
+        }
+    }
 }
