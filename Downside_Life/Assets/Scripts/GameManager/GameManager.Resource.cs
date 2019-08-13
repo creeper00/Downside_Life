@@ -33,11 +33,9 @@ public partial class GameManager : MonoBehaviour
 
     void ResourceManage()
     {
-        int lastRichMoney = richMoney;
         //richSalary = 
+        ChangeDesperate( (double)(-richSalary) / richMoney );
         richMoney += richSalary;
-
-        richDesperate += (double)(lastRichMoney - richMoney) / lastRichMoney;
 
         desperateGauge.GetComponent<Transform>().localScale = new Vector3((float)richDesperate, 1, 1);
         richMoneyBar.GetComponent<RichMoneyBar>().ChangeBar(richMoney, richInitialMoney);
@@ -48,14 +46,16 @@ public partial class GameManager : MonoBehaviour
         UpdateResourcesUI();
     }
 
-    public void ChangeMoney(int moneyIncrease)
+    public void ChangeRichMoney(int moneyDecrease)
     {
-
+        int lastRichMoney = richMoney;
+        richMoney -= moneyDecrease;
+        ChangeDesperate( (double)(moneyDecrease) / lastRichMoney );
     }
 
-    private void ChangeDesperate(float desperateIncrease)
+    private void ChangeDesperate(double desperateIncrease)
     {
-
+        richDesperate += desperateIncrease;
     }
 
     ///<summary>UI에 표시된 내 재산과 스태미나를 업데이트</summary>
