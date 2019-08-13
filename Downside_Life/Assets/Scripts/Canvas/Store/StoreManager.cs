@@ -71,7 +71,6 @@ public class StoreManager : MonoBehaviour
     }
     public void showStoreSnakes()
     {
-        float width = snakeStoreViewPort.GetComponent<RectTransform>().rect.width;
         float spacing = snakeStoreViewPort.GetComponent<GridLayoutGroup>().spacing.x;
         resetScrollView(GameManager.Job.snake);
         snakeStoreViewPort.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.snakeStoreSellingNumber * 120 - width - spacing, 0, 0);
@@ -86,7 +85,6 @@ public class StoreManager : MonoBehaviour
     }
     public void showStoreGangs()
     {
-        float width = gangStoreViewPort.GetComponent<RectTransform>().rect.width;
         float spacing = gangStoreViewPort.GetComponent<GridLayoutGroup>().spacing.x;
         resetScrollView(GameManager.Job.gang);
         gangStoreViewPort.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.gangStoreSellingNumber * 120 - width - spacing, 0, 0);
