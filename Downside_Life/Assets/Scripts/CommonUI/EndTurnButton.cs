@@ -8,6 +8,6 @@ public class EndTurnButton : MonoBehaviour
     public void EndTurn()
     {
         GameManager.instance.EndTurn();
-        GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.main);
+        GameManager.instance.ChangeScreen(GameManager.Screen.main);
     }
 }
