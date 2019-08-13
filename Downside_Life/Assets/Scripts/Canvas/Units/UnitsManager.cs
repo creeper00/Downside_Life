@@ -12,7 +12,7 @@ public class UnitsManager : MonoBehaviour
     [SerializeField]
     private Text RichMoneyChange;
     [SerializeField]
-    Transform prefab, crookPrefab, snakePrefab, gangPrefab;
+    Transform crookListItemPrefab, snakeListItemPrefab, gangListItemPrefab;
     [SerializeField]
     GameObject contents;
 
@@ -21,7 +21,7 @@ public class UnitsManager : MonoBehaviour
         crook, snake, gang
     }
 
-    private Tabs currentTab;
+    public Tabs currentTab;
 
     void Awake()
     {
@@ -44,8 +44,8 @@ public class UnitsManager : MonoBehaviour
         int index = 0;
         foreach (var unit in GameManager.instance.crooks)
         {
-            var listItemObject = Instantiate(prefab, contents.transform);
-            var crookItemList = listItemObject.GetComponent<CrookListItem>();
+            var listItemObject = Instantiate(crookListItemPrefab, contents.transform);
+            var crookItemList = listItemObject.GetComponent<UnitListItem>();
             crookItemList.SetUnitInformation(index, unit);
             ++index;
         }
@@ -54,22 +54,28 @@ public class UnitsManager : MonoBehaviour
     public void showSnakes()
     {
         resetScrollView();
-        contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, 0, 0);
-        for (int i = 0; i < GameManager.instance.snakes.Count; i++)
+        contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.snakes.Count * 140, 0);
+        int index = 0;
+        foreach (var unit in GameManager.instance.snakes)
         {
-            Instantiate(prefab, contents.transform);
-            contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, contents.GetComponent<RectTransform>().sizeDelta.y + 140, 0);
+            var listItemObject = Instantiate(snakeListItemPrefab, contents.transform);
+            var snakeItemList = listItemObject.GetComponent<UnitListItem>();
+            snakeItemList.SetUnitInformation(index, unit);
+            ++index;
         }
     }
 
     public void showGangs()
     {
         resetScrollView();
-        contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, 0, 0);
-        for (int i = 0; i < GameManager.instance.gangs.Count; i++)
+        contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.gangs.Count * 140, 0);
+        int index = 0;
+        foreach (var unit in GameManager.instance.gangs)
         {
-            Instantiate(prefab, contents.transform);
-            contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, contents.GetComponent<RectTransform>().sizeDelta.y + 140, 0);
+            var listItemObject = Instantiate(gangListItemPrefab, contents.transform);
+            var gangItemList = listItemObject.GetComponent<UnitListItem>();
+            gangItemList.SetUnitInformation(index, unit);
+            ++index;
         }
     }
 
@@ -82,6 +88,9 @@ public class UnitsManager : MonoBehaviour
                 break;
             case Tabs.snake:
                 Destroy(snakeTab.transform.Find("Slot" + slotIndex).GetChild(0).gameObject);
+                break;
+            case Tabs.gang:
+                Destroy(gangTab.transform.Find("Slot" + slotIndex).GetChild(0).gameObject);
                 break;
             default:
                 Debug.Log("Incorrect unit type.");

@@ -27,8 +27,9 @@ public class UnitDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         unitBeingDragged.GetComponent<Image>().color = halfTransparentColor;
         unitBeingDragged.AddComponent<CanvasGroup>();
         unitBeingDragged.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        itemBeingDraggedIndex = gameObject.GetComponent<CrookListItem>().index;
 
+        itemBeingDraggedIndex = gameObject.GetComponent<UnitListItem>().index;
+        
         //initialParent = itemBeingDragged.transform.parent;
     }
 
@@ -54,7 +55,7 @@ public class UnitDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         if (unitBeingDragged != null )
         {
-            GameObject.Destroy(unitBeingDragged);
+            Destroy(unitBeingDragged);
             unitBeingDragged = null;
         }
 

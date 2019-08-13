@@ -127,20 +127,19 @@ public partial class GameManager : MonoBehaviour
     {
         public int level;
         public int attribute;
-        public int attack;
         public Snake(int level, int attribute)
         {
             this.level = level;
             this.attribute = attribute;
-            attack = level * attribute;
         }
     }
 
     public class Gang
     {
         public int level;
-        public int attribute;
         public int attack;
+        public int attribute;
+        
         public Gang(int level, int attribute)
         {
             this.level = level;
@@ -193,15 +192,16 @@ public partial class GameManager : MonoBehaviour
     /// <summary>데이터 상에서 유닛을 이동</summary>
     public void AttatchUnit(Job kindOfUnit, int unitIndex, int slotIndex)
     {
-        ConsumeStamina(unitAttatchStaminaDecrease);
         switch(kindOfUnit)
         {
             case Job.crook:
+                ConsumeStamina(unitAttatchStaminaDecrease);
                 Crook movingCrook = crooks[unitIndex];
                 crooks.RemoveAt(unitIndex);
                 attatchedCrooks[slotIndex] = movingCrook;
                 break;
             case Job.snake:
+                ConsumeStamina(unitAttatchStaminaDecrease);
                 Snake movingSnake = snakes[unitIndex];
                 snakes.RemoveAt(unitIndex);
                 attatchedSnakes[slotIndex] = movingSnake;
@@ -217,10 +217,10 @@ public partial class GameManager : MonoBehaviour
     /// <summary>붙인 유닛을 뗄 수 있는지 확인</summary>
     public bool CanRetire(Job kindOfUnit, int index)
     {
-        if (!CheckStamina(unitRetireStaminaDecrease)) return false;
         switch (kindOfUnit)
         {
             case Job.crook:
+                if (!CheckStamina(unitRetireStaminaDecrease)) return false;
                 if (attatchedCrooks[index] != null)
                 {
                     return true;
@@ -231,6 +231,7 @@ public partial class GameManager : MonoBehaviour
                     return false;
                 }
             case Job.snake:
+                if (!CheckStamina(unitRetireStaminaDecrease)) return false;
                 if (attatchedSnakes[index] != null)
                 {
                     return true;
@@ -240,11 +241,18 @@ public partial class GameManager : MonoBehaviour
                     Debug.Log("That snake is not attatched!");
                     return false;
                 }
-            case Job.robber:
-                Debug.Log("Robber can't be attatched!!!");
-                return false;
             case Job.gang:
-                Debug.Log("Gang can't Retire!!!");
+                if (attatchedGangs[index] != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    Debug.Log("That gang is not attatched!");
+                    return false;
+                }
+            case Job.robber:
+                Debug.Log("Robber can't Retire!!!");
                 return false;
             default:
                 return false;
@@ -254,16 +262,24 @@ public partial class GameManager : MonoBehaviour
     /// <summary>붙인 유닛을 뗌</summary>
     public void RetireUnit(Job kindOfUnit, int index)
     {
-        ConsumeStamina(unitRetireStaminaDecrease);
         switch(kindOfUnit)
         {
             case Job.crook:
+                ConsumeStamina(unitRetireStaminaDecrease);
                 attatchedCrooks[index] = null;
                 UnitsManager.instance.DeleteSlot(UnitsManager.Tabs.crook, index);
                 break;
             case Job.snake:
+                ConsumeStamina(unitRetireStaminaDecrease);
                 attatchedSnakes[index] = null;
                 UnitsManager.instance.DeleteSlot(UnitsManager.Tabs.snake, index);
+                break;
+            case Job.gang:
+                Gang movingGang = attatchedGangs[index];
+                attatchedGangs[index] = null;
+                gangs.Add(movingGang);
+                UnitsManager.instance.DeleteSlot(UnitsManager.Tabs.gang, index);
+                UnitsManager.instance.showGangs();
                 break;
         }
         UnitsManager.instance.UpdateRichMoneyChange();

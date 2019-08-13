@@ -334,12 +334,14 @@ MonoBehaviour:
   snakeTab: {fileID: 997720835}
   gangTab: {fileID: 1832144283}
   RichMoneyChange: {fileID: 562164547}
-  prefab: {fileID: 3889891694774459003, guid: cdee7a03bc8852e41b5559c2dca5b382, type: 3}
-  crookPrefab: {fileID: 3889891694774459003, guid: cdee7a03bc8852e41b5559c2dca5b382,
+  crookListItemPrefab: {fileID: 3889891694774459003, guid: cdee7a03bc8852e41b5559c2dca5b382,
     type: 3}
-  snakePrefab: {fileID: 0}
-  gangPrefab: {fileID: 0}
+  snakeListItemPrefab: {fileID: 2930210955589235413, guid: 86e867a08f7c1da4fb6e9eff56d03a36,
+    type: 3}
+  gangListItemPrefab: {fileID: 6481693368974966482, guid: 7e1befe5c427e5940af20ac830519023,
+    type: 3}
   contents: {fileID: 855708146}
+  currentTab: 0
 --- !u!222 &11083689
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4322,7 +4324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kindOfUnit: 0
-  slotPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
+  slotItemPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
     type: 3}
   slotIndex: 1
 --- !u!1 &422527293
@@ -9013,7 +9015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kindOfUnit: 0
-  slotPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
+  slotItemPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
     type: 3}
   slotIndex: 2
 --- !u!1 &803564759
@@ -9463,7 +9465,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -22.729797}
+  m_AnchoredPosition: {x: 0, y: -22.730034}
   m_SizeDelta: {x: -0.000015258789, y: 298.6}
   m_Pivot: {x: 0.5, y: 0.95}
 --- !u!212 &855708148
@@ -11151,7 +11153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kindOfUnit: 2
-  slotPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
+  slotItemPrefab: {fileID: 74436601329055264, guid: c7e4a4b0cbdaa9e4faf714bbdc4f1ec3,
     type: 3}
   slotIndex: 1
 --- !u!114 &971492955
@@ -11917,7 +11919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kindOfUnit: 3
-  slotPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
+  slotItemPrefab: {fileID: 7293153464812202590, guid: d034962146d73ae4ebbea9ef6764db45,
     type: 3}
   slotIndex: 0
 --- !u!114 &1026796677
@@ -12734,7 +12736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kindOfUnit: 3
-  slotPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
+  slotItemPrefab: {fileID: 7293153464812202590, guid: d034962146d73ae4ebbea9ef6764db45,
     type: 3}
   slotIndex: 1
 --- !u!114 &1099497267
@@ -14713,7 +14715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kindOfUnit: 2
-  slotPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
+  slotItemPrefab: {fileID: 74436601329055264, guid: c7e4a4b0cbdaa9e4faf714bbdc4f1ec3,
     type: 3}
   slotIndex: 0
 --- !u!114 &1241569104
@@ -17112,7 +17114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kindOfUnit: 3
-  slotPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
+  slotItemPrefab: {fileID: 7293153464812202590, guid: d034962146d73ae4ebbea9ef6764db45,
     type: 3}
   slotIndex: 2
 --- !u!114 &1383023283
@@ -17853,8 +17855,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 702649415}
   m_HandleRect: {fileID: 702649414}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.99786127
+  m_Value: 1
+  m_Size: 0.99999404
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -20620,7 +20622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kindOfUnit: 2
-  slotPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
+  slotItemPrefab: {fileID: 74436601329055264, guid: c7e4a4b0cbdaa9e4faf714bbdc4f1ec3,
     type: 3}
   slotIndex: 2
 --- !u!114 &1814510253
@@ -22960,7 +22962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kindOfUnit: 0
-  slotPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
+  slotItemPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
     type: 3}
   slotIndex: 0
 --- !u!1 &2009065884
