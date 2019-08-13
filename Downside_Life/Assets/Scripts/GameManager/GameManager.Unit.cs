@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public partial class GameManager : MonoBehaviour
 {
     public List<Crook> crooks;
@@ -16,7 +17,27 @@ public partial class GameManager : MonoBehaviour
 
     public List<string> crookAttributes, snakeAttributes, gangAttributes;
 
-    [Header("유닛 관리 관련 상수")]
+    [Header("사기꾼 상수 값")]
+    [SerializeField]
+    private float[] crookConstantInvolution = new float[4];              //사기꾼이 가져오는 상수 값에서 레벨이 제곱되는 횟수
+    [SerializeField]
+    private float[] crookConstantCoefficient = new float[4];             //사기꾼이 가져오는 상수 값에서 배율
+    [SerializeField]
+    private int[] crookConstant = new int[4];                            //사기꾼에 곱해지는 값
+
+    [Header("사기꾼 계수 값")]
+    [SerializeField]
+    private float[] crookRateInvolution = new float[4];              //사기꾼이 가져오는 계수 값에서 레벨이 제곱되는 횟수
+    [SerializeField]
+    private float[] crookRateCoefficient = new float[4];             //사기꾼이 가져오는 계수 값에서 배율
+    [SerializeField]
+    private float[] crookRate = new float[4];                        //사기꾼에 곱해지는 값
+
+    [Header("사기꾼 가져오는 비율")]
+    [SerializeField]
+    private int[] crookReturn = new int[4];                          //사기꾼이 가져온 돈에서 플레이어 돈에 추가하는 비율
+
+    [Header("기타 유닛 관리 관련 값")]
     [SerializeField]
     private int unitAttatchStaminaDecrease;
     [SerializeField]
@@ -46,23 +67,62 @@ public partial class GameManager : MonoBehaviour
     {
         bool attatched;                             //부자에게 붙어 있는가
         public int level;                           //사기꾼의 레벨
-
+        public int type;                            //유형 번호. 0-상수형, 1-계수형, 2-밸런스형, 3-호구 돈 가져오는 형
         
-        public int richConstantDown;                //매 턴 깎는 상수 값
-        public float richPercentageDown;            //매 턴 깎는 비율 값
-        public float playerPercentageUp;            //깎은 돈 중 가져오는 비율
-        public int attribute;
-        public Crook(int level, int attribute)
+        public int richConstantDown                //매 턴 깎는 상수 값
+        {
+            get
+            {
+                
+                int ret = 0;
+                //기본 수치
+                ret += (int)(System.Math.Pow(level, instance.crookConstantInvolution[type]) * instance.crookConstantCoefficient[type]) * instance.crookConstant[type];
+                //아이템 추가 수치
+
+                //테크트리에서 가져오는 수치
+
+                return ret;
+            }
+            set { }
+        }
+        public float richPercentageDown                             //매 턴 깎는 비율 값
+        {
+            get
+            {
+                float ret = 0f;
+                //기본 수치
+                ret += (int)(System.Math.Pow(level, instance.crookRateInvolution[type]) * instance.crookRateCoefficient[type]) * instance.crookRate[type];
+                //아이템 추가 수치
+
+                //테크트리에서 가져오는 수치
+
+                return ret;
+            }
+            set { }
+        }
+        public float playerPercentageUp                             //깎은 돈 중 가져오는 비율
+        {
+            get
+            {
+                int ret = 0;
+                //기본 값
+                ret += instance.crookReturn[type];
+                //아이템 추가 수치
+
+                //테크트리에서 가져오는 수치
+
+                return ret;
+            }
+            set { }
+        }
+        
+        public Crook(int level, int type)
         {
             attatched = false;
             this.level = level;
-            richConstantDown = level * attribute;
-            this.attribute = attribute;
-            richPercentageDown = 1;         //계산식 필요합니다
-            playerPercentageUp = 1;         //계산식 필요합니다
+            this.type = type;
         }
     }
-
     public class Snake
     {
         public int level;

@@ -5623,6 +5623,32 @@ MonoBehaviour:
   crookAttributes: []
   snakeAttributes: []
   gangAttributes: []
+  crookConstantInvolution:
+  - 1
+  - 1
+  - 1
+  - 1
+  crookConstantCoefficient:
+  - 1
+  - 1
+  - 1
+  - 1
+  crookConstant: 50c30000102700003075000010270000
+  crookRateInvolution:
+  - 1
+  - 1
+  - 1
+  - 1
+  crookRateCoefficient:
+  - 1
+  - 1
+  - 1
+  - 1
+  crookRate:
+  - 0.01
+  - 0.05
+  - 0.03
+  - 0.01
   unitAttatchStaminaDecrease: 6
   unitRetireStaminaDecrease: 1
   crookStoreSellingNumber: 3
@@ -9436,7 +9462,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -22.730015}
+  m_AnchoredPosition: {x: 0, y: -22.729496}
   m_SizeDelta: {x: -0.000015258789, y: 298.6}
   m_Pivot: {x: 0.5, y: 0.95}
 --- !u!212 &855708148
