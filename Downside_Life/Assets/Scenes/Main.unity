@@ -5649,6 +5649,7 @@ MonoBehaviour:
   - 0.05
   - 0.03
   - 0.01
+  crookReturn: 1e0000001e0000001e00000032000000
   unitAttatchStaminaDecrease: 6
   unitRetireStaminaDecrease: 1
   crookStoreSellingNumber: 3
@@ -9462,7 +9463,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -22.729496}
+  m_AnchoredPosition: {x: 0, y: -22.729797}
   m_SizeDelta: {x: -0.000015258789, y: 298.6}
   m_Pivot: {x: 0.5, y: 0.95}
 --- !u!212 &855708148
@@ -17853,7 +17854,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 702649414}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99786127
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

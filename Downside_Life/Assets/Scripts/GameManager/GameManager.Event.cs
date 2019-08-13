@@ -29,6 +29,7 @@ public partial class GameManager : MonoBehaviour
     }
     void EventManage()
     {
+        if (richMoney <= 0) Ending(Endings.success);
         if (richMoney >= richMoneyBound) Ending(Endings.tooBig);
         if (richDesperate >= richDesperateBound) Ending(Endings.dropped);
     }

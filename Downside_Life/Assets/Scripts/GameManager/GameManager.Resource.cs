@@ -50,13 +50,15 @@ public partial class GameManager : MonoBehaviour
     {
         int lastRichMoney = richMoney;
         richMoney -= moneyDecrease;
-        if (richMoney == 0) Ending(Endings.success);
         ChangeDesperate( (double)(moneyDecrease) / lastRichMoney );
+        EventManage();
     }
 
     private void ChangeDesperate(double desperateIncrease)
     {
         richDesperate += desperateIncrease;
+        EventManage();
+
     }
 
     ///<summary>UI에 표시된 내 재산과 스태미나를 업데이트</summary>
