@@ -10,7 +10,10 @@ public class Technology : MonoBehaviour
         maxLevel,
         averageLevel,
         storeNumber,
-        attributeUnlock
+        attributeUnlock,
+        crookRichPercentageUp,
+        crookConstantUp,
+        crookMyPercentageUp
     }
     [Header("Required")]
     [SerializeField]
@@ -21,8 +24,6 @@ public class Technology : MonoBehaviour
     public int neededMoney;
     [SerializeField]
     GameObject Information;
-    [SerializeField]
-    public GameManager.Job job;
 
     [SerializeField]
     TechInfoButtons techUpButton;
@@ -31,9 +32,11 @@ public class Technology : MonoBehaviour
     [SerializeField]
     public string technologyName;
     [SerializeField]
+    public GameManager.Job job;
+    [SerializeField]
     public Upgrade upgrade;
     [SerializeField]
-    public int maxLevelUp, averageLevelUp, storeNumberUp;
+    public int value;
     [SerializeField]
     public string attribute;
     private void Start()
@@ -60,13 +63,22 @@ public class Technology : MonoBehaviour
                 text.text += "특성 " + attribute + " 해금\n";
                 break;
             case Upgrade.maxLevel:
-                text.text += "최대레벨 " + maxLevelUp + " 증가\n";
+                text.text += "최대레벨 " + value + " 증가\n";
                 break;
             case Upgrade.averageLevel:
-                text.text += "평균레벨 " + averageLevelUp + " 증가\n";
+                text.text += "평균레벨 " + value + " 증가\n";
                 break;
             case Upgrade.storeNumber:
-                text.text += "상점판매 " + storeNumberUp + "명 증가\n";
+                text.text += "상점판매 " + value + "명 증가\n";
+                break;
+            case Upgrade.crookConstantUp:
+                text.text += "사기꾼 사기치는 돈 " + value + "원 증가\n";
+                break;
+            case Upgrade.crookRichPercentageUp:
+                text.text += "사기꾼 사기치는 돈 " + value * 100 + "% 증가\n";
+                break;
+            case Upgrade.crookMyPercentageUp:
+                text.text += "사기꾼 " + value * 100 + "% 만큼 더 넘김\n";
                 break;
         }
         if (previousTechnologies.Count > 0)

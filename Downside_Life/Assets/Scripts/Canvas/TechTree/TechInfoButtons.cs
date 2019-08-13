@@ -49,16 +49,25 @@ public class TechInfoButtons : MonoBehaviour
                 switch (tech.upgrade)
                 {
                     case Technology.Upgrade.maxLevel:
-                        GameManager.instance.crookMaxLevel += tech.maxLevelUp;
-                        break;
-                    case Technology.Upgrade.attributeUnlock:
-                        GameManager.instance.crookAttributes.Add(tech.attribute);
+                        GameManager.instance.crookMaxLevel += tech.value;
                         break;
                     case Technology.Upgrade.averageLevel:
-                        GameManager.instance.crookAverageLevel += tech.averageLevelUp;
+                        GameManager.instance.crookAverageLevel += tech.value;
                         break;
                     case Technology.Upgrade.storeNumber:
-                        GameManager.instance.crookStoreSellingNumber += tech.storeNumberUp;
+                        GameManager.instance.crookStoreSellingNumber += tech.value;
+                        break;
+                    case Technology.Upgrade.crookConstantUp:
+                        GameManager.instance.crookTechConstantIncrease += tech.value;
+                        break;
+                    case Technology.Upgrade.crookRichPercentageUp:
+                        GameManager.instance.crookTechRichPercentageIncrease += tech.value;
+                        break;
+                    case Technology.Upgrade.crookMyPercentageUp:
+                        GameManager.instance.crookTechMyPercentageIncrease += tech.value;
+                        break;
+                    default:
+                        Debug.Log("사기꾼에 잘못된 테크트리가 기입되었습니다");
                         break;
                 }
                 break;
@@ -66,16 +75,19 @@ public class TechInfoButtons : MonoBehaviour
                 switch (tech.upgrade)
                 {
                     case Technology.Upgrade.maxLevel:
-                        GameManager.instance.gangMaxLevel += tech.maxLevelUp;
+                        GameManager.instance.gangMaxLevel += tech.value;
                         break;
                     case Technology.Upgrade.attributeUnlock:
                         GameManager.instance.gangAttributes.Add(tech.attribute);
                         break;
                     case Technology.Upgrade.averageLevel:
-                        GameManager.instance.gangAverageLevel += tech.averageLevelUp;
+                        GameManager.instance.gangAverageLevel += tech.value;
                         break;
                     case Technology.Upgrade.storeNumber:
-                        GameManager.instance.gangStoreSellingNumber += tech.storeNumberUp;
+                        GameManager.instance.gangStoreSellingNumber += tech.value;
+                        break;
+                    default:
+                        Debug.Log("갱단에 잘못된 테크트리가 기입되었습니다");
                         break;
                 }
                 break;
@@ -83,16 +95,19 @@ public class TechInfoButtons : MonoBehaviour
                 switch (tech.upgrade)
                 {
                     case Technology.Upgrade.maxLevel:
-                        GameManager.instance.snakeMaxLevel += tech.maxLevelUp;
+                        GameManager.instance.snakeMaxLevel += tech.value;
                         break;
                     case Technology.Upgrade.attributeUnlock:
                         GameManager.instance.snakeAttributes.Add(tech.attribute);
                         break;
                     case Technology.Upgrade.averageLevel:
-                        GameManager.instance.snakeAverageLevel += tech.averageLevelUp;
+                        GameManager.instance.snakeAverageLevel += tech.value;
                         break;
                     case Technology.Upgrade.storeNumber:
-                        GameManager.instance.snakeStoreSellingNumber += tech.storeNumberUp;
+                        GameManager.instance.snakeStoreSellingNumber += tech.value;
+                        break;
+                    default:
+                        Debug.Log("꽃뱀에 잘못된 테크트리가 기입되었습니다");
                         break;
                 }
                 break;

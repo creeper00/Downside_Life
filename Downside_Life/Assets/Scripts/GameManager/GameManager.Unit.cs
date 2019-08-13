@@ -15,6 +15,10 @@ public partial class GameManager : MonoBehaviour
     public List<Gang> sellingGangs;
     public Gang[] attatchedGangs = new Gang[3];
 
+    public int crookTechRichPercentageIncrease;
+    public int crookTechConstantIncrease;
+    public int crookTechMyPercentageIncrease;
+
     public List<string> crookAttributes, snakeAttributes, gangAttributes;
 
     [Header("사기꾼 상수 값")]
@@ -78,7 +82,7 @@ public partial class GameManager : MonoBehaviour
                 //기본 수치
                 ret += (int)(System.Math.Pow(level, instance.crookConstantInvolution[type]) * instance.crookConstantCoefficient[type]) * instance.crookConstant[type];
                 //아이템 추가 수치
-
+                ret *= instance.crookTechConstantIncrease;
                 //테크트리에서 가져오는 수치
 
                 return ret;
@@ -93,7 +97,7 @@ public partial class GameManager : MonoBehaviour
                 //기본 수치
                 ret += (int)(System.Math.Pow(level, instance.crookRateInvolution[type]) * instance.crookRateCoefficient[type]) * instance.crookRate[type];
                 //아이템 추가 수치
-
+                ret *= instance.crookTechRichPercentageIncrease;
                 //테크트리에서 가져오는 수치
 
                 return ret;
@@ -108,7 +112,7 @@ public partial class GameManager : MonoBehaviour
                 //기본 값
                 ret += instance.crookReturn[type];
                 //아이템 추가 수치
-
+                ret *= instance.crookTechMyPercentageIncrease;
                 //테크트리에서 가져오는 수치
 
                 return ret;
