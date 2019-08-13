@@ -50,6 +50,7 @@ public partial class GameManager : MonoBehaviour
     {
         int lastRichMoney = richMoney;
         richMoney -= moneyDecrease;
+        if (richMoney == 0) Ending(Endings.success);
         ChangeDesperate( (double)(moneyDecrease) / lastRichMoney );
     }
 
