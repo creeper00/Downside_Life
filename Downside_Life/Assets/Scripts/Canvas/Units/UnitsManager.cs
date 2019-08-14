@@ -12,9 +12,11 @@ public class UnitsManager : MonoBehaviour
     [SerializeField]
     private Text RichMoneyChange;
     [SerializeField]
-    Transform crookListItemPrefab, snakeListItemPrefab, gangListItemPrefab;
+    Transform crookListItemPrefab, snakeListItemPrefab, gangListItemPrefab, factoryPrefab;
     [SerializeField]
     GameObject contents;
+    [SerializeField]
+    GameObject factory1, factory2, factory3;
 
     public enum Tabs
     {
@@ -123,6 +125,28 @@ public class UnitsManager : MonoBehaviour
                 showGangs();
 
                 break;
+        }
+    }
+
+    public void ShowFactories()
+    {
+        List<GameObject> factories = new List<GameObject>();
+        factories.Add(GameObject.Find("Factory1"));
+        factories.Add(GameObject.Find("Factory2"));
+        factories.Add(GameObject.Find("Factory3"));
+        for (int i=0; i<3; i++)
+        {
+            foreach (Transform child in factories[i].GetComponent<Transform>())
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        for (int i=0; i<GameManager.instance.factories.Count; i++)
+        {
+            Debug.Log(factoryPrefab + " " + factories[i].transform);
+            var a = Instantiate(factoryPrefab, factories[i].transform);
+            var b = a.GetComponent<Factory>();
+            b.SetFactoryListItem(GameManager.instance.factories[i]);
         }
     }
 }

@@ -56,7 +56,8 @@ public partial class GameManager : MonoBehaviour
 
     [Header("공장")]
 
-    List<Factory> factories;
+    [HideInInspector]
+    public List<Factory> factories;
     [SerializeField]
     public List<int> factoryHealthPerLevel, factoryValue, factoryIncome;
 
