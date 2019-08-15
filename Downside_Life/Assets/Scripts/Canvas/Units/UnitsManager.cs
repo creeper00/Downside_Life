@@ -25,11 +25,6 @@ public class UnitsManager : MonoBehaviour
 
     public Tabs currentTab;
 
-    void Awake()
-    {
-        instance = this;
-    }
-
     public void resetScrollView()
     {
         foreach (Transform child in contents.GetComponent<Transform>())

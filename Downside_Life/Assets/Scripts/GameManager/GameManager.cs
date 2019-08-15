@@ -42,8 +42,11 @@ public partial class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        factories = new List<Factory>();
         instance = this;
+        UnitsManager.instance = unitsCanvas.GetComponent<UnitsManager>();
+        StoreManager.instance = storeCanvas.GetComponent<StoreManager>();
+        factories = new List<Factory>();
+        
 
         crookAverageLevel = 50;
         crookMaxLevel = 100;

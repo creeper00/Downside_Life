@@ -81,6 +81,38 @@ public partial class GameManager : MonoBehaviour
     [SerializeField]
     private int[] crookReturn = new int[4];                          //사기꾼이 가져온 돈에서 플레이어 돈에 추가하는 비율
 
+    [Header("둔감형 꽃뱀")]
+    [SerializeField]
+    private float snakeDesperateDownConstant;
+    [SerializeField]
+    private float snakeDesperateDownCoefficient;
+
+    [Header("낭비형 꽃뱀")]
+    [SerializeField]
+    private int snakeActionCostIncreaseConstant;
+    [SerializeField]
+    private int snakeActionCostIncreaseCoefficient;
+
+    [Header("둔화형 꽃뱀")]
+    [SerializeField]
+    private int snakeActionTurnIncrease;
+
+    [Header("갈취형 꽃뱀")]
+    [SerializeField]
+    private int snakeExtortProbability;
+    [SerializeField]
+    private int snakeExtortConstantRangeUpper, snakeExtortConstantRangeLower;
+    [SerializeField]
+    private int snakeExtortCoefficientRangeUpper, snakeExtortCoefficientRangeLower;
+
+    [Header("갱단 공격력")]
+    [SerializeField]
+    private int[] gangAttackConstant = new int[4];
+    [SerializeField]
+    private int[] gangAttackCoefficient = new int[4];
+    [SerializeField]
+    private int[] gangReturnMonetPerDamage = new int[4];
+
     [Header("기타 유닛 관리 관련 값")]
     [SerializeField]
     private int unitAttatchStaminaDecrease;
@@ -167,28 +199,120 @@ public partial class GameManager : MonoBehaviour
             this.type = type;
         }
     }
+
     public class Snake
     {
         public int level;
-        public int attribute;
-        public Snake(int level, int attribute)
+        public int type;                                        //0-둔감형-절박함 억제, 1-낭비형-부자 행동 비용 증가, 2-둔화형-부자 행동 주기 증가, 3-갈취형-돈 아이템 가져옴
+
+        public float snakeDesperateDown
+        {
+            get
+            {
+                if ( type == 0 )
+                {
+                    return instance.snakeDesperateDownConstant + level * instance.snakeDesperateDownCoefficient;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public int snakeActionCostIncrease
+        {
+            get
+            {
+                if ( type == 1 )
+                {
+                    return instance.snakeActionCostIncreaseConstant + level * instance.snakeActionCostIncreaseCoefficient;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public int snakeActionTurnIncrease
+        {
+            get
+            {
+                if ( type == 2 )
+                {
+                    return instance.snakeActionTurnIncrease;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public float snakeExtortProbability
+        {
+            get
+            {
+                if ( type == 3 )
+                {
+                    return instance.snakeExtortProbability;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public int snakeExtortCost
+        {
+            get
+            {
+                return Random.Range(instance.snakeExtortConstantRangeLower, instance.snakeExtortConstantRangeUpper) + level * Random.Range(instance.snakeExtortCoefficientRangeLower, instance.snakeExtortCoefficientRangeUpper);
+            }
+        }
+
+        public Snake(int level, int type)
         {
             this.level = level;
-            this.attribute = attribute;
+            this.type = type;
         }
     }
 
     public class Gang
     {
+        bool attatched;
         public int level;
-        public int attack;
-        public int attribute;
-        
-        public Gang(int level, int attribute)
+        public int type;                                        //유형 번호. 0-깡딜형, 1-돈형, 2-도벽형, 3-광역형
+
+        public int attack
         {
+            get
+            {
+                int ret = 0;
+                //기본 값
+                ret += (instance.gangAttackConstant[type] + instance.gangAttackCoefficient[type] * level);
+
+                return ret;
+            }
+            set { }
+        }
+
+        public int returnMoney
+        {
+            get
+            {
+                return instance.gangReturnMonetPerDamage[type];
+            }
+            set { }
+        }
+
+        public Gang(int level, int type)
+        {
+            attatched = false;
             this.level = level;
-            this.attribute = attribute;
-            attack = level * attribute;
+            this.type = type;
         }
     }
 

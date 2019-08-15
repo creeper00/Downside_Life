@@ -6,6 +6,6 @@ public class DebuggingButton : MonoBehaviour
 {
     public void DebugSomething()
     {
-        GameManager.instance.ConsumeStamina(1);
+        Debug.Log(GameManager.instance.gangs[0].attack);
     }
 }

@@ -24,7 +24,6 @@ public class StoreManager : MonoBehaviour
     public void Awake()
     {
         width = crookStoreViewPort.GetComponent<RectTransform>().rect.width;
-        instance = this;
 
         isCrookBuyed = new List<bool>();
         isSnakeBuyed = new List<bool>();
