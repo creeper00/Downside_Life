@@ -5,51 +5,6 @@ using UnityEngine;
 
 public partial class GameManager : MonoBehaviour
 {
-    public class Factory
-    {
-        public enum FactoryType
-        {
-            normal,
-            taunt,
-            thief,
-            lawyer,
-            bank
-        }
-        public int level;
-        public int health;
-        public int maxhealth;
-        public int income;
-
-        public FactoryType factoryType;
-        int value;
-
-        public int Calculate()
-        {
-            return value * level;
-        }
-
-        public int CalculateIncome()
-        {
-            return (50 + 50 * (health / maxhealth)) * income;
-        }
-        public Factory(FactoryType factoryType, int value)
-        {
-            this.level = 0;
-            this.health = GameManager.instance.factoryHealthPerLevel[level];
-            this.maxhealth = GameManager.instance.factoryHealthPerLevel[level];
-            this.income = GameManager.instance.factoryIncome[level];
-            this.factoryType = factoryType;
-            this.value = value;
-        }
-        
-        public void FactoryLevelup()
-        {
-            level++;
-            health = GameManager.instance.factoryHealthPerLevel[level];
-            maxhealth = GameManager.instance.factoryHealthPerLevel[level];
-            income = GameManager.instance.factoryIncome[level];
-        }
-    }
     public List<Crook> crooks;
     public List<Crook> sellingCrooks;
     public Crook[] attatchedCrooks = new Crook[3];
@@ -72,7 +27,7 @@ public partial class GameManager : MonoBehaviour
     public List<Factory> factories;
     [SerializeField]
     public List<int> factoryHealthPerLevel, factoryValue, factoryIncome;
-    public bool isFirstBuilt = true;
+    bool isFirstBuilt = true;
 
     [Header("사기꾼 상수 값")]
     [SerializeField]
@@ -151,6 +106,67 @@ public partial class GameManager : MonoBehaviour
     [HideInInspector]
     public int gangAverageLevel, gangMaxLevel;
     List<string> gangAttribute;
+
+    public class Factory
+    {
+        public enum FactoryType
+        {
+            normal,
+            taunt,
+            thief,
+            lawyer,
+            bank
+        }
+        public int level;
+        public int health;
+        public int maxhealth;
+        public int income;
+
+        public FactoryType factoryType;
+        int value;
+
+        public float RateOfOperation()
+        {
+            return 50 + 50 * (health / maxhealth);
+        }
+        public int Calculate()
+        {
+            return value * level;
+        }
+
+        public float CalculateIncome()
+        {
+            return RateOfOperation() * income;
+        }
+        public Factory(FactoryType factoryType, int value)
+        {
+            this.level = 0;
+            this.health = GameManager.instance.factoryHealthPerLevel[level];
+            this.maxhealth = GameManager.instance.factoryHealthPerLevel[level];
+            if (factoryType == FactoryType.taunt)
+            {
+                health += 1000;
+                maxhealth += 1000;
+            }
+            this.income = GameManager.instance.factoryIncome[level];
+            this.factoryType = factoryType;
+            this.value = value;
+        }
+
+        public void FactoryLevelup()
+        {
+            int temp = maxhealth - health;
+            level++;
+            health = GameManager.instance.factoryHealthPerLevel[level] - temp;
+            maxhealth = GameManager.instance.factoryHealthPerLevel[level];
+            if (factoryType == FactoryType.taunt)
+            {
+                health += 1000;
+                maxhealth += 1000;
+            }
+            income = GameManager.instance.factoryIncome[level];
+        }
+    }
 
     public class Crook
     {
@@ -478,9 +494,14 @@ public partial class GameManager : MonoBehaviour
             sellingCrooks.Add(new Crook(Random.Range(2 * crookAverageLevel - crookMaxLevel, crookMaxLevel), Random.Range(0, crookAttributes.Count)));
         }
         StoreManager.instance.showStoreCrooks();
+        StoreManager.instance.isCrookBuyed = new List<bool>();
         for (int i=0; i<crookStoreSellingNumber; i++)
         {
             StoreManager.instance.isCrookBuyed.Add(false);
+        }
+        for (int i=0; i<crookStoreSellingNumber; i++)
+        {
+            Debug.Log(StoreManager.instance.isCrookBuyed[i]);
         }
     }
     public void snakeReroll()
@@ -490,7 +511,7 @@ public partial class GameManager : MonoBehaviour
         {
             sellingSnakes.Add(new Snake(Random.Range(2 * snakeAverageLevel - snakeMaxLevel, snakeMaxLevel), Random.Range(0, snakeAttributes.Count)));
         }
-        StoreManager.instance.showStoreSnakes();
+        StoreManager.instance.showStoreSnakes(); StoreManager.instance.isSnakeBuyed = new List<bool>();
         for (int i = 0; i < snakeStoreSellingNumber; i++)
         {
             StoreManager.instance.isSnakeBuyed.Add(false);
@@ -503,7 +524,7 @@ public partial class GameManager : MonoBehaviour
         {
             sellingGangs.Add(new Gang(Random.Range(2 * gangAverageLevel - gangMaxLevel, gangMaxLevel), Random.Range(0, gangAttributes.Count)));
         }
-        StoreManager.instance.showStoreGangs();
+        StoreManager.instance.showStoreGangs(); StoreManager.instance.isGangBuyed = new List<bool>();
         for (int i = 0; i < gangStoreSellingNumber; i++)
         {
             StoreManager.instance.isGangBuyed.Add(false);
@@ -511,6 +532,17 @@ public partial class GameManager : MonoBehaviour
     }
     void FactoryBehavior()
     {
+        for (int i=0; i<factories.Count; i++)
+        {
+            if (factories[i].level == 5)
+            {
+                factories[i].health += 500;//만렙이면 매턴 피 회복
+                if (factories[i].health > factories[i].maxhealth)
+                {
+                    factories[i].health = factories[i].maxhealth;
+                }
+            }
+        }
         if (factoryCoolDown > 0)
         {
             factoryCoolDown--;
@@ -539,45 +571,39 @@ public partial class GameManager : MonoBehaviour
                 tempLevel = factories[i].level;
                 pos = i;
             }
-            if (factories[i].level == 5)//만렙이면
-            {
-                factories[i].health += 300;//공장 피 회복
-                if (factories[i].health > factories[i].maxhealth) factories[i].health = factories[i].maxhealth;
-            }
         }
         //레벨 제일 높은거 고르기
-        if (pos > -1)
+        
+        if(Random.Range(0, 100) < 40)
         {
-            if(Random.Range(0, 100) < 40)
+            factories[pos].FactoryLevelup();
+        }
+        else
+        {
+            int a = -1, b = -1;
+            switch(pos)
             {
-                factories[pos].FactoryLevelup();
+                case 0:
+                    a = 1; b = 2;
+                    break;
+                case 1:
+                    a = 0; b = 2;
+                    break;
+                case 2:
+                    a = 0; b = 1;
+                    break;
+            }
+            if (Random.Range(0, 100) < 50)
+            {
+                factories[a].FactoryLevelup();
             }
             else
             {
-                int a = -1, b = -1;
-                switch(pos)
-                {
-                    case 0:
-                        a = 1; b = 2;
-                        break;
-                    case 1:
-                        a = 0; b = 2;
-                        break;
-                    case 2:
-                        a = 0; b = 1;
-                        break;
-                }
-                if (Random.Range(0, 100) < 50)
-                {
-                    factories[a].FactoryLevelup();
-                }
-                else
-                {
-                    factories[b].FactoryLevelup();
-                }
+                factories[b].FactoryLevelup();
             }
+            
         }
-        ChangeRichMoney(1000000000, false);
+        ChangeRichMoney(100000, false);
     }
     void SetupFactories()
     {

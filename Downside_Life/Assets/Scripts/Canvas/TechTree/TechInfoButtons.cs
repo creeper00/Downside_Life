@@ -32,16 +32,9 @@ public class TechInfoButtons : MonoBehaviour
                 return;
             }
         }
-
-        if (GameManager.instance.playerMoney < tech.neededMoney)//돈 모자람
-        {
-            Debug.Log("돈 모자람");
-            return;
-        }
         //연구 조건 완료
 
         tech.isResearched = true;
-        GameManager.instance.playerMoney -= tech.neededMoney;
 
         switch (tech.job)
         {

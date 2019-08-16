@@ -7,7 +7,10 @@ public class RichHouseManager : MonoBehaviour
     public static RichHouseManager instance;
 
     [SerializeField]
-    public List<string> info;//floor + " " + object + " " + percentage + " " + money
+    public string info;
+    /* 확률 순서
+     * 돈, 직업별아이템, 아이템1개, 아이템 2개 : 현재 50, 50, 40, 10
+     */
 
     private void Start()
     {

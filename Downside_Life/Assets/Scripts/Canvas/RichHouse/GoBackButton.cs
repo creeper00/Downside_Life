@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GoBackButton : MonoBehaviour
 {
-    // Start is called before the first frame update
 
     public void GoOutRichHouse()    // 행동력이 3~5 일때, 도둑질을 하고 난 뒤 도둑 집 밖으로 보내기 위한 함수.
     {

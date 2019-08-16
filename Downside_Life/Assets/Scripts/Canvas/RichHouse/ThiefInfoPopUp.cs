@@ -27,18 +27,19 @@ public class ThiefInfoPopUp : MonoBehaviour
     public void ThiefPopUp()
     {
         thiefInfo.SetActive(true);
-        getInformation();
+        GetInformation();
     }
-    public void getInformation()
+    public void GetInformation()
     {
-        string info = RichHouseManager.instance.info[(int)whatFloor * 3 + (int)whatObject];//일단 하드코딩함
+        string info = RichHouseManager.instance.info;
         string[] strings = info.Split(' ');
-
-        int percentage = int.Parse(strings[2]);
-        int money = int.Parse(strings[3]);
         
-        thiefAction.money = money;
-        thiefAction.percentage = percentage;
-        thiefInfoText.text = "확률 : " + percentage + "%\n돈 : " + money + "원";
+        thiefAction.floor = (int)whatFloor;
+        thiefAction.moneyPercentage = int.Parse(strings[0]);
+        thiefAction.jobItemPercentage = int.Parse(strings[1]);
+        thiefAction.randomItemPercentage = int.Parse(strings[2]);
+        thiefAction.randomDoubleItemPercentage = int.Parse(strings[3]);
+
+        thiefInfoText.text = "돈과 아이템들을 얻을 수 있습니다.\n 성공확률 : " + GameManager.instance.thiefSuccessPercentage;
     }
 }

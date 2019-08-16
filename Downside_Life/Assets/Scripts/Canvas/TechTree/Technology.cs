@@ -21,8 +21,6 @@ public class Technology : MonoBehaviour
     [HideInInspector]
     public bool isResearched;
     [SerializeField]
-    public int neededMoney;
-    [SerializeField]
     GameObject Information;
 
     [SerializeField]
@@ -94,6 +92,5 @@ public class Technology : MonoBehaviour
             }
             text.text += "\n";
         }
-        text.text += "필요 돈 : " + neededMoney;
     }
 }

@@ -12,6 +12,11 @@ public partial class GameManager : MonoBehaviour
     public int playerSalary;
     [HideInInspector]
     public int stamina;
+    [HideInInspector]
+    public int skillPoint;
+    [SerializeField]
+    public int thiefSuccessPercentage, thiefGreatSuccessPercentage, stealMoney;
+    
 
     [Header("부자의 스탯")]
     public int richInitialMoney;
@@ -24,6 +29,10 @@ public partial class GameManager : MonoBehaviour
     [SerializeField]
     private int fasterSetupFactory;
     private int factoryCoolDown;
+    bool isFactoryFix;
+    int isAddBangBum;
+    int isAddDropSnake;
+    int isAddDropCrook;
 
     [SerializeField]
     private GameObject desperateGauge;
@@ -39,7 +48,7 @@ public partial class GameManager : MonoBehaviour
         //richSalary = 
         int tempRichSalary = RichSalary();
 
-        ChangeDesperate( (double)(-tempRichSalary) / richMoney );
+        
         richMoney += tempRichSalary;
 
         desperateGauge.GetComponent<Transform>().localScale = new Vector3((float)richDesperate, 1, 1);
@@ -54,14 +63,11 @@ public partial class GameManager : MonoBehaviour
 
     public void ChangeRichMoney(int moneyDecrease, bool isIncreaseDesperate)
     {
-        int lastRichMoney = richMoney;
+        double desperate = 0;
+        desperate = richMoney > 10000000 ? 0.5 * (moneyDecrease) / richMoney : 1.5 * (moneyDecrease) / richMoney;
+        ChangeDesperate(desperate);
         richMoney -= moneyDecrease;
-        if (isIncreaseDesperate)
-        {
-            ChangeDesperate((double)(moneyDecrease) / lastRichMoney);
-        }
-        
-        EventManage();
+        richMoneyBar.GetComponent<RichMoneyBar>().ChangeBar(richMoney, richInitialMoney);
     }
 
     private void ChangeDesperate(double desperateIncrease)
@@ -89,6 +95,7 @@ public partial class GameManager : MonoBehaviour
     public void UpdateMoneyText()
     {
         moneyText.text = playerMoney + "";
+        
     }
 
     ///<summary>스태미나 값을 변경하고 UI를 업데이트</summary>
@@ -151,7 +158,7 @@ public partial class GameManager : MonoBehaviour
         float crookRatio = 1;
         for (int i=0; i<factories.Count; i++)
         {
-            factoryIncome += factories[i].CalculateIncome();//공장 수입
+            factoryIncome += (int)factories[i].CalculateIncome();//공장 수입
             crookRatio -= (factories[i].factoryType == Factory.FactoryType.lawyer) ? factories[i].Calculate() : 0;//사기꾼 너프
         }
 
@@ -165,6 +172,7 @@ public partial class GameManager : MonoBehaviour
                 crookPercentageIncome += attatchedCrooks[i].richPercentageDown;
             }
         }
+        ChangeDesperate((double)(-crookIncome) / richMoney);
         crookIncome = (int) ((crookConstantIncome + crookPercentageIncome * richMoney ) * crookRatio);//사기꾼 터는양
         return factoryIncome - crookIncome;
     }
