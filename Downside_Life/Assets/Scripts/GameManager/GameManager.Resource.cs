@@ -23,7 +23,7 @@ public partial class GameManager : MonoBehaviour
     private double richDesperateBound;
     [SerializeField]
     private int fasterSetupFactory;
-    private int factoryLevelUpCooldown;
+    private int factoryCoolDown;
 
     [SerializeField]
     private GameObject desperateGauge;
@@ -37,7 +37,7 @@ public partial class GameManager : MonoBehaviour
     void ResourceManage()
     {
         //richSalary = 
-        int tempRichSalary = richSalaryIncrease(richSalary);
+        int tempRichSalary = RichSalary();
 
         ChangeDesperate( (double)(-tempRichSalary) / richMoney );
         richMoney += tempRichSalary;
@@ -46,16 +46,21 @@ public partial class GameManager : MonoBehaviour
         richMoneyBar.GetComponent<RichMoneyBar>().ChangeBar(richMoney, richInitialMoney);
         //rich
 
-        playerMoney += playerSalary;
+        int tempPlayerSalary = PlayerSalary();
+        playerMoney += tempPlayerSalary;
         //player
         UpdateResourcesUI();
     }
 
-    public void ChangeRichMoney(int moneyDecrease)
+    public void ChangeRichMoney(int moneyDecrease, bool isIncreaseDesperate)
     {
         int lastRichMoney = richMoney;
         richMoney -= moneyDecrease;
-        ChangeDesperate( (double)(moneyDecrease) / lastRichMoney );
+        if (isIncreaseDesperate)
+        {
+            ChangeDesperate((double)(moneyDecrease) / lastRichMoney);
+        }
+        
         EventManage();
     }
 
@@ -138,17 +143,52 @@ public partial class GameManager : MonoBehaviour
             return 3;
         }
     }
-    int richSalaryIncrease(int richSalary)
+    int RichSalary()
     {
-        float ratio = 1;
-        for (int i = 0; i < factories.Count; i++)
+        int income = 0;
+        int factoryIncome = 0;
+        int crookIncome = 0;
+        float crookRatio = 1;
+        for (int i=0; i<factories.Count; i++)
         {
-            if (factories[i].factoryType == Factory.FactoryType.bank)
-            {
-                ratio += factories[i].Calculate();
-            }
+            factoryIncome += factories[i].CalculateIncome();//공장 수입
+            crookRatio -= (factories[i].factoryType == Factory.FactoryType.lawyer) ? factories[i].Calculate() : 0;//사기꾼 너프
         }
 
-        return (int)(richSalary * ratio);
+        int crookConstantIncome = 0;
+        float crookPercentageIncome = 0;
+        for (int i=0; i<attatchedCrooks.Length; i++)
+        {
+            if (attatchedCrooks[i] != null)
+            {
+                crookConstantIncome += attatchedCrooks[i].richConstantDown;
+                crookPercentageIncome += attatchedCrooks[i].richPercentageDown;
+            }
+        }
+        crookIncome = (int) ((crookConstantIncome + crookPercentageIncome * richMoney ) * crookRatio);//사기꾼 터는양
+        return factoryIncome - crookIncome;
+    }
+
+    int PlayerSalary()
+    {
+        float crookRatio = 0;
+        for (int i = 0; i < factories.Count; i++)
+        {
+            crookRatio -= (factories[i].factoryType == Factory.FactoryType.lawyer) ? factories[i].Calculate() : 0;//사기꾼 너프
+        }
+        int crookIncome = 0;
+        for (int i=0; i<attatchedCrooks.Length; i++)
+        {
+            int constant = 0; float percentage = 0;
+            if (attatchedCrooks[i] != null)
+            {
+                constant += attatchedCrooks[i].richConstantDown;
+                percentage += attatchedCrooks[i].richPercentageDown;
+                crookIncome += (int)((constant + richMoney * percentage) * crookRatio * attatchedCrooks[i].playerPercentageUp);
+            }
+        }
+        //사기꾼이 가져오는 돈
+
+        return crookIncome;
     }
 }

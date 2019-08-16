@@ -28,6 +28,10 @@ public partial class GameManager : MonoBehaviour
             return value * level;
         }
 
+        public int CalculateIncome()
+        {
+            return (50 + 50 * (health / maxhealth)) * income;
+        }
         public Factory(FactoryType factoryType, int value)
         {
             this.level = 0;
@@ -36,6 +40,14 @@ public partial class GameManager : MonoBehaviour
             this.income = GameManager.instance.factoryIncome[level];
             this.factoryType = factoryType;
             this.value = value;
+        }
+        
+        public void FactoryLevelup()
+        {
+            level++;
+            health = GameManager.instance.factoryHealthPerLevel[level];
+            maxhealth = GameManager.instance.factoryHealthPerLevel[level];
+            income = GameManager.instance.factoryIncome[level];
         }
     }
     public List<Crook> crooks;
@@ -60,6 +72,7 @@ public partial class GameManager : MonoBehaviour
     public List<Factory> factories;
     [SerializeField]
     public List<int> factoryHealthPerLevel, factoryValue, factoryIncome;
+    public bool isFirstBuilt = true;
 
     [Header("사기꾼 상수 값")]
     [SerializeField]
@@ -496,46 +509,86 @@ public partial class GameManager : MonoBehaviour
             StoreManager.instance.isGangBuyed.Add(false);
         }
     }
-
-    void LevelUpFactories()
+    void FactoryBehavior()
     {
-        if (factoryLevelUpCooldown > 0)
+        if (factoryCoolDown > 0)
         {
-            factoryLevelUpCooldown--;
+            factoryCoolDown--;
         }
         else
         {
-            int pos = -1;
-            int tempLevel = -1;
-            for (int i = 0; i < factories.Count; i++)
+            if (factories.Count != 3)
             {
-                if (tempLevel < factories[i].level && factories[i].level < 5)
+                SetupFactories();
+            }
+            else
+            {
+                LevelUpFactories();
+            }
+            factoryCoolDown = FactoryCooldown();
+        }
+    }
+    void LevelUpFactories()
+    {
+        int pos = -1;
+        int tempLevel = -1;
+        for (int i = 0; i < factories.Count; i++)
+        {
+            if (tempLevel < factories[i].level && factories[i].level < 5)
+            {
+                tempLevel = factories[i].level;
+                pos = i;
+            }
+            if (factories[i].level == 5)//만렙이면
+            {
+                factories[i].health += 300;//공장 피 회복
+                if (factories[i].health > factories[i].maxhealth) factories[i].health = factories[i].maxhealth;
+            }
+        }
+        //레벨 제일 높은거 고르기
+        if (pos > -1)
+        {
+            if(Random.Range(0, 100) < 40)
+            {
+                factories[pos].FactoryLevelup();
+            }
+            else
+            {
+                int a = -1, b = -1;
+                switch(pos)
                 {
-                    tempLevel = factories[i].level;
-                    pos = i;
+                    case 0:
+                        a = 1; b = 2;
+                        break;
+                    case 1:
+                        a = 0; b = 2;
+                        break;
+                    case 2:
+                        a = 0; b = 1;
+                        break;
+                }
+                if (Random.Range(0, 100) < 50)
+                {
+                    factories[a].FactoryLevelup();
+                }
+                else
+                {
+                    factories[b].FactoryLevelup();
                 }
             }
-            //레벨 제일 높은거 고르기
-            if (pos > -1)
-            {
-                factories[pos].level++;
-            }
-            factoryLevelUpCooldown = FactoryCooldown();
         }
+        ChangeRichMoney(1000000000, false);
     }
     void SetupFactories()
     {
-        if (Random.Range(0, 100) < 20)
+        Debug.Log("Setup new Factory");
+        int temp = Random.Range(0, 5);
+        if (isFirstBuilt)
         {
-            if (factories.Count > 2)
-            {
-                return;
-            }
-            Debug.Log("Setup new Factory");
-            int temp = Random.Range(0, 5);
-            Debug.Log(temp);
-            factories.Add(new Factory((Factory.FactoryType)temp, factoryValue[temp]));
-
+            temp = 0;
+            isFirstBuilt = false;
         }
+        Debug.Log(temp);
+        factories.Add(new Factory((Factory.FactoryType)temp, factoryValue[temp]));
     }
 }
