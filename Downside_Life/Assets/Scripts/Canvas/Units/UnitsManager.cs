@@ -8,6 +8,11 @@ public class UnitsManager : MonoBehaviour
     public static UnitsManager instance;
 
     [SerializeField]
+    private float bookmarkClickedYChange;
+    [SerializeField]
+    private GameObject crookBookmark, snakeBookmark, gangBookmark;
+    private Vector3 crookBookmarkPosition, snakeBookmarkPosition, gangBookmarkPosition;
+    [SerializeField]
     private GameObject crookTab, snakeTab, gangTab;
     [SerializeField]
     private Text RichMoneyChange;
@@ -24,6 +29,13 @@ public class UnitsManager : MonoBehaviour
     }
 
     public Tabs currentTab;
+
+    void Awake()
+    {
+        crookBookmarkPosition = crookBookmark.transform.position;
+        snakeBookmarkPosition = snakeBookmark.transform.position;
+        gangBookmarkPosition = gangBookmark.transform.position;
+    }
 
     public void resetScrollView()
     {
@@ -104,8 +116,13 @@ public class UnitsManager : MonoBehaviour
     {
         currentTab = tab;
         crookTab.SetActive(currentTab == Tabs.crook);
+        crookBookmark.transform.position = crookBookmarkPosition + new Vector3((currentTab == Tabs.crook) ? bookmarkClickedYChange : 0, 0, 0);
+
         snakeTab.SetActive(currentTab == Tabs.snake);
+        snakeBookmark.transform.position = snakeBookmarkPosition + new Vector3((currentTab == Tabs.snake) ? bookmarkClickedYChange : 0, 0, 0);
+
         gangTab.SetActive(currentTab == Tabs.gang);
+        gangBookmark.transform.position = gangBookmarkPosition + new Vector3((currentTab == Tabs.gang) ? bookmarkClickedYChange : 0, 0, 0);
         switch (tab)
         {
             case Tabs.crook:

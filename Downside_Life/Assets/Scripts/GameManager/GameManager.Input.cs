@@ -8,14 +8,6 @@ public partial class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
-        {
-            MainManager.instance.showInfo(true);
-
-        }
-        else
-        {
-            MainManager.instance.showInfo(false);
-        }
+        //컨트롤 키 누르면 유닛 스탯 보이게 하기
     }
 }

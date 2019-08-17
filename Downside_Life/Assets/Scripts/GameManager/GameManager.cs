@@ -32,21 +32,32 @@ public partial class GameManager : MonoBehaviour
     public Screen currentScreen;
 
     [SerializeField]
+    private GameObject FolderUI;
+    private float folderUpYAxis = 160, folderDownYAxis = -370, folderMoveYDistance;
+    [SerializeField]
     public GameObject notEnoughStaminaCanvas;
     [Header("Canvas")]
     public GameObject CommonCanvas;
-    public GameObject mainCanvas, techTreeCanvas, unitsCanvas, storeCanvas, richHouseCanvas,richHouse, firstFloorCanvas, secondFloorCanvas, thirdFloorCanvas, fourthFloorCanvas, fifthFloorCanvas, techInfoCanvas;
+    public GameObject techTreeCanvas, unitsCanvas, storeCanvas, richHouseCanvas,richHouse, firstFloorCanvas, secondFloorCanvas, thirdFloorCanvas, fourthFloorCanvas, fifthFloorCanvas, techInfoCanvas;
     [Header("기타 UI")]
     public GameObject richMoneyBar;
     private GameObject GotoMainButton, GotoTechTreeButton, GotoUnitsButton, GotoStoreButton, GotoRichHouseButton,FirstFloorButton, SecondFloorButton, ThirdFloorButton, FourthFloorButton, FifthFloorButton;
 
     private void Awake()
     {
+        //각 스크립트의 static instance 넣어 주기
         instance = this;
         UnitsManager.instance = unitsCanvas.GetComponent<UnitsManager>();
         StoreManager.instance = storeCanvas.GetComponent<StoreManager>();
         factories = new List<Factory>();
-        
+
+        //각 캔버스 시작 위치 조정
+        folderMoveYDistance = folderUpYAxis - folderDownYAxis;
+        FolderUI.transform.position = new Vector3(640, -10, 0);
+        techTreeCanvas.transform.position = new Vector3(640, 360-folderMoveYDistance, 0);
+        unitsCanvas.transform.position = new Vector3(640, 360-folderMoveYDistance, 0);
+        storeCanvas.transform.position = new Vector3(640, 360-folderMoveYDistance, 0);
+        richHouseCanvas.transform.position = new Vector3(640, 360-folderMoveYDistance, 0);
 
         crookAverageLevel = 50;
         crookMaxLevel = 100;
@@ -92,58 +103,31 @@ public partial class GameManager : MonoBehaviour
 
     public void ChangeScreen(Screen screen)
     {
-        Color32 noColor = new Color32(255, 255, 255, 255);
-        switch (currentScreen)
+        //폴더 창 위아래로 옮이기
+        if ( currentScreen == Screen.main && screen != Screen.main )            //위로 들기
         {
-            case Screen.main:
-                GotoMainButton.GetComponent<Image>().color = noColor;
-                break;
-            case Screen.techtree:
-                GotoTechTreeButton.GetComponent<Image>().color = noColor;
-                break;
-            case Screen.units:
-                GotoUnitsButton.GetComponent<Image>().color = noColor;
-                break;
-            case Screen.store:
-                GotoStoreButton.GetComponent<Image>().color = noColor;
-                break;
-            case Screen.richHouse:
-            case Screen.fifthFloor:
-            case Screen.fourthFloor:
-            case Screen.thirdFloor:
-            case Screen.secondFloor:
-            case Screen.firstFloor:
-                GotoRichHouseButton.GetComponent<Image>().color = noColor;
-                break;
+            FolderUI.transform.position = new Vector3(640, 360 + folderUpYAxis, 0);
+            techTreeCanvas.transform.position = new Vector3(640, 360, 0);
+            unitsCanvas.transform.position = new Vector3(640, 360, 0);
+            storeCanvas.transform.position = new Vector3(640, 360, 0);
+            richHouseCanvas.transform.position = new Vector3(640, 360, 0);
+        }
+        else if (currentScreen != Screen.main && screen == Screen.main)         //아래로 내리기
+        {
+            FolderUI.transform.position = new Vector3(640, 360 + folderDownYAxis, 0);
+            techTreeCanvas.transform.position = new Vector3(640, 360 - folderMoveYDistance, 0);
+            unitsCanvas.transform.position = new Vector3(640, 360 - folderMoveYDistance, 0);
+            storeCanvas.transform.position = new Vector3(640, 360 - folderMoveYDistance, 0);
+            richHouseCanvas.transform.position = new Vector3(640, 360 - folderMoveYDistance, 0);
         }
 
         currentScreen = screen;
 
-        Color32 darkColor = new Color32(162, 162, 162, 255);
-        switch (screen)
-        {
-            case Screen.main:
-                GotoMainButton.GetComponent<Image>().color = darkColor;
-                break;
-            case Screen.techtree:
-                GotoTechTreeButton.GetComponent<Image>().color = darkColor;
-                break;
-            case Screen.units:
-                GotoUnitsButton.GetComponent<Image>().color = darkColor;
-                break;
-            case Screen.store:
-                GotoStoreButton.GetComponent<Image>().color = darkColor;
-                break;
-            case Screen.richHouse:
-                GotoRichHouseButton.GetComponent<Image>().color = darkColor;
-                break;
-        }
         ChangeCanvas();
     }
 
     private void ChangeCanvas()
     {
-        mainCanvas.SetActive(currentScreen == Screen.main);
         techTreeCanvas.SetActive(currentScreen == Screen.techtree);
         techInfoCanvas.SetActive(currentScreen != Screen.techtree);
 

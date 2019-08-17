@@ -6,6 +6,8 @@ public class DebuggingButton : MonoBehaviour
 {
     public void DebugSomething()
     {
-        Debug.Log(GameManager.instance.gangs[0].attack);
+        //Debug.Log(GameManager.instance.FolderUI.transform.position.x);
+        //Debug.Log(GameManager.instance.FolderUI.transform.position.y);
+        //Debug.Log(GameManager.instance.FolderUI.transform.position.z);
     }
 }

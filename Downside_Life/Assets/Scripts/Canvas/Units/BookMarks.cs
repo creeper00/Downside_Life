@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BookMarks : MonoBehaviour
+public class Bookmarks : MonoBehaviour
 {
     public void ClickCrookTab()
     {
         UnitsManager.instance.ChangeTab(UnitsManager.Tabs.crook);
-        
     }
 
     public void ClickSnakeTab()
