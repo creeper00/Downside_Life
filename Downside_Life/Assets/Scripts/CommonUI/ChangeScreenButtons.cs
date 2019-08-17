@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DownWardUIButtons : MonoBehaviour
+public class ChangeScreenButtons : MonoBehaviour
 {
     public void GotoMain()
     {
