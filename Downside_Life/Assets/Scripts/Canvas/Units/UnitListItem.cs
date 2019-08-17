@@ -23,8 +23,8 @@ public class UnitListItem : MonoBehaviour
             case 3: statusText += " 호구형"; break;
         }
         statusText += " 사기꾼";
-        transform.Find("Level").GetComponent<Text>().text = statusText;
-        transform.Find("Stat").GetComponent<Text>().text = crook.richConstantDown + " + " + crook.richPercentageDown + "%";
+        transform.Find("Status").GetComponent<Text>().text = statusText;
+        transform.Find("Attack").GetComponent<Text>().text = crook.richConstantDown + " + " + crook.richPercentageDown + "%";
         transform.Find("Return").GetComponent<Text>().text = crook.playerPercentageUp + "%";
     }
 

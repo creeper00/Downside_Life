@@ -121,6 +121,17 @@ public partial class GameManager : MonoBehaviour
             richHouseCanvas.transform.position = new Vector3(640, 360 - folderMoveYDistance, 0);
         }
 
+        //폴더 북마크 조정하기
+        GotoTechTreeButton.transform.position += new Vector3(0, (currentScreen == Screen.techtree) ? 4 : 0, 0);
+        GotoUnitsButton.transform.position += new Vector3(0, (currentScreen == Screen.units) ? 4 : 0, 0);
+        GotoStoreButton.transform.position += new Vector3(0, (currentScreen == Screen.store) ? 4 : 0, 0);
+        GotoRichHouseButton.transform.position += new Vector3(0, (currentScreen == Screen.richHouse) ? 4 : 0, 0);
+
+        GotoTechTreeButton.transform.position += new Vector3(0, (screen == Screen.techtree) ? -4 : 0, 0);
+        GotoUnitsButton.transform.position += new Vector3(0, (screen == Screen.units) ? -4 : 0, 0);
+        GotoStoreButton.transform.position += new Vector3(0, (screen == Screen.store) ? -4 : 0, 0);
+        GotoRichHouseButton.transform.position += new Vector3(0, (screen == Screen.richHouse) ? -4 : 0, 0);
+
         currentScreen = screen;
 
         ChangeCanvas();
