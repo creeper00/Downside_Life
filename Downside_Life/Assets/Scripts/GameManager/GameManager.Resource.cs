@@ -13,7 +13,7 @@ public partial class GameManager : MonoBehaviour
     [HideInInspector]
     public int stamina;
     [HideInInspector]
-    public int skillPoint;
+    public int skillPoint, crookSkillPoint, robberSkillPoint, snakeSkillPoint, gangSkillPoint;
     [SerializeField]
     public int thiefSuccessPercentage, thiefGreatSuccessPercentage, stealMoney;
     
