@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bookmarks : MonoBehaviour
+public class BookMarks : MonoBehaviour
 {
     public void ClickCrookTab()
     {
@@ -17,5 +17,6 @@ public class Bookmarks : MonoBehaviour
     public void ClickGangTab()
     {
         UnitsManager.instance.ChangeTab(UnitsManager.Tabs.gang);
+        UnitsManager.instance.ShowFactories();
     }
 }

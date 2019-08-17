@@ -24,7 +24,7 @@ public partial class GameManager : MonoBehaviour
     [Header("공장")]
 
     [HideInInspector]
-    public List<Factory> factories;
+    public Factory[] factories;
     [SerializeField]
     public List<int> factoryHealthPerLevel, factoryValue, factoryIncome;
     bool isFirstBuilt = true;
@@ -121,6 +121,7 @@ public partial class GameManager : MonoBehaviour
         public int health;
         public int maxhealth;
         public int income;
+        public bool isUpgrade;
 
         public FactoryType factoryType;
         int value;
@@ -165,6 +166,7 @@ public partial class GameManager : MonoBehaviour
                 maxhealth += 1000;
             }
             income = GameManager.instance.factoryIncome[level];
+            isUpgrade = false;
         }
     }
 
@@ -476,7 +478,7 @@ public partial class GameManager : MonoBehaviour
                 attatchedGangs[index] = null;
                 gangs.Add(movingGang);
                 UnitsManager.instance.DeleteSlot(UnitsManager.Tabs.gang, index);
-                UnitsManager.instance.showGangs();
+                UnitsManager.instance.ShowGangs();
                 break;
         }
         UnitsManager.instance.UpdateRichMoneyChange();
@@ -485,9 +487,8 @@ public partial class GameManager : MonoBehaviour
     
     
 
-    public void crookReroll()
+    public void CrookReroll()
     {
-        Debug.Log(crookStoreSellingNumber);
         sellingCrooks = new List<Crook>();
         for (int i=0; i<crookStoreSellingNumber; i++)
         {
@@ -499,12 +500,8 @@ public partial class GameManager : MonoBehaviour
         {
             StoreManager.instance.isCrookBuyed.Add(false);
         }
-        for (int i=0; i<crookStoreSellingNumber; i++)
-        {
-            Debug.Log(StoreManager.instance.isCrookBuyed[i]);
-        }
     }
-    public void snakeReroll()
+    public void SnakeReroll()
     {
         sellingSnakes = new List<Snake>();
         for (int i = 0; i < snakeStoreSellingNumber; i++)
@@ -517,7 +514,7 @@ public partial class GameManager : MonoBehaviour
             StoreManager.instance.isSnakeBuyed.Add(false);
         }
     }
-    public void gangReroll()
+    public void GangReroll()
     {
         sellingGangs = new List<Gang>();
         for (int i = 0; i < gangStoreSellingNumber; i++)
@@ -532,15 +529,11 @@ public partial class GameManager : MonoBehaviour
     }
     void FactoryBehavior()
     {
-        for (int i=0; i<factories.Count; i++)
+        for (int i=0; i<factories.Length; i++)
         {
-            if (factories[i].level == 5)
+            if (factories[i] != null && factories[i].isUpgrade)
             {
-                factories[i].health += 500;//만렙이면 매턴 피 회복
-                if (factories[i].health > factories[i].maxhealth)
-                {
-                    factories[i].health = factories[i].maxhealth;
-                }
+                factories[i].FactoryLevelup();
             }
         }
         if (factoryCoolDown > 0)
@@ -549,63 +542,39 @@ public partial class GameManager : MonoBehaviour
         }
         else
         {
-            if (factories.Count != 3)
+            int pos = Random.Range(0, 3); // factory중 하나 선택
+
+            if (factories[pos] == null)
             {
-                SetupFactories();
+                SetupFactories(pos);
             }
             else
             {
-                LevelUpFactories();
+                LevelUpFactories(pos);
             }
             factoryCoolDown = FactoryCooldown();
         }
     }
-    void LevelUpFactories()
+    void LevelUpFactories(int pos)
     {
-        int pos = -1;
-        int tempLevel = -1;
-        for (int i = 0; i < factories.Count; i++)
+        if (factories[pos].level < 5)
         {
-            if (tempLevel < factories[i].level && factories[i].level < 5)
+            if (Random.Range(0, 100) < 40)
             {
-                tempLevel = factories[i].level;
-                pos = i;
-            }
-        }
-        //레벨 제일 높은거 고르기
-        
-        if(Random.Range(0, 100) < 40)
-        {
-            factories[pos].FactoryLevelup();
-        }
-        else
-        {
-            int a = -1, b = -1;
-            switch(pos)
-            {
-                case 0:
-                    a = 1; b = 2;
-                    break;
-                case 1:
-                    a = 0; b = 2;
-                    break;
-                case 2:
-                    a = 0; b = 1;
-                    break;
-            }
-            if (Random.Range(0, 100) < 50)
-            {
-                factories[a].FactoryLevelup();
-            }
-            else
-            {
-                factories[b].FactoryLevelup();
+                factories[pos].isUpgrade = true;
             }
             
         }
-        ChangeRichMoney(100000, false);
+        else
+        {
+            factories[pos].health += 500;
+            if (factories[pos].health > factories[pos].maxhealth)
+            {
+                factories[pos].health = factories[pos].maxhealth;
+            }
+        }
     }
-    void SetupFactories()
+    void SetupFactories(int pos)
     {
         Debug.Log("Setup new Factory");
         int temp = Random.Range(0, 5);
@@ -615,6 +584,6 @@ public partial class GameManager : MonoBehaviour
             isFirstBuilt = false;
         }
         Debug.Log(temp);
-        factories.Add(new Factory((Factory.FactoryType)temp, factoryValue[temp]));
+        factories[pos] = new Factory((Factory.FactoryType)temp, factoryValue[temp]);
     }
 }

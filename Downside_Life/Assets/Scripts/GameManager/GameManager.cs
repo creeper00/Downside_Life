@@ -49,7 +49,7 @@ public partial class GameManager : MonoBehaviour
         instance = this;
         UnitsManager.instance = unitsCanvas.GetComponent<UnitsManager>();
         StoreManager.instance = storeCanvas.GetComponent<StoreManager>();
-        factories = new List<Factory>();
+        factories = new Factory[3];
 
         //각 캔버스 시작 위치 조정
         folderMoveYDistance = folderUpYAxis - folderDownYAxis;

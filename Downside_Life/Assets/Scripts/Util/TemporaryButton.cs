@@ -53,7 +53,7 @@ public class TemporaryButton : MonoBehaviour
     public void addCrooks()
     {
         GameManager.instance.crooks.Add(new GameManager.Crook(1, 0));
-        if( UnitsManager.instance.currentTab == UnitsManager.Tabs.crook) UnitsManager.instance.showCrooks(); 
+        if( UnitsManager.instance.currentTab == UnitsManager.Tabs.crook) UnitsManager.instance.ShowCrooks(); 
     }
 
     public void addSnakes()

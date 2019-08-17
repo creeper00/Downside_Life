@@ -156,10 +156,13 @@ public partial class GameManager : MonoBehaviour
         int factoryIncome = 0;
         int crookIncome = 0;
         float crookRatio = 1;
-        for (int i=0; i<factories.Count; i++)
+        for (int i=0; i<factories.Length; i++)
         {
-            factoryIncome += (int)factories[i].CalculateIncome();//공장 수입
-            crookRatio -= (factories[i].factoryType == Factory.FactoryType.lawyer) ? factories[i].Calculate() : 0;//사기꾼 너프
+            if (factories[i] != null)
+            {
+                factoryIncome += (int)factories[i].CalculateIncome();//공장 수입
+                crookRatio -= (factories[i].factoryType == Factory.FactoryType.lawyer) ? factories[i].Calculate() : 0;//사기꾼 너프
+            }
         }
 
         int crookConstantIncome = 0;
@@ -180,9 +183,12 @@ public partial class GameManager : MonoBehaviour
     int PlayerSalary()
     {
         float crookRatio = 0;
-        for (int i = 0; i < factories.Count; i++)
+        for (int i = 0; i < factories.Length; i++)
         {
-            crookRatio -= (factories[i].factoryType == Factory.FactoryType.lawyer) ? factories[i].Calculate() : 0;//사기꾼 너프
+            if (factories[i] != null)
+            {
+                crookRatio -= (factories[i].factoryType == Factory.FactoryType.lawyer) ? factories[i].Calculate() : 0;//사기꾼 너프
+            }
         }
         int crookIncome = 0;
         for (int i=0; i<attatchedCrooks.Length; i++)

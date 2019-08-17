@@ -59,7 +59,6 @@ public class StoreManager : MonoBehaviour
         resetScrollView(GameManager.Job.crook);
         crookStoreViewPort.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.crookStoreSellingNumber * 120 - width - spacing + 1, 0, 0);
         int index = 0;
-        Debug.Log(GameManager.instance.sellingCrooks.Count);
         foreach (var unit in GameManager.instance.sellingCrooks)
         {
             var listStoreItemObject = Instantiate(prefab, crookStoreViewPort.transform);

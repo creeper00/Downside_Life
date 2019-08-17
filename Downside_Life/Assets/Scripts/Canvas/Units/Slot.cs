@@ -55,13 +55,13 @@ public class Slot : MonoBehaviour, IDropHandler
             switch(kindOfUnit)
             {
                 case GameManager.Job.crook:
-                    UnitsManager.instance.showCrooks();
+                    UnitsManager.instance.ShowCrooks();
                     break;
                 case GameManager.Job.snake:
-                    UnitsManager.instance.showSnakes();
+                    UnitsManager.instance.ShowSnakes();
                     break;
                 case GameManager.Job gang:
-                    UnitsManager.instance.showGangs();
+                    UnitsManager.instance.ShowGangs();
                     break;
             }
             InitializeSlotObject();                         //슬롯에 유닛 정보를 띄움

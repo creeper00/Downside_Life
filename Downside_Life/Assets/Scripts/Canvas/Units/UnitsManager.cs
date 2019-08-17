@@ -37,7 +37,7 @@ public class UnitsManager : MonoBehaviour
         gangBookmarkPosition = gangBookmark.transform.position;
     }
 
-    public void resetScrollView()
+    public void ResetScrollView()
     {
         foreach (Transform child in contents.GetComponent<Transform>())
         {
@@ -46,9 +46,9 @@ public class UnitsManager : MonoBehaviour
     }
 
     /// <summary>스크롤 뷰를 사기꾼 목록으로 만들고 갱신함</summary>
-    public void showCrooks()
+    public void ShowCrooks()
     {
-        resetScrollView();
+        ResetScrollView();
         contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.crooks.Count * 140, 0);
         int index = 0;
         foreach (var unit in GameManager.instance.crooks)
@@ -60,9 +60,9 @@ public class UnitsManager : MonoBehaviour
         }
     }
 
-    public void showSnakes()
+    public void ShowSnakes()
     {
-        resetScrollView();
+        ResetScrollView();
         contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.snakes.Count * 140, 0);
         int index = 0;
         foreach (var unit in GameManager.instance.snakes)
@@ -74,9 +74,9 @@ public class UnitsManager : MonoBehaviour
         }
     }
 
-    public void showGangs()
+    public void ShowGangs()
     {
-        resetScrollView();
+        ResetScrollView();
         contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.gangs.Count * 140, 0);
         int index = 0;
         foreach (var unit in GameManager.instance.gangs)
@@ -126,15 +126,15 @@ public class UnitsManager : MonoBehaviour
         switch (tab)
         {
             case Tabs.crook:
-                showCrooks();
+                ShowCrooks();
 
                 break;
             case Tabs.snake:
-                showSnakes();
+                ShowSnakes();
 
                 break;
             case Tabs.gang:
-                showGangs();
+                ShowGangs();
 
                 break;
         }
@@ -153,12 +153,14 @@ public class UnitsManager : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
-        for (int i=0; i<GameManager.instance.factories.Count; i++)
+        for (int i=0; i<GameManager.instance.factories.Length; i++)
         {
-            Debug.Log(factoryPrefab + " " + factories[i].transform);
-            var a = Instantiate(factoryPrefab, factories[i].transform);
-            var b = a.GetComponent<Factory>();
-            b.SetFactoryListItem(GameManager.instance.factories[i]);
+            if (GameManager.instance.factories[i] != null)
+            {
+                var a = Instantiate(factoryPrefab, factories[i].transform);
+                var b = a.GetComponent<Factory>();
+                b.SetFactoryListItem(GameManager.instance.factories[i]);
+            }
         }
     }
 }
