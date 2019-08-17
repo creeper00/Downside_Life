@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -228,7 +228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &11083683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,10 +300,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1183085039}
   - {fileID: 1981285472}
   - {fileID: 997720838}
   - {fileID: 1832144286}
+  - {fileID: 1183085039}
   - {fileID: 542613674}
   - {fileID: 1332927377}
   - {fileID: 438748383}
@@ -2966,7 +2966,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &236398623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3775,6 +3775,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1-2
       objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: techInfo
+      value: 
+      objectReference: {fileID: 923628093}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: yesButton
+      value: 
+      objectReference: {fileID: 1226286147}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: noButton
+      value: 
+      objectReference: {fileID: 220134463}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 366407433}
     - target: {fileID: 8254486848621272634, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3910,26 +3930,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: techInfo
-      value: 
-      objectReference: {fileID: 923628093}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: yesButton
-      value: 
-      objectReference: {fileID: 1226286147}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: noButton
-      value: 
-      objectReference: {fileID: 220134463}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: image
-      value: 
-      objectReference: {fileID: 366407433}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6dc9d8e16fd0864784f84ef8067798c, type: 3}
 --- !u!224 &300942511 stripped
@@ -5381,9 +5381,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &497687401
 MonoBehaviour:
@@ -5804,17 +5804,8 @@ MonoBehaviour:
   factoryHealthPerLevel: b80b000088130000581b000028230000f82a0000
   factoryValue: 00000000000000000a000000050000001e000000
   factoryIncome: 50c30000a0860100e093040020a1070040420f00
-  crookConstantInvolution:
-  - 0
-  - 0
-  - 0
-  - 0
-  crookConstantCoefficient:
-  - 1
-  - 1
-  - 1
-  - 1
-  crookConstant: 50c30000102700003075000010270000
+  crookConstantInvolution: 00000000000000000000000000000000
+  crookConstantCoefficient: 01000000010000000100000001000000
   crookRateInvolution:
   - 1
   - 1
@@ -5825,11 +5816,6 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  crookRate:
-  - 0.01
-  - 0.05
-  - 0.03
-  - 0.01
   crookReturn: 1e0000001e0000001e00000032000000
   snakeDesperateDownConstant: 20
   snakeDesperateDownCoefficient: 1.5
@@ -7714,9 +7700,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -5.2}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &693967895
 MonoBehaviour:
@@ -7876,7 +7862,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8356,7 +8342,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.9999999, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10519,6 +10505,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: 4-2
       objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: skillPointNeededNum
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: techInfo
+      value: 
+      objectReference: {fileID: 923628093}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: yesButton
+      value: 
+      objectReference: {fileID: 1226286147}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: noButton
+      value: 
+      objectReference: {fileID: 220134463}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 1720527074}
     - target: {fileID: 8254486848621272634, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10654,31 +10665,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: skillPointNeededNum
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: techInfo
-      value: 
-      objectReference: {fileID: 923628093}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: yesButton
-      value: 
-      objectReference: {fileID: 1226286147}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: noButton
-      value: 
-      objectReference: {fileID: 220134463}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: image
-      value: 
-      objectReference: {fileID: 1720527074}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6dc9d8e16fd0864784f84ef8067798c, type: 3}
 --- !u!224 &885938907 stripped
@@ -12071,7 +12057,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &997720836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12085,14 +12071,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.69411767, b: 0, a: 1}
+  m_Color: {r: 0.5019608, g: 1, b: 0.5019608, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 05f64e7db56ab064ba1a3588b6fb7975, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12124,12 +12110,12 @@ RectTransform:
   - {fileID: 1099497265}
   - {fileID: 1383023281}
   m_Father: {fileID: 11083686}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 6.32, y: 43.6}
-  m_SizeDelta: {x: 959.51, y: 484.11}
+  m_SizeDelta: {x: 1150, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1008463359
 GameObject:
@@ -13449,6 +13435,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: 3-2
       objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: skillPointNeededNum
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: techInfo
+      value: 
+      objectReference: {fileID: 923628093}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: yesButton
+      value: 
+      objectReference: {fileID: 1226286147}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: noButton
+      value: 
+      objectReference: {fileID: 220134463}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 843537518}
     - target: {fileID: 8254486848621272634, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13584,31 +13595,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: skillPointNeededNum
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: techInfo
-      value: 
-      objectReference: {fileID: 923628093}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: yesButton
-      value: 
-      objectReference: {fileID: 1226286147}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: noButton
-      value: 
-      objectReference: {fileID: 220134463}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: image
-      value: 
-      objectReference: {fileID: 843537518}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6dc9d8e16fd0864784f84ef8067798c, type: 3}
 --- !u!224 &1122459383 stripped
@@ -13829,6 +13815,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: 3-1
       objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: skillPointNeededNum
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: techInfo
+      value: 
+      objectReference: {fileID: 923628093}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: yesButton
+      value: 
+      objectReference: {fileID: 1226286147}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: noButton
+      value: 
+      objectReference: {fileID: 220134463}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 1843863103}
     - target: {fileID: 8254486848621272634, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13964,31 +13975,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: skillPointNeededNum
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: techInfo
-      value: 
-      objectReference: {fileID: 923628093}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: yesButton
-      value: 
-      objectReference: {fileID: 1226286147}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: noButton
-      value: 
-      objectReference: {fileID: 220134463}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: image
-      value: 
-      objectReference: {fileID: 1843863103}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6dc9d8e16fd0864784f84ef8067798c, type: 3}
 --- !u!224 &1144553708 stripped
@@ -14573,11 +14559,11 @@ RectTransform:
   - {fileID: 1350874226}
   - {fileID: 1271182753}
   m_Father: {fileID: 11083686}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -510, y: 1}
+  m_AnchoredPosition: {x: -570, y: 1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1184902149
@@ -14628,6 +14614,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: 5-1
       objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: skillPointNeededNum
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: techInfo
+      value: 
+      objectReference: {fileID: 923628093}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: yesButton
+      value: 
+      objectReference: {fileID: 1226286147}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: noButton
+      value: 
+      objectReference: {fileID: 220134463}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 1202269347}
     - target: {fileID: 8254486848621272634, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14763,31 +14774,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: skillPointNeededNum
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: techInfo
-      value: 
-      objectReference: {fileID: 923628093}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: yesButton
-      value: 
-      objectReference: {fileID: 1226286147}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: noButton
-      value: 
-      objectReference: {fileID: 220134463}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: image
-      value: 
-      objectReference: {fileID: 1202269347}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6dc9d8e16fd0864784f84ef8067798c, type: 3}
 --- !u!224 &1189735473 stripped
@@ -15728,7 +15714,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -80}
-  m_SizeDelta: {x: 90, y: 140}
+  m_SizeDelta: {x: 67.1, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1271182754
 MonoBehaviour:
@@ -15743,14 +15729,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.5019608, g: 0.5019608, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 4141f65e6347038418964d3e1275794c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a3c7df426d322884bb4474f3e528a32a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15872,7 +15858,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 200}
-  m_SizeDelta: {x: 90, y: 140}
+  m_SizeDelta: {x: 67.1, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1277445309
 MonoBehaviour:
@@ -15887,14 +15873,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.5019608, b: 0.5019608, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 56ea52eabd2138a48b418eed2396d5cc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a3c7df426d322884bb4474f3e528a32a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16890,7 +16876,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 60}
-  m_SizeDelta: {x: 90, y: 140}
+  m_SizeDelta: {x: 67.1, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1350874227
 MonoBehaviour:
@@ -16905,14 +16891,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.5019608, g: 1, b: 0.5019608, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e8874b6550137d446ac766cf13ca61ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a3c7df426d322884bb4474f3e528a32a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17344,6 +17330,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2-2
       objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: skillPointNeededNum
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: techInfo
+      value: 
+      objectReference: {fileID: 923628093}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: yesButton
+      value: 
+      objectReference: {fileID: 1226286147}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: noButton
+      value: 
+      objectReference: {fileID: 220134463}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 1292373419}
     - target: {fileID: 8254486848621272634, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17479,31 +17490,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: skillPointNeededNum
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: techInfo
-      value: 
-      objectReference: {fileID: 923628093}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: yesButton
-      value: 
-      objectReference: {fileID: 1226286147}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: noButton
-      value: 
-      objectReference: {fileID: 220134463}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: image
-      value: 
-      objectReference: {fileID: 1292373419}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6dc9d8e16fd0864784f84ef8067798c, type: 3}
 --- !u!224 &1366417594 stripped
@@ -21156,14 +21142,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0.86274517, a: 1}
+  m_Color: {r: 0.5019608, g: 0.5019608, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 05f64e7db56ab064ba1a3588b6fb7975, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21198,12 +21184,12 @@ RectTransform:
   - {fileID: 1700059025}
   - {fileID: 879074215}
   m_Father: {fileID: 11083686}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 6.32, y: 43.6}
-  m_SizeDelta: {x: 959.51, y: 484.11}
+  m_SizeDelta: {x: 1150, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1834229299
 GameObject:
@@ -21265,6 +21251,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2-1
       objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: skillPointNeededNum
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: techInfo
+      value: 
+      objectReference: {fileID: 923628093}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: yesButton
+      value: 
+      objectReference: {fileID: 1226286147}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: noButton
+      value: 
+      objectReference: {fileID: 220134463}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 916761940}
     - target: {fileID: 8254486848621272634, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21400,31 +21411,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: skillPointNeededNum
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: techInfo
-      value: 
-      objectReference: {fileID: 923628093}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: yesButton
-      value: 
-      objectReference: {fileID: 1226286147}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: noButton
-      value: 
-      objectReference: {fileID: 220134463}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: image
-      value: 
-      objectReference: {fileID: 916761940}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6dc9d8e16fd0864784f84ef8067798c, type: 3}
 --- !u!224 &1851288234 stripped
@@ -22644,6 +22630,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: 4-1
       objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: skillPointNeededNum
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: techInfo
+      value: 
+      objectReference: {fileID: 923628093}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: yesButton
+      value: 
+      objectReference: {fileID: 1226286147}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: noButton
+      value: 
+      objectReference: {fileID: 220134463}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 306172302}
     - target: {fileID: 8254486848621272634, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22779,31 +22790,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: skillPointNeededNum
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: techInfo
-      value: 
-      objectReference: {fileID: 923628093}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: yesButton
-      value: 
-      objectReference: {fileID: 1226286147}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: noButton
-      value: 
-      objectReference: {fileID: 220134463}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: image
-      value: 
-      objectReference: {fileID: 306172302}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6dc9d8e16fd0864784f84ef8067798c, type: 3}
 --- !u!224 &1937911053 stripped
@@ -23206,7 +23192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1981285472
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23222,12 +23208,12 @@ RectTransform:
   - {fileID: 412093506}
   - {fileID: 801360608}
   m_Father: {fileID: 11083686}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 6.32, y: 43.6}
-  m_SizeDelta: {x: 959.51, y: 484.11}
+  m_SizeDelta: {x: 1150, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1981285473
 MonoBehaviour:
@@ -23242,14 +23228,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.5019608, b: 0.5019608, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 05f64e7db56ab064ba1a3588b6fb7975, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -23797,6 +23783,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2-3
       objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: skillPointNeededNum
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: techInfo
+      value: 
+      objectReference: {fileID: 923628093}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: yesButton
+      value: 
+      objectReference: {fileID: 1226286147}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: noButton
+      value: 
+      objectReference: {fileID: 220134463}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 1743599696}
     - target: {fileID: 8254486848621272634, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23932,31 +23943,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: skillPointNeededNum
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: techInfo
-      value: 
-      objectReference: {fileID: 923628093}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: yesButton
-      value: 
-      objectReference: {fileID: 1226286147}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: noButton
-      value: 
-      objectReference: {fileID: 220134463}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: image
-      value: 
-      objectReference: {fileID: 1743599696}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6dc9d8e16fd0864784f84ef8067798c, type: 3}
 --- !u!224 &1992457045 stripped
@@ -25838,6 +25824,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1-1
       objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: techInfo
+      value: 
+      objectReference: {fileID: 923628093}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: yesButton
+      value: 
+      objectReference: {fileID: 1226286147}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: noButton
+      value: 
+      objectReference: {fileID: 220134463}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 1753180760}
     - target: {fileID: 8254486848621272634, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -25973,25 +25979,5 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: techInfo
-      value: 
-      objectReference: {fileID: 923628093}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: yesButton
-      value: 
-      objectReference: {fileID: 1226286147}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: noButton
-      value: 
-      objectReference: {fileID: 220134463}
-    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
-        type: 3}
-      propertyPath: image
-      value: 
-      objectReference: {fileID: 1753180760}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6dc9d8e16fd0864784f84ef8067798c, type: 3}
