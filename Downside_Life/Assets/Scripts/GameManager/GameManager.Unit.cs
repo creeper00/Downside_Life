@@ -31,19 +31,15 @@ public partial class GameManager : MonoBehaviour
 
     [Header("사기꾼 상수 값")]
     [SerializeField]
-    private float[] crookConstantInvolution = new float[4];              //사기꾼이 가져오는 상수 값에서 레벨이 제곱되는 횟수
+    private int[] crookConstantInvolution = new int[4];              //사기꾼이 가져오는 상수 값에서 레벨에 곱해지는 비율
     [SerializeField]
-    private float[] crookConstantCoefficient = new float[4];             //사기꾼이 가져오는 상수 값에서 배율
-    [SerializeField]
-    private int[] crookConstant = new int[4];                            //사기꾼에 곱해지는 값
+    private int[] crookConstantCoefficient = new int[4];             //사기꾼이 가져오는 상수 값에서 더해지는 상수
 
     [Header("사기꾼 계수 값")]
     [SerializeField]
-    private float[] crookRateInvolution = new float[4];              //사기꾼이 가져오는 계수 값에서 레벨이 제곱되는 횟수
+    private float[] crookRateInvolution = new float[4];              //사기꾼이 가져오는 계수 값에서 레벨에 곱해지는 비율
     [SerializeField]
-    private float[] crookRateCoefficient = new float[4];             //사기꾼이 가져오는 계수 값에서 배율
-    [SerializeField]
-    private float[] crookRate = new float[4];                        //사기꾼에 곱해지는 값
+    private float[] crookRateCoefficient = new float[4];             //사기꾼이 가져오는 계수 값에서 더해지는 배율
 
     [Header("사기꾼 가져오는 비율")]
     [SerializeField]
@@ -171,9 +167,12 @@ public partial class GameManager : MonoBehaviour
     public class Crook
     {
         bool attatched;                             //부자에게 붙어 있는가
+        bool itemAttached;                          //아이템이 붙어 있는가
         public int level;                           //사기꾼의 레벨
         public int type;                            //유형 번호. 0-상수형, 1-계수형, 2-밸런스형, 3-호구 돈 가져오는 형
-        
+        public float itemRichDown;                  //아이템으로 인해 추가되는 깎는 돈의 비율
+        public float itemPlayerUp;                  //아이템으로 인해 추가되는 가져오는 돈의 비율
+
         public int richConstantDown                //매 턴 깎는 상수 값
         {
             get
@@ -181,7 +180,7 @@ public partial class GameManager : MonoBehaviour
                 
                 int ret = 0;
                 //기본 수치
-                ret += (int)(System.Math.Pow(level, instance.crookConstantInvolution[type]) * instance.crookConstantCoefficient[type]) * instance.crookConstant[type];
+                ret += (int)((level * instance.crookConstantInvolution[type] + instance.crookConstantCoefficient[type])* itemRichDown);
                 //아이템 추가 수치
                 ret *= instance.crookTechConstantIncrease;
                 //테크트리에서 가져오는 수치
@@ -196,11 +195,10 @@ public partial class GameManager : MonoBehaviour
             {
                 float ret = 0f;
                 //기본 수치
-                ret += (int)(System.Math.Pow(level, instance.crookRateInvolution[type]) * instance.crookRateCoefficient[type]) * instance.crookRate[type];
+                ret += (int)((level * instance.crookRateInvolution[type] + instance.crookRateCoefficient[type]) * itemRichDown);
                 //아이템 추가 수치
                 ret *= instance.crookTechRichPercentageIncrease;
                 //테크트리에서 가져오는 수치
-
                 return ret;
             }
             set { }
@@ -211,7 +209,7 @@ public partial class GameManager : MonoBehaviour
             {
                 int ret = 0;
                 //기본 값
-                ret += instance.crookReturn[type];
+                ret += (int) (instance.crookReturn[type] * itemPlayerUp);
                 //아이템 추가 수치
                 ret *= instance.crookTechMyPercentageIncrease;
                 //테크트리에서 가져오는 수치
@@ -224,15 +222,20 @@ public partial class GameManager : MonoBehaviour
         public Crook(int level, int type)
         {
             attatched = false;
+            itemAttached = false;
             this.level = level;
             this.type = type;
+            itemRichDown = 1;
+            itemPlayerUp = 1;
         }
     }
 
     public class Snake
     {
+        public bool itemAttached;                               //아이템이 붙어 있는가
         public int level;
         public int type;                                        //0-둔감형-절박함 억제, 1-낭비형-부자 행동 비용 증가, 2-둔화형-부자 행동 주기 증가, 3-갈취형-돈 아이템 가져옴
+        public float itemSnakeUpgrade;                            //아이템의 특성의 강화 비율
 
         public float snakeDesperateDown
         {
@@ -240,7 +243,7 @@ public partial class GameManager : MonoBehaviour
             {
                 if ( type == 0 )
                 {
-                    return instance.snakeDesperateDownConstant + level * instance.snakeDesperateDownCoefficient;
+                    return (instance.snakeDesperateDownConstant + level * instance.snakeDesperateDownCoefficient) * itemSnakeUpgrade;
                 }
                 else
                 {
@@ -255,7 +258,7 @@ public partial class GameManager : MonoBehaviour
             {
                 if ( type == 1 )
                 {
-                    return instance.snakeActionCostIncreaseConstant + level * instance.snakeActionCostIncreaseCoefficient;
+                    return (int)((instance.snakeActionCostIncreaseConstant + level * instance.snakeActionCostIncreaseCoefficient) * itemSnakeUpgrade);
                 }
                 else
                 {
@@ -298,30 +301,35 @@ public partial class GameManager : MonoBehaviour
         {
             get
             {
-                return Random.Range(instance.snakeExtortConstantRangeLower, instance.snakeExtortConstantRangeUpper) + level * Random.Range(instance.snakeExtortCoefficientRangeLower, instance.snakeExtortCoefficientRangeUpper);
+                return (int)((Random.Range(instance.snakeExtortConstantRangeLower, instance.snakeExtortConstantRangeUpper) + level * Random.Range(instance.snakeExtortCoefficientRangeLower, instance.snakeExtortCoefficientRangeUpper))* itemSnakeUpgrade);
             }
         }
 
         public Snake(int level, int type)
         {
+            itemAttached = false;
             this.level = level;
             this.type = type;
+            itemSnakeUpgrade = 1;
         }
     }
 
     public class Gang
     {
         bool attatched;
+        public bool itemAttached;                                      //아이템이 붙어있는가
+        public bool itemLevelUpDelay;                            //업그레이드 지연 아이템을 들고 있는가
         public int level;
         public int type;                                        //유형 번호. 0-깡딜형, 1-돈형, 2-도벽형, 3-광역형
-
+        public float itemAttackUp;                              //아이템의 공격력 증가량
+        public float itemMoneyUp;                               //아이템의 들고오는 돈 증가량
         public int attack
         {
             get
             {
                 int ret = 0;
                 //기본 값
-                ret += (instance.gangAttackConstant[type] + instance.gangAttackCoefficient[type] * level);
+                ret += (int) ((instance.gangAttackConstant[type] + instance.gangAttackCoefficient[type] * level) * itemAttackUp);
 
                 return ret;
             }
@@ -332,7 +340,7 @@ public partial class GameManager : MonoBehaviour
         {
             get
             {
-                return instance.gangReturnMonetPerDamage[type];
+                return (int)(instance.gangReturnMonetPerDamage[type] * itemMoneyUp);
             }
             set { }
         }
@@ -340,8 +348,12 @@ public partial class GameManager : MonoBehaviour
         public Gang(int level, int type)
         {
             attatched = false;
+            itemAttached = false;
+            itemLevelUpDelay = false;
             this.level = level;
             this.type = type;
+            itemAttackUp = 1;
+            itemMoneyUp = 1;
         }
     }
 
