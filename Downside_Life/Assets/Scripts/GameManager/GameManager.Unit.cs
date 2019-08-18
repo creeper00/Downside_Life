@@ -94,7 +94,6 @@ public partial class GameManager : MonoBehaviour
     [HideInInspector]
     public int crookAverageLevel, crookMaxLevel;
     List<string> crookAttribute;                //나올 확률은 동일
-
     [HideInInspector]
     public int snakeAverageLevel, snakeMaxLevel;
     List<string> snakeAttribute;
@@ -166,6 +165,31 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
+    private IEnumerator showItemTypeNotMatchWindow()
+    {
+        itemTypeNotMatchCanvas.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        itemTypeNotMatchCanvas.SetActive(false);
+    }
+    public void itemTypeNotMatch()
+    {
+        StartCoroutine(showItemTypeNotMatchWindow());
+    }
+    // 테스트
+    private IEnumerator showAlreadyHasItemWindow()
+    {
+        alreadyHasItemCanvas.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        alreadyHasItemCanvas.SetActive(false);
+    }
+    public void alreadyHasItem()
+    {
+        StartCoroutine(showItemTypeNotMatchWindow());
+    }
+    // 테스트
+
+
+
     public class Crook
     {
         bool attatched;                             //부자에게 붙어 있는가
@@ -226,10 +250,12 @@ public partial class GameManager : MonoBehaviour
         {
             if(itemAttached)
             {
+                GameManager.instance.alreadyHasItem();
                 return; // 이미 붙어 있다는 것에 대한 경고
             }
             if(item.type != 0)
             {
+                GameManager.instance.itemTypeNotMatch();
                 return; // 사기꾼용 아이템이 아니라는 것에 대한 경고
             }
             if(item.itemcode == 0)
@@ -353,10 +379,12 @@ public partial class GameManager : MonoBehaviour
         {
             if (itemAttached)
             {
+                GameManager.instance.alreadyHasItem();
                 return; // 이미 붙어 있다는 것에 대한 경고
             }
             if (item.type != 1)
             {
+                GameManager.instance.itemTypeNotMatch();
                 return; // 꽃뱀용 아이템이 아니라는 것에 대한 경고
             }
             if (item.itemcode == 0 && item.grade != 2)
@@ -427,11 +455,13 @@ public partial class GameManager : MonoBehaviour
         {
             if (itemAttached)
             {
+                GameManager.instance.alreadyHasItem();
                 return; // 이미 붙어 있다는 것에 대한 경고
             }
             if (item.type != 0)
             {
-                return; // 사기꾼용 아이템이 아니라는 것에 대한 경고
+                GameManager.instance.itemTypeNotMatch();
+                return; // 갱단용 아이템이 아니라는 것에 대한 경고
             }
             if (item.itemcode == 0 && item.grade != 2)
             {
