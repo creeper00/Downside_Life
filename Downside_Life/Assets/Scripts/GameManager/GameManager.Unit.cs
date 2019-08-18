@@ -222,6 +222,47 @@ public partial class GameManager : MonoBehaviour
             set { }
         }
 
+        public void putItem (item item)
+        {
+            if(itemAttached)
+            {
+                return; // 이미 붙어 있다는 것에 대한 경고
+            }
+            if(item.type != 0)
+            {
+                return; // 사기꾼용 아이템이 아니라는 것에 대한 경고
+            }
+            if(item.itemcode == 0)
+            {
+                if(item.grade == 0)
+                {
+                    itemRichDown = (float)1.1;
+                }
+                else if(item.grade == 1)
+                {
+                    itemRichDown = (float)1.2;
+                }
+                else
+                {
+                    itemRichDown = (float)1.4;
+                }
+                return;
+            }
+            else if(item.itemcode == 1 && item.grade == 1)
+            {
+                return; // 유형 변경 팝업
+            }
+            else if(item.itemcode == 2)
+            {
+                itemPlayerUp = (float)1.1;
+                return;
+            }
+            else
+            {
+                //장착 불가능 팝업
+            }
+        }
+
         public Crook(int level, int type)
         {
             attatched = false;
@@ -235,17 +276,18 @@ public partial class GameManager : MonoBehaviour
 
     public class Snake
     {
-        bool itemAttached;                                      //아이템이 붙어있는가
+        bool itemAttached;                                          //아이템이 붙어있는가
         public int level;
-        public int type;                                        //0-둔감형-절박함 억제, 1-낭비형-부자 행동 비용 증가, 2-둔화형-부자 행동 주기 증가, 3-갈취형-돈 아이템 가져옴
-        public float itemSnakeUpgrade;                          //아이템의 꽃뱀 능력 업그레이드 계수
+        public int type;                                            //0-둔감형-절박함 억제, 1-낭비형-부자 행동 비용 증가, 2-둔화형-부자 행동 주기 증가, 3-갈취형-돈 아이템 가져옴
+        public float itemSnakeUpgrade;                              //아이템의 꽃뱀 능력 업그레이드 계수
+        public static float[] passiveSnakeUpgrade = new float[4];   //특성 강화 패시브 아이템 효과
         public float snakeDesperateDown
         {
             get
             {
                 if (type == 0)
                 {
-                    return (instance.snakeDesperateDownConstant + level * instance.snakeDesperateDownCoefficient) * itemSnakeUpgrade;
+                    return (instance.snakeDesperateDownConstant + level * instance.snakeDesperateDownCoefficient) * itemSnakeUpgrade * passiveSnakeUpgrade[0];
                 }
                 else
                 {
@@ -260,7 +302,7 @@ public partial class GameManager : MonoBehaviour
             {
                 if (type == 1)
                 {
-                    return (int) ((instance.snakeActionCostIncreaseConstant + level * instance.snakeActionCostIncreaseCoefficient) * itemSnakeUpgrade);
+                    return (int) ((instance.snakeActionCostIncreaseConstant + level * instance.snakeActionCostIncreaseCoefficient) * itemSnakeUpgrade * passiveSnakeUpgrade[1]);
                 }
                 else
                 {
@@ -303,7 +345,41 @@ public partial class GameManager : MonoBehaviour
         {
             get
             {
-                return (int)((Random.Range(instance.snakeExtortConstantRangeLower, instance.snakeExtortConstantRangeUpper) + level * Random.Range(instance.snakeExtortCoefficientRangeLower, instance.snakeExtortCoefficientRangeUpper)) * itemSnakeUpgrade);
+                return (int)((Random.Range(instance.snakeExtortConstantRangeLower, instance.snakeExtortConstantRangeUpper) + level * Random.Range(instance.snakeExtortCoefficientRangeLower, instance.snakeExtortCoefficientRangeUpper)) * itemSnakeUpgrade * passiveSnakeUpgrade[3]);
+            }
+        }
+
+        public void putItem(item item)
+        {
+            if (itemAttached)
+            {
+                return; // 이미 붙어 있다는 것에 대한 경고
+            }
+            if (item.type != 1)
+            {
+                return; // 꽃뱀용 아이템이 아니라는 것에 대한 경고
+            }
+            if (item.itemcode == 0 && item.grade != 2)
+            {
+                if (item.grade == 0)
+                {
+                    itemSnakeUpgrade = (float)1.1;
+                    itemAttached = true;
+                }
+                else if (item.grade == 1)
+                {
+                    itemSnakeUpgrade = (float)1.2;
+                    itemAttached = true;
+                }
+                return;
+            }
+            else if (item.itemcode == 1 && item.grade == 1)
+            {
+                return; // 꽃뱀 유형 변경 팝업
+            }
+            else
+            {
+                // 장착 불가능 팝업
             }
         }
 
@@ -321,11 +397,11 @@ public partial class GameManager : MonoBehaviour
     {
         bool attatched;
         bool itemAttached;                                      //아이템이 붙어있는가
+        public bool itemUpgradeDelay;                           //공장 지연 아이템이 붙어있는가
         public int level;
         public int type;                                        //유형 번호. 0-깡딜형, 1-돈형, 2-도벽형, 3-광역형
         public float itemWeaponUpgrade;                         //공격력 아이템 계수
         public float itemMoneyUpgrade;                          //돈 아이템 계수
-
         public int attack
         {
             get
@@ -347,16 +423,71 @@ public partial class GameManager : MonoBehaviour
             }
             set { }
         }
+        public void putItem(item item)
+        {
+            if (itemAttached)
+            {
+                return; // 이미 붙어 있다는 것에 대한 경고
+            }
+            if (item.type != 0)
+            {
+                return; // 사기꾼용 아이템이 아니라는 것에 대한 경고
+            }
+            if (item.itemcode == 0 && item.grade != 2)
+            {
+                if (item.grade == 0)
+                {
+                    itemWeaponUpgrade = (float)1.2;
+                    itemAttached = true;
+                }
+                else if (item.grade == 1)
+                {
+                    itemWeaponUpgrade = (float)1.4;
+                    itemAttached = true;
+                }
+                return;
+            }
+            else if (item.itemcode == 1 && item.grade == 1)
+            {
+                return; // 유형 변경 팝업
+            }
+            else if (item.itemcode == 2)
+            {
+                if(item.grade == 0)
+                {
+                    itemMoneyUpgrade = (float)1.2;
+                    itemAttached = true;
+                }
+                else if(item.grade == 1)
+                {
+                    itemUpgradeDelay = true;
+                    itemAttached = true;
+                }
+                return;
+            }
+            else
+            {
+                return; // 장착 불가능 아이템
+            }
+        }
 
         public Gang(int level, int type)
         {
             attatched = false;
             itemAttached = false;
+            itemUpgradeDelay = false;
             this.level = level;
             this.type = type;
             itemWeaponUpgrade = 1;
             itemMoneyUpgrade = 1;
         }
+    }
+
+    public class item
+    {
+        public int type;                                    //0 - 사기꾼용, 1 - 꽃뱀용, 2 - 갱단용
+        public int grade;                                   //등급 0 - 일반, 1 - 레어, 2 - 레전
+        public int itemcode;                                //아이템 하는 일 0 - 강화, 1 - 유형 변경, 2 - 기타
     }
 
     /// <summary>유닛을 붙일 수 있는지 확인</summary>
