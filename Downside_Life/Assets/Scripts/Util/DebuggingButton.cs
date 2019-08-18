@@ -6,8 +6,7 @@ public class DebuggingButton : MonoBehaviour
 {
     public void DebugSomething()
     {
-        //Debug.Log(GameManager.instance.FolderUI.transform.position.x);
-        //Debug.Log(GameManager.instance.FolderUI.transform.position.y);
-        //Debug.Log(GameManager.instance.FolderUI.transform.position.z);
+        if (GameManager.instance.crooks[0] != null) Debug.Log(GameManager.instance.crooks[0].richConstantDown);
+
     }
 }

@@ -93,13 +93,13 @@ public class UnitsManager : MonoBehaviour
         switch(tab)
         {
             case Tabs.crook:
-                Destroy(crookTab.transform.Find("Slot" + slotIndex).GetChild(0).gameObject);
+                Destroy(crookTab.transform.Find("Slot" + slotIndex).GetChild(1).gameObject);
                 break;
             case Tabs.snake:
-                Destroy(snakeTab.transform.Find("Slot" + slotIndex).GetChild(0).gameObject);
+                Destroy(snakeTab.transform.Find("Slot" + slotIndex).GetChild(1).gameObject);
                 break;
             case Tabs.gang:
-                Destroy(gangTab.transform.Find("Slot" + slotIndex).GetChild(0).gameObject);
+                Destroy(gangTab.transform.Find("Slot" + slotIndex).GetChild(1).gameObject);
                 break;
             default:
                 Debug.Log("Incorrect unit type.");

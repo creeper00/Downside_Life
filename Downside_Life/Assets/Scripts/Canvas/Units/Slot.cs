@@ -17,9 +17,9 @@ public class Slot : MonoBehaviour, IDropHandler
     {
         get
         {
-            if ( transform.childCount > 0 )
+            if ( transform.childCount > 1 )
             {
-                return transform.GetChild(0).gameObject;
+                return transform.GetChild(1).gameObject;
             }
             else
             {
@@ -33,6 +33,7 @@ public class Slot : MonoBehaviour, IDropHandler
     {
         if ( UnitDragHandler.unitBeingDragged != null && item == null && GameManager.instance.CanAttatchUnit(kindOfUnit, slotIndex))
         {
+            Debug.Log("aa");
             //슬롯에 Gameobject의 Child로 Prefab을 가져다 붙임
             switch (kindOfUnit)
             {

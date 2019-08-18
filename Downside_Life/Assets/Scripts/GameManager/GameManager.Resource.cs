@@ -45,7 +45,6 @@ public partial class GameManager : MonoBehaviour
 
     void ResourceManage()
     {
-        //richSalary = 
         int tempRichSalary = RichSalary();
 
         
@@ -53,11 +52,9 @@ public partial class GameManager : MonoBehaviour
 
         desperateGauge.GetComponent<Transform>().localScale = new Vector3((float)richDesperate, 1, 1);
         richMoneyBar.GetComponent<RichMoneyBar>().ChangeBar(richMoney, richInitialMoney);
-        //rich
 
         int tempPlayerSalary = PlayerSalary();
         playerMoney += tempPlayerSalary;
-        //player
         UpdateResourcesUI();
     }
 
@@ -70,8 +67,14 @@ public partial class GameManager : MonoBehaviour
         richMoneyBar.GetComponent<RichMoneyBar>().ChangeBar(richMoney, richInitialMoney);
     }
 
+    ///<summary>부자의 절박함 수치를 증가시킴 / 입력값은 여러 보정들을 거치기 전</summary>
     private void ChangeDesperate(double desperateIncrease)
     {
+        //꽃뱀의 감소
+        for ( int i = 0; i < GameManager.instance.snakes.Count; ++i )
+        {
+            desperateIncrease *= ((100 - snakes[i].snakeDesperateDown) / 100);
+        }
         richDesperate += desperateIncrease;
         EventManage();
 

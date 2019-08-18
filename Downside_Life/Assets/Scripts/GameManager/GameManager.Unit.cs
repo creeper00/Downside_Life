@@ -31,23 +31,19 @@ public partial class GameManager : MonoBehaviour
 
     [Header("사기꾼 상수 값")]
     [SerializeField]
-    private float[] crookConstantInvolution = new float[4];              //사기꾼이 가져오는 상수 값에서 레벨이 제곱되는 횟수
+    private int[] crookConstantConstant = new int[4];                   //사기꾼이 가져오는 상수 값에서 레벨이 제곱되는 횟수
     [SerializeField]
-    private float[] crookConstantCoefficient = new float[4];             //사기꾼이 가져오는 상수 값에서 배율
-    [SerializeField]
-    private int[] crookConstant = new int[4];                            //사기꾼에 곱해지는 값
+    private int[] crookConstantCoefficient = new int[4];                //사기꾼에 곱해지는 값
 
     [Header("사기꾼 계수 값")]
     [SerializeField]
-    private float[] crookRateInvolution = new float[4];              //사기꾼이 가져오는 계수 값에서 레벨이 제곱되는 횟수
+    private float[] crookRateConstant = new float[4];                   //사기꾼이 가져오는 계수 값에서 레벨이 제곱되는 횟수
     [SerializeField]
-    private float[] crookRateCoefficient = new float[4];             //사기꾼이 가져오는 계수 값에서 배율
-    [SerializeField]
-    private float[] crookRate = new float[4];                        //사기꾼에 곱해지는 값
+    private float[] crookRateCoefficient = new float[4];                //사기꾼이 가져오는 계수 값에서 배율
 
     [Header("사기꾼 가져오는 비율")]
     [SerializeField]
-    private int[] crookReturn = new int[4];                          //사기꾼이 가져온 돈에서 플레이어 돈에 추가하는 비율
+    private float[] crookReturn = new float[4];                          //사기꾼이 가져온 돈에서 플레이어 돈에 추가하는 비율
 
     [Header("둔감형 꽃뱀")]
     [SerializeField]
@@ -183,9 +179,9 @@ public partial class GameManager : MonoBehaviour
                 
                 int ret = 0;
                 //기본 수치
-                ret += (int)(System.Math.Pow(level, instance.crookConstantInvolution[type]) * instance.crookConstantCoefficient[type]) * instance.crookConstant[type];
+                ret += (instance.crookConstantCoefficient[type] * level + instance.crookConstantConstant[type]);
                 //아이템 추가 수치
-                ret *= instance.crookTechConstantIncrease;
+                                        //ret *= instance.crookTechConstantIncrease;
                 //테크트리에서 가져오는 수치
 
                 return ret;
@@ -198,9 +194,9 @@ public partial class GameManager : MonoBehaviour
             {
                 float ret = 0f;
                 //기본 수치
-                ret += (int)(System.Math.Pow(level, instance.crookRateInvolution[type]) * instance.crookRateCoefficient[type]) * instance.crookRate[type];
+                ret += (instance.crookRateCoefficient[type] * level + instance.crookRateConstant[type]);
                 //아이템 추가 수치
-                ret *= instance.crookTechRichPercentageIncrease;
+                                        //ret *= instance.crookTechRichPercentageIncrease;
                 //테크트리에서 가져오는 수치
 
                 return ret;
@@ -211,11 +207,11 @@ public partial class GameManager : MonoBehaviour
         {
             get
             {
-                int ret = 0;
+                float ret = 0;
                 //기본 값
                 ret += instance.crookReturn[type];
                 //아이템 추가 수치
-                ret *= instance.crookTechMyPercentageIncrease;
+                                        //ret *= instance.crookTechMyPercentageIncrease;
                 //테크트리에서 가져오는 수치
 
                 return ret;
