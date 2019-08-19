@@ -16,8 +16,13 @@ public class Technology : MonoBehaviour
     [SerializeField]
     GameObject techInfo;
     int skillLevel;
+    [SerializeField]
     int maxSkillLevel;
 
+    public void Start()
+    {
+        showTechnology();
+    }
     public bool canResearch()
     {
         switch(whatJob)
@@ -58,5 +63,17 @@ public class Technology : MonoBehaviour
             techInfo.SetActive(true);
             yesButton.technology = this;
         }
+    }
+
+    public void showTechnology()
+    {
+        transform.Find("LVText").GetComponent<Text>().text = skillLevel.ToString();
+        showCanSkillPoint();
+        
+    }
+    void showCanSkillPoint()//스킬포인트 + -를 보여주는 부분
+    {
+        transform.Find("Minus").gameObject.SetActive(skillLevel != 0);
+        transform.Find("Plus").gameObject.SetActive(skillLevel != maxSkillLevel);
     }
 }
