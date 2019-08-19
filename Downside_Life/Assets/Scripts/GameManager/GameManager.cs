@@ -30,8 +30,9 @@ public partial class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject FolderUI;
     private float folderUpYAxis = 160, folderDownYAxis = -370, folderMoveYDistance;
-    [SerializeField]
+    [Header("팝업창")]
     public GameObject notEnoughStaminaCanvas;
+    public GameObject itemTypeNotMatchCanvas, alreadyHasItemCanvas;
     [Header("Canvas")]
     public GameObject CommonCanvas;
     public GameObject techTreeCanvas, unitsCanvas, storeCanvas, richHouseCanvas,richHouse, firstFloorCanvas, secondFloorCanvas, thirdFloorCanvas, fourthFloorCanvas, fifthFloorCanvas, techInfoCanvas;

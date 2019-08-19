@@ -94,7 +94,6 @@ public partial class GameManager : MonoBehaviour
     [HideInInspector]
     public int crookAverageLevel, crookMaxLevel;
     List<string> crookAttribute;                //나올 확률은 동일
-
     [HideInInspector]
     public int snakeAverageLevel, snakeMaxLevel;
     List<string> snakeAttribute;
@@ -166,22 +165,50 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
+    private IEnumerator showItemTypeNotMatchWindow()
+    {
+        itemTypeNotMatchCanvas.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        itemTypeNotMatchCanvas.SetActive(false);
+    }
+    public void itemTypeNotMatch()
+    {
+        StartCoroutine(showItemTypeNotMatchWindow());
+    }
+    // 테스트
+    private IEnumerator showAlreadyHasItemWindow()
+    {
+        alreadyHasItemCanvas.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        alreadyHasItemCanvas.SetActive(false);
+    }
+    public void alreadyHasItem()
+    {
+        StartCoroutine(showItemTypeNotMatchWindow());
+    }
+    // 테스트
+
+
+
     public class Crook
     {
         bool attatched;                             //부자에게 붙어 있는가
+        bool itemAttached;                          //아이템이 붙어 있는가
         public int level;                           //사기꾼의 레벨
         public int type;                            //유형 번호. 0-상수형, 1-계수형, 2-밸런스형, 3-호구 돈 가져오는 형
-        
+        public float itemRichDown;                  //부자 지출 증가 아이템의 계수
+        public float itemPlayerUp;                  //사기꾼 수입 증가 아이템의 계수
+
         public int richConstantDown                //매 턴 깎는 상수 값
         {
             get
             {
-                
+
                 int ret = 0;
                 //기본 수치
-                ret += (instance.crookConstantCoefficient[type] * level + instance.crookConstantConstant[type]);
+                ret += (int)((instance.crookConstantConstant[type] * level + instance.crookConstantCoefficient[type]) * itemRichDown);
                 //아이템 추가 수치
-                                        //ret *= instance.crookTechConstantIncrease;
+                ret *= instance.crookTechConstantIncrease;
                 //테크트리에서 가져오는 수치
 
                 return ret;
@@ -194,9 +221,9 @@ public partial class GameManager : MonoBehaviour
             {
                 float ret = 0f;
                 //기본 수치
-                ret += (instance.crookRateCoefficient[type] * level + instance.crookRateConstant[type]);
+                ret += (int)((instance.crookRateConstant[type] * level + instance.crookRateCoefficient[type]) * itemRichDown);
                 //아이템 추가 수치
-                                        //ret *= instance.crookTechRichPercentageIncrease;
+                ret *= instance.crookTechRichPercentageIncrease;
                 //테크트리에서 가져오는 수치
 
                 return ret;
@@ -209,36 +236,84 @@ public partial class GameManager : MonoBehaviour
             {
                 float ret = 0;
                 //기본 값
-                ret += instance.crookReturn[type];
+                ret += instance.crookReturn[type] * itemPlayerUp;
                 //아이템 추가 수치
-                                        //ret *= instance.crookTechMyPercentageIncrease;
+                ret *= instance.crookTechMyPercentageIncrease;
                 //테크트리에서 가져오는 수치
 
                 return ret;
             }
             set { }
         }
-        
+
+        public void putItem(item item)
+        {
+            if (itemAttached)
+            {
+                GameManager.instance.alreadyHasItem();
+                return; // 이미 붙어 있다는 것에 대한 경고
+            }
+            if (item.type != 0)
+            {
+                GameManager.instance.itemTypeNotMatch();
+                return; // 사기꾼용 아이템이 아니라는 것에 대한 경고
+            }
+            if (item.itemcode == 0)
+            {
+                if (item.grade == 0)
+                {
+                    itemRichDown = (float)1.1;
+                }
+                else if (item.grade == 1)
+                {
+                    itemRichDown = (float)1.2;
+                }
+                else
+                {
+                    itemRichDown = (float)1.4;
+                }
+                return;
+            }
+            else if (item.itemcode == 1 && item.grade == 1)
+            {
+                return; // 유형 변경 팝업
+            }
+            else if (item.itemcode == 2)
+            {
+                itemPlayerUp = (float)1.1;
+                return;
+            }
+            else
+            {
+                //장착 불가능 팝업
+            }
+        }
+
         public Crook(int level, int type)
         {
             attatched = false;
+            itemAttached = false;
             this.level = level;
             this.type = type;
+            itemRichDown = 1;
+            itemPlayerUp = 1;
         }
     }
 
     public class Snake
     {
+        bool itemAttached;                                          //아이템이 붙어있는가
         public int level;
-        public int type;                                        //0-둔감형-절박함 억제, 1-낭비형-부자 행동 비용 증가, 2-둔화형-부자 행동 주기 증가, 3-갈취형-돈 아이템 가져옴
-
+        public int type;                                            //0-둔감형-절박함 억제, 1-낭비형-부자 행동 비용 증가, 2-둔화형-부자 행동 주기 증가, 3-갈취형-돈 아이템 가져옴
+        public float itemSnakeUpgrade;                              //아이템의 꽃뱀 능력 업그레이드 계수
+        public static float[] passiveSnakeUpgrade = new float[4];   //특성 강화 패시브 아이템 효과
         public float snakeDesperateDown
         {
             get
             {
-                if ( type == 0 )
+                if (type == 0)
                 {
-                    return instance.snakeDesperateDownConstant + level * instance.snakeDesperateDownCoefficient;
+                    return (instance.snakeDesperateDownConstant + level * instance.snakeDesperateDownCoefficient) * itemSnakeUpgrade * passiveSnakeUpgrade[0];
                 }
                 else
                 {
@@ -251,9 +326,9 @@ public partial class GameManager : MonoBehaviour
         {
             get
             {
-                if ( type == 1 )
+                if (type == 1)
                 {
-                    return instance.snakeActionCostIncreaseConstant + level * instance.snakeActionCostIncreaseCoefficient;
+                    return (int)((instance.snakeActionCostIncreaseConstant + level * instance.snakeActionCostIncreaseCoefficient) * itemSnakeUpgrade * passiveSnakeUpgrade[1]);
                 }
                 else
                 {
@@ -266,7 +341,7 @@ public partial class GameManager : MonoBehaviour
         {
             get
             {
-                if ( type == 2 )
+                if (type == 2)
                 {
                     return instance.snakeActionTurnIncrease;
                 }
@@ -281,7 +356,7 @@ public partial class GameManager : MonoBehaviour
         {
             get
             {
-                if ( type == 3 )
+                if (type == 3)
                 {
                     return instance.snakeExtortProbability;
                 }
@@ -296,30 +371,72 @@ public partial class GameManager : MonoBehaviour
         {
             get
             {
-                return Random.Range(instance.snakeExtortConstantRangeLower, instance.snakeExtortConstantRangeUpper) + level * Random.Range(instance.snakeExtortCoefficientRangeLower, instance.snakeExtortCoefficientRangeUpper);
+                return (int)((Random.Range(instance.snakeExtortConstantRangeLower, instance.snakeExtortConstantRangeUpper) + level * Random.Range(instance.snakeExtortCoefficientRangeLower, instance.snakeExtortCoefficientRangeUpper)) * itemSnakeUpgrade * passiveSnakeUpgrade[3]);
+            }
+        }
+
+        public void putItem(item item)
+        {
+            if (itemAttached)
+            {
+                GameManager.instance.alreadyHasItem();
+                return; // 이미 붙어 있다는 것에 대한 경고
+            }
+            if (item.type != 1)
+            {
+                GameManager.instance.itemTypeNotMatch();
+                return; // 꽃뱀용 아이템이 아니라는 것에 대한 경고
+            }
+            if (item.itemcode == 0 && item.grade != 2)
+            {
+                if (item.grade == 0)
+                {
+                    itemSnakeUpgrade = (float)1.1;
+                    itemAttached = true;
+                }
+                else if (item.grade == 1)
+                {
+                    itemSnakeUpgrade = (float)1.2;
+                    itemAttached = true;
+                }
+                return;
+            }
+            else if (item.itemcode == 1 && item.grade == 1)
+            {
+                return; // 꽃뱀 유형 변경 팝업
+            }
+            else
+            {
+                // 장착 불가능 팝업
             }
         }
 
         public Snake(int level, int type)
         {
+            itemAttached = false;
             this.level = level;
             this.type = type;
+            itemSnakeUpgrade = 1;
+
         }
     }
 
     public class Gang
     {
         bool attatched;
+        bool itemAttached;                                      //아이템이 붙어있는가
+        public bool itemUpgradeDelay;                           //공장 지연 아이템이 붙어있는가
         public int level;
         public int type;                                        //유형 번호. 0-깡딜형, 1-돈형, 2-도벽형, 3-광역형
-
+        public float itemWeaponUpgrade;                         //공격력 아이템 계수
+        public float itemMoneyUpgrade;                          //돈 아이템 계수
         public int attack
         {
             get
             {
                 int ret = 0;
                 //기본 값
-                ret += (instance.gangAttackConstant[type] + instance.gangAttackCoefficient[type] * level);
+                ret += (int)((instance.gangAttackConstant[type] + instance.gangAttackCoefficient[type] * level) * itemWeaponUpgrade);
 
                 return ret;
             }
@@ -330,17 +447,77 @@ public partial class GameManager : MonoBehaviour
         {
             get
             {
-                return instance.gangReturnMonetPerDamage[type];
+                return (int)(instance.gangReturnMonetPerDamage[type] * itemMoneyUpgrade);
             }
             set { }
+        }
+        public void putItem(item item)
+        {
+            if (itemAttached)
+            {
+                GameManager.instance.alreadyHasItem();
+                return; // 이미 붙어 있다는 것에 대한 경고
+            }
+            if (item.type != 0)
+            {
+                GameManager.instance.itemTypeNotMatch();
+                return; // 갱단용 아이템이 아니라는 것에 대한 경고
+            }
+            if (item.itemcode == 0 && item.grade != 2)
+            {
+                if (item.grade == 0)
+                {
+                    itemWeaponUpgrade = (float)1.2;
+                    itemAttached = true;
+                }
+                else if (item.grade == 1)
+                {
+                    itemWeaponUpgrade = (float)1.4;
+                    itemAttached = true;
+                }
+                return;
+            }
+            else if (item.itemcode == 1 && item.grade == 1)
+            {
+                return; // 유형 변경 팝업
+            }
+            else if (item.itemcode == 2)
+            {
+                if (item.grade == 0)
+                {
+                    itemMoneyUpgrade = (float)1.2;
+                    itemAttached = true;
+                }
+                else if (item.grade == 1)
+                {
+                    itemUpgradeDelay = true;
+                    itemAttached = true;
+                }
+                return;
+            }
+            else
+            {
+                return; // 장착 불가능 아이템
+            }
         }
 
         public Gang(int level, int type)
         {
             attatched = false;
+            itemAttached = false;
+            itemUpgradeDelay = false;
             this.level = level;
             this.type = type;
+            itemWeaponUpgrade = 1;
+            itemMoneyUpgrade = 1;
         }
+    }
+
+    public class item
+    {
+        public int type;                                    //0 - 사기꾼용, 1 - 꽃뱀용, 2 - 갱단용
+        public int grade;                                   //등급 0 - 일반, 1 - 레어, 2 - 레전
+        public int itemcode;                                //아이템 하는 일 0 - 강화, 1 - 유형 변경, 2 - 기타
     }
 
     /// <summary>유닛을 붙일 수 있는지 확인</summary>
@@ -387,7 +564,7 @@ public partial class GameManager : MonoBehaviour
     /// <summary>데이터 상에서 유닛을 이동</summary>
     public void AttatchUnit(Job kindOfUnit, int unitIndex, int slotIndex)
     {
-        switch(kindOfUnit)
+        switch (kindOfUnit)
         {
             case Job.crook:
                 ConsumeStamina(unitAttatchStaminaDecrease);
@@ -457,7 +634,7 @@ public partial class GameManager : MonoBehaviour
     /// <summary>붙인 유닛을 뗌</summary>
     public void RetireUnit(Job kindOfUnit, int index)
     {
-        switch(kindOfUnit)
+        switch (kindOfUnit)
         {
             case Job.crook:
                 ConsumeStamina(unitRetireStaminaDecrease);
@@ -480,19 +657,19 @@ public partial class GameManager : MonoBehaviour
         UnitsManager.instance.UpdateRichMoneyChange();
     }
 
-    
-    
+
+
 
     public void CrookReroll()
     {
         sellingCrooks = new List<Crook>();
-        for (int i=0; i<crookStoreSellingNumber; i++)
+        for (int i = 0; i < crookStoreSellingNumber; i++)
         {
             sellingCrooks.Add(new Crook(Random.Range(2 * crookAverageLevel - crookMaxLevel, crookMaxLevel), Random.Range(0, crookAttributes.Count)));
         }
         StoreManager.instance.showStoreCrooks();
         StoreManager.instance.isCrookBuyed = new List<bool>();
-        for (int i=0; i<crookStoreSellingNumber; i++)
+        for (int i = 0; i < crookStoreSellingNumber; i++)
         {
             StoreManager.instance.isCrookBuyed.Add(false);
         }
@@ -525,7 +702,7 @@ public partial class GameManager : MonoBehaviour
     }
     void FactoryBehavior()
     {
-        for (int i=0; i<factories.Length; i++)
+        for (int i = 0; i < factories.Length; i++)
         {
             if (factories[i] != null && factories[i].isUpgrade)
             {
@@ -559,7 +736,7 @@ public partial class GameManager : MonoBehaviour
             {
                 factories[pos].isUpgrade = true;
             }
-            
+
         }
         else
         {
