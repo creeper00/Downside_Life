@@ -7,7 +7,6 @@ public class UnitListItem : MonoBehaviour
 {
     [HideInInspector]
     public int index;
-    public GameManager.Job job;
 
     /// <summary>스크롤 뷰의 한 슬롯에 유닛 정보들을 표시</summary>
     public void SetUnitInformation(int index, GameManager.Crook crook)

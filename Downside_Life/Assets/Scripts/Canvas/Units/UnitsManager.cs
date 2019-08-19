@@ -20,6 +20,8 @@ public class UnitsManager : MonoBehaviour
     Transform crookListItemPrefab, snakeListItemPrefab, gangListItemPrefab, factoryPrefab;
     [SerializeField]
     private GameObject unitContents;
+    //[SerializeField]          //씬 충돌 나지 않도록 나중에 주석 해제할 것
+    private Transform itemPrefab;
     [SerializeField]
     private GameObject itemContents;
     [SerializeField]
@@ -103,15 +105,22 @@ public class UnitsManager : MonoBehaviour
         ResetItemScrollView();
         itemContents.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.crookItems.Count * 80, 0, 0);
         int index = 0;
-
-
-        foreach (var unit in GameManager.instance.crooks)
+        foreach(var item in GameManager.instance.crookItems)
         {
-            var listItemObject = Instantiate(crookListItemPrefab, unitContents.transform);
-            var crookItemList = listItemObject.GetComponent<UnitListItem>();
-            crookItemList.SetUnitInformation(index, unit);
+            var listItemObject = Instantiate(itemPrefab, itemContents.transform);
+            var crookItemListItem = listItemObject.GetComponent<ItemListItem>();
+            crookItemListItem.SetItemInformation(index, item);
             ++index;
         }
+    }
+
+    public void ShowSnakeItems()
+    {
+
+    }
+
+    public void ShowGangItems()
+    {
 
     }
 
@@ -154,15 +163,15 @@ public class UnitsManager : MonoBehaviour
         {
             case Tabs.crook:
                 ShowCrooks();
-
+                ShowCrookItems();
                 break;
             case Tabs.snake:
                 ShowSnakes();
-
+                ShowSnakeItems();
                 break;
             case Tabs.gang:
                 ShowGangs();
-
+                ShowGangItems();
                 break;
         }
     }

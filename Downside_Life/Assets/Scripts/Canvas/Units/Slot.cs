@@ -53,6 +53,7 @@ public class Slot : MonoBehaviour, IDropHandler
             GameManager.instance.AttatchUnit(kindOfUnit, UnitDragHandler.itemBeingDraggedIndex, slotIndex);     //데이터 상으로 유닛을 이동
             if (UnitDragHandler.unitBeingDragged != null ) Destroy(UnitDragHandler.unitBeingDragged);           //드래그하던 아이콘 오브젝트 파괴
             
+            //유닛 스크롤 뷰 갱신
             switch(kindOfUnit)
             {
                 case GameManager.Job.crook:
