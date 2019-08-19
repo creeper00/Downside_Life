@@ -81,7 +81,7 @@ public partial class GameManager : MonoBehaviour
         GotoMainButton.GetComponent<Image>().color = new Color32(162, 162, 162, 255);
         richMoney = richInitialMoney;
         playerMoney = 0;
-        ResourceManage();
+        //ResourceManage();
         playerSalary = 100;
         richSalary = -100;
     }
@@ -95,6 +95,7 @@ public partial class GameManager : MonoBehaviour
         crookAttributes = new List<string>();
         snakes = new List<Snake>();
         gangs = new List<Gang>();
+        ResourceManage();
     }
 
 
