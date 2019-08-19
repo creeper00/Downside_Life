@@ -19,7 +19,9 @@ public class UnitsManager : MonoBehaviour
     [SerializeField]
     Transform crookListItemPrefab, snakeListItemPrefab, gangListItemPrefab, factoryPrefab;
     [SerializeField]
-    GameObject contents;
+    private GameObject unitContents;
+    [SerializeField]
+    private GameObject itemContents;
     [SerializeField]
     GameObject factory1, factory2, factory3;
 
@@ -37,9 +39,9 @@ public class UnitsManager : MonoBehaviour
         gangBookmarkPosition = gangBookmark.transform.position;
     }
 
-    public void ResetScrollView()
+    private void ResetUnitScrollView()
     {
-        foreach (Transform child in contents.GetComponent<Transform>())
+        foreach (Transform child in unitContents.GetComponent<Transform>())
         {
             Destroy(child.gameObject);
         }
@@ -48,12 +50,12 @@ public class UnitsManager : MonoBehaviour
     /// <summary>스크롤 뷰를 사기꾼 목록으로 만들고 갱신함</summary>
     public void ShowCrooks()
     {
-        ResetScrollView();
-        contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.crooks.Count * 140, 0);
+        ResetUnitScrollView();
+        unitContents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.crooks.Count * 140, 0);
         int index = 0;
         foreach (var unit in GameManager.instance.crooks)
         {
-            var listItemObject = Instantiate(crookListItemPrefab, contents.transform);
+            var listItemObject = Instantiate(crookListItemPrefab, unitContents.transform);
             var crookItemList = listItemObject.GetComponent<UnitListItem>();
             crookItemList.SetUnitInformation(index, unit);
             ++index;
@@ -62,12 +64,12 @@ public class UnitsManager : MonoBehaviour
 
     public void ShowSnakes()
     {
-        ResetScrollView();
-        contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.snakes.Count * 140, 0);
+        ResetUnitScrollView();
+        unitContents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.snakes.Count * 140, 0);
         int index = 0;
         foreach (var unit in GameManager.instance.snakes)
         {
-            var listItemObject = Instantiate(snakeListItemPrefab, contents.transform);
+            var listItemObject = Instantiate(snakeListItemPrefab, unitContents.transform);
             var snakeItemList = listItemObject.GetComponent<UnitListItem>();
             snakeItemList.SetUnitInformation(index, unit);
             ++index;
@@ -76,16 +78,41 @@ public class UnitsManager : MonoBehaviour
 
     public void ShowGangs()
     {
-        ResetScrollView();
-        contents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.gangs.Count * 140, 0);
+        ResetUnitScrollView();
+        unitContents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.gangs.Count * 140, 0);
         int index = 0;
         foreach (var unit in GameManager.instance.gangs)
         {
-            var listItemObject = Instantiate(gangListItemPrefab, contents.transform);
+            var listItemObject = Instantiate(gangListItemPrefab, unitContents.transform);
             var gangItemList = listItemObject.GetComponent<UnitListItem>();
             gangItemList.SetUnitInformation(index, unit);
             ++index;
         }
+    }
+
+    private void ResetItemScrollView()
+    {
+        foreach (Transform child in itemContents.GetComponent<Transform>())
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    public void ShowCrookItems()
+    {
+        ResetItemScrollView();
+        itemContents.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.crookItems.Count * 80, 0, 0);
+        int index = 0;
+
+
+        foreach (var unit in GameManager.instance.crooks)
+        {
+            var listItemObject = Instantiate(crookListItemPrefab, unitContents.transform);
+            var crookItemList = listItemObject.GetComponent<UnitListItem>();
+            crookItemList.SetUnitInformation(index, unit);
+            ++index;
+        }
+
     }
 
     public void DeleteSlot(Tabs tab, int slotIndex)

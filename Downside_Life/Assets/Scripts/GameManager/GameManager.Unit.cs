@@ -5,15 +5,21 @@ using UnityEngine;
 
 public partial class GameManager : MonoBehaviour
 {
+    [HideInInspector]
     public List<Crook> crooks;
     public List<Crook> sellingCrooks;
     public Crook[] attatchedCrooks = new Crook[3];
+    public List<Item> crookItems;
+
     public List<Snake> snakes;
     public List<Snake> sellingSnakes;
     public Snake[] attatchedSnakes = new Snake[3];
+    public List<Item> snakeItems;
+
     public List<Gang> gangs;
     public List<Gang> sellingGangs;
     public Gang[] attatchedGangs = new Gang[3];
+    public List<Item> gangItems;
 
     public int crookTechRichPercentageIncrease;
     public int crookTechConstantIncrease;
@@ -246,7 +252,7 @@ public partial class GameManager : MonoBehaviour
             set { }
         }
 
-        public void putItem(item item)
+        public void putItem(Item item)
         {
             if (itemAttached)
             {
@@ -375,7 +381,7 @@ public partial class GameManager : MonoBehaviour
             }
         }
 
-        public void putItem(item item)
+        public void putItem(Item item)
         {
             if (itemAttached)
             {
@@ -451,7 +457,7 @@ public partial class GameManager : MonoBehaviour
             }
             set { }
         }
-        public void putItem(item item)
+        public void putItem(Item item)
         {
             if (itemAttached)
             {
@@ -513,12 +519,7 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
-    public class item
-    {
-        public int type;                                    //0 - 사기꾼용, 1 - 꽃뱀용, 2 - 갱단용
-        public int grade;                                   //등급 0 - 일반, 1 - 레어, 2 - 레전
-        public int itemcode;                                //아이템 하는 일 0 - 강화, 1 - 유형 변경, 2 - 기타
-    }
+    
 
     /// <summary>유닛을 붙일 수 있는지 확인</summary>
     public bool CanAttatchUnit(Job kindOfUnit, int slotIndex)

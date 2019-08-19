@@ -6,19 +6,18 @@ using UnityEngine.EventSystems;
 
 public class UnitDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField]
     private static GameObject canvas;
-    [HideInInspector]
     public static GameObject unitBeingDragged;
-    [HideInInspector]
     public static int itemBeingDraggedIndex;
-    private Color32 halfTransparentColor = new Color32(255, 255, 255, 128);
+    private Color32 halfTransparentColor;
 
     //private Transform initialParent;
 
     void Awake()
     {
         canvas = GameObject.Find("UnitsCanvas");
+        unitBeingDragged = null;
+        halfTransparentColor = new Color32(255, 255, 255, 128);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
