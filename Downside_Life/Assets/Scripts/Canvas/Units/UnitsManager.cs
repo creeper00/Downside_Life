@@ -53,7 +53,7 @@ public class UnitsManager : MonoBehaviour
     public void ShowCrooks()
     {
         ResetUnitScrollView();
-        unitContents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.crooks.Count * 140, 0);
+        unitContents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.crooks.Count * 120 - 510, 0);
         int index = 0;
         foreach (var unit in GameManager.instance.crooks)
         {
@@ -67,7 +67,7 @@ public class UnitsManager : MonoBehaviour
     public void ShowSnakes()
     {
         ResetUnitScrollView();
-        unitContents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.snakes.Count * 140, 0);
+        unitContents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.snakes.Count * 120 - 510, 0);
         int index = 0;
         foreach (var unit in GameManager.instance.snakes)
         {
@@ -81,7 +81,7 @@ public class UnitsManager : MonoBehaviour
     public void ShowGangs()
     {
         ResetUnitScrollView();
-        unitContents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.gangs.Count * 140, 0);
+        unitContents.GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.gangs.Count * 120 - 510, 0);
         int index = 0;
         foreach (var unit in GameManager.instance.gangs)
         {

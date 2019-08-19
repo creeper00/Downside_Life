@@ -23,7 +23,10 @@ public class ItemSlot : MonoBehaviour, IDropHandler
     }
 
     public void OnDrop(PointerEventData eventData)
-    {
-        //if ( ItemDragHandler.itemBeingDragged != null && GameManager.instance.CanAttachItem )
+    {/*
+        if ( ItemDragHandler.itemBeingDragged != null && GameManager.instance.CanAttachItem )
+        {
+
+        }*/
     }
 }
