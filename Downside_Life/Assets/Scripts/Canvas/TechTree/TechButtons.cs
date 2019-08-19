@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class TechButtons : MonoBehaviour
 {
-    [HideInInspector]
     public Technology technology;
     Text skillPoint;
     GameObject techInfo;
@@ -14,19 +13,34 @@ public class TechButtons : MonoBehaviour
     {
         techInfo = GameObject.Find("TechInfo");
     }
-    public void techUp()
+    public void TechUp()
     {
-        technology.GetComponent<Image>().color = new Color32(162, 162, 162, 255);
-        technology.isResearched = true;
-        techInfo.SetActive(false);
+        if (technology.CanResearch())
+        {
+            technology.temporaryLevel++;
+            TechManager.instance.temporaryJobSkillPoint[(int)technology.whatJob]++;
+            technology.ShowTempoaryTechnology();
+            TechManager.instance.neededMaxSkillPoint[(int)technology.whatJob] = Mathf.Max(technology.skillPointNeededNum + technology.temporaryLevel, TechManager.instance.neededMaxSkillPoint[(int)technology.whatJob]);
+            TechManager.instance.temporarySkillPoint--;
+            TechManager.instance.tier[(int)technology.whatJob] = technology.tier;
+        }
+        Debug.Log(technology.whatJob + " " + TechManager.instance.neededMaxSkillPoint[(int)technology.whatJob]);
+        TechManager.instance.ShowTemporarySkillPoint();
     }
 
-    public void techInfoClose()
+    public void TechDown()
     {
-        techInfo.SetActive(false);
+        if (TechManager.instance.CanMinusSkillLevel(technology))
+        {
+            technology.temporaryLevel--;
+            TechManager.instance.temporaryJobSkillPoint[(int)technology.whatJob]--;
+            technology.ShowTempoaryTechnology();
+            TechManager.instance.temporarySkillPoint++;
+        }
+        TechManager.instance.ShowTemporarySkillPoint();
     }
 
-    public void techSkillPointBuy()
+    public void TechSkillPointBuy()
     {
         int temp = GameManager.instance.skillPointPrice * GameManager.instance.totalSkillPoint;
         if (GameManager.instance.playerMoney > temp)

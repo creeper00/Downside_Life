@@ -138,7 +138,6 @@ public partial class GameManager : MonoBehaviour
     private void ChangeCanvas()
     {
         techTreeCanvas.SetActive(currentScreen == Screen.techtree);
-        techInfoCanvas.SetActive(currentScreen != Screen.techtree);
 
         if (currentScreen == Screen.units )
         {

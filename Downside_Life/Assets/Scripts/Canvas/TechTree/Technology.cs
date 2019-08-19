@@ -8,72 +8,50 @@ public class Technology : MonoBehaviour
     [HideInInspector]
     public bool isResearched;
     [SerializeField]
-    GameManager.Job whatJob;
+    public GameManager.Job whatJob;
     [SerializeField]
-    int skillPointNeededNum;
-    [SerializeField]
-    TechButtons yesButton, noButton;
-    [SerializeField]
-    GameObject techInfo;
+    public int skillPointNeededNum;
     int skillLevel;
     [SerializeField]
     int maxSkillLevel;
+    [HideInInspector]
+    public int temporaryLevel;
+    public int tier;
 
     public void Start()
     {
         showTechnology();
     }
-    public bool canResearch()
+    public bool CanResearch()
     {
-        switch(whatJob)
+        Debug.Log(skillPointNeededNum + " " + TechManager.instance.temporaryJobSkillPoint[(int)whatJob]);
+        
+        if (skillPointNeededNum > TechManager.instance.temporaryJobSkillPoint[(int)whatJob] || TechManager.instance.temporarySkillPoint < 1)
         {
-            case GameManager.Job.crook:
-                if (skillPointNeededNum > GameManager.instance.crookSkillPoint)
-                {
-                    return false;
-                }
-                break;
-            case GameManager.Job.gang:
-                if (skillPointNeededNum > GameManager.instance.gangSkillPoint)
-                {
-                    return false;
-                }
-                break;
-            case GameManager.Job.snake:
-                if (skillPointNeededNum > GameManager.instance.snakeSkillPoint)
-                {
-                    return false;
-                }
-                break;
-            case GameManager.Job.robber:
-                if (skillPointNeededNum > GameManager.instance.robberSkillPoint)
-                {
-                    return false;
-                }
-                break;
+            return false;
         }
         return true;
     }
+    
 
-    public void openTechInfo()
+    public void ShowTempoaryTechnology()
     {
-        if (canResearch())
-        {
-
-            techInfo.SetActive(true);
-            yesButton.technology = this;
-        }
+        transform.Find("LVText").GetComponent<Text>().text = temporaryLevel.ToString();
+        showCanTemporarySkillPoint();
     }
-
     public void showTechnology()
     {
         transform.Find("LVText").GetComponent<Text>().text = skillLevel.ToString();
         showCanSkillPoint();
-        
     }
     void showCanSkillPoint()//스킬포인트 + -를 보여주는 부분
     {
         transform.Find("Minus").gameObject.SetActive(skillLevel != 0);
         transform.Find("Plus").gameObject.SetActive(skillLevel != maxSkillLevel);
+    }
+    void showCanTemporarySkillPoint()
+    {
+        transform.Find("Minus").gameObject.SetActive(temporaryLevel != 0);
+        transform.Find("Plus").gameObject.SetActive(temporaryLevel != maxSkillLevel);
     }
 }
