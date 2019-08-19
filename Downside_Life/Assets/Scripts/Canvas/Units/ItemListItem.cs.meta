@@ -3,7 +3,25 @@ guid: 4226627ce5c199348a9d687bda252448
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - crookNormal1: {fileID: 21300000, guid: 0906dad2ab87e4c418eb94e430829bb9, type: 3}
+  - crookNormal2: {instanceID: 0}
+  - crookRare1: {instanceID: 0}
+  - crookRare2: {instanceID: 0}
+  - crookRare3: {instanceID: 0}
+  - crookLengendary: {fileID: 21300000, guid: e8349aa9c8985db4091650c09052a26d, type: 3}
+  - snakeNormal1: {instanceID: 0}
+  - snakeNormal2: {instanceID: 0}
+  - snakeRare1: {instanceID: 0}
+  - snakeRare2: {instanceID: 0}
+  - snakeLengendary: {instanceID: 0}
+  - gangNormal1: {instanceID: 0}
+  - gangNormal2: {instanceID: 0}
+  - gangNormal3: {instanceID: 0}
+  - gangRare1: {instanceID: 0}
+  - gangRare2: {instanceID: 0}
+  - gangRare3: {instanceID: 0}
+  - gangLengendary: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

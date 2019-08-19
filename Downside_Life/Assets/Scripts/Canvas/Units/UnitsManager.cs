@@ -103,7 +103,7 @@ public class UnitsManager : MonoBehaviour
     public void ShowCrookItems()
     {
         ResetItemScrollView();
-        itemContents.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.crookItems.Count * 80, 0, 0);
+        itemContents.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.crookItems.Count * 90 - 710, 0, 0);
         int index = 0;
         foreach(var item in GameManager.instance.crookItems)
         {
@@ -116,12 +116,30 @@ public class UnitsManager : MonoBehaviour
 
     public void ShowSnakeItems()
     {
-
+        ResetItemScrollView();
+        itemContents.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.snakeItems.Count * 90 - 710, 0, 0);
+        int index = 0;
+        foreach (var item in GameManager.instance.snakeItems)
+        {
+            var listItemObject = Instantiate(itemPrefab, itemContents.transform);
+            var snakeItemListItem = listItemObject.GetComponent<ItemListItem>();
+            snakeItemListItem.SetItemInformation(index, item);
+            ++index;
+        }
     }
 
     public void ShowGangItems()
     {
-
+        ResetItemScrollView();
+        itemContents.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.gangItems.Count * 90 - 710, 0, 0);
+        int index = 0;
+        foreach (var item in GameManager.instance.gangItems)
+        {
+            var listItemObject = Instantiate(itemPrefab, itemContents.transform);
+            var gangItemListItem = listItemObject.GetComponent<ItemListItem>();
+            gangItemListItem.SetItemInformation(index, item);
+            ++index;
+        }
     }
 
     public void DeleteSlot(Tabs tab, int slotIndex)

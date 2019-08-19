@@ -24,6 +24,8 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         itemBeingDragged.GetComponent<Image>().color = halfTransparentColor;
         itemBeingDragged.AddComponent<CanvasGroup>();
         itemBeingDragged.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+        itemBeingDraggedIndex = gameObject.GetComponent<UnitListItem>().index;
     }
 
     public void OnDrag(PointerEventData eventData)

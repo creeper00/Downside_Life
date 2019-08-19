@@ -195,115 +195,117 @@ public partial class GameManager : MonoBehaviour
     // 테스트
 
     public class Crook
-{
-    bool attatched;                             //부자에게 붙어 있는가
-    bool itemAttached;                          //아이템이 붙어 있는가
-    public int level;                           //사기꾼의 레벨
-    public int type;                            //유형 번호. 0-상수형, 1-계수형, 2-밸런스형, 3-호구 돈 가져오는 형
-    public float itemRichDown;                  //부자 지출 증가 아이템의 계수
-    public float itemPlayerUp;                  //사기꾼 수입 증가 아이템의 계수
-
-    public int richConstantDown                //매 턴 깎는 상수 값
     {
-        get
-        {
+        bool attatched;                             //부자에게 붙어 있는가
+        bool itemAttached;                          //아이템이 붙어 있는가
+        public int level;                           //사기꾼의 레벨
+        public int type;                            //유형 번호. 0-상수형, 1-계수형, 2-밸런스형, 3-호구 돈 가져오는 형
+        public float itemRichDown;                  //부자 지출 증가 아이템의 계수
+        public float itemPlayerUp;                  //사기꾼 수입 증가 아이템의 계수
 
-            int ret = 0;
-            //기본 수치
-            ret += (int)((GameManager.instance.crookConstantConstant[type] * level + instance.crookConstantCoefficient[type]) * itemRichDown);
-            //아이템 추가 수치
-            ret *= instance.crookTechConstantIncrease;
-            //테크트리에서 가져오는 수치
-
-            return ret;
-        }
-        set { }
-    }
-    public float richPercentageDown                             //매 턴 깎는 비율 값
-    {
-        get
+        public int richConstantDown                //매 턴 깎는 상수 값
         {
-            float ret = 0f;
-            //기본 수치
-            ret += (int)((instance.crookRateConstant[type] * level + instance.crookRateCoefficient[type]) * itemRichDown);
-            //아이템 추가 수치
-            ret *= instance.crookTechRichPercentageIncrease;
-            //테크트리에서 가져오는 수치
-
-            return ret;
-        }
-        set { }
-    }
-    public float playerPercentageUp                             //깎은 돈 중 가져오는 비율
-    {
-        get
-        {
-            float ret = 0;
-            //기본 값
-            ret += instance.crookReturn[type] * itemPlayerUp;
-            //아이템 추가 수치
-            ret *= instance.crookTechMyPercentageIncrease;
-            //테크트리에서 가져오는 수치
-
-            return ret;
-        }
-        set { }
-    }
-
-    public void putItem(Item item)
-    {
-        if (itemAttached)
-        {
-            GameManager.instance.alreadyHasItem();
-            return; // 이미 붙어 있다는 것에 대한 경고
-        }
-        if (item.type != 0)
-        {
-            GameManager.instance.itemTypeNotMatch();
-            return; // 사기꾼용 아이템이 아니라는 것에 대한 경고
-        }
-        if (item.itemcode == 0)
-        {
-            if (item.grade == 0)
+            get
             {
-                itemRichDown = (float)1.1;
+
+                int ret = 0;
+                //기본 수치
+                ret += (int)((GameManager.instance.crookConstantConstant[type] * level + instance.crookConstantCoefficient[type]) * itemRichDown);
+                //아이템 추가 수치
+                ret *= instance.crookTechConstantIncrease;
+                //테크트리에서 가져오는 수치
+
+                return ret;
             }
-            else if (item.grade == 1)
+            set { }
+        }
+        public float richPercentageDown                             //매 턴 깎는 비율 값
+        {
+            get
             {
-                itemRichDown = (float)1.2;
+                float ret = 0f;
+                //기본 수치
+                ret += (int)((instance.crookRateConstant[type] * level + instance.crookRateCoefficient[type]) * itemRichDown);
+                //아이템 추가 수치
+                ret *= instance.crookTechRichPercentageIncrease;
+                //테크트리에서 가져오는 수치
+
+                return ret;
+            }
+            set { }
+        }
+        public float playerPercentageUp                             //깎은 돈 중 가져오는 비율
+        {
+            get
+            {
+                float ret = 0;
+                //기본 값
+                ret += instance.crookReturn[type] * itemPlayerUp;
+                //아이템 추가 수치
+                ret *= instance.crookTechMyPercentageIncrease;
+                //테크트리에서 가져오는 수치
+
+                return ret;
+            }
+            set { }
+        }
+
+        public bool putItem(int itemIndex)                  //붙었으면 true, 안 붙었으면 false 반환
+        {
+            Item item = instance.crookItems[itemIndex];
+            if (itemAttached)
+            {
+                GameManager.instance.alreadyHasItem();
+                return false; // 이미 붙어 있다는 것에 대한 경고
+            }
+            if (item.type != 0)
+            {
+                GameManager.instance.itemTypeNotMatch();
+                return false; // 사기꾼용 아이템이 아니라는 것에 대한 경고
+            }
+            //붙인 유닛의 변화
+            if (item.itemCode == 0)
+            {
+                if (item.grade == 0)
+                {
+                    itemRichDown = (float)1.1;
+                }
+                else if (item.grade == 1)
+                {
+                    itemRichDown = (float)1.2;
+                }
+                else
+                {
+                    itemRichDown = (float)1.4;
+                }
+                return true;
+            }
+            else if (item.itemCode == 1 && item.grade == 1)
+            {
+                return true; // 유형 변경 팝업
+            }
+            else if (item.itemCode == 2)
+            {
+                itemPlayerUp = (float)1.1;
+                return true;
             }
             else
             {
-                itemRichDown = (float)1.4;
+                //장착 불가능 팝업
+                return false;
             }
-            return;
         }
-        else if (item.itemcode == 1 && item.grade == 1)
-        {
-            return; // 유형 변경 팝업
-        }
-        else if (item.itemcode == 2)
-        {
-            itemPlayerUp = (float)1.1;
-            return;
-        }
-        else
-        {
-            //장착 불가능 팝업
-        }
-    }
 
-    public Crook(int level, int type)
-    {
-        attatched = false;
-        itemAttached = false;
-        this.level = level;
-        this.type = type;
-        itemRichDown = 1;
-        itemPlayerUp = 1;
+        public Crook(int level, int type)
+        {
+            attatched = false;
+            itemAttached = false;
+            this.level = level;
+            this.type = type;
+            itemRichDown = 1;
+            itemPlayerUp = 1;
+        }
     }
-    
-}
 
 
     public class Snake
@@ -381,19 +383,23 @@ public partial class GameManager : MonoBehaviour
             }
         }
 
-        public void putItem(Item item)
+        public bool putItem(int itemIndex)                          //붙었으면 true, 안 붙었으면 false 반환
         {
+            Item item = instance.snakeItems[itemIndex];
             if (itemAttached)
             {
                 GameManager.instance.alreadyHasItem();
-                return; // 이미 붙어 있다는 것에 대한 경고
+                return false; // 이미 붙어 있다는 것에 대한 경고
             }
             if (item.type != 1)
             {
                 GameManager.instance.itemTypeNotMatch();
-                return; // 꽃뱀용 아이템이 아니라는 것에 대한 경고
+                return false; // 꽃뱀용 아이템이 아니라는 것에 대한 경고
             }
-            if (item.itemcode == 0 && item.grade != 2)
+            //이제 붙임
+
+            //붙인 유닛의 변화
+            if (item.itemCode == 0 && item.grade != 2)
             {
                 if (item.grade == 0)
                 {
@@ -405,15 +411,16 @@ public partial class GameManager : MonoBehaviour
                     itemSnakeUpgrade = (float)1.2;
                     itemAttached = true;
                 }
-                return;
+                return true;
             }
-            else if (item.itemcode == 1 && item.grade == 1)
+            else if (item.itemCode == 1 && item.grade == 1)
             {
-                return; // 꽃뱀 유형 변경 팝업
+                return true; // 꽃뱀 유형 변경 팝업
             }
             else
             {
                 // 장착 불가능 팝업
+                return false;
             }
         }
 
@@ -457,19 +464,22 @@ public partial class GameManager : MonoBehaviour
             }
             set { }
         }
-        public void putItem(Item item)
+        public bool putItem(int itemIndex)                          //붙었으면 true, 안 붙었으면 false 반환
         {
+            Item item = instance.gangItems[itemIndex];
             if (itemAttached)
             {
                 GameManager.instance.alreadyHasItem();
-                return; // 이미 붙어 있다는 것에 대한 경고
+                return false; // 이미 붙어 있다는 것에 대한 경고
             }
             if (item.type != 0)
             {
                 GameManager.instance.itemTypeNotMatch();
-                return; // 갱단용 아이템이 아니라는 것에 대한 경고
+                return false; // 갱단용 아이템이 아니라는 것에 대한 경고
             }
-            if (item.itemcode == 0 && item.grade != 2)
+
+            //붙인 유닛의 변화
+            if (item.itemCode == 0 && item.grade != 2)
             {
                 if (item.grade == 0)
                 {
@@ -481,13 +491,13 @@ public partial class GameManager : MonoBehaviour
                     itemWeaponUpgrade = (float)1.4;
                     itemAttached = true;
                 }
-                return;
+                return true;
             }
-            else if (item.itemcode == 1 && item.grade == 1)
+            else if (item.itemCode == 1 && item.grade == 1)
             {
-                return; // 유형 변경 팝업
+                return true; // 유형 변경 팝업
             }
-            else if (item.itemcode == 2)
+            else if (item.itemCode == 2)
             {
                 if (item.grade == 0)
                 {
@@ -499,11 +509,11 @@ public partial class GameManager : MonoBehaviour
                     itemUpgradeDelay = true;
                     itemAttached = true;
                 }
-                return;
+                return true;
             }
             else
             {
-                return; // 장착 불가능 아이템
+                return false; // 장착 불가능 아이템
             }
         }
 
