@@ -16,7 +16,6 @@ public class TechButtons : MonoBehaviour
     }
     public void techUp()
     {
-        
         technology.GetComponent<Image>().color = new Color32(162, 162, 162, 255);
         technology.isResearched = true;
         techInfo.SetActive(false);
