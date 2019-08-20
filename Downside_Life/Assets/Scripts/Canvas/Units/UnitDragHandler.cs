@@ -52,7 +52,7 @@ public class UnitDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
         */
 
-        if (unitBeingDragged != null )
+        if (unitBeingDragged != null)
         {
             Destroy(unitBeingDragged);
             unitBeingDragged = null;

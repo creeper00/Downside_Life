@@ -13,6 +13,18 @@ public class Slot : MonoBehaviour, IDropHandler
     [SerializeField]
     private int slotIndex;
 
+    UnitCheckButton unitAsk;
+    GameObject unitNew;
+    GameObject unitPopup;
+    GameObject unitPopupYesButton;
+    void Awake()
+    {
+        unitNew = GameObject.Find("Unit");
+        unitPopup = unitNew.transform.Find("UnitCheck").gameObject;
+        unitPopupYesButton = unitPopup.transform.Find("UnitCheck_yes").gameObject;
+        unitAsk = unitPopupYesButton.GetComponent<UnitCheckButton>();
+    }
+
     public GameObject item
     {
         get
@@ -31,8 +43,14 @@ public class Slot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if ( UnitDragHandler.unitBeingDragged != null && item == null && GameManager.instance.CanAttatchUnit(kindOfUnit, slotIndex))
+        unitPopup.SetActive(true);
+        unitAsk.slot = this;
+    }
+    public void B()
+    {
+        if (UnitCheckButton.showSlot == true && item == null && GameManager.instance.CanAttatchUnit(kindOfUnit, slotIndex))
         {
+            Debug.Log("sibal");
             //슬롯에 Gameobject의 Child로 Prefab을 가져다 붙임
             switch (kindOfUnit)
             {
@@ -48,10 +66,10 @@ public class Slot : MonoBehaviour, IDropHandler
             }
 
             GameManager.instance.AttatchUnit(kindOfUnit, UnitDragHandler.itemBeingDraggedIndex, slotIndex);     //데이터 상으로 유닛을 이동
-            if (UnitDragHandler.unitBeingDragged != null ) Destroy(UnitDragHandler.unitBeingDragged);           //드래그하던 아이콘 오브젝트 파괴
-            
+            if (UnitDragHandler.unitBeingDragged != null) Destroy(UnitDragHandler.unitBeingDragged);           //드래그하던 아이콘 오브젝트 파괴
+
             //유닛 스크롤 뷰 갱신
-            switch(kindOfUnit)
+            switch (kindOfUnit)
             {
                 case GameManager.Job.crook:
                     UnitsManager.instance.ShowCrooks();
@@ -64,9 +82,9 @@ public class Slot : MonoBehaviour, IDropHandler
                     break;
             }
             InitializeSlotObject();                         //슬롯에 유닛 정보를 띄움
+            UnitCheckButton.showSlot = false;
         }
     }
-
     /// <summary>슬롯에 유닛 정보를 띄움</summary>
     private void InitializeSlotObject()
     {
