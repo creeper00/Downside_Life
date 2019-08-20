@@ -5,6 +5,36 @@ using UnityEngine.UI;
 
 public class Technology : MonoBehaviour
 {
+    enum Upgrade
+    {
+        ratioIncrease,
+        constantIncrease,
+        // Crook
+        desperateControlIncrease, // 절박함 억제력 증가
+        richCostIncrease,
+        desperateDecrease,
+        // Snake
+        attackIncrease,
+        particularAttributeAttackIncrease,
+        attachGangIncrease,
+        // Gang
+        itemFloor, // 아이템 층에 아이템만 나오게 함
+        minMoneyIncrease,
+        successPercentageIncrease,
+        itemUnlock, // rareItem, Factory...
+        staminaDecrease,
+        stealAgain,
+        calander,
+        // Thief
+        rerollNumIncrease,
+        incomeIncrease,
+        priceDecrease,
+        attributeUnlock,
+        expandSlot,
+        minLevelIncrease
+        //Common
+
+    }
     [HideInInspector]
     public bool isResearched;
     [SerializeField]
@@ -17,6 +47,10 @@ public class Technology : MonoBehaviour
     [HideInInspector]
     public int temporaryLevel;
     public int tier;
+    [SerializeField]
+    Upgrade upgrade;
+    [SerializeField]
+    List<int> values;
 
     public void Start()
     {
@@ -54,6 +88,53 @@ public class Technology : MonoBehaviour
     public void confirmSkillLevel()
     {
         skillLevel = temporaryLevel;
+        switch (upgrade)
+        {
+            case Upgrade.attachGangIncrease:
+                break;
+            case Upgrade.attackIncrease:
+                break;
+            case Upgrade.attributeUnlock:
+                break;
+            case Upgrade.calander:
+                break;
+            case Upgrade.constantIncrease:
+                GameManager.instance.crookTechConstantIncrease = 1 + values[skillLevel] / 100;
+                break;
+            case Upgrade.desperateControlIncrease:
+                break;
+            case Upgrade.desperateDecrease:
+                break;
+            case Upgrade.expandSlot:
+                break;
+            case Upgrade.incomeIncrease:
+                break;
+            case Upgrade.itemFloor:
+                break;
+            case Upgrade.itemUnlock:
+                break;
+            case Upgrade.minLevelIncrease:
+                break;
+            case Upgrade.minMoneyIncrease:
+                break;
+            case Upgrade.particularAttributeAttackIncrease:
+                break;
+            case Upgrade.priceDecrease:
+                break;
+            case Upgrade.ratioIncrease:
+                GameManager.instance.crookTechRichPercentageIncrease = 1 + values[skillLevel] / 100;
+                break;
+            case Upgrade.rerollNumIncrease:
+                break;
+            case Upgrade.richCostIncrease:
+                break;
+            case Upgrade.staminaDecrease:
+                break;
+            case Upgrade.stealAgain:
+                break;
+            case Upgrade.successPercentageIncrease:
+                break;
+        }
     }
     public void ResetSkillLevel()
     {

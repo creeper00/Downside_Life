@@ -21,8 +21,8 @@ public partial class GameManager : MonoBehaviour
     public Gang[] attatchedGangs = new Gang[3];
     public List<Item> gangItems;
 
-    public int crookTechRichPercentageIncrease;
-    public int crookTechConstantIncrease;
+    public float crookTechRichPercentageIncrease;
+    public float crookTechConstantIncrease;
     public int crookTechMyPercentageIncrease;
 
     public List<string> crookAttributes, snakeAttributes, gangAttributes;
@@ -213,14 +213,14 @@ public partial class GameManager : MonoBehaviour
             get
             {
 
-                int ret = 0;
+                float ret = 0;
                 //기본 수치
-                ret += (int)((GameManager.instance.crookConstantConstant[type] * level + instance.crookConstantCoefficient[type]) * itemRichDown);
+                ret += (GameManager.instance.crookConstantConstant[type] * level + instance.crookConstantCoefficient[type]) * itemRichDown);
                 //아이템 추가 수치
                 ret *= instance.crookTechConstantIncrease;
                 //테크트리에서 가져오는 수치
 
-                return ret;
+                return (int)ret;
             }
             set { }
         }

@@ -4833,6 +4833,8 @@ MonoBehaviour:
   - {fileID: 510465371}
   - {fileID: 902816990}
   confirmInfo: {fileID: 1235054081}
+  changeCanvas: 0
+  screen: 0
   skillPointText: {fileID: 21829324}
 --- !u!1001 &246087560
 PrefabInstance:
@@ -11402,6 +11404,11 @@ PrefabInstance:
       propertyPath: whatJob
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: maxSkillLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8254486848621272634, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11914,7 +11921,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1e-45, y: 1e-45, z: 7.5592e-41, w: 0.23828125}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
