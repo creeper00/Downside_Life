@@ -62,5 +62,9 @@ public class TechButtons : MonoBehaviour
     {
         confirmInfo.SetActive(false);
         TechManager.instance.ResetSkillPoint();
+        if (TechManager.instance.changeCanvas)
+        {
+            GameManager.instance.ChangeScreen(TechManager.instance.screen);
+        }
     }
 }
