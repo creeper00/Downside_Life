@@ -23,8 +23,8 @@ public class UnitListItem : MonoBehaviour
         }
         statusText += " 사기꾼";
         transform.Find("Status").GetComponent<Text>().text = statusText;
-        transform.Find("Attack").GetComponent<Text>().text = crook.richConstantDown + " + " + crook.richPercentageDown + "%";
-        transform.Find("Return").GetComponent<Text>().text = crook.playerPercentageUp + "%";
+        transform.Find("Attack").GetComponent<Text>().text = crook.GetRichConstantDown() + " + " + crook.GetRichRatioDown() + "%";
+        transform.Find("Return").GetComponent<Text>().text = crook.GetMoneyUp() + "%";
     }
 
     public void SetUnitInformation(int index, GameManager.Snake snake)
@@ -45,10 +45,10 @@ public class UnitListItem : MonoBehaviour
         string attributeText = "";
         switch (snake.type)
         {
-            case 0: attributeText += "부자의 절박함 증가량 " + snake.snakeDesperateDown + "% 만큼 감소"; break;
-            case 1: attributeText += "부자의 행동 비용 " + snake.snakeActionCostIncrease + "억 원 증가"; break;
-            case 2: attributeText += "부자의 행동 주기 " + snake.snakeActionTurnIncrease + "턴 증가"; break;
-            case 3: attributeText += snake.snakeExtortProbability + "%의 확률로 환금형 아이템 획득"; break;
+            case 0: attributeText += "부자의 절박함 증가량 " + snake.GetDesperateControl() + "% 만큼 감소"; break;
+            case 1: attributeText += "부자의 행동 비용 " + snake.GetBehaviorCostIncrease() + "억 원 증가"; break;
+            case 2: attributeText += "부자의 행동 주기 " + snake.RichCycleIncrease() + "턴 증가"; break;
+            case 3: attributeText += snake.GetItemPercentage() + "%의 확률로 환금형 아이템 획득"; break;
         }
 
         transform.Find("Attribute").GetComponent<Text>().text = attributeText;

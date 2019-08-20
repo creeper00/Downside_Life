@@ -25,92 +25,32 @@ public partial class GameManager : MonoBehaviour
     public float crookTechConstantIncrease;
     public int crookTechMyPercentageIncrease;
 
-    public List<string> crookAttributes, snakeAttributes, gangAttributes;
+    public List<string> crooktypes, snaketypes, gangtypes;
 
     [Header("공장")]
-
     [HideInInspector]
     public Factory[] factories;
     [SerializeField]
     public List<int> factoryHealthPerLevel, factoryValue, factoryIncome;
     bool isFirstBuilt = true;
 
-    [Header("사기꾼 상수 값")]
     [SerializeField]
-    private int[] crookConstantConstant = new int[4];                   //사기꾼이 가져오는 상수 값에서 레벨이 제곱되는 횟수
+    List<float> crookConstantInit, crookConstantPerLevel, crookConstantItems, crookRatioInit, crookRatioPerLevel, crookRatioItems, crookMoneyInit, crookMoneyPerLevel, crookMoneyItems;
     [SerializeField]
-    private int[] crookConstantCoefficient = new int[4];                //사기꾼에 곱해지는 값
+    float crookConstantTech, crookRatioTech, crookMoneyTech;
+    [SerializeField]
+    float desConInit, desConPerLevel, desConTech, itemPercentInit, itemPercentPerLevel, itemPercentTech, behaviorCostInit, behaviorCostPerLevel, behaviorCostTech;
+    
 
-    [Header("사기꾼 계수 값")]
     [SerializeField]
-    private float[] crookRateConstant = new float[4];                   //사기꾼이 가져오는 계수 값에서 레벨이 제곱되는 횟수
-    [SerializeField]
-    private float[] crookRateCoefficient = new float[4];                //사기꾼이 가져오는 계수 값에서 배율
+    int unitAttatchStaminaDecrease, unitRetireStaminaDecrease;
 
-    [Header("사기꾼 가져오는 비율")]
     [SerializeField]
-    private float[] crookReturn = new float[4];                          //사기꾼이 가져온 돈에서 플레이어 돈에 추가하는 비율
-
-    [Header("사기꾼 아이템 계수")]
+    public int crookStoreSellingNumber, snakeStoreSellingNumber, gangStoreSellingNumber;
     [SerializeField]
-    private float[] crookWeaponAttack = new float[3];                   // 사기꾼에 무기 아이템을 붙였을 때, 적용되는 공격력 증가량, 0 = 노말, 1 = 레어, 2 = 레전드리.
-    private float crookMoreMoneyItem;                                   // 사기꾼에 들고 오는 돈 증가 아이템(돈주머니) 붙였을 때, 적용되는 들고 오는 돈 증가량.
-    [Header("둔감형 꽃뱀")]
-    [SerializeField]
-    private float snakeDesperateDownConstant;
-    [SerializeField]
-    private float snakeDesperateDownCoefficient;
-
-    [Header("낭비형 꽃뱀")]
-    [SerializeField]
-    private int snakeActionCostIncreaseConstant;
-    [SerializeField]
-    private int snakeActionCostIncreaseCoefficient;
-
-    [Header("둔화형 꽃뱀")]
-    [SerializeField]
-    private int snakeActionTurnIncrease;
-
-    [Header("갈취형 꽃뱀")]
-    [SerializeField]
-    private int snakeExtortProbability;
-    [SerializeField]
-    private int snakeExtortConstantRangeUpper, snakeExtortConstantRangeLower;
-    [SerializeField]
-    private int snakeExtortCoefficientRangeUpper, snakeExtortCoefficientRangeLower;
-
-    [Header("갱단 공격력")]
-    [SerializeField]
-    private int[] gangAttackConstant = new int[4];
-    [SerializeField]
-    private int[] gangAttackCoefficient = new int[4];
-    [SerializeField]
-    private int[] gangReturnMonetPerDamage = new int[4];
-
-    [Header("기타 유닛 관리 관련 값")]
-    [SerializeField]
-    private int unitAttatchStaminaDecrease;
-    [SerializeField]
-    private int unitRetireStaminaDecrease;
+    int crookMinLevel, crookMaxLevel, snakeMinLevel, snakeMaxLevel, gangMinLevel, gangMaxLevel;
 
 
-    [Header("전체적인 특성")]
-    [SerializeField]
-    public int crookStoreSellingNumber;
-    [SerializeField]
-    public int gangStoreSellingNumber;
-    [SerializeField]
-    public int snakeStoreSellingNumber;
-    [HideInInspector]
-    public int crookAverageLevel, crookMaxLevel;
-    List<string> crookAttribute;                //나올 확률은 동일
-    [HideInInspector]
-    public int snakeAverageLevel, snakeMaxLevel;
-    List<string> snakeAttribute;
-
-    [HideInInspector]
-    public int gangAverageLevel, gangMaxLevel;
-    List<string> gangAttribute;
 
     public class Factory
     {
@@ -200,195 +140,132 @@ public partial class GameManager : MonoBehaviour
 
     public class Crook
     {
-        bool attatched;                             //부자에게 붙어 있는가
-        bool itemAttached;                          //아이템이 붙어 있는가
-        public int level;                           //사기꾼의 레벨
-        public int type;                            //유형 번호. 0-상수형, 1-계수형, 2-밸런스형, 3-호구 돈 가져오는 형
-        public float itemRichDown;                  //부자 지출 증가 아이템의 계수
-        public float itemPlayerUp;                  //사기꾼 수입 증가 아이템의 계수
+        public int level;
+        public int type;
+        Item item;
 
-        
-        public int richConstantDown                //매 턴 깎는 상수 값
+        public float GetRichConstantDown()
         {
-            get
+            float itemRatio = 0;
+            if (item.itemCode == 0)
             {
-
-                float ret = 0;
-                //기본 수치
-                ret += (GameManager.instance.crookConstantConstant[type] * level + instance.crookConstantCoefficient[type]) * itemRichDown;
-                //아이템 추가 수치
-                ret *= instance.crookTechConstantIncrease;
-                //테크트리에서 가져오는 수치
-
-                return (int)ret;
+                itemRatio = instance.crookConstantItems[item.grade];
             }
-            set { }
+            return (instance.crookConstantInit[type] + level * instance.crookConstantPerLevel[type]) * instance.crookConstantTech * itemRatio;
         }
-        public float richPercentageDown                             //매 턴 깎는 비율 값
+        public float GetRichRatioDown()
         {
-            get
+            float itemRatio = 0;
+            if (item.itemCode == 0)
             {
-                float ret = 0f;
-                //기본 수치
-                ret += (int)((instance.crookRateConstant[type] * level + instance.crookRateCoefficient[type]) * itemRichDown);
-                //아이템 추가 수치
-                ret *= instance.crookTechRichPercentageIncrease;
-                //테크트리에서 가져오는 수치
-
-                return ret;
+                itemRatio = instance.crookRatioItems[item.grade];
             }
-            set { }
+            return (instance.crookConstantInit[type] + level * instance.crookConstantPerLevel[type]) * instance.crookConstantTech * itemRatio;
         }
-        public float playerPercentageUp                             //깎은 돈 중 가져오는 비율
+        public float GetMoneyUp()
         {
-            get
+            float itemRatio = 0;
+            if (item.itemCode == 0)
             {
-                float ret = 0;
-                //기본 값
-                ret += instance.crookReturn[type] * itemPlayerUp;
-                //아이템 추가 수치
-                ret *= instance.crookTechMyPercentageIncrease;
-                //테크트리에서 가져오는 수치
-
-                return ret;
+                itemRatio = instance.crookMoneyItems[item.grade];
             }
-            set { }
+            return (instance.crookConstantInit[type] + level * instance.crookConstantPerLevel[type]) * instance.crookConstantTech * itemRatio;
         }
-
         public bool putItem(int itemIndex)                  //붙었으면 true, 안 붙었으면 false 반환
         {
             Item item = instance.crookItems[itemIndex];
-            if (itemAttached)
-            {
-                GameManager.instance.alreadyHasItem();
-                return false; // 이미 붙어 있다는 것에 대한 경고
-            }
-            if (item.type != 0)
-            {
-                GameManager.instance.itemTypeNotMatch();
-                return false; // 사기꾼용 아이템이 아니라는 것에 대한 경고
-            }
-            //붙인 유닛의 변화
-            if (item.itemCode == 0)
-            {
-                if (item.grade == 0)
-                {
-                    itemRichDown = instance.crookWeaponAttack[0];
-                }
-                else if (item.grade == 1)
-                {
-                    itemRichDown = instance.crookWeaponAttack[1];
-                }
-                else
-                {
-                    itemRichDown = instance.crookWeaponAttack[2];
-                }
-                return true;
-            }
-            else if (item.itemCode == 1 && item.grade == 1)
-            {
-                return true; // 유형 변경 팝업
-            }
-            else if (item.itemCode == 2)
-            {
-                itemPlayerUp = (float)1.1;
-                return true;
-            }
-            else
-            {
-                //장착 불가능 팝업
+            if (item != null) {
+                instance.alreadyHasItem();
                 return false;
+            } else if (item.type != 0) {
+                instance.itemTypeNotMatch();
+                return false;
+            } else {
+                this.item = item;
+                return true;
             }
         }
 
         public Crook(int level, int type)
         {
-            attatched = false;
-            itemAttached = false;
             this.level = level;
             this.type = type;
-            itemRichDown = 1;
-            itemPlayerUp = 1;
         }
     }
 
 
     public class Snake
     {
-        bool itemAttached;                                          //아이템이 붙어있는가
+        bool attached;
+        bool itemAttached;
         public int level;
-        public int type;                                            //0-둔감형-절박함 억제, 1-낭비형-부자 행동 비용 증가, 2-둔화형-부자 행동 주기 증가, 3-갈취형-돈 아이템 가져옴
-        public float itemSnakeUpgrade;                              //아이템의 꽃뱀 능력 업그레이드 계수
-        public static float[] passiveSnakeUpgrade = new float[4];   //특성 강화 패시브 아이템 효과
+        public int type; // 0 = 절박함 증가 억제, 1 = 환금형 아이템, 2 = 행동 비용 증가, 3 = 행동 주기 증가, 4 = 만렙 특성
+        Item item;
 
-        public float snakeDesperateDown
+        public float GetDesperateControl()
         {
-            get
+            float temp = 0;
+            for (int i=0; i<instance.snakeItems.Count; i++)
             {
-                if (type == 0)
+                if (instance.snakeItems[i].itemCode == 0 && instance.snakeItems[i].grade == 2)
                 {
-                    return (instance.snakeDesperateDownConstant + level * instance.snakeDesperateDownCoefficient) * (itemSnakeUpgrade + passiveSnakeUpgrade[0]);
-                }
-                else
-                {
-                    return 0;
+                    temp += 0.3f;
                 }
             }
-        }
-
-        public int snakeActionCostIncrease
-        {
-            get
+            float ret = (instance.desConInit + instance.desConPerLevel * level + instance.desConTech) * ((item.itemCode == 0) ? (item.grade == 0 ? 1.1f : 1.3f) : 1f) + temp;
+            if (type != 0)
             {
-                if (type == 1)
+                ret = 0;
+            }
+            return ret;
+        }
+        public float GetItemPercentage()
+        {
+            float temp = 0;
+            for (int i=0; i<instance.snakeItems.Count; i++)
+            {
+                if (instance.snakeItems[i].itemCode == 1 && instance.snakeItems[i].grade == 2)
                 {
-                    return (int)((instance.snakeActionCostIncreaseConstant + level * instance.snakeActionCostIncreaseCoefficient) * (itemSnakeUpgrade * passiveSnakeUpgrade[1]));
-                }
-                else
-                {
-                    return 0;
+                    temp += 0.3f;
                 }
             }
-        }
-
-        public int snakeActionTurnIncrease
-        {
-            get
+            float ret = (instance.itemPercentInit + instance.itemPercentPerLevel * level + instance.itemPercentTech) * ((item.itemCode == 0) ? (item.grade == 0 ? 1.1f : 1.3f) : 1f) + temp;
+            if (type != 1)
             {
-                if (type == 2)
+                ret = 0;
+            }
+            return ret;
+        }
+        public float GetBehaviorCostIncrease()
+        {
+            float temp = 0;
+            for (int i=0; i<instance.snakeItems.Count; i++)
+            {
+                if (instance.snakeItems[i].itemCode == 2 && instance.snakeItems[i].grade == 2)
                 {
-                    return instance.snakeActionTurnIncrease;
-                }
-                else
-                {
-                    return 0;
+                    temp += 0.3f;
                 }
             }
-        }
-
-        public float snakeExtortProbability
-        {
-            get
+            float ret = (instance.behaviorCostInit + instance.behaviorCostPerLevel * level + instance.behaviorCostTech) * ((item.itemCode == 0) ? (item.grade == 0 ? 1.1f : 1.3f) : 1f) + temp;
+            if (type != 2)
             {
-                if (type == 3)
-                {
-                    return instance.snakeExtortProbability;
-                }
-                else
-                {
-                    return 0;
-                }
+                ret = 0;
             }
+            return ret;
         }
 
-        public int snakeExtortCost
+        public int RichCycleIncrease()
         {
-            get
+            if (type != 3)
             {
-                return (int)((Random.Range(instance.snakeExtortConstantRangeLower, instance.snakeExtortConstantRangeUpper) + level * Random.Range(instance.snakeExtortCoefficientRangeLower, instance.snakeExtortCoefficientRangeUpper)) * (itemSnakeUpgrade + passiveSnakeUpgrade[3]));
+                return 0;
             }
+            if (type == 4)
+            {
+                return 4;
+            }
+            return 1;
         }
-
         public bool putItem(int itemIndex)                          //붙었으면 true, 안 붙었으면 false 반환
         {
             Item item = instance.snakeItems[itemIndex];
@@ -402,75 +279,25 @@ public partial class GameManager : MonoBehaviour
                 GameManager.instance.itemTypeNotMatch();
                 return false; // 꽃뱀용 아이템이 아니라는 것에 대한 경고
             }
-            //이제 붙임
-
-            //붙인 유닛의 변화
-            if (item.itemCode == 0 && item.grade != 2)
-            {
-                if (item.grade == 0)
-                {
-                    itemSnakeUpgrade = (float)1.1;
-                    itemAttached = true;
-                }
-                else if (item.grade == 1)
-                {
-                    itemSnakeUpgrade = (float)1.2;
-                    itemAttached = true;
-                }
-                return true;
-            }
-            else if (item.itemCode == 1 && item.grade == 1)
+            if (item.itemCode == 1 && item.grade == 1)
             {
                 return true; // 꽃뱀 유형 변경 팝업
             }
-            else
-            {
-                // 장착 불가능 팝업
-                return false;
-            }
+            return false;
         }
-
         public Snake(int level, int type)
         {
-            itemAttached = false;
             this.level = level;
             this.type = type;
-            itemSnakeUpgrade = 1;
-
         }
     }
 
     public class Gang
     {
-        bool attatched;
-        bool itemAttached;                                      //아이템이 붙어있는가
-        public bool itemUpgradeDelay;                           //공장 지연 아이템이 붙어있는가
-        public int level;
-        public int type;                                        //유형 번호. 0-깡딜형, 1-돈형, 2-도벽형, 3-광역형
-        public float itemWeaponUpgrade;                         //공격력 아이템 계수
-        public float itemMoneyUpgrade;                          //돈 아이템 계수
-        public int attack
-        {
-            get
-            {
-                int ret = 0;
-                //기본 값
-                ret += (int)((instance.gangAttackConstant[type] + instance.gangAttackCoefficient[type] * level) * itemWeaponUpgrade);
-
-                return ret;
-            }
-            set { }
-        }
-
-        public int returnMoney
-        {
-            get
-            {
-                return (int)(instance.gangReturnMonetPerDamage[type] * itemMoneyUpgrade);
-            }
-            set { }
-        }
-        public bool putItem(int itemIndex)                          //붙었으면 true, 안 붙었으면 false 반환
+        public int attack, returnMoney;
+        public int level, type;
+        bool itemAttached;
+        public bool PutItem(int itemIndex)                          //붙었으면 true, 안 붙었으면 false 반환
         {
             Item item = instance.gangItems[itemIndex];
             if (itemAttached)
@@ -478,64 +305,26 @@ public partial class GameManager : MonoBehaviour
                 GameManager.instance.alreadyHasItem();
                 return false; // 이미 붙어 있다는 것에 대한 경고
             }
-            if (item.type != 0)
+            if (item.type != 2)
             {
                 GameManager.instance.itemTypeNotMatch();
                 return false; // 갱단용 아이템이 아니라는 것에 대한 경고
             }
-
-            //붙인 유닛의 변화
-            if (item.itemCode == 0 && item.grade != 2)
+            if (item.itemCode == 1 && item.grade == 1)
             {
-                if (item.grade == 0)
-                {
-                    itemWeaponUpgrade = (float)1.2;
-                    itemAttached = true;
-                }
-                else if (item.grade == 1)
-                {
-                    itemWeaponUpgrade = (float)1.4;
-                    itemAttached = true;
-                }
                 return true;
             }
-            else if (item.itemCode == 1 && item.grade == 1)
-            {
-                return true; // 유형 변경 팝업
-            }
-            else if (item.itemCode == 2)
-            {
-                if (item.grade == 0)
-                {
-                    itemMoneyUpgrade = (float)1.2;
-                    itemAttached = true;
-                }
-                else if (item.grade == 1)
-                {
-                    itemUpgradeDelay = true;
-                    itemAttached = true;
-                }
-                return true;
-            }
-            else
-            {
-                return false; // 장착 불가능 아이템
-            }
+            return false;
         }
 
         public Gang(int level, int type)
         {
-            attatched = false;
-            itemAttached = false;
-            itemUpgradeDelay = false;
             this.level = level;
             this.type = type;
-            itemWeaponUpgrade = 1;
-            itemMoneyUpgrade = 1;
         }
     }
 
-    
+
 
     /// <summary>유닛을 붙일 수 있는지 확인</summary>
     public bool CanAttatchUnit(Job kindOfUnit, int slotIndex)
@@ -682,7 +471,7 @@ public partial class GameManager : MonoBehaviour
         sellingCrooks = new List<Crook>();
         for (int i = 0; i < crookStoreSellingNumber; i++)
         {
-            sellingCrooks.Add(new Crook(Random.Range(2 * crookAverageLevel - crookMaxLevel, crookMaxLevel), Random.Range(0, crookAttributes.Count)));
+            sellingCrooks.Add(new Crook(Random.Range(crookMinLevel, crookMaxLevel), Random.Range(0, crooktypes.Count)));
         }
         StoreManager.instance.showStoreCrooks();
         StoreManager.instance.isCrookBuyed = new List<bool>();
@@ -696,7 +485,7 @@ public partial class GameManager : MonoBehaviour
         sellingSnakes = new List<Snake>();
         for (int i = 0; i < snakeStoreSellingNumber; i++)
         {
-            sellingSnakes.Add(new Snake(Random.Range(2 * snakeAverageLevel - snakeMaxLevel, snakeMaxLevel), Random.Range(0, snakeAttributes.Count)));
+            sellingSnakes.Add(new Snake(Random.Range(snakeMinLevel, snakeMaxLevel), Random.Range(0, snaketypes.Count)));
         }
         StoreManager.instance.showStoreSnakes(); StoreManager.instance.isSnakeBuyed = new List<bool>();
         for (int i = 0; i < snakeStoreSellingNumber; i++)
@@ -709,7 +498,7 @@ public partial class GameManager : MonoBehaviour
         sellingGangs = new List<Gang>();
         for (int i = 0; i < gangStoreSellingNumber; i++)
         {
-            sellingGangs.Add(new Gang(Random.Range(2 * gangAverageLevel - gangMaxLevel, gangMaxLevel), Random.Range(0, gangAttributes.Count)));
+            sellingGangs.Add(new Gang(Random.Range(gangMinLevel, gangMaxLevel), Random.Range(0, gangtypes.Count)));
         }
         StoreManager.instance.showStoreGangs(); StoreManager.instance.isGangBuyed = new List<bool>();
         for (int i = 0; i < gangStoreSellingNumber; i++)
