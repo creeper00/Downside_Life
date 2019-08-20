@@ -13,12 +13,17 @@ public class TechManager : MonoBehaviour
     [SerializeField]
     public List<Technology> crookTechnologies, snakeTechnologies, gangTechnologies, thiefTechnologies;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         instance = this;
         tier = new int[4];
         temporaryJobSkillPoint = new int[4];
         neededMaxSkillPoint = new int[4];
+    }
+
+    private void Start()
+    {
+
         ShowSkillPoint();
     }
     [SerializeField]
@@ -30,42 +35,74 @@ public class TechManager : MonoBehaviour
         switch(job)
         {
             case GameManager.Job.crook:
+                tier[(int)job] = -1;
                 for (int i=0; i<crookTechnologies.Count; i++)
                 {
-                    if (crookTechnologies[i].temporaryLevel != 0)
+                    if (tier[(int)job] < crookTechnologies[i].tier && crookTechnologies[i].temporaryLevel > 0)
                     {
-                        tier[(int)job] = Mathf.Max(tier[(int)job], crookTechnologies[i].tier);
-                        temp = Mathf.Max(temp, crookTechnologies[i].skillPointNeededNum + crookTechnologies[i].temporaryLevel);
+                        tier[(int)job] = crookTechnologies[i].tier;
+                        temp = crookTechnologies[i].skillPointNeededNum;
+                    }
+                }
+                for (int i=0; i<crookTechnologies.Count; i++)
+                {
+                    if (crookTechnologies[i].tier == tier[(int)job])
+                    {
+                        temp += crookTechnologies[i].temporaryLevel;
                     }
                 }
                 break;
             case GameManager.Job.gang:
+                tier[(int)job] = -1;
                 for (int i = 0; i < gangTechnologies.Count; i++)
                 {
-                    if (gangTechnologies[i].temporaryLevel != 0)
+                    if (tier[(int)job] < gangTechnologies[i].tier && gangTechnologies[i].temporaryLevel > 0)
                     {
-                        tier[(int)job] = Mathf.Max(tier[(int)job], gangTechnologies[i].tier);
-                        temp = Mathf.Max(temp, gangTechnologies[i].skillPointNeededNum + gangTechnologies[i].temporaryLevel);
+                        tier[(int)job] = gangTechnologies[i].tier;
+                        temp = gangTechnologies[i].skillPointNeededNum;
+                    }
+                }
+                for (int i = 0; i < gangTechnologies.Count; i++)
+                {
+                    if (gangTechnologies[i].tier == tier[(int)job])
+                    {
+                        temp += gangTechnologies[i].temporaryLevel;
                     }
                 }
                 break;
             case GameManager.Job.robber:
+                tier[(int)job] = -1;
                 for (int i = 0; i < thiefTechnologies.Count; i++)
                 {
-                    if (thiefTechnologies[i].temporaryLevel != 0)
+                    if (tier[(int)job] < thiefTechnologies[i].tier && thiefTechnologies[i].temporaryLevel > 0)
                     {
-                        tier[(int)job] = Mathf.Max(tier[(int)job], thiefTechnologies[i].tier);
-                        temp = Mathf.Max(temp, thiefTechnologies[i].skillPointNeededNum + thiefTechnologies[i].temporaryLevel);
+                        tier[(int)job] = thiefTechnologies[i].tier;
+                        temp = thiefTechnologies[i].skillPointNeededNum;
+                    }
+                }
+                for (int i = 0; i < thiefTechnologies.Count; i++)
+                {
+                    if (thiefTechnologies[i].tier == tier[(int)job])
+                    {
+                        temp += thiefTechnologies[i].temporaryLevel;
                     }
                 }
                 break;
             case GameManager.Job.snake:
+                tier[(int)job] = -1;
                 for (int i = 0; i < snakeTechnologies.Count; i++)
                 {
-                    if (snakeTechnologies[i].temporaryLevel != 0)
+                    if (tier[(int)job] < snakeTechnologies[i].tier && snakeTechnologies[i].temporaryLevel > 0)
                     {
-                        tier[(int)job] = Mathf.Max(tier[(int)job], snakeTechnologies[i].tier);
-                        temp = Mathf.Max(temp, snakeTechnologies[i].skillPointNeededNum + snakeTechnologies[i].temporaryLevel);
+                        tier[(int)job] = snakeTechnologies[i].tier;
+                        temp = snakeTechnologies[i].skillPointNeededNum;
+                    }
+                }
+                for (int i = 0; i < snakeTechnologies.Count; i++)
+                {
+                    if (snakeTechnologies[i].tier == tier[(int)job])
+                    {
+                        temp += snakeTechnologies[i].temporaryLevel;
                     }
                 }
                 break;
@@ -84,11 +121,12 @@ public class TechManager : MonoBehaviour
     }
     public bool CanMinusSkillLevel(Technology technology)
     {
+        int temp = CheckMaxNeededSkillPoint(technology.whatJob);
         if (technology.tier == tier[(int)technology.whatJob])
         {
             return true;
         }
-        if (CheckMaxNeededSkillPoint(technology.whatJob) == temporaryJobSkillPoint[(int)technology.whatJob])
+        if (temp == temporaryJobSkillPoint[(int)technology.whatJob])
         {
             return false;
         }
@@ -96,16 +134,54 @@ public class TechManager : MonoBehaviour
     }
     public void ConfirmSkillPoint()
     {
+        //crookTechnology랑 다른거의 카운트가 같기때문에 for문 하나로 통일
+        for (int i=0; i<crookTechnologies.Count; i++)
+        {
+            crookTechnologies[i].confirmSkillLevel();
+            gangTechnologies[i].confirmSkillLevel();
+            snakeTechnologies[i].confirmSkillLevel();
+            thiefTechnologies[i].confirmSkillLevel();
+            crookTechnologies[i].showTechnology();
+            gangTechnologies[i].showTechnology();
+            snakeTechnologies[i].showTechnology();
+            thiefTechnologies[i].showTechnology();
+        }
         for (int i=0; i<4; i++)
         {
             GameManager.instance.jobSkillPoint[i] = temporaryJobSkillPoint[i];
         }
+        GameManager.instance.skillPoint = temporarySkillPoint;
+        skillPointText.color = new Color32(0, 0, 0, 255);
     }
-
+    public void ResetSkillPoint()
+    {
+        for (int i=0; i<crookTechnologies.Count; i++)
+        {
+            crookTechnologies[i].ResetSkillLevel();
+        }
+        for (int i=0; i<4; i++)
+        {
+            temporaryJobSkillPoint[i] = GameManager.instance.jobSkillPoint[i];
+        }
+        temporarySkillPoint = GameManager.instance.skillPoint;
+        skillPointText.color = new Color32(0, 0, 0, 255);
+    }
     public void BuySkillPoint()
     {
         GameManager.instance.skillPoint++;
         temporarySkillPoint++;
         ShowTemporarySkillPoint();
+        TechManager.instance.ShowCanSkillPoint();
+    }
+
+    public void ShowCanSkillPoint()
+    {
+        for (int i=0; i<crookTechnologies.Count; i++)
+        {
+            crookTechnologies[i].ShowTempoaryTechnology();
+            snakeTechnologies[i].ShowTempoaryTechnology();
+            gangTechnologies[i].ShowTempoaryTechnology();
+            thiefTechnologies[i].ShowTempoaryTechnology();
+        }
     }
 }

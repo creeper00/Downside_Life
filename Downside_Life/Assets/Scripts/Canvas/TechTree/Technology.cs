@@ -11,7 +11,7 @@ public class Technology : MonoBehaviour
     public GameManager.Job whatJob;
     [SerializeField]
     public int skillPointNeededNum;
-    int skillLevel;
+    public int skillLevel;
     [SerializeField]
     int maxSkillLevel;
     [HideInInspector]
@@ -32,8 +32,6 @@ public class Technology : MonoBehaviour
         }
         return true;
     }
-    
-
     public void ShowTempoaryTechnology()
     {
         transform.Find("LVText").GetComponent<Text>().text = temporaryLevel.ToString();
@@ -46,12 +44,21 @@ public class Technology : MonoBehaviour
     }
     void showCanSkillPoint()//스킬포인트 + -를 보여주는 부분
     {
-        transform.Find("Minus").gameObject.SetActive(skillLevel != 0);
-        transform.Find("Plus").gameObject.SetActive(skillLevel != maxSkillLevel);
+        Debug.Log(CanResearch() + "tier : " + tier);
+        transform.Find("Minus").gameObject.SetActive(skillLevel != temporaryLevel);
+        transform.Find("Plus").gameObject.SetActive(TechManager.instance.temporarySkillPoint > 0 && skillLevel != maxSkillLevel && (CanResearch() || TechManager.instance.tier[(int)whatJob] == tier));
     }
     void showCanTemporarySkillPoint()
     {
-        transform.Find("Minus").gameObject.SetActive(temporaryLevel != 0);
-        transform.Find("Plus").gameObject.SetActive(temporaryLevel != maxSkillLevel);
+        transform.Find("Minus").gameObject.SetActive(temporaryLevel != skillLevel);
+        transform.Find("Plus").gameObject.SetActive(TechManager.instance.temporarySkillPoint > 0 && temporaryLevel != maxSkillLevel && (CanResearch() || TechManager.instance.tier[(int)whatJob] == tier));
+    }
+    public void confirmSkillLevel()
+    {
+        skillLevel = temporaryLevel;
+    }
+    public void ResetSkillLevel()
+    {
+        temporaryLevel = skillLevel;
     }
 }

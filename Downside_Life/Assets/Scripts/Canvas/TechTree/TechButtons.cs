@@ -26,11 +26,12 @@ public class TechButtons : MonoBehaviour
         }
         Debug.Log(technology.whatJob + " " + TechManager.instance.neededMaxSkillPoint[(int)technology.whatJob]);
         TechManager.instance.ShowTemporarySkillPoint();
+        TechManager.instance.ShowCanSkillPoint();
     }
 
     public void TechDown()
     {
-        if (TechManager.instance.CanMinusSkillLevel(technology))
+        if (TechManager.instance.CanMinusSkillLevel(technology) && technology.skillLevel < technology.temporaryLevel)
         {
             technology.temporaryLevel--;
             TechManager.instance.temporaryJobSkillPoint[(int)technology.whatJob]--;
@@ -38,6 +39,7 @@ public class TechButtons : MonoBehaviour
             TechManager.instance.temporarySkillPoint++;
         }
         TechManager.instance.ShowTemporarySkillPoint();
+        TechManager.instance.ShowCanSkillPoint();
     }
 
     public void TechSkillPointBuy()
