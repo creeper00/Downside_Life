@@ -15,6 +15,9 @@ public class TechManager : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     GameObject confirmInfo;
+
+    public bool changeCanvas = false;
+    public GameManager.Screen screen;
     void Awake()
     {
         instance = this;
@@ -154,6 +157,11 @@ public class TechManager : MonoBehaviour
         GameManager.instance.skillPoint = temporarySkillPoint;
         skillPointText.color = new Color32(0, 0, 0, 255);
         confirmInfo.SetActive(false);
+        if (changeCanvas)
+        {
+            GameManager.instance.ChangeScreen(screen);
+            changeCanvas = false;
+        }
     }
     public void ResetSkillPoint()
     {
@@ -210,6 +218,18 @@ public class TechManager : MonoBehaviour
     }
     public void OpenConfirmInfo()
     {
-        confirmInfo.SetActive(true);
+        if (isDifferent())
+        {
+            confirmInfo.SetActive(true);
+        }
+    }
+    public void OpenConfirmInfo(bool changeCanvas, GameManager.Screen screen)
+    {
+        if (isDifferent())
+        {
+            confirmInfo.SetActive(true);
+            this.changeCanvas = changeCanvas;
+            this.screen = screen;
+        }
     }
 }

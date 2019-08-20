@@ -101,10 +101,9 @@ public partial class GameManager : MonoBehaviour
 
     public void ChangeScreen(Screen screen)
     {
-        Debug.Log("???");
         if (currentScreen == Screen.techtree && TechManager.instance.isDifferent())
         {
-            TechManager.instance.OpenConfirmInfo();
+            TechManager.instance.OpenConfirmInfo(true, screen);
             return;
         }
         //폴더 창 위아래로 옮이기
