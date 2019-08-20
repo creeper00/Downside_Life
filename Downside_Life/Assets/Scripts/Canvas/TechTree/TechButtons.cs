@@ -8,6 +8,8 @@ public class TechButtons : MonoBehaviour
     public Technology technology;
     Text skillPoint;
     GameObject techInfo;
+    [SerializeField]
+    GameObject confirmInfo;
 
     private void Start()
     {
@@ -24,7 +26,6 @@ public class TechButtons : MonoBehaviour
             TechManager.instance.temporarySkillPoint--;
             TechManager.instance.tier[(int)technology.whatJob] = technology.tier;
         }
-        Debug.Log(technology.whatJob + " " + TechManager.instance.neededMaxSkillPoint[(int)technology.whatJob]);
         TechManager.instance.ShowTemporarySkillPoint();
         TechManager.instance.ShowCanSkillPoint();
     }
@@ -55,5 +56,11 @@ public class TechButtons : MonoBehaviour
         {
             //스킬포인트 구매 돈 모자람
         }
+    }
+
+    public void CloseConfirmInfo()
+    {
+        confirmInfo.SetActive(false);
+        TechManager.instance.ResetSkillPoint();
     }
 }

@@ -24,7 +24,6 @@ public class Technology : MonoBehaviour
     }
     public bool CanResearch()
     {
-        Debug.Log(skillPointNeededNum + " " + TechManager.instance.temporaryJobSkillPoint[(int)whatJob]);
         
         if (skillPointNeededNum > TechManager.instance.temporaryJobSkillPoint[(int)whatJob] || TechManager.instance.temporarySkillPoint < 1)
         {
@@ -44,7 +43,6 @@ public class Technology : MonoBehaviour
     }
     void showCanSkillPoint()//스킬포인트 + -를 보여주는 부분
     {
-        Debug.Log(CanResearch() + "tier : " + tier);
         transform.Find("Minus").gameObject.SetActive(skillLevel != temporaryLevel);
         transform.Find("Plus").gameObject.SetActive(TechManager.instance.temporarySkillPoint > 0 && skillLevel != maxSkillLevel && (CanResearch() || TechManager.instance.tier[(int)whatJob] == tier));
     }

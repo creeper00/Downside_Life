@@ -13,6 +13,8 @@ public class TechManager : MonoBehaviour
     [SerializeField]
     public List<Technology> crookTechnologies, snakeTechnologies, gangTechnologies, thiefTechnologies;
     // Start is called before the first frame update
+    [SerializeField]
+    GameObject confirmInfo;
     void Awake()
     {
         instance = this;
@@ -107,7 +109,6 @@ public class TechManager : MonoBehaviour
                 }
                 break;
         }
-        Debug.Log(temp);
         return temp;
     }
     public void ShowSkillPoint()
@@ -152,19 +153,30 @@ public class TechManager : MonoBehaviour
         }
         GameManager.instance.skillPoint = temporarySkillPoint;
         skillPointText.color = new Color32(0, 0, 0, 255);
+        confirmInfo.SetActive(false);
     }
     public void ResetSkillPoint()
     {
-        for (int i=0; i<crookTechnologies.Count; i++)
+        for (int i = 0; i < crookTechnologies.Count; i++)
         {
             crookTechnologies[i].ResetSkillLevel();
+            gangTechnologies[i].ResetSkillLevel();
+            snakeTechnologies[i].ResetSkillLevel();
+            thiefTechnologies[i].ResetSkillLevel();
         }
+        CheckMaxNeededSkillPoint(GameManager.Job.crook);
+        CheckMaxNeededSkillPoint(GameManager.Job.gang);
+        CheckMaxNeededSkillPoint(GameManager.Job.snake);
+        CheckMaxNeededSkillPoint(GameManager.Job.robber);
         for (int i=0; i<4; i++)
         {
             temporaryJobSkillPoint[i] = GameManager.instance.jobSkillPoint[i];
         }
         temporarySkillPoint = GameManager.instance.skillPoint;
         skillPointText.color = new Color32(0, 0, 0, 255);
+        
+        ShowSkillPoint();
+        ShowCanSkillPoint();
     }
     public void BuySkillPoint()
     {
@@ -183,5 +195,21 @@ public class TechManager : MonoBehaviour
             gangTechnologies[i].ShowTempoaryTechnology();
             thiefTechnologies[i].ShowTempoaryTechnology();
         }
+    }
+
+    public bool isDifferent()
+    {
+        for (int i=0; i<4; i++)
+        {
+            if (temporaryJobSkillPoint[i] != GameManager.instance.jobSkillPoint[i])
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public void OpenConfirmInfo()
+    {
+        confirmInfo.SetActive(true);
     }
 }

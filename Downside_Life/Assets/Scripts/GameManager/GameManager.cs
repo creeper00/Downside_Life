@@ -101,6 +101,12 @@ public partial class GameManager : MonoBehaviour
 
     public void ChangeScreen(Screen screen)
     {
+        Debug.Log("???");
+        if (currentScreen == Screen.techtree && TechManager.instance.isDifferent())
+        {
+            TechManager.instance.OpenConfirmInfo();
+            return;
+        }
         //폴더 창 위아래로 옮이기
         if ( currentScreen == Screen.main && screen != Screen.main )            //위로 들기
         {
@@ -137,11 +143,9 @@ public partial class GameManager : MonoBehaviour
 
     private void ChangeCanvas()
     {
-        techTreeCanvas.SetActive(currentScreen == Screen.techtree);
 
-        if (currentScreen == Screen.units )
+        if (currentScreen == Screen.units)
         {
-
             unitsCanvas.SetActive(true);
             UnitsManager.instance.ChangeTab(UnitsManager.Tabs.crook);
         }
@@ -150,6 +154,7 @@ public partial class GameManager : MonoBehaviour
             unitsCanvas.SetActive(false);
         }
 
+        techTreeCanvas.SetActive(currentScreen == Screen.techtree);
         storeCanvas.SetActive(currentScreen == Screen.store);
         richHouse.SetActive(currentScreen == Screen.richHouse);
         richHouseCanvas.SetActive(currentScreen >= Screen.richHouse);
