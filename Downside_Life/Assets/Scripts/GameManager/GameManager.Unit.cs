@@ -51,6 +51,10 @@ public partial class GameManager : MonoBehaviour
     [SerializeField]
     private float[] crookReturn = new float[4];                          //사기꾼이 가져온 돈에서 플레이어 돈에 추가하는 비율
 
+    [Header("사기꾼 아이템 계수")]
+    [SerializeField]
+    private float[] crookWeaponAttack = new float[3];                   // 사기꾼에 무기 아이템을 붙였을 때, 적용되는 공격력 증가량, 0 = 노말, 1 = 레어, 2 = 레전드리.
+    private float crookMoreMoneyItem;                                   // 사기꾼에 들고 오는 돈 증가 아이템(돈주머니) 붙였을 때, 적용되는 들고 오는 돈 증가량.
     [Header("둔감형 꽃뱀")]
     [SerializeField]
     private float snakeDesperateDownConstant;
@@ -203,6 +207,7 @@ public partial class GameManager : MonoBehaviour
         public float itemRichDown;                  //부자 지출 증가 아이템의 계수
         public float itemPlayerUp;                  //사기꾼 수입 증가 아이템의 계수
 
+        
         public int richConstantDown                //매 턴 깎는 상수 값
         {
             get
@@ -268,15 +273,15 @@ public partial class GameManager : MonoBehaviour
             {
                 if (item.grade == 0)
                 {
-                    itemRichDown = (float)1.1;
+                    itemRichDown = instance.crookWeaponAttack[0];
                 }
                 else if (item.grade == 1)
                 {
-                    itemRichDown = (float)1.2;
+                    itemRichDown = instance.crookWeaponAttack[1];
                 }
                 else
                 {
-                    itemRichDown = (float)1.4;
+                    itemRichDown = instance.crookWeaponAttack[2];
                 }
                 return true;
             }
@@ -315,13 +320,14 @@ public partial class GameManager : MonoBehaviour
         public int type;                                            //0-둔감형-절박함 억제, 1-낭비형-부자 행동 비용 증가, 2-둔화형-부자 행동 주기 증가, 3-갈취형-돈 아이템 가져옴
         public float itemSnakeUpgrade;                              //아이템의 꽃뱀 능력 업그레이드 계수
         public static float[] passiveSnakeUpgrade = new float[4];   //특성 강화 패시브 아이템 효과
+
         public float snakeDesperateDown
         {
             get
             {
                 if (type == 0)
                 {
-                    return (instance.snakeDesperateDownConstant + level * instance.snakeDesperateDownCoefficient) * itemSnakeUpgrade * passiveSnakeUpgrade[0];
+                    return (instance.snakeDesperateDownConstant + level * instance.snakeDesperateDownCoefficient) * (itemSnakeUpgrade + passiveSnakeUpgrade[0]);
                 }
                 else
                 {
@@ -336,7 +342,7 @@ public partial class GameManager : MonoBehaviour
             {
                 if (type == 1)
                 {
-                    return (int)((instance.snakeActionCostIncreaseConstant + level * instance.snakeActionCostIncreaseCoefficient) * itemSnakeUpgrade * passiveSnakeUpgrade[1]);
+                    return (int)((instance.snakeActionCostIncreaseConstant + level * instance.snakeActionCostIncreaseCoefficient) * (itemSnakeUpgrade * passiveSnakeUpgrade[1]));
                 }
                 else
                 {
@@ -379,7 +385,7 @@ public partial class GameManager : MonoBehaviour
         {
             get
             {
-                return (int)((Random.Range(instance.snakeExtortConstantRangeLower, instance.snakeExtortConstantRangeUpper) + level * Random.Range(instance.snakeExtortCoefficientRangeLower, instance.snakeExtortCoefficientRangeUpper)) * itemSnakeUpgrade * passiveSnakeUpgrade[3]);
+                return (int)((Random.Range(instance.snakeExtortConstantRangeLower, instance.snakeExtortConstantRangeUpper) + level * Random.Range(instance.snakeExtortCoefficientRangeLower, instance.snakeExtortCoefficientRangeUpper)) * (itemSnakeUpgrade + passiveSnakeUpgrade[3]));
             }
         }
 
