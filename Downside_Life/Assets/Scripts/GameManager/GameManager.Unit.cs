@@ -215,7 +215,7 @@ public partial class GameManager : MonoBehaviour
 
                 float ret = 0;
                 //기본 수치
-                ret += (GameManager.instance.crookConstantConstant[type] * level + instance.crookConstantCoefficient[type]) * itemRichDown);
+                ret += (GameManager.instance.crookConstantConstant[type] * level + instance.crookConstantCoefficient[type]) * itemRichDown;
                 //아이템 추가 수치
                 ret *= instance.crookTechConstantIncrease;
                 //테크트리에서 가져오는 수치
