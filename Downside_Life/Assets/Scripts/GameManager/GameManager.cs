@@ -123,7 +123,7 @@ public partial class GameManager : MonoBehaviour
         GotoTechTreeButton.transform.position += new Vector3(0, (currentScreen == Screen.techtree) ? 4 : 0, 0);
         GotoUnitsButton.transform.position += new Vector3(0, (currentScreen == Screen.units) ? 4 : 0, 0);
         GotoStoreButton.transform.position += new Vector3(0, (currentScreen == Screen.store) ? 4 : 0, 0);
-        GotoRichHouseButton.transform.position += new Vector3(0, (currentScreen == Screen.richHouse) ? 4 : 0, 0);
+        GotoRichHouseButton.transform.position += new Vector3(0, (currentScreen == Screen.richHouse || currentScreen == Screen.firstFloor || currentScreen == Screen.secondFloor || currentScreen == Screen.thirdFloor || currentScreen == Screen.fourthFloor || currentScreen == Screen.fifthFloor) ? 4 : 0, 0);
 
         GotoTechTreeButton.transform.position += new Vector3(0, (screen == Screen.techtree) ? -4 : 0, 0);
         GotoUnitsButton.transform.position += new Vector3(0, (screen == Screen.units) ? -4 : 0, 0);
