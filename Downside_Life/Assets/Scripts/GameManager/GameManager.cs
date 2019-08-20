@@ -109,19 +109,11 @@ public partial class GameManager : MonoBehaviour
         //폴더 창 위아래로 옮이기
         if ( currentScreen == Screen.main && screen != Screen.main )            //위로 들기
         {
-            FolderUI.transform.position = new Vector3(640, 360 + folderUpYAxis, 0);
-            techTreeCanvas.transform.position = new Vector3(640, 360, 0);
-            unitsCanvas.transform.position = new Vector3(640, 360, 0);
-            storeCanvas.transform.position = new Vector3(640, 360, 0);
-            richHouseCanvas.transform.position = new Vector3(640, 360, 0);
+            StartCoroutine(showFolderSlowly());
         }
         else if (currentScreen != Screen.main && screen == Screen.main)         //아래로 내리기
         {
-            FolderUI.transform.position = new Vector3(640, 360 + folderDownYAxis, 0);
-            techTreeCanvas.transform.position = new Vector3(640, 360 - folderMoveYDistance, 0);
-            unitsCanvas.transform.position = new Vector3(640, 360 - folderMoveYDistance, 0);
-            storeCanvas.transform.position = new Vector3(640, 360 - folderMoveYDistance, 0);
-            richHouseCanvas.transform.position = new Vector3(640, 360 - folderMoveYDistance, 0);
+            StartCoroutine(endFolderSlowly());
         }
 
         //폴더 북마크 조정하기
@@ -139,7 +131,31 @@ public partial class GameManager : MonoBehaviour
 
         ChangeCanvas();
     }
-
+    private IEnumerator showFolderSlowly()
+    {
+        for(int i = 0; i <= 10; i++)
+        {
+            FolderUI.transform.position = new Vector3(640, -170 + folderUpYAxis + 53 *i, 0);
+            techTreeCanvas.transform.position = new Vector3(640, -170 + 53*i, 0);
+            unitsCanvas.transform.position = new Vector3(640, -170 + 53 * i, 0);
+            storeCanvas.transform.position = new Vector3(640, -170 + 53 * i, 0);
+            richHouseCanvas.transform.position = new Vector3(640, -170 + 53 * i, 0);
+            yield return new WaitForSeconds(0.02f);
+        }
+    }
+    
+    private IEnumerator endFolderSlowly()
+    {
+        for(int i = 0; i <= 10; i++)
+        {
+            FolderUI.transform.position = new Vector3(640, 520 - folderMoveYDistance * i / 10, 0);
+            techTreeCanvas.transform.position = new Vector3(640, 360 - folderMoveYDistance * i / 10, 0);
+            unitsCanvas.transform.position = new Vector3(640, 360 - folderMoveYDistance * i / 10, 0);
+            storeCanvas.transform.position = new Vector3(640, 360 - folderMoveYDistance * i / 10, 0);
+            richHouseCanvas.transform.position = new Vector3(640, 360 - folderMoveYDistance * i / 10, 0);
+            yield return new WaitForSeconds(0.02f);
+        }
+    }
     private void ChangeCanvas()
     {
 
