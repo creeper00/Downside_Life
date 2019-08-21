@@ -33,6 +33,7 @@ public partial class GameManager : MonoBehaviour
                 break;
         }
     }
+    
     void EventManage()
     {
         if (richDesperate > addFactoryFix)

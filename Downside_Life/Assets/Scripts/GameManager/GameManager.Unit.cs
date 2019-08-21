@@ -21,8 +21,7 @@ public partial class GameManager : MonoBehaviour
     public Gang[] attatchedGangs = new Gang[3];
     public List<Item> gangItems;
     
-
-    public List<string> crooktypes, snaketypes, gangtypes;
+    
 
     [Header("공장")]
     [HideInInspector]
@@ -37,6 +36,8 @@ public partial class GameManager : MonoBehaviour
     public List<float> crookConstantInit, crookConstantPerLevel, crookAttackItems, crookRatioInit, crookRatioPerLevel, crookMoneyInit, crookMoneyItems, crookUnitCostInit, crookUnitCostPerLevel;
     [SerializeField]
     public float crookConstantTech, crookRatioTech, crookMoneyTech;
+
+    
     [Header("꽃뱀")]
 
     [SerializeField]
@@ -51,8 +52,8 @@ public partial class GameManager : MonoBehaviour
     [Header("전체적인 특성")]
 
     [SerializeField]
-    public int unitAttatchStaminaDecrease, unitRetireStaminaDecrease;
-
+    public int unitAttatchStaminaDecrease, unitRetireStaminaDecrease, crookRerollCost, gangRerollCost, snakeRerollCost;
+    public List<int> crookType, snakeType, gangType;
     [SerializeField]
     public int crookStoreSellingNumber, snakeStoreSellingNumber, gangStoreSellingNumber;
     [SerializeField]
@@ -565,10 +566,15 @@ public partial class GameManager : MonoBehaviour
 
     public void CrookReroll()
     {
+        if (crookRerollCost > instance.playerMoney)
+        {
+            //리롤 돈 부족
+            return;
+        }
         sellingCrooks = new List<Crook>();
         for (int i = 0; i < crookStoreSellingNumber; i++)
         {
-            sellingCrooks.Add(new Crook(Random.Range(crookMinLevel, crookMaxLevel), Random.Range(0, 4)));
+            sellingCrooks.Add(new Crook(Random.Range(crookMinLevel, crookMaxLevel), crookType[Random.Range(0, crookType.Count)]));
         }
         StoreManager.instance.showStoreCrooks();
         StoreManager.instance.isCrookBuyed = new List<bool>();
@@ -576,32 +582,45 @@ public partial class GameManager : MonoBehaviour
         {
             StoreManager.instance.isCrookBuyed.Add(false);
         }
+        instance.playerMoney -= crookRerollCost;
     }
     public void SnakeReroll()
     {
+        if (snakeRerollCost > instance.playerMoney)
+        {
+            //리롤 돈 부족
+            return;
+        }
         sellingSnakes = new List<Snake>();
         for (int i = 0; i < snakeStoreSellingNumber; i++)
         {
-            sellingSnakes.Add(new Snake(Random.Range(snakeMinLevel, snakeMaxLevel), Random.Range(0, 4)));
+            sellingSnakes.Add(new Snake(Random.Range(snakeMinLevel, snakeMaxLevel), snakeType[Random.Range(0, snakeType.Count)]));
         }
         StoreManager.instance.showStoreSnakes(); StoreManager.instance.isSnakeBuyed = new List<bool>();
         for (int i = 0; i < snakeStoreSellingNumber; i++)
         {
             StoreManager.instance.isSnakeBuyed.Add(false);
         }
+        instance.playerMoney -= snakeRerollCost;
     }
     public void GangReroll()
     {
+        if (gangRerollCost > instance.playerMoney)
+        {
+            //리롤 돈 부족
+            return;
+        }
         sellingGangs = new List<Gang>();
         for (int i = 0; i < gangStoreSellingNumber; i++)
         {
-            sellingGangs.Add(new Gang(Random.Range(gangMinLevel, gangMaxLevel), Random.Range(0, 3)));
+            sellingGangs.Add(new Gang(Random.Range(gangMinLevel, gangMaxLevel), gangType[Random.Range(0, gangType.Count)]));
         }
         StoreManager.instance.showStoreGangs(); StoreManager.instance.isGangBuyed = new List<bool>();
         for (int i = 0; i < gangStoreSellingNumber; i++)
         {
             StoreManager.instance.isGangBuyed.Add(false);
         }
+        instance.playerMoney -= gangRerollCost;
     }
     void FactoryBehavior()
     {

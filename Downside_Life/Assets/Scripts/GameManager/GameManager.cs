@@ -94,6 +94,12 @@ public partial class GameManager : MonoBehaviour
         crooks = new List<Crook>();
         snakes = new List<Snake>();
         gangs = new List<Gang>();
+        crookType.Add(1);
+        crookType.Add(2);
+        snakeType.Add(0);
+        snakeType.Add(2);
+        gangType.Add(0);
+        gangType.Add(2);
         ResourceManage();
     }
 

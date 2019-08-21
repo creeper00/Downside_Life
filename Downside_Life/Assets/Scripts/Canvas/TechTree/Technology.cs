@@ -120,6 +120,51 @@ public class Technology : MonoBehaviour
                 GameManager.instance.gangAttackTech2 = values[skillLevel];
                 break;
             case Upgrade.attributeUnlock:
+                switch(whatJob)
+                {
+                    case GameManager.Job.crook:
+                        for (int i=0; i<GameManager.instance.crookType.Count; i++)
+                        {
+                            if (GameManager.instance.crookType[i] == (int)values[0])
+                            {
+                                break;
+                            }
+                            if (i == GameManager.instance.crookType.Count - 1)
+                            {
+                                GameManager.instance.crookType.Add((int)values[0]);
+                            }
+                        }
+                        GameManager.instance.crookType.Add((int)values[0]);
+                        break;
+                    case GameManager.Job.gang:
+                        for (int i = 0; i < GameManager.instance.gangType.Count; i++)
+                        {
+                            if (GameManager.instance.gangType[i] == (int)values[0])
+                            {
+                                break;
+                            }
+                            if (i == GameManager.instance.gangType.Count - 1)
+                            {
+                                GameManager.instance.gangType.Add((int)values[0]);
+                            }
+                        }
+                        GameManager.instance.gangType.Add((int)values[0]);
+                        break;
+                    case GameManager.Job.snake:
+                        for (int i = 0; i < GameManager.instance.snakeType.Count; i++)
+                        {
+                            if (GameManager.instance.snakeType[i] == (int)values[0])
+                            {
+                                break;
+                            }
+                            if (i == GameManager.instance.snakeType.Count - 1)
+                            {
+                                GameManager.instance.snakeType.Add((int)values[0]);
+                            }
+                        }
+                        
+                        break;
+                }
                 break;
             case Upgrade.calander:
                 break;
