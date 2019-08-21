@@ -12,6 +12,10 @@ public class Slot : MonoBehaviour, IDropHandler
     private GameObject slotItemPrefab;
     [SerializeField]
     private int slotIndex;
+    [HideInInspector]
+    private Sprite crookConstant, crookRate, crookBalanced, crookIdiot; // 순서대로 상수형, 계수형, 밸런스형, 호구형
+    [HideInInspector]
+    private Sprite snakeDesp, snakeWaste, snakeSlow, snakeMoney; // 순서대로 둔감형, 낭비형, 둔화형, 갈취형
 
     UnitCheckButton unitAsk;
     GameObject unitNew;
@@ -70,7 +74,7 @@ public class Slot : MonoBehaviour, IDropHandler
                     item = Instantiate(slotItemPrefab, transform);
                     break;
                 case GameManager.Job gang:
-                    item = Instantiate(slotItemPrefab, transform);
+                    //item = Instantiate(slotItemPrefab, transform);
                     break;
             }
 
@@ -105,13 +109,14 @@ public class Slot : MonoBehaviour, IDropHandler
             case GameManager.Job.crook:
                 GameManager.Crook currentCrook = GameManager.instance.attatchedCrooks[slotIndex];
                 statusText = "Lv " + currentCrook.level;
-                switch(currentCrook.type)
+                /*switch(currentCrook.type)
                 {
                     case 0: statusText += " 상수형"; break;
                     case 1: statusText += " 계수형"; break;
                     case 2: statusText += " 밸런스형"; break;
                     case 3: statusText += " 호구형"; break;
-                }
+                }*/
+                item.transform.Find("Icon").GetComponent<Image>().sprite = currentCrook.GetSprite();
                 statusText += " 사기꾼";
                 item.transform.Find("Status").GetComponent<Text>().text = statusText;
 
@@ -125,6 +130,7 @@ public class Slot : MonoBehaviour, IDropHandler
             case GameManager.Job.snake:
                 GameManager.Snake currentSnake = GameManager.instance.attatchedSnakes[slotIndex];
                 statusText = "Lv " + currentSnake.level + " 꽃뱀";
+                item.transform.Find("Icon").GetComponent<Image>().sprite = currentSnake.GetSprite();
                 item.transform.Find("Status").GetComponent<Text>().text = statusText;
 
                 item.transform.Find("ItemSlot").GetComponent<ItemSlot>().unitIndex = slotIndex;
@@ -134,17 +140,7 @@ public class Slot : MonoBehaviour, IDropHandler
                 item.transform.Find("RetireButton").GetComponent<RetireButton>().InitializeRetireButton(kindOfUnit, slotIndex);
                 break;
             case GameManager.Job.gang:
-                GameManager.Gang currentGang = GameManager.instance.attatchedGangs[slotIndex];
-                statusText = "Lv " + currentGang.level + " 갱단";
-                item.transform.Find("Status").GetComponent<Text>().text = statusText;
-
-                item.transform.Find("ItemSlot").GetComponent<ItemSlot>().unitIndex = slotIndex;
-
-                item.transform.Find("Attack").GetComponent<Text>().text = currentGang.attack().ToString();
-
-                item.transform.Find("Attribute").GetComponent<Text>().text = "특수능력 없음";
-
-                item.transform.Find("RetireButton").GetComponent<RetireButton>().InitializeRetireButton(kindOfUnit, slotIndex);
+                UnitsManager.instance.ShowAttachedGangs();
                 break;
         }
         
