@@ -232,7 +232,7 @@ public class Technology : MonoBehaviour
                 }
                 break;
             case Upgrade.staminaDecrease:
-                GameManager.instance.unitAttatchStaminaDecrease = 3 - skillLevel;
+                GameManager.instance.StealStaminaDecrease = 3 - skillLevel;
                 break;
             case Upgrade.stealAgain:
                 GameManager.instance.stealTwicePercentage = (int)(values[skillLevel]);

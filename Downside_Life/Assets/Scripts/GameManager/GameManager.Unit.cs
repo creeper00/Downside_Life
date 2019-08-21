@@ -60,7 +60,7 @@ public partial class GameManager : MonoBehaviour
 
     [Header("전체적인 특성")]
     [SerializeField]
-    public int unitAttatchStaminaDecrease, unitRetireStaminaDecrease, crookRerollCost, gangRerollCost, snakeRerollCost;
+    public int unitAttatchStaminaDecrease, unitRetireStaminaDecrease, StealStaminaDecrease, crookRerollCost, gangRerollCost, snakeRerollCost;
     public List<int> crookType, snakeType, gangType;
     [SerializeField]
     public int crookStoreSellingNumber, snakeStoreSellingNumber, gangStoreSellingNumber;

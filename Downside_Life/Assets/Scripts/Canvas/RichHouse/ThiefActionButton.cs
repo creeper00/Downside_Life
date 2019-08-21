@@ -40,18 +40,43 @@ public class ThiefActionButton : MonoBehaviour
                 }
                 else if (floor > 0 && floor < 4)
                 {
+                    Item item;
                     if (GameManager.instance.isItemFloor || Random.Range(0, 100) < jobItemPercentage) { // 아이템을 털었을 때
                         switch(floor)
                         {
                             case 1:
+                                item = new Item(0, Random.Range(0, 3), Random.Range(0, 3));
+                                if (item.grade == 0 && item.itemCode == 1)
+                                {
+                                    //사기꾼 공짜 고용
+                                } else if (item.getItemName() != null)
+                                {
+                                    items.Add(item);
+                                }
                                 Debug.Log("steal crook item");
                                 //사기꾼 아이템
                                 break;
                             case 2:
+                                item = new Item(1, Random.Range(0, 3), Random.Range(0, 3));
+                                if (item.grade == 0 && item.itemCode == 1)
+                                {
+                                    //꽃뱀 공짜 고용
+                                } else if (item.getItemName() != null)
+                                {
+                                    items.Add(item);
+                                }
                                 Debug.Log("steal snake item");
                                 //꽃뱀 아이템
                                 break;
                             case 3:
+                                item = new Item(1, Random.Range(0, 3), Random.Range(0, 3));
+                                if (item.grade == 0 && item.itemCode == 1)
+                                {
+                                    //갱단 공짜 고용
+                                } else if (item.getItemName() != null)
+                                {
+                                    items.Add(item);
+                                }
                                 Debug.Log("steal gang item");
                                 //갱단 아이템
                                 break;
@@ -68,15 +93,40 @@ public class ThiefActionButton : MonoBehaviour
                 }
                 else if (floor == 4)
                 {
-                    int percentage = Random.Range(0, 100);
+                    int percentage = Random.Range(0, GameManager.instance.isItemFloor? randomItemPercentage + randomDoubleItemPercentage : 100);
                     if (percentage < randomItemPercentage)
                     {
                         Debug.Log("steal item");
+                        Item item = new Item(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
+                        if ((item.grade == 0 && item.itemCode == 1))
+                        {
+                            //공짜 고용
+                        } else if (item.getItemName() != null)
+                        {
+                            items.Add(item);
+                        }
+                        
                         //아이템 하나 털음
                     }
                     else if (percentage < randomItemPercentage + randomDoubleItemPercentage)
                     {
                         Debug.Log("steal double item");
+                        Item item1 = new Item(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
+                        Item item2 = new Item(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
+                        if ((item1.grade == 0 && item1.itemCode == 1))
+                        {
+                            //공짜 고용
+                        } else if (item1.getItemName() != null)
+                        {
+                            items.Add(item1);
+                        }
+                        if ((item2.grade == 0 && item2.itemCode == 1))
+                        {
+                            //공짜 고용
+                        } else if (item2.getItemName() != null)
+                        {
+                            items.Add(item2);
+                        }
                         //아이템 두개 털음
                     }
                     else
@@ -121,7 +171,7 @@ public class ThiefActionButton : MonoBehaviour
                 thiefResultText2.text += "\n 그리고";
                 for (int i = 0; i < items.Count; i++)
                 {
-                    thiefResultText2.text += items[i].name + " ";
+                    thiefResultText2.text += items[i].getItemName() + " ";
                 }
                 thiefResultText2.text += "를 훔쳐왔다!";
             }
@@ -132,7 +182,7 @@ public class ThiefActionButton : MonoBehaviour
             {
                 for (int i = 0; i < items.Count; i++)
                 {
-                    thiefResultText2.text += items[i].name + " ";
+                    thiefResultText2.text += items[i].getItemName() + " ";
                 }
                 thiefResultText2.text += "를 훔쳐왔다!";
             }
@@ -155,6 +205,7 @@ public class ThiefActionButton : MonoBehaviour
                     break;
             }
         }
+        GameManager.instance.SetStamina(GameManager.instance.stamina - GameManager.instance.StealStaminaDecrease);
         GameManager.instance.UpdateResourcesUI();
         GameObject.Find("ThiefInfo").SetActive(false);
         thiefResultPanel.SetActive(true);
