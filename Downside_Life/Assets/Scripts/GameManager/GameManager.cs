@@ -32,7 +32,7 @@ public partial class GameManager : MonoBehaviour
     private float folderUpYAxis = 160, folderDownYAxis = -370, folderMoveYDistance;
     [Header("팝업창")]
     public GameObject notEnoughStaminaCanvas;
-    public GameObject itemTypeNotMatchCanvas, alreadyHasItemCanvas;
+    public GameObject itemTypeNotMatchCanvas, alreadyHasItemCanvas, snakeSteallSuccessCanvas;
     [Header("Canvas")]
     public GameObject CommonCanvas;
     public GameObject techTreeCanvas, unitsCanvas, storeCanvas, richHouseCanvas,richHouse, firstFloorCanvas, secondFloorCanvas, thirdFloorCanvas, fourthFloorCanvas, fifthFloorCanvas, techInfoCanvas;

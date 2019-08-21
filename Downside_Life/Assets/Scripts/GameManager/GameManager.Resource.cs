@@ -19,6 +19,9 @@ public partial class GameManager : MonoBehaviour
     public int crookTemporarySkillPoint, robberTemporarySkillPoint, snakeTemporarySkillPoint, gangTemporarySkillPoint;
     [SerializeField]
     public int thiefSuccessPercentage, thiefGreatSuccessPercentage, stealMoney, skillPointPrice;
+    [Header("꽃뱀")]
+    [SerializeField]
+    public int snakeItemSuccessPercentage;
 
     int crookIncome = 0;
 
@@ -46,7 +49,8 @@ public partial class GameManager : MonoBehaviour
     private Text moneyText;
     [SerializeField]
     private Text staminaText;
-
+    [SerializeField]
+    private Text snakeMoneyText;
     void ResourceManage()
     {
 
@@ -73,7 +77,35 @@ public partial class GameManager : MonoBehaviour
 
         int tempPlayerSalary = PlayerSalary();
         playerMoney += tempPlayerSalary;
+
+
         UpdateResourcesUI();
+    }
+    // 아래 SnakeIncome 함수 쓰기 위한 코드.
+    private IEnumerator showSnakeStealSuccessWindow()
+    {
+        snakeSteallSuccessCanvas.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        snakeSteallSuccessCanvas.SetActive(false);
+    }
+    void SnakeIncome()  // 환급형 꽃뱀 매 턴마다 확률적으로 돈 훔쳐오기.
+    {
+        int snakeStealMoney = 0;
+        for(int i=0;i<attatchedSnakes.Length;i++)
+        {
+            if(attatchedSnakes[i] != null)
+            {
+                if(Random.Range(0,100) < snakeItemSuccessPercentage) snakeStealMoney += (int) attatchedSnakes[i].GetItemPrice();
+            }
+        }
+        if( snakeStealMoney != 0 )     
+        {
+            // 창 1초간 띄우기
+            snakeMoneyText.text = "꽃뱀이 " + snakeStealMoney.ToString() + "만원을 부자에게서 얻었습니다!";
+            StartCoroutine(showSnakeStealSuccessWindow());
+            playerMoney += snakeStealMoney;
+            UpdateResourcesUI();
+        }
     }
 
     public void ChangeRichMoney(int moneyDecrease, bool isIncreaseDesperate)
