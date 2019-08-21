@@ -8998,49 +8998,85 @@ MonoBehaviour:
   crookTechRichPercentageIncrease: 0
   crookTechConstantIncrease: 0
   crookTechMyPercentageIncrease: 0
-  crookAttributes: []
-  snakeAttributes: []
-  gangAttributes: []
+  crooktypes: []
+  snaketypes: []
+  gangtypes: []
   factoryHealthPerLevel: b80b000088130000581b000028230000f82a0000
   factoryValue: 00000000000000000a000000050000001e000000
   factoryIncome: 50c30000a0860100e093040020a1070040420f00
-  crookRatioPerLevel: []
-  crookConstantPerLevel: []
-  crookReturnPerLevel: []
-  crookInitRatio: []
-  crookInitConstant: []
-  crookInitReturn: []
-  itemCrookRatio: []
-  itemCrookConstant: []
-  itemCrookReturn: []
-  techCrookRatio: 0
-  techCrookConstant: 0
-  techCrookReturn: 0
-  snakeDesperateDownConstant: 20
-  snakeDesperateDownCoefficient: 1.5
-  techSnakeDesperateDown: 0
-  snakeActionCostIncreaseConstant: 100
-  snakeActionCostIncreaseCoefficient: 10
-  techSnakeActionCostIncrease: 0
-  snakeActionTurnIncrease: 1
-  snakeExtortProbability: 0
-  snakeExtortConstantRangeUpper: 1000
-  snakeExtortConstantRangeLower: 700
-  snakeExtortCoefficientRangeUpper: 25
-  snakeExtortCoefficientRangeLower: 20
-  gangAttackConstant: 00000000000000000000000000000000
-  gangAttackCoefficient: 140000000a0000000a0000000a000000
-  gangReturnMonetPerDamage: e803000088130000e8030000e8030000
+  crookConstantInit:
+  - 400000
+  - 100000
+  - 300000
+  - 100000
+  crookConstantPerLevel:
+  - 30000
+  - 20000
+  - 20000
+  - 10000
+  crookAttackItems:
+  - 1.1
+  - 1.2
+  - 1.4
+  crookRatioInit:
+  - 0.5
+  - 1
+  - 0.7
+  - 0.5
+  crookRatioPerLevel:
+  - 0.06
+  - 0.1
+  - 0.07
+  - 0.06
+  crookMoneyInit:
+  - 0.05
+  - 0.01
+  - 0.03
+  - 0.5
+  crookMoneyItems:
+  - 1.15
+  crookConstantTech: 1
+  crookRatioTech: 1
+  crookMoneyTech: 1
+  desConInit: 20
+  desConPerLevel: 1.5
+  desConTech: 1
+  itemPercentInit: 30
+  itemPercentPerLevel: 0
+  itemPercentTech: 0
+  behaviorCostInit: 1000000
+  behaviorCostPerLevel: 100000
+  behaviorCostTech: 1
+  gangAttackInit:
+  - 2000
+  - 2000
+  - 2000
+  - 1000
+  gangAttackPerLevel:
+  - 580
+  - 290
+  - 290
+  - 290
+  gangAttackItem:
+  - 1.2
+  - 1.4
+  gangReturnMoneyPerType:
+  - 1000
+  - 5000
+  - 1000
+  - 1000
+  gangReturnMoneyItem:
+  - 1.2
   unitAttatchStaminaDecrease: 3
   unitRetireStaminaDecrease: 1
   crookStoreSellingNumber: 3
-  gangStoreSellingNumber: 3
   snakeStoreSellingNumber: 3
-  crookAverageLevel: 0
+  gangStoreSellingNumber: 3
+  crookMinLevel: 0
   crookMaxLevel: 0
-  snakeAverageLevel: 0
+  snakeMinLevel: 0
   snakeMaxLevel: 0
-  gangAverageLevel: 0
+  gangMinLevel: 0
   gangMaxLevel: 0
 --- !u!4 &534138816
 Transform:

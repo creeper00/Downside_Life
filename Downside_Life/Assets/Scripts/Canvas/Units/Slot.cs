@@ -129,7 +129,7 @@ public class Slot : MonoBehaviour, IDropHandler
 
                 item.transform.Find("ItemSlot").GetComponent<ItemSlot>().unitIndex = slotIndex;
 
-                item.transform.Find("Attack").GetComponent<Text>().text = currentGang.attack.ToString();
+                item.transform.Find("Attack").GetComponent<Text>().text = currentGang.attack().ToString();
 
                 item.transform.Find("Attribute").GetComponent<Text>().text = "특수능력 없음";
 

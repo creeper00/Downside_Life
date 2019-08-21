@@ -35,9 +35,10 @@ public class UnitListItem : MonoBehaviour
         switch (snake.type)
         {
             case 0: statusText += " 둔감형"; break;
-            case 1: statusText += " 낭비형"; break;
-            case 2: statusText += " 둔화형"; break;
-            case 3: statusText += " 갈취형"; break;
+            case 1: statusText += " 갈취형"; break;
+            case 2: statusText += " 낭비형"; break;
+            case 3: statusText += " 둔화형"; break;
+            
         }
         statusText += " 꽃뱀";
         transform.Find("Status").GetComponent<Text>().text = statusText;
@@ -46,9 +47,10 @@ public class UnitListItem : MonoBehaviour
         switch (snake.type)
         {
             case 0: attributeText += "부자의 절박함 증가량 " + snake.GetDesperateControl() + "% 만큼 감소"; break;
-            case 1: attributeText += "부자의 행동 비용 " + snake.GetBehaviorCostIncrease() + "억 원 증가"; break;
-            case 2: attributeText += "부자의 행동 주기 " + snake.RichCycleIncrease() + "턴 증가"; break;
-            case 3: attributeText += snake.GetItemPercentage() + "%의 확률로 환금형 아이템 획득"; break;
+            case 1: attributeText += snake.GetItemPercentage() + "%의 확률로 환금형 아이템 획득"; break;
+            case 2: attributeText += "부자의 행동 비용 " + snake.GetBehaviorCostIncrease() + "억 원 증가"; break;
+            case 3: attributeText += "부자의 행동 주기 " + snake.RichCycleIncrease() + "턴 증가"; break;
+            
         }
 
         transform.Find("Attribute").GetComponent<Text>().text = attributeText;
@@ -68,7 +70,7 @@ public class UnitListItem : MonoBehaviour
         }
         statusText += " 갱단";
         transform.Find("Status").GetComponent<Text>().text = statusText;
-        transform.Find("Attack").GetComponent<Text>().text = gang.attack.ToString();
-        transform.Find("Return").GetComponent<Text>().text = gang.returnMoney.ToString();
+        transform.Find("Attack").GetComponent<Text>().text = gang.attack().ToString();
+        transform.Find("Return").GetComponent<Text>().text = gang.returnMoney().ToString();
     }
 }

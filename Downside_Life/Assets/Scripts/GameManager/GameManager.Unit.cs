@@ -34,13 +34,23 @@ public partial class GameManager : MonoBehaviour
     public List<int> factoryHealthPerLevel, factoryValue, factoryIncome;
     bool isFirstBuilt = true;
 
+    [Header("사기꾼")]
+
     [SerializeField]
-    List<float> crookConstantInit, crookConstantPerLevel, crookConstantItems, crookRatioInit, crookRatioPerLevel, crookRatioItems, crookMoneyInit, crookMoneyPerLevel, crookMoneyItems;
+    List<float> crookConstantInit, crookConstantPerLevel, crookAttackItems, crookRatioInit, crookRatioPerLevel, crookMoneyInit, crookMoneyItems;
     [SerializeField]
     float crookConstantTech, crookRatioTech, crookMoneyTech;
+    [Header("꽃뱀")]
+
     [SerializeField]
     float desConInit, desConPerLevel, desConTech, itemPercentInit, itemPercentPerLevel, itemPercentTech, behaviorCostInit, behaviorCostPerLevel, behaviorCostTech;
-    
+
+    [Header("갱단")]
+    [SerializeField]
+    List<float> gangAttackInit, gangAttackPerLevel, gangAttackItem, gangReturnMoneyPerType, gangReturnMoneyItem;
+    float gangAttackTech1, gangAttackTech2, gangReturnMoneyTech;
+
+    [Header("전체적인 특성")]
 
     [SerializeField]
     int unitAttatchStaminaDecrease, unitRetireStaminaDecrease;
@@ -146,30 +156,30 @@ public partial class GameManager : MonoBehaviour
 
         public float GetRichConstantDown()
         {
-            float itemRatio = 0;
-            if (item.itemCode == 0)
+            float itemRatio = 1;
+            if (item != null && item.itemCode == 0)
             {
-                itemRatio = instance.crookConstantItems[item.grade];
+                itemRatio = instance.crookAttackItems[item.grade];
             }
             return (instance.crookConstantInit[type] + level * instance.crookConstantPerLevel[type]) * instance.crookConstantTech * itemRatio;
         }
         public float GetRichRatioDown()
         {
-            float itemRatio = 0;
-            if (item.itemCode == 0)
+            float itemRatio = 1;
+            if (item != null && item.itemCode == 0)
             {
-                itemRatio = instance.crookRatioItems[item.grade];
+                itemRatio = instance.crookAttackItems[item.grade];
             }
-            return (instance.crookConstantInit[type] + level * instance.crookConstantPerLevel[type]) * instance.crookConstantTech * itemRatio;
+            return (instance.crookRatioInit[type] + level * instance.crookRatioPerLevel[type]) * instance.crookRatioTech * itemRatio;
         }
         public float GetMoneyUp()
         {
-            float itemRatio = 0;
-            if (item.itemCode == 0)
+            float itemRatio = 1;
+            if (item != null && item.itemCode == 2)
             {
                 itemRatio = instance.crookMoneyItems[item.grade];
             }
-            return (instance.crookConstantInit[type] + level * instance.crookConstantPerLevel[type]) * instance.crookConstantTech * itemRatio;
+            return (instance.crookMoneyInit[type]) * instance.crookConstantTech * itemRatio;//가져오는 비율
         }
         public bool putItem(int itemIndex)                  //붙었으면 true, 안 붙었으면 false 반환
         {
@@ -193,7 +203,6 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
-
     public class Snake
     {
         bool attached;
@@ -204,7 +213,7 @@ public partial class GameManager : MonoBehaviour
 
         public float GetDesperateControl()
         {
-            float temp = 0;
+            float temp = 1;
             for (int i=0; i<instance.snakeItems.Count; i++)
             {
                 if (instance.snakeItems[i].itemCode == 0 && instance.snakeItems[i].grade == 2)
@@ -212,7 +221,7 @@ public partial class GameManager : MonoBehaviour
                     temp += 0.3f;
                 }
             }
-            float ret = (instance.desConInit + instance.desConPerLevel * level + instance.desConTech) * ((item.itemCode == 0) ? (item.grade == 0 ? 1.1f : 1.3f) : 1f) + temp;
+            float ret = (instance.desConInit + instance.desConPerLevel * level + instance.desConTech) * ((item != null && item.itemCode == 0) ? (item.grade == 0 ? 1.1f : 1.3f) : 1f) * temp;
             if (type != 0)
             {
                 ret = 0;
@@ -221,7 +230,7 @@ public partial class GameManager : MonoBehaviour
         }
         public float GetItemPercentage()
         {
-            float temp = 0;
+            float temp = 1;
             for (int i=0; i<instance.snakeItems.Count; i++)
             {
                 if (instance.snakeItems[i].itemCode == 1 && instance.snakeItems[i].grade == 2)
@@ -229,7 +238,7 @@ public partial class GameManager : MonoBehaviour
                     temp += 0.3f;
                 }
             }
-            float ret = (instance.itemPercentInit + instance.itemPercentPerLevel * level + instance.itemPercentTech) * ((item.itemCode == 0) ? (item.grade == 0 ? 1.1f : 1.3f) : 1f) + temp;
+            float ret = (instance.itemPercentInit + instance.itemPercentPerLevel * level + instance.itemPercentTech) * ((item != null && item.itemCode == 0) ? (item.grade == 0 ? 1.1f : 1.3f) : 1f) * temp;
             if (type != 1)
             {
                 ret = 0;
@@ -238,7 +247,7 @@ public partial class GameManager : MonoBehaviour
         }
         public float GetBehaviorCostIncrease()
         {
-            float temp = 0;
+            float temp = 1;
             for (int i=0; i<instance.snakeItems.Count; i++)
             {
                 if (instance.snakeItems[i].itemCode == 2 && instance.snakeItems[i].grade == 2)
@@ -246,44 +255,44 @@ public partial class GameManager : MonoBehaviour
                     temp += 0.3f;
                 }
             }
-            float ret = (instance.behaviorCostInit + instance.behaviorCostPerLevel * level + instance.behaviorCostTech) * ((item.itemCode == 0) ? (item.grade == 0 ? 1.1f : 1.3f) : 1f) + temp;
+            float ret = (instance.behaviorCostInit + instance.behaviorCostPerLevel * level * instance.behaviorCostTech) * ((item != null && item.itemCode == 0) ? (item.grade == 0 ? 1.1f : 1.3f) : 1f) * temp;
             if (type != 2)
             {
                 ret = 0;
             }
             return ret;
-        }
+        }   
 
         public int RichCycleIncrease()
         {
-            if (type != 3)
-            {
-                return 0;
-            }
             if (type == 4)
             {
                 return 4;
             }
-            return 1;
+            if (type == 3)
+            {
+                return 1;
+            }
+            return 0;
         }
         public bool putItem(int itemIndex)                          //붙었으면 true, 안 붙었으면 false 반환
         {
             Item item = instance.snakeItems[itemIndex];
-            if (itemAttached)
+            if (item != null)
             {
-                GameManager.instance.alreadyHasItem();
-                return false; // 이미 붙어 있다는 것에 대한 경고
+                instance.alreadyHasItem();
+                return false;
             }
-            if (item.type != 1)
+            else if (item.type != 1)
             {
-                GameManager.instance.itemTypeNotMatch();
-                return false; // 꽃뱀용 아이템이 아니라는 것에 대한 경고
+                instance.itemTypeNotMatch();
+                return false;
             }
-            if (item.itemCode == 1 && item.grade == 1)
+            else
             {
-                return true; // 꽃뱀 유형 변경 팝업
+                this.item = item;
+                return true;
             }
-            return false;
         }
         public Snake(int level, int type)
         {
@@ -294,27 +303,46 @@ public partial class GameManager : MonoBehaviour
 
     public class Gang
     {
-        public int attack, returnMoney;
         public int level, type;
-        bool itemAttached;
+        Item item;
+        
+        public float attack()
+        {
+            float equippedItemRatio = 1;
+            if (item != null && item.itemCode == 0)
+            {
+                equippedItemRatio = instance.gangAttackItem[item.grade];
+            }
+            return (instance.gangAttackInit[type] + instance.gangAttackPerLevel[type] * level) * (1 + instance.gangAttackTech1 + instance.gangAttackTech2) * equippedItemRatio;
+        }
+
+        public float returnMoney()
+        {
+            float equippedItemRatio = 1;
+            if (item != null && item.itemCode == 2)
+            {
+                equippedItemRatio = instance.gangReturnMoneyItem[item.grade];
+            }
+            return attack() * instance.gangReturnMoneyPerType[type] * equippedItemRatio + instance.gangReturnMoneyTech;
+        }
         public bool PutItem(int itemIndex)                          //붙었으면 true, 안 붙었으면 false 반환
         {
-            Item item = instance.gangItems[itemIndex];
-            if (itemAttached)
+            Item item = instance.snakeItems[itemIndex];
+            if (item != null)
             {
-                GameManager.instance.alreadyHasItem();
-                return false; // 이미 붙어 있다는 것에 대한 경고
+                instance.alreadyHasItem();
+                return false;
             }
-            if (item.type != 2)
+            else if (item.type != 2)
             {
-                GameManager.instance.itemTypeNotMatch();
-                return false; // 갱단용 아이템이 아니라는 것에 대한 경고
+                instance.itemTypeNotMatch();
+                return false;
             }
-            if (item.itemCode == 1 && item.grade == 1)
+            else
             {
+                this.item = item;
                 return true;
             }
-            return false;
         }
 
         public Gang(int level, int type)
@@ -471,7 +499,7 @@ public partial class GameManager : MonoBehaviour
         sellingCrooks = new List<Crook>();
         for (int i = 0; i < crookStoreSellingNumber; i++)
         {
-            sellingCrooks.Add(new Crook(Random.Range(crookMinLevel, crookMaxLevel), Random.Range(0, crooktypes.Count)));
+            sellingCrooks.Add(new Crook(Random.Range(crookMinLevel, crookMaxLevel), Random.Range(0, 4)));
         }
         StoreManager.instance.showStoreCrooks();
         StoreManager.instance.isCrookBuyed = new List<bool>();
@@ -485,7 +513,7 @@ public partial class GameManager : MonoBehaviour
         sellingSnakes = new List<Snake>();
         for (int i = 0; i < snakeStoreSellingNumber; i++)
         {
-            sellingSnakes.Add(new Snake(Random.Range(snakeMinLevel, snakeMaxLevel), Random.Range(0, snaketypes.Count)));
+            sellingSnakes.Add(new Snake(Random.Range(snakeMinLevel, snakeMaxLevel), Random.Range(0, 4)));
         }
         StoreManager.instance.showStoreSnakes(); StoreManager.instance.isSnakeBuyed = new List<bool>();
         for (int i = 0; i < snakeStoreSellingNumber; i++)
@@ -498,7 +526,7 @@ public partial class GameManager : MonoBehaviour
         sellingGangs = new List<Gang>();
         for (int i = 0; i < gangStoreSellingNumber; i++)
         {
-            sellingGangs.Add(new Gang(Random.Range(gangMinLevel, gangMaxLevel), Random.Range(0, gangtypes.Count)));
+            sellingGangs.Add(new Gang(Random.Range(gangMinLevel, gangMaxLevel), Random.Range(0, 3)));
         }
         StoreManager.instance.showStoreGangs(); StoreManager.instance.isGangBuyed = new List<bool>();
         for (int i = 0; i < gangStoreSellingNumber; i++)
