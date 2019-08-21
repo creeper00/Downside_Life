@@ -9,6 +9,7 @@ public class BuyButton : MonoBehaviour
     public GameManager.Crook crook;
     public GameManager.Gang gang;
     public GameManager.Snake snake;
+    public TemporaryButton temporary;
     public void addUnit()
     {
         switch(job)

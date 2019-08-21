@@ -18,7 +18,10 @@ public class StoreManager : MonoBehaviour
 
     [HideInInspector]
     public List<bool> isCrookBuyed, isSnakeBuyed, isGangBuyed;
-
+    GameObject storeMoneyWarn;
+    GameObject storeNotEnoughMoney;
+    GameObject storeAlreadyPurchased;
+    GameObject storeBuyWarning;
     float width;
 
     public void Awake()
@@ -94,5 +97,31 @@ public class StoreManager : MonoBehaviour
             storeItemList.setGangUnitInformation(index, unit);
             index++;
         }
+    }
+
+    public void showNotEnoughMoney()
+    {
+        storeMoneyWarn = GameObject.Find("MoneyWarning");
+        storeNotEnoughMoney = storeMoneyWarn.transform.Find("NotEnoughMoney").gameObject;
+        StartCoroutine("showMoneyPopup");
+    }
+    public void showAlreadyPurchased()
+    {
+        storeBuyWarning = GameObject.Find("BuyWarning");
+        storeAlreadyPurchased = storeBuyWarning.transform.Find("AlreadyBought").gameObject;
+        StartCoroutine("showBuyPopup");
+        
+    }
+    IEnumerator showMoneyPopup()
+    {
+        storeNotEnoughMoney.SetActive(true);
+        yield return new WaitForSeconds(0.6f);
+        storeNotEnoughMoney.SetActive(false);
+    }
+    IEnumerator showBuyPopup()
+    {
+        storeAlreadyPurchased.SetActive(true);
+        yield return new WaitForSeconds(0.6f);
+        storeAlreadyPurchased.SetActive(false);
     }
 }

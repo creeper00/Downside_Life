@@ -13,6 +13,7 @@ public class TemporaryButton : MonoBehaviour
     GameManager.Snake snake;
     GameManager.Gang gang;
 
+
     public void showBuyInfo()
     {
         switch(job)
@@ -21,11 +22,14 @@ public class TemporaryButton : MonoBehaviour
                 if (StoreManager.instance.isCrookBuyed[index])
                 {
                     //이미 구매했다는 팝업창
+
+                    StoreManager.instance.showAlreadyPurchased();
                     break;
                 }
                 if (crook.unitPrice() > GameManager.instance.playerMoney)
                 {
                     //돈이 모자라다는 팝업창
+                    StoreManager.instance.showNotEnoughMoney();
                     break;
                 }
                 buyInfo = StoreManager.instance.buyInfo;
@@ -38,11 +42,13 @@ public class TemporaryButton : MonoBehaviour
                 if (StoreManager.instance.isSnakeBuyed[index])
                 {
                     //이미 구매했다는 팝업창
+                    StoreManager.instance.showAlreadyPurchased();
                     break;
                 }
                 if (snake.unitPrice() > GameManager.instance.playerMoney)
                 {
                     //돈이 모자라다는 팝업창
+                    StoreManager.instance.showNotEnoughMoney();
                     break;
                 }
                 buyInfo = StoreManager.instance.buyInfo;
@@ -56,11 +62,13 @@ public class TemporaryButton : MonoBehaviour
                 if (StoreManager.instance.isGangBuyed[index])
                 {
                     //이미 구매했다는 팝업창
+                    StoreManager.instance.showAlreadyPurchased();
                     break;
                 }
                 if (gang.unitPrice() > GameManager.instance.playerMoney)
                 {
                     //돈이 모자라다는 팝업창
+                    StoreManager.instance.showNotEnoughMoney();
                     break;
                 }
                 buyInfo = StoreManager.instance.buyInfo;
