@@ -12,7 +12,7 @@ public class ItemListItem : MonoBehaviour
     [SerializeField]
     private Sprite snakeNormalCosmetic, snakeRareCosmetic, snakeRareOnePiece, snakeLegendaryMagazineDesperate, snakeLegendaryMagazineCostIncrease, snakeLegendaryMagazineExtort;
     [SerializeField]
-    private Sprite gangNormalPistol, gangNormalMoneyBotarri, gangRareGun, gangRareHena, gangRareDevice, gangLegendarySekom, gangLegendaryAggro, gangLegendaryAttorny, gangLegendaryStock, gangLegendaryNormal;
+    private Sprite gangNormalPistol, gangNormalMoneyBag, gangRareSMG, gangRareHenna, gangRareStunGun, gangLegendarySekom, gangLegendaryAggro, gangLegendaryAttorny, gangLegendaryStock, gangLegendaryNormal;
 
     public void SetItemInformation(int index, Item item)
     {
@@ -105,22 +105,22 @@ public class ItemListItem : MonoBehaviour
                 }
                 else if (itemCode == 2)
                 {
-                    sprite = gangNormalMoneyBotarri;
+                    sprite = gangNormalMoneyBag;
                 }
             }
             else if (grade == 1)
             {
                 if (itemCode == 0)
                 {
-                    sprite = gangRareGun;
+                    sprite = gangRareSMG;
                 }
                 else if (itemCode == 1)
                 {
-                    sprite = gangRareHena;
+                    sprite = gangRareHenna;
                 }
                 else if (itemCode == 2)
                 {
-                    sprite = gangRareDevice;
+                    sprite = gangRareStunGun;
                 }
             }
             else if (grade == 2)
