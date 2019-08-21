@@ -57,6 +57,7 @@ public partial class GameManager : MonoBehaviour
     public int crookStoreSellingNumber, snakeStoreSellingNumber, gangStoreSellingNumber;
     [SerializeField]
     public int crookMinLevel, crookMaxLevel, snakeMinLevel, snakeMaxLevel, gangMinLevel, gangMaxLevel;
+    private bool freeGangAttachPossible = false, freeGangAttachThisTurn = false;
 
 
 
@@ -487,7 +488,7 @@ public partial class GameManager : MonoBehaviour
             case Job.gang:
                 if ( factories[slotIndex] == null)                  //갱단은 여러 개 붙일 수 있지만, 공장이 일단 있어야 함
                 {
-                    if (!CheckStamina(unitAttatchStaminaDecrease)) return false;
+                    if (!CheckStamina(freeGangAttachThisTurn ? 0 : unitAttatchStaminaDecrease)) return false;
                     return true;
                 }
                 else
@@ -518,6 +519,15 @@ public partial class GameManager : MonoBehaviour
                 attatchedSnakes[slotIndex] = movingSnake;
                 break;
             case Job.gang:
+                ConsumeStamina(freeGangAttachThisTurn ? 0 : unitAttatchStaminaDecrease);
+                if (freeGangAttachPossible )
+                {
+                    freeGangAttachThisTurn = !freeGangAttachThisTurn;
+                }
+                else
+                {
+                    freeGangAttachThisTurn = false;
+                }
                 Gang movingGang = gangs[unitIndex];
                 gangs.RemoveAt(unitIndex);
                 attachedGangs[slotIndex].Add(movingGang);
