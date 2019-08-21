@@ -9,9 +9,11 @@ public class DebuggingButton : MonoBehaviour
 
     public void DebugSomethig()
     {
-        GameManager.instance.crookItems.Add(new Item(0, 2, 1));
-        //Debug.Log(GameManager.instance.crookItems.Count);
-
-        //Debug.Log()
+        GameManager.instance.crookItems.Add(new Item(0, 1, 1));
+        
+        if ( GameManager.instance.attatchedCrooks[0] != null )
+        {
+            Debug.Log("attached");
+        }
     }
 }
