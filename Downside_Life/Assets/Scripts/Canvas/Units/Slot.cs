@@ -17,12 +17,21 @@ public class Slot : MonoBehaviour, IDropHandler
     GameObject unitNew;
     GameObject unitPopup;
     GameObject unitPopupYesButton;
+
+    GameObject GangItemAsk;
+    GameObject GangItemCheck;
+
+    GameObject ItemList;
+
     void Awake()
     {
         unitNew = GameObject.Find("Unit");
         unitPopup = unitNew.transform.Find("UnitCheck").gameObject;
         unitPopupYesButton = unitPopup.transform.Find("UnitCheck_yes").gameObject;
         unitAsk = unitPopupYesButton.GetComponent<UnitCheckButton>();
+        GangItemAsk = GameObject.Find("GangItemAsk");
+        GangItemCheck = GangItemAsk.transform.Find("GangItemCheck").gameObject;
+        ItemList = GameObject.Find("ItemList");
     }
 
     public GameObject item
@@ -79,6 +88,8 @@ public class Slot : MonoBehaviour, IDropHandler
                     break;
                 case GameManager.Job gang:
                     UnitsManager.instance.ShowGangs();
+                    GangItemCheck.SetActive(true);
+                    ItemList.GetComponent<Image>().color = Color.red;
                     break;
             }
             InitializeSlotObject();                         //슬롯에 유닛 정보를 띄움

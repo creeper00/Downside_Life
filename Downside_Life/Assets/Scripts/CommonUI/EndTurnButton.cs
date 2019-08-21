@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class EndTurnButton : MonoBehaviour
 {
+    public static EndTurnButton instance;
+    private void Awake()
+    {
+        instance = this;
+    }
     public void EndTurn()
     {
         GameManager.instance.EndTurn();
