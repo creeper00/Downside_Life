@@ -150,7 +150,7 @@ public class Item
             }
         }
 
-        icon = Resources.Load("UIImages/ItemIcons/" + itemName) as Sprite;
+        icon = Resources.Load<Sprite>("UIImages/ItemIcons/" + itemName);
     }
 
 }

@@ -9,19 +9,19 @@ public partial class GameManager : MonoBehaviour
     public List<Crook> crooks;
     public List<Crook> sellingCrooks;
     public Crook[] attatchedCrooks = new Crook[3];
-    public List<Item> crookItems;
+    public List<Item> crookItems = new List<Item>();
 
     public List<Snake> snakes;
     public List<Snake> sellingSnakes;
     public Snake[] attatchedSnakes = new Snake[3];
-    public List<Item> snakeItems;
+    public List<Item> snakeItems = new List<Item>();
 
     public List<Gang> gangs;
     public List<Gang> sellingGangs;
     public List<Gang>[] attachedGangs = new List<Gang>[3];
-    public List<Item> gangItems;
-    
-    
+    public List<Item> gangItems = new List<Item>();
+
+
 
     [Header("공장")]
     [HideInInspector]

@@ -19,14 +19,14 @@ public class UnitsManager : MonoBehaviour
     private Text RichMoneyChange;
     [Header("Unit List관련")]
     [SerializeField]
-    Transform crookListItemPrefab, snakeListItemPrefab, gangListItemPrefab, factoryPrefab;
-    [SerializeField]
     private GameObject unitContents;
+    [SerializeField]
+    private Transform crookListItemPrefab, snakeListItemPrefab, gangListItemPrefab, factoryPrefab;
     [Header("Item List관련")]
     [SerializeField]          //씬 충돌 나지 않도록 나중에 주석 해제할 것
     private Transform itemPrefab;
     [SerializeField]
-    private GameObject itemContents;
+    public GameObject itemContents;
     [Header("공장 관련")]
     public int numberOfFactories = 3;
     [SerializeField]
@@ -131,7 +131,6 @@ public class UnitsManager : MonoBehaviour
         int index = 0;
         foreach(var item in GameManager.instance.crookItems)
         {
-            Debug.Log("a");
             var listItemObject = Instantiate(itemPrefab, itemContents.transform);
             var crookItemListItem = listItemObject.GetComponent<ItemListItem>();
             crookItemListItem.SetItemInformation(index, item);
