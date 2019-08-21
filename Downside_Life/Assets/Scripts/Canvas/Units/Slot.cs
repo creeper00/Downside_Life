@@ -106,8 +106,8 @@ public class Slot : MonoBehaviour, IDropHandler
 
                 item.transform.Find("ItemSlot").GetComponent<ItemSlot>().unitIndex = slotIndex;
 
-                item.transform.Find("MoneyStealText").GetComponent<Text>().text = currentCrook.richConstantDown + " + " + currentCrook.richPercentageDown + "%";
-                item.transform.Find("ReturnPercentageText").GetComponent<Text>().text = currentCrook.playerPercentageUp + "%";
+                item.transform.Find("MoneyStealText").GetComponent<Text>().text = currentCrook.GetRichConstantDown() + " + " + currentCrook.GetRichRatioDown() + "%";
+                item.transform.Find("ReturnPercentageText").GetComponent<Text>().text = currentCrook.GetMoneyUp() + "%";
 
                 item.transform.Find("RetireButton").GetComponent<RetireButton>().InitializeRetireButton(kindOfUnit, slotIndex);
                 break;
@@ -129,7 +129,7 @@ public class Slot : MonoBehaviour, IDropHandler
 
                 item.transform.Find("ItemSlot").GetComponent<ItemSlot>().unitIndex = slotIndex;
 
-                item.transform.Find("Attack").GetComponent<Text>().text = currentGang.attack.ToString();
+                item.transform.Find("Attack").GetComponent<Text>().text = currentGang.attack().ToString();
 
                 item.transform.Find("Attribute").GetComponent<Text>().text = "특수능력 없음";
 

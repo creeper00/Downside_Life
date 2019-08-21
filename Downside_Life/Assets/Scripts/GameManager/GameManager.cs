@@ -56,12 +56,12 @@ public partial class GameManager : MonoBehaviour
         storeCanvas.transform.position = new Vector3(640, 360-folderMoveYDistance, 0);
         richHouseCanvas.transform.position = new Vector3(640, 360-folderMoveYDistance, 0);
 
-        crookAverageLevel = 50;
-        crookMaxLevel = 100;
-        snakeAverageLevel = 50;
-        snakeMaxLevel = 100;
-        gangAverageLevel = 50;
-        gangMaxLevel = 100;
+        crookMinLevel = 0;
+        crookMaxLevel = 10;
+        snakeMinLevel = 0;
+        snakeMaxLevel = 10;
+        gangMinLevel = 0;
+        gangMaxLevel = 10;
         currentScreen = Screen.main;
         
         SetStamina(10);
@@ -92,7 +92,6 @@ public partial class GameManager : MonoBehaviour
 
         //GameManager.Units
         crooks = new List<Crook>();
-        crookAttributes = new List<string>();
         snakes = new List<Snake>();
         gangs = new List<Gang>();
         ResourceManage();

@@ -76,7 +76,7 @@ public partial class GameManager : MonoBehaviour
         //꽃뱀의 감소
         for ( int i = 0; i < GameManager.instance.snakes.Count; ++i )
         {
-            desperateIncrease *= ((100 - snakes[i].snakeDesperateDown) / 100);
+            desperateIncrease *= ((100 - snakes[i].GetDesperateControl()) / 100);
         }
         richDesperate += desperateIncrease;
         EventManage();
@@ -171,14 +171,14 @@ public partial class GameManager : MonoBehaviour
             }
         }
 
-        int crookConstantIncome = 0;
+        float crookConstantIncome = 0;
         float crookPercentageIncome = 0;
         for (int i=0; i<attatchedCrooks.Length; i++)
         {
             if (attatchedCrooks[i] != null)
             {
-                crookConstantIncome += attatchedCrooks[i].richConstantDown;
-                crookPercentageIncome += attatchedCrooks[i].richPercentageDown;
+                crookConstantIncome += attatchedCrooks[i].GetRichConstantDown();
+                crookPercentageIncome += attatchedCrooks[i].GetRichRatioDown();
             }
         }
         ChangeDesperate((double)(-crookIncome) / richMoney);
@@ -199,12 +199,12 @@ public partial class GameManager : MonoBehaviour
         int crookIncome = 0;
         for (int i=0; i<attatchedCrooks.Length; i++)
         {
-            int constant = 0; float percentage = 0;
+            float constant = 0; float percentage = 0;
             if (attatchedCrooks[i] != null)
             {
-                constant += attatchedCrooks[i].richConstantDown;
-                percentage += attatchedCrooks[i].richPercentageDown;
-                crookIncome += (int)((constant + richMoney * percentage) * crookRatio * attatchedCrooks[i].playerPercentageUp);
+                constant += attatchedCrooks[i].GetRichConstantDown();
+                percentage += attatchedCrooks[i].GetRichRatioDown();
+                crookIncome += (int)((constant + richMoney * percentage) * crookRatio * attatchedCrooks[i].GetMoneyUp());
             }
         }
         //사기꾼이 가져오는 돈
