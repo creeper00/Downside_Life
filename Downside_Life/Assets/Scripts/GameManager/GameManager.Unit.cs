@@ -18,14 +18,14 @@ public partial class GameManager : MonoBehaviour
 
     public List<Gang> gangs;
     public List<Gang> sellingGangs;
-    public Gang[] attatchedGangs = new Gang[3];
+    public List<Gang>[] attachedGangs = new List<Gang>[3];
     public List<Item> gangItems;
     
     
 
     [Header("공장")]
     [HideInInspector]
-    public Factory[] factories;
+    public Factory[] factories = new Factory[3];
     [SerializeField]
     public List<int> factoryHealthPerLevel, factoryValue, factoryIncome;
     bool isFirstBuilt = true;
@@ -58,6 +58,7 @@ public partial class GameManager : MonoBehaviour
     public int crookStoreSellingNumber, snakeStoreSellingNumber, gangStoreSellingNumber;
     [SerializeField]
     public int crookMinLevel, crookMaxLevel, snakeMinLevel, snakeMaxLevel, gangMinLevel, gangMaxLevel;
+    private bool freeGangAttachPossible = false, freeGangAttachThisTurn = false;
 
 
 
@@ -152,7 +153,8 @@ public partial class GameManager : MonoBehaviour
         public int level;
         public int type;
         Item item;
-
+        [HideInInspector]
+        private Sprite crookConstant, crookRate, crookBalanced, crookIdiot; // 순서대로 상수형, 계수형, 밸런스형, 호구형
         public string GetType()
         {
             switch(type)
@@ -167,6 +169,22 @@ public partial class GameManager : MonoBehaviour
                     return "호구형";
             }
             return "";
+        }
+
+        public Sprite GetSprite()
+        {
+            switch(type)
+            {
+                case 0:
+                    return crookConstant;
+                case 1:
+                    return crookRate;
+                case 2:
+                    return crookBalanced;
+                case 3:
+                    return crookIdiot;   
+            }
+            return null;
         }
         public float unitPrice()
         {
@@ -228,6 +246,8 @@ public partial class GameManager : MonoBehaviour
         public int level;
         public int type; // 0 = 절박함 증가 억제, 1 = 환금형 아이템, 2 = 행동 비용 증가, 3 = 행동 주기 증가, 4 = 만렙 특성
         Item item;
+        [HideInInspector]
+        private Sprite snakeDesp, snakeWaste, snakeSlow, snakeMoney; // 순서대로 둔감형, 낭비형, 둔화형, 갈취형
         public string GetType()
         {
             switch (type)
@@ -242,6 +262,21 @@ public partial class GameManager : MonoBehaviour
                     return "둔화형";
             }
             return "";
+        }
+        public Sprite GetSprite()
+        {
+            switch (type)
+            {
+                case 0:
+                    return snakeDesp;
+                case 1:
+                    return snakeMoney;
+                case 2:
+                    return snakeWaste;
+                case 3:
+                    return snakeSlow;
+            }
+            return null;
         }
         public float unitPrice()
         {
@@ -424,15 +459,15 @@ public partial class GameManager : MonoBehaviour
 
 
 
-    /// <summary>유닛을 붙일 수 있는지 확인</summary>
+    /// <summary>유닛을 붙일 수 있는지 확인. 붙일 수 있는지 여부를 boolean으로 반환</summary>
     public bool CanAttatchUnit(Job kindOfUnit, int slotIndex)
     {
-        if (!CheckStamina(unitAttatchStaminaDecrease)) return false;
         switch (kindOfUnit)
         {
             case Job.crook:
-                if (attatchedCrooks[slotIndex] == null)
+                if (attatchedCrooks[slotIndex] == null)             //사기꾼이 이 슬롯에 안 붙어 있어야 하니까
                 {
+                    if (!CheckStamina(unitAttatchStaminaDecrease)) return false;
                     return true;
                 }
                 else
@@ -441,8 +476,9 @@ public partial class GameManager : MonoBehaviour
                     return false;
                 }
             case Job.snake:
-                if (attatchedSnakes[slotIndex] == null)
+                if (attatchedSnakes[slotIndex] == null)             //꽃뱀이 이 슬롯에 안 붙어 있어야 하니까
                 {
+                    if (!CheckStamina(unitAttatchStaminaDecrease)) return false;
                     return true;
                 }
                 else
@@ -451,13 +487,14 @@ public partial class GameManager : MonoBehaviour
                     return false;
                 }
             case Job.gang:
-                if (attatchedGangs[slotIndex] == null)
+                if ( factories[slotIndex] == null)                  //갱단은 여러 개 붙일 수 있지만, 공장이 일단 있어야 함
                 {
+                    if (!CheckStamina(freeGangAttachThisTurn ? 0 : unitAttatchStaminaDecrease)) return false;
                     return true;
                 }
                 else
                 {
-                    Debug.Log("Gang in the slot must retire first!!!");
+                    Debug.Log("The factory is not built yet");
                     return false;
                 }
             default:
@@ -483,9 +520,18 @@ public partial class GameManager : MonoBehaviour
                 attatchedSnakes[slotIndex] = movingSnake;
                 break;
             case Job.gang:
+                ConsumeStamina(freeGangAttachThisTurn ? 0 : unitAttatchStaminaDecrease);
+                if (freeGangAttachPossible )
+                {
+                    freeGangAttachThisTurn = !freeGangAttachThisTurn;
+                }
+                else
+                {
+                    freeGangAttachThisTurn = false;
+                }
                 Gang movingGang = gangs[unitIndex];
                 gangs.RemoveAt(unitIndex);
-                attatchedGangs[slotIndex] = movingGang;
+                attachedGangs[slotIndex].Add(movingGang);
                 break;
         }
     }
@@ -518,7 +564,7 @@ public partial class GameManager : MonoBehaviour
                     return false;
                 }
             case Job.gang:
-                if (attatchedGangs[index] != null)
+                if (attachedGangs[index] != null)
                 {
                     return true;
                 }
@@ -551,11 +597,13 @@ public partial class GameManager : MonoBehaviour
                 UnitsManager.instance.DeleteSlot(UnitsManager.Tabs.snake, index);
                 break;
             case Job.gang:
-                Gang movingGang = attatchedGangs[index];
-                attatchedGangs[index] = null;
+                /*
+                Gang movingGang = attachedGangs[index];
+                attachedGangs[index] = null;
                 gangs.Add(movingGang);
                 UnitsManager.instance.DeleteSlot(UnitsManager.Tabs.gang, index);
                 UnitsManager.instance.ShowGangs();
+                */
                 break;
         }
         UnitsManager.instance.UpdateRichMoneyChange();
