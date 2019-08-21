@@ -191,7 +191,7 @@ public class TechManager : MonoBehaviour
     }
     public void BuySkillPoint()
     {
-        int temp = GameManager.instance.skillPointPrice * GameManager.instance.totalSkillPoint;
+        int temp = GameManager.instance.skillPointPrice * (GameManager.instance.totalSkillPoint+1);
         if (GameManager.instance.playerMoney > temp)
         {
             GameManager.instance.totalSkillPoint++;
@@ -199,6 +199,8 @@ public class TechManager : MonoBehaviour
             temporarySkillPoint++;
             ShowTemporarySkillPoint();
             TechManager.instance.ShowCanSkillPoint();
+            GameManager.instance.playerMoney -= temp;
+            GameManager.instance.UpdateResourcesUI();
         }
         else
         {
