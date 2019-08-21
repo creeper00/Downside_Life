@@ -220,16 +220,15 @@ public partial class GameManager : MonoBehaviour
         }
         public bool putItem(int itemIndex)                  //붙었으면 true, 안 붙었으면 false 반환
         {
-            Item item = instance.crookItems[itemIndex];
+            Item movingItem = instance.crookItems[itemIndex];
             if (item != null) {
                 instance.alreadyHasItem();
                 return false;
-            } else if (item.type != 0) {
-                Debug.Log("타입 번호는 " + item.type);
+            } else if (movingItem.type != 0) {
                 instance.itemTypeNotMatch();
                 return false;
             } else {
-                this.item = item;
+                item = movingItem;
                 return true;
             }
         }

@@ -35,6 +35,11 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        DestroyItem();
+    }
+
+    public static void DestroyItem()
+    {
         if (itemBeingDragged != null)
         {
             Destroy(itemBeingDragged);

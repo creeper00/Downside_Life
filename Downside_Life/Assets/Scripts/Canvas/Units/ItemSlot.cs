@@ -44,6 +44,8 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                     }
                     if (succeedAttach)
                     {
+                        ItemDragHandler.DestroyItem();
+                        transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.crookItems[itemIndex].icon;
                         GameManager.instance.crookItems.RemoveAt(itemIndex);
                         UnitsManager.instance.ShowCrookItems();
                     }
@@ -55,6 +57,8 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                     }
                     if (succeedAttach)
                     {
+                        ItemDragHandler.DestroyItem();
+                        transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.snakeItems[itemIndex].icon;
                         GameManager.instance.snakeItems.RemoveAt(itemIndex);
                         UnitsManager.instance.ShowSnakeItems();
                     }
@@ -73,11 +77,13 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                     */
                     break;
             }
+            /*
             if ( succeedAttach)
             {
                 item = Instantiate(ItemDragHandler.itemBeingDragged, transform);
                 item.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             }
+            */
         }
     }
 }

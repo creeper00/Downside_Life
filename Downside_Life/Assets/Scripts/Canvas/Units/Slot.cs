@@ -70,7 +70,7 @@ public class Slot : MonoBehaviour, IDropHandler
     {
         if (UnitCheckButton.showSlot == true && item == null && GameManager.instance.CanAttatchUnit(kindOfUnit, slotIndex))
         {
-            Debug.Log("sibal");
+            //Debug.Log("sibal");
             //슬롯에 Gameobject의 Child로 Prefab을 가져다 붙임
             switch (kindOfUnit)
             {
