@@ -35,19 +35,20 @@ public partial class GameManager : MonoBehaviour
     [SerializeField]
     public List<float> crookConstantInit, crookConstantPerLevel, crookAttackItems, crookRatioInit, crookRatioPerLevel, crookMoneyInit, crookMoneyItems, crookUnitCostInit, crookUnitCostPerLevel;
     [SerializeField]
-    public float crookConstantTech, crookRatioTech, crookMoneyTech;
+    public float crookConstantTech, crookRatioTech, crookMoneyTech, crookDecreaseUnitCost;
 
     
     [Header("꽃뱀")]
 
     [SerializeField]
-    public float desConInit, desConPerLevel, desConTech, itemPriceTech, itemPercent, behaviorCostInit, behaviorCostPerLevel, behaviorCostTech, itemPriceItemsLowerBound, itemPriceItemsLowerBoundPerLevel, itemPriceItemsUpperBound, itemPriceItemsUpperBoundPerLevel;
+    public float desConInit, desConPerLevel, desConTech, itemPriceTech, itemPercent, behaviorCostInit, behaviorCostPerLevel, behaviorCostTech, itemPriceItemsLowerBound, itemPriceItemsLowerBoundPerLevel, itemPriceItemsUpperBound, itemPriceItemsUpperBoundPerLevel, snakeDecreaseUnitCost;
+
     public List<float> itemPriceItems, snakeUnitCostInit, snakeUnitCostPerLevel;
 
     [Header("갱단")]
     [SerializeField]
     public List<float> gangAttackInit, gangAttackPerLevel, gangAttackItem, gangReturnMoneyPerType, gangReturnMoneyItem, gangUnitCostInit, gangUnitCostPerLevel;
-    public float gangAttackTech1, gangAttackTech2, gangReturnMoneyTech;
+    public float gangAttackTech1, gangAttackTech2, gangReturnMoneyTech, gangDecreaseUnitCost;
 
     [Header("전체적인 특성")]
 
@@ -188,7 +189,7 @@ public partial class GameManager : MonoBehaviour
         }
         public float unitPrice()
         {
-            return instance.crookUnitCostInit[type] + level * instance.crookUnitCostPerLevel[type];
+            return (instance.crookUnitCostInit[type] + level * instance.crookUnitCostPerLevel[type]) * (1 - instance.crookDecreaseUnitCost);
         }
         public float GetRichConstantDown()
         {
@@ -280,7 +281,7 @@ public partial class GameManager : MonoBehaviour
         }
         public float unitPrice()
         {
-            return instance.snakeUnitCostInit[type] + level * instance.snakeUnitCostPerLevel[type];
+            return (instance.snakeUnitCostInit[type] + level * instance.snakeUnitCostPerLevel[type]) * (1 - instance.snakeDecreaseUnitCost);
         }
         public float GetDesperateControl()
         {
@@ -409,7 +410,7 @@ public partial class GameManager : MonoBehaviour
 
         public float unitPrice()
         {
-            return instance.gangUnitCostInit[type] + level * instance.gangUnitCostPerLevel[type];
+            return (instance.gangUnitCostInit[type] + level * instance.gangUnitCostPerLevel[type]) * (1 - instance.gangDecreaseUnitCost);
         }
         public float attack()
         {

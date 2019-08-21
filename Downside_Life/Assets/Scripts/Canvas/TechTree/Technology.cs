@@ -14,10 +14,12 @@ public class Technology : MonoBehaviour
         desperateControlIncrease, // 절박함 억제력 증가
         richCostIncrease,
         sellIncrease,
+        desperateDecrease,
         // Snake
         attackIncrease,
         multipleAttackIncrease,
         attachGangIncrease,
+        returnMoneyIncrease,
         // Gang
         itemFloor, // 아이템 층에 아이템만 나오게 함
         minMoneyIncrease,
@@ -87,6 +89,7 @@ public class Technology : MonoBehaviour
     }
     public void confirmSkillLevel()
     {
+        
         skillLevel = temporaryLevel;
         Debug.Log(upgrade + " " + skillLevel);
         switch (upgrade)
@@ -110,6 +113,9 @@ public class Technology : MonoBehaviour
             case Upgrade.sellIncrease:
                 GameManager.instance.itemPriceTech = values[skillLevel];
                 break;
+            case Upgrade.desperateDecrease:
+                GameManager.instance.richDesperate -= values[0];
+                break;
             //snake
             case Upgrade.attachGangIncrease:
                 break;
@@ -118,6 +124,9 @@ public class Technology : MonoBehaviour
                 break;
             case Upgrade.multipleAttackIncrease:
                 GameManager.instance.gangAttackTech2 = values[skillLevel];
+                break;
+            case Upgrade.returnMoneyIncrease:
+                GameManager.instance.gangReturnMoneyTech = values[skillLevel];
                 break;
             case Upgrade.attributeUnlock:
                 switch(whatJob)
@@ -191,6 +200,18 @@ public class Technology : MonoBehaviour
             case Upgrade.minMoneyIncrease:
                 break;
             case Upgrade.priceDecrease:
+                switch(whatJob)
+                {
+                    case GameManager.Job.crook:
+                        GameManager.instance.crookDecreaseUnitCost = values[skillLevel];
+                        break;
+                    case GameManager.Job.gang:
+                        GameManager.instance.gangDecreaseUnitCost = values[skillLevel];
+                        break;
+                    case GameManager.Job.snake:
+                        GameManager.instance.snakeDecreaseUnitCost = values[skillLevel];
+                        break;
+                }
                 break;
             case Upgrade.rerollNumIncrease:
                 switch(whatJob)
@@ -214,6 +235,9 @@ public class Technology : MonoBehaviour
             case Upgrade.successPercentageIncrease:
                 break;
         }
+        StoreManager.instance.showStoreCrooks();
+        StoreManager.instance.showStoreSnakes();
+        StoreManager.instance.showStoreGangs();
     }
     public void ResetSkillLevel()
     {
