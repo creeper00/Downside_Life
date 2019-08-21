@@ -190,31 +190,5 @@ public partial class GameManager : MonoBehaviour
         ChangeCanvas();
     }
 
-    //확률을 넣으면 앞에서부터 차례대로 0, 1, 2, 3 ... 을 할당하여 확률에 맞춰서 숫자를 반환한다.
-    public int SelectRandom(int[] values)
-    {
-        int k = 0;
-        for (int i=0; i<values.Length; i++)
-        {
-            k += values[i];
-        }
-        int temp = Random.Range(0, k);
-        int result = 0;
-        int l = 0;
-        int r = values[0];
-        k = 0;
-        while(k < values.Length-1)
-        {
-            if (l < temp && temp < r)
-            {
-                break;
-            }
-            l = values[k];
-            r = values[k + 1];
-            k++;
-        }
-        
-        return result;
-    }
 }
 

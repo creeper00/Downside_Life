@@ -33,7 +33,8 @@ public class Technology : MonoBehaviour
         priceDecrease,
         attributeUnlock,
         expandSlot,
-        minLevelIncrease
+        minLevelIncrease,
+        giveAdditionalMoney
         //Common
 
     }
@@ -60,7 +61,6 @@ public class Technology : MonoBehaviour
     }
     public bool CanResearch()
     {
-        
         if (skillPointNeededNum > TechManager.instance.temporaryJobSkillPoint[(int)whatJob] || TechManager.instance.temporarySkillPoint < 1)
         {
             return false;
@@ -118,6 +118,7 @@ public class Technology : MonoBehaviour
                 break;
             //snake
             case Upgrade.attachGangIncrease:
+                GameManager.instance.SetFreeGangAttachPossible(skillLevel == 1);
                 break;
             case Upgrade.attackIncrease:
                 GameManager.instance.gangAttackTech1 = values[skillLevel];
@@ -180,8 +181,10 @@ public class Technology : MonoBehaviour
             case Upgrade.expandSlot:
                 break;
             case Upgrade.itemFloor:
+                GameManager.instance.isItemFloor = skillLevel == 1 ? true : false;
                 break;
             case Upgrade.itemUnlock:
+                GameManager.instance.maxGrade = 1 + skillLevel;
                 break;
             case Upgrade.minLevelIncrease:
                 switch(whatJob)
@@ -198,6 +201,7 @@ public class Technology : MonoBehaviour
                 }
                 break;
             case Upgrade.minMoneyIncrease:
+                GameManager.instance.rangeDecrease = values[skillLevel];
                 break;
             case Upgrade.priceDecrease:
                 switch(whatJob)
@@ -228,13 +232,20 @@ public class Technology : MonoBehaviour
                 }
                 break;
             case Upgrade.staminaDecrease:
-                GameManager.instance.unitAttatchStaminaDecrease = 3 - skillLevel;
+                GameManager.instance.StealStaminaDecrease = 3 - skillLevel;
                 break;
             case Upgrade.stealAgain:
+                GameManager.instance.stealTwicePercentage = (int)(values[skillLevel]);
                 break;
             case Upgrade.successPercentageIncrease:
+                GameManager.instance.thiefSuccessPercentage = (int)(values[skillLevel]);
+                break;
+            case Upgrade.giveAdditionalMoney:
+                GameManager.instance.additionalMoney = (int)(values[skillLevel]);
                 break;
         }
+        GameManager.instance.storeCanvas.SetActive(true);
+        GameManager.instance.storeCanvas.SetActive(false);
         StoreManager.instance.showStoreCrooks();
         StoreManager.instance.showStoreSnakes();
         StoreManager.instance.showStoreGangs();

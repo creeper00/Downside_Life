@@ -62,6 +62,10 @@ public class StoreManager : MonoBehaviour
         resetScrollView(GameManager.Job.crook);
         crookStoreViewPort.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.crookStoreSellingNumber * 120 - width - spacing + 1, 0, 0);
         int index = 0;
+        if (GameManager.instance.sellingCrooks == null)
+        {
+            return;
+        }
         foreach (var unit in GameManager.instance.sellingCrooks)
         {
             var listStoreItemObject = Instantiate(prefab, crookStoreViewPort.transform);
@@ -76,6 +80,10 @@ public class StoreManager : MonoBehaviour
         resetScrollView(GameManager.Job.snake);
         snakeStoreViewPort.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.snakeStoreSellingNumber * 120 - width - spacing, 0, 0);
         int index = 0;
+        if (GameManager.instance.sellingSnakes == null)
+        {
+            return;
+        }
         foreach (var unit in GameManager.instance.sellingSnakes)
         {
             var listStoreItemObject = Instantiate(prefab, snakeStoreViewPort.transform);
@@ -90,6 +98,10 @@ public class StoreManager : MonoBehaviour
         resetScrollView(GameManager.Job.gang);
         gangStoreViewPort.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.gangStoreSellingNumber * 120 - width - spacing, 0, 0);
         int index = 0;
+        if (GameManager.instance.sellingGangs == null)
+        {
+            return;
+        }
         foreach (var unit in GameManager.instance.sellingGangs)
         {
             var listStoreItemObject = Instantiate(prefab, gangStoreViewPort.transform);

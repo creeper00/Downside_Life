@@ -10,6 +10,75 @@ public class Item
     public int itemCode;                                //아이템 하는 일 0 - 강화, 1 - 유형 변경, 2 - 기타
     public Sprite icon;
 
+    public string getItemName()
+    {
+        string id = type.ToString() + grade.ToString() + itemCode.ToString();
+        Debug.Log(id);
+        switch (id)
+        {
+            case "000":
+                return "사기꾼의 정석";
+            case "001":
+                return "사기꾼 공짜 고용";
+            case "002":
+                return "돈주머니";
+            case "010":
+                return "사기꾼의 정석 (파란색)";
+            case "011":
+                return "왁스";
+            case "012":
+                return null;
+            case "020":
+                return "사기꾼의 정석 (보라색)";
+            case "021":
+                return null;
+            case "022":
+                return null;
+            case "100":
+                return "화장품";
+            case "101":
+                return "꽃뱀 한 명 공짜 고용";
+            case "102":
+                return null;
+            case "110":
+                return "고급 화장품";
+            case "111":
+                return "원피스";
+            case "112":
+                return null;
+            case "120":
+                return "성인 잡지";
+            case "121":
+                return null;
+            case "122":
+                return null;
+            case "200":
+                return "권총";
+            case "201":
+                return "갱단 한 명 공짜 고용";
+            case "202":
+                return "돈 보따리";
+            case "210":
+                return "기관단총";
+            case "211":
+                return "헤나";
+            case "212":
+                return "과전류 장치";
+            case "220":
+                return "Sekom 설계도";
+            case "221":
+                return "갈리오 공장 설계도";
+            case "222":
+                return "변호사 사무소 설계도";
+            case "223":
+                return "주식 공장 설계도";
+            case "224":
+                return "일반 공장 설계도";
+            default:
+                return null;
+        }
+        return null;
+    }
     public Item(int type, int grade, int itemCode)
     {
         this.type = type;
@@ -59,6 +128,7 @@ public class Item
             itemName += "snake";
             if (grade == 0)
             {
+                itemName += "Normal";
                 if (itemCode == 0)
                 {
                     itemName += "Cosmetic";
@@ -152,5 +222,4 @@ public class Item
 
         icon = Resources.Load<Sprite>("UIImages/ItemIcons/" + itemName);
     }
-
 }
