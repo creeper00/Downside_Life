@@ -116,7 +116,7 @@ public class UnitsManager : MonoBehaviour
             attachedGangScrollViewContents[i].GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.gangs.Count * 120 - 510, 0);
             foreach(var gang in GameManager.instance.attachedGangs[i])
             {
-                var attachedGangListItemObject = Instantiate(attachedGangListItemPrefab, unitContents.transform);
+                var attachedGangListItemObject = Instantiate(attachedGangListItemPrefab, attachedGangScrollViewContents[i].transform);
                 attachedGangListItemObject.GetComponent<AttachedGangListItem>().SetGangUnitInformation(gang);
             }
         }

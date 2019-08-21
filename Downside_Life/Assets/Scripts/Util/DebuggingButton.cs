@@ -5,15 +5,8 @@ using UnityEngine.UI;
 
 public class DebuggingButton : MonoBehaviour
 {
-    public GameObject slot0;
-
     public void DebugSomethig()
     {
-        GameManager.instance.crookItems.Add(new Item(0, 1, 1));
-        
-        if ( GameManager.instance.attatchedCrooks[0] != null )
-        {
-            Debug.Log("attached");
-        }
+        Debug.Log(GameManager.instance.attachedGangs[0].Count + " " + GameManager.instance.attachedGangs[1].Count + " " + GameManager.instance.attachedGangs[2].Count);
     }
 }
