@@ -19,7 +19,8 @@ public partial class GameManager : MonoBehaviour
     public int crookTemporarySkillPoint, robberTemporarySkillPoint, snakeTemporarySkillPoint, gangTemporarySkillPoint;
     [SerializeField]
     public int thiefSuccessPercentage, thiefGreatSuccessPercentage, stealMoney, skillPointPrice;
-    
+
+    int crookIncome = 0;
 
     [Header("부자의 스탯")]
     public int richInitialMoney;
@@ -48,6 +49,20 @@ public partial class GameManager : MonoBehaviour
 
     void ResourceManage()
     {
+
+        float crookConstantIncome = 0;
+        float crookPercentageIncome = 0;
+        for (int i = 0; i < attatchedCrooks.Length; i++)
+        {
+            if (attatchedCrooks[i] != null)
+            {
+                crookConstantIncome += attatchedCrooks[i].GetRichConstantDown();
+                crookPercentageIncome += attatchedCrooks[i].GetRichRatioDown();
+            }
+        }
+        crookIncome = (int)((crookConstantIncome + crookPercentageIncome * richMoney / 100));//사기꾼 터는양
+        Debug.Log(crookPercentageIncome);
+
         int tempRichSalary = RichSalary();
 
         
@@ -158,57 +173,30 @@ public partial class GameManager : MonoBehaviour
     }
     int RichSalary()
     {
-        int income = 0;
         int factoryIncome = 0;
-        int crookIncome = 0;
-        float crookRatio = 1;
         for (int i=0; i<factories.Length; i++)
         {
             if (factories[i] != null)
             {
                 factoryIncome += (int)factories[i].CalculateIncome();//공장 수입
-                crookRatio -= (factories[i].factoryType == Factory.FactoryType.lawyer) ? factories[i].Calculate() : 0;//사기꾼 너프
-            }
-        }
-
-        float crookConstantIncome = 0;
-        float crookPercentageIncome = 0;
-        for (int i=0; i<attatchedCrooks.Length; i++)
-        {
-            if (attatchedCrooks[i] != null)
-            {
-                crookConstantIncome += attatchedCrooks[i].GetRichConstantDown();
-                crookPercentageIncome += attatchedCrooks[i].GetRichRatioDown();
             }
         }
         ChangeDesperate((double)(-crookIncome) / richMoney);
-        crookIncome = (int) ((crookConstantIncome + crookPercentageIncome * richMoney ) * crookRatio);//사기꾼 터는양
+        Debug.Log(crookIncome);
         return factoryIncome - crookIncome;
     }
 
     int PlayerSalary()
     {
-        float crookRatio = 0;
-        for (int i = 0; i < factories.Length; i++)
-        {
-            if (factories[i] != null)
-            {
-                crookRatio -= (factories[i].factoryType == Factory.FactoryType.lawyer) ? factories[i].Calculate() : 0;//사기꾼 너프
-            }
-        }
-        int crookIncome = 0;
+        float ratio = 0;
         for (int i=0; i<attatchedCrooks.Length; i++)
         {
-            float constant = 0; float percentage = 0;
             if (attatchedCrooks[i] != null)
             {
-                constant += attatchedCrooks[i].GetRichConstantDown();
-                percentage += attatchedCrooks[i].GetRichRatioDown();
-                crookIncome += (int)((constant + richMoney * percentage) * crookRatio * attatchedCrooks[i].GetMoneyUp());
+                ratio += attatchedCrooks[i].GetMoneyUp();
             }
         }
-        //사기꾼이 가져오는 돈
 
-        return crookIncome;
+        return (int)(crookIncome * ratio);
     }
 }

@@ -9,13 +9,14 @@ public class Technology : MonoBehaviour
     {
         ratioIncrease,
         constantIncrease,
+        moneyIncrease,
         // Crook
         desperateControlIncrease, // 절박함 억제력 증가
         richCostIncrease,
-        desperateDecrease,
+        sellIncrease,
         // Snake
         attackIncrease,
-        particularAttributeAttackIncrease,
+        multipleAttackIncrease,
         attachGangIncrease,
         // Gang
         itemFloor, // 아이템 층에 아이템만 나오게 함
@@ -27,7 +28,6 @@ public class Technology : MonoBehaviour
         calander,
         // Thief
         rerollNumIncrease,
-        incomeIncrease,
         priceDecrease,
         attributeUnlock,
         expandSlot,
@@ -88,40 +88,64 @@ public class Technology : MonoBehaviour
     public void confirmSkillLevel()
     {
         skillLevel = temporaryLevel;
+        Debug.Log(upgrade + " " + skillLevel);
         switch (upgrade)
         {
+            case Upgrade.ratioIncrease:
+                GameManager.instance.crookRatioTech = values[skillLevel];
+                break;
+            case Upgrade.constantIncrease:
+                GameManager.instance.crookConstantTech = values[skillLevel];
+                break;
+            case Upgrade.moneyIncrease:
+                GameManager.instance.crookMoneyTech = values[skillLevel];
+                break;
+            //crook
+            case Upgrade.desperateControlIncrease:
+                GameManager.instance.desConTech = values[skillLevel];
+                break;
+            case Upgrade.richCostIncrease:
+                GameManager.instance.behaviorCostTech = values[skillLevel];
+                break;
+            case Upgrade.sellIncrease:
+                GameManager.instance.itemPriceTech = values[skillLevel];
+                break;
+            //snake
             case Upgrade.attachGangIncrease:
                 break;
             case Upgrade.attackIncrease:
+                GameManager.instance.gangAttackTech1 = values[skillLevel];
+                break;
+            case Upgrade.multipleAttackIncrease:
+                GameManager.instance.gangAttackTech2 = values[skillLevel];
                 break;
             case Upgrade.attributeUnlock:
                 break;
             case Upgrade.calander:
                 break;
-            case Upgrade.constantIncrease:
-                GameManager.instance.crookConstantTech = values[skillLevel];
-                break;
-            case Upgrade.desperateControlIncrease:
-                GameManager.instance.desConTech = values[skillLevel];
-                break;
             case Upgrade.expandSlot:
-                break;
-            case Upgrade.incomeIncrease:
                 break;
             case Upgrade.itemFloor:
                 break;
             case Upgrade.itemUnlock:
                 break;
             case Upgrade.minLevelIncrease:
+                switch(whatJob)
+                {
+                    case GameManager.Job.crook:
+                        GameManager.instance.crookMinLevel = 1 + 4 * skillLevel;
+                        break;
+                    case GameManager.Job.gang:
+                        GameManager.instance.gangMinLevel = 1 + 4 * skillLevel;
+                        break;
+                    case GameManager.Job.snake:
+                        GameManager.instance.snakeMinLevel = 1 + 4 * skillLevel;
+                        break;
+                }
                 break;
             case Upgrade.minMoneyIncrease:
                 break;
-            case Upgrade.particularAttributeAttackIncrease:
-                break;
             case Upgrade.priceDecrease:
-                break;
-            case Upgrade.ratioIncrease:
-                GameManager.instance.crookTechRichPercentageIncrease = values[skillLevel];
                 break;
             case Upgrade.rerollNumIncrease:
                 switch(whatJob)
@@ -136,9 +160,6 @@ public class Technology : MonoBehaviour
                         GameManager.instance.snakeStoreSellingNumber = 3 + skillLevel;
                         break;
                 }
-                break;
-            case Upgrade.richCostIncrease:
-                GameManager.instance.behaviorCostTech = values[skillLevel];
                 break;
             case Upgrade.staminaDecrease:
                 GameManager.instance.unitAttatchStaminaDecrease = 3 - skillLevel;

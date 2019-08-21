@@ -18,34 +18,56 @@ public class TemporaryButton : MonoBehaviour
         switch(job)
         {
             case GameManager.Job.crook:
-                if (!StoreManager.instance.isCrookBuyed[index])
+                if (StoreManager.instance.isCrookBuyed[index])
                 {
-                    buyInfo = StoreManager.instance.buyInfo;
-                    buyInfo.SetActive(true);
-                    StoreManager.instance.buyYes.job = GameManager.Job.crook;
-                    StoreManager.instance.buyYes.crook = crook;
-                    StoreManager.instance.buyYes.index = index;
+                    //이미 구매했다는 팝업창
+                    break;
                 }
+                if (crook.unitPrice() > GameManager.instance.playerMoney)
+                {
+                    //돈이 모자라다는 팝업창
+                    break;
+                }
+                buyInfo = StoreManager.instance.buyInfo;
+                buyInfo.SetActive(true);
+                StoreManager.instance.buyYes.job = GameManager.Job.crook;
+                StoreManager.instance.buyYes.crook = crook;
+                StoreManager.instance.buyYes.index = index;
                 break;
             case GameManager.Job.snake:
-                if (!StoreManager.instance.isSnakeBuyed[index])
+                if (StoreManager.instance.isSnakeBuyed[index])
                 {
-                    buyInfo = StoreManager.instance.buyInfo;
-                    buyInfo.SetActive(true);
-                    StoreManager.instance.buyYes.job = GameManager.Job.snake;
-                    StoreManager.instance.buyYes.snake = snake;
-                    StoreManager.instance.buyYes.index = index;
+                    //이미 구매했다는 팝업창
+                    break;
                 }
+                if (snake.unitPrice() > GameManager.instance.playerMoney)
+                {
+                    //돈이 모자라다는 팝업창
+                    break;
+                }
+                buyInfo = StoreManager.instance.buyInfo;
+                buyInfo.SetActive(true);
+                StoreManager.instance.buyYes.job = GameManager.Job.snake;
+                StoreManager.instance.buyYes.snake = snake;
+                StoreManager.instance.buyYes.index = index;
+                
                 break;
             case GameManager.Job.gang:
-                if (!StoreManager.instance.isGangBuyed[index])
+                if (StoreManager.instance.isGangBuyed[index])
                 {
-                    buyInfo = StoreManager.instance.buyInfo;
-                    buyInfo.SetActive(true);
-                    StoreManager.instance.buyYes.job = GameManager.Job.gang;
-                    StoreManager.instance.buyYes.gang = gang;
-                    StoreManager.instance.buyYes.index = index;
+                    //이미 구매했다는 팝업창
+                    break;
                 }
+                if (gang.unitPrice() > GameManager.instance.playerMoney)
+                {
+                    //돈이 모자라다는 팝업창
+                    break;
+                }
+                buyInfo = StoreManager.instance.buyInfo;
+                buyInfo.SetActive(true);
+                StoreManager.instance.buyYes.job = GameManager.Job.gang;
+                StoreManager.instance.buyYes.gang = gang;
+                StoreManager.instance.buyYes.index = index;
                 break;
         }
     }

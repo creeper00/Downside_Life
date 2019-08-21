@@ -20,10 +20,7 @@ public partial class GameManager : MonoBehaviour
     public List<Gang> sellingGangs;
     public Gang[] attatchedGangs = new Gang[3];
     public List<Item> gangItems;
-
-    public float crookTechRichPercentageIncrease;
-    public float crookTechConstantIncrease;
-    public int crookTechMyPercentageIncrease;
+    
 
     public List<string> crooktypes, snaketypes, gangtypes;
 
@@ -37,17 +34,18 @@ public partial class GameManager : MonoBehaviour
     [Header("사기꾼")]
 
     [SerializeField]
-    public List<float> crookConstantInit, crookConstantPerLevel, crookAttackItems, crookRatioInit, crookRatioPerLevel, crookMoneyInit, crookMoneyItems;
+    public List<float> crookConstantInit, crookConstantPerLevel, crookAttackItems, crookRatioInit, crookRatioPerLevel, crookMoneyInit, crookMoneyItems, crookUnitCostInit, crookUnitCostPerLevel;
     [SerializeField]
     public float crookConstantTech, crookRatioTech, crookMoneyTech;
     [Header("꽃뱀")]
 
     [SerializeField]
-    public float desConInit, desConPerLevel, desConTech, itemPercentInit, itemPercentPerLevel, itemPercentTech, behaviorCostInit, behaviorCostPerLevel, behaviorCostTech;
+    public float desConInit, desConPerLevel, desConTech, itemPriceTech, itemPercent, behaviorCostInit, behaviorCostPerLevel, behaviorCostTech, itemPriceItemsLowerBound, itemPriceItemsLowerBoundPerLevel, itemPriceItemsUpperBound, itemPriceItemsUpperBoundPerLevel;
+    public List<float> itemPriceItems, snakeUnitCostInit, snakeUnitCostPerLevel;
 
     [Header("갱단")]
     [SerializeField]
-    public List<float> gangAttackInit, gangAttackPerLevel, gangAttackItem, gangReturnMoneyPerType, gangReturnMoneyItem;
+    public List<float> gangAttackInit, gangAttackPerLevel, gangAttackItem, gangReturnMoneyPerType, gangReturnMoneyItem, gangUnitCostInit, gangUnitCostPerLevel;
     public float gangAttackTech1, gangAttackTech2, gangReturnMoneyTech;
 
     [Header("전체적인 특성")]
@@ -154,6 +152,10 @@ public partial class GameManager : MonoBehaviour
         public int type;
         Item item;
 
+        public float unitPrice()
+        {
+            return instance.crookUnitCostInit[type] + level * instance.crookUnitCostPerLevel[type];
+        }
         public float GetRichConstantDown()
         {
             float itemRatio = 1;
@@ -179,7 +181,7 @@ public partial class GameManager : MonoBehaviour
             {
                 itemRatio = instance.crookMoneyItems[item.grade];
             }
-            return (instance.crookMoneyInit[type]) * instance.crookConstantTech * itemRatio;//가져오는 비율
+            return (instance.crookMoneyInit[type]) * instance.crookMoneyTech * itemRatio;//가져오는 비율
         }
         public bool putItem(int itemIndex)                  //붙었으면 true, 안 붙었으면 false 반환
         {
@@ -211,6 +213,10 @@ public partial class GameManager : MonoBehaviour
         public int type; // 0 = 절박함 증가 억제, 1 = 환금형 아이템, 2 = 행동 비용 증가, 3 = 행동 주기 증가, 4 = 만렙 특성
         Item item;
 
+        public float unitPrice()
+        {
+            return instance.snakeUnitCostInit[type] + level * instance.snakeUnitCostPerLevel[type];
+        }
         public float GetDesperateControl()
         {
             float temp = 1;
@@ -228,9 +234,10 @@ public partial class GameManager : MonoBehaviour
             }
             return ret;
         }
-        public float GetItemPercentage()
+        public float GetItemPrice()
         {
             float temp = 1;
+            float equippedItemRatio = 1;
             for (int i=0; i<instance.snakeItems.Count; i++)
             {
                 if (instance.snakeItems[i].itemCode == 1 && instance.snakeItems[i].grade == 2)
@@ -238,7 +245,11 @@ public partial class GameManager : MonoBehaviour
                     temp += 0.3f;
                 }
             }
-            float ret = (instance.itemPercentInit + instance.itemPercentPerLevel * level + instance.itemPercentTech) * ((item != null && item.itemCode == 0) ? (item.grade == 0 ? 1.1f : 1.3f) : 1f) * temp;
+            if (item != null && item.itemCode == 0)
+            {
+                equippedItemRatio = instance.itemPriceItems[item.grade];
+            }
+            float ret = Random.Range(instance.itemPriceItemsLowerBound + instance.itemPriceItemsLowerBoundPerLevel * level , instance.itemPriceItemsUpperBound + instance.itemPriceItemsUpperBoundPerLevel * level) * instance.itemPriceTech * equippedItemRatio * temp;
             if (type != 1)
             {
                 ret = 0;
@@ -305,7 +316,11 @@ public partial class GameManager : MonoBehaviour
     {
         public int level, type;
         Item item;
-        
+
+        public float unitPrice()
+        {
+            return instance.gangUnitCostInit[type] + level * instance.gangUnitCostPerLevel[type];
+        }
         public float attack()
         {
             float equippedItemRatio = 1;

@@ -14,16 +14,24 @@ public class BuyButton : MonoBehaviour
         switch(job)
         {
             case GameManager.Job.crook:
+                Debug.Log(crook.unitPrice());
                 GameManager.instance.crooks.Add(crook);
                 StoreManager.instance.isCrookBuyed[index] = true;
+                GameManager.instance.playerMoney -= (int)crook.unitPrice();
+                GameManager.instance.UpdateResourcesUI();
                 break;
             case GameManager.Job.snake:
+                Debug.Log(snake.unitPrice());
                 GameManager.instance.snakes.Add(snake);
                 StoreManager.instance.isSnakeBuyed[index] = true;
+                GameManager.instance.playerMoney -= (int)snake.unitPrice();
+                GameManager.instance.UpdateResourcesUI();
                 break;
             case GameManager.Job.gang:
                 GameManager.instance.gangs.Add(gang);
                 StoreManager.instance.isGangBuyed[index] = true;
+                GameManager.instance.playerMoney -= (int)gang.unitPrice();
+                GameManager.instance.UpdateResourcesUI();
                 break;
 
         }
