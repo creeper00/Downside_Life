@@ -37,28 +37,28 @@ public partial class GameManager : MonoBehaviour
     [Header("사기꾼")]
 
     [SerializeField]
-    List<float> crookConstantInit, crookConstantPerLevel, crookAttackItems, crookRatioInit, crookRatioPerLevel, crookMoneyInit, crookMoneyItems;
+    public List<float> crookConstantInit, crookConstantPerLevel, crookAttackItems, crookRatioInit, crookRatioPerLevel, crookMoneyInit, crookMoneyItems;
     [SerializeField]
-    float crookConstantTech, crookRatioTech, crookMoneyTech;
+    public float crookConstantTech, crookRatioTech, crookMoneyTech;
     [Header("꽃뱀")]
 
     [SerializeField]
-    float desConInit, desConPerLevel, desConTech, itemPercentInit, itemPercentPerLevel, itemPercentTech, behaviorCostInit, behaviorCostPerLevel, behaviorCostTech;
+    public float desConInit, desConPerLevel, desConTech, itemPercentInit, itemPercentPerLevel, itemPercentTech, behaviorCostInit, behaviorCostPerLevel, behaviorCostTech;
 
     [Header("갱단")]
     [SerializeField]
-    List<float> gangAttackInit, gangAttackPerLevel, gangAttackItem, gangReturnMoneyPerType, gangReturnMoneyItem;
-    float gangAttackTech1, gangAttackTech2, gangReturnMoneyTech;
+    public List<float> gangAttackInit, gangAttackPerLevel, gangAttackItem, gangReturnMoneyPerType, gangReturnMoneyItem;
+    public float gangAttackTech1, gangAttackTech2, gangReturnMoneyTech;
 
     [Header("전체적인 특성")]
 
     [SerializeField]
-    int unitAttatchStaminaDecrease, unitRetireStaminaDecrease;
+    public int unitAttatchStaminaDecrease, unitRetireStaminaDecrease;
 
     [SerializeField]
     public int crookStoreSellingNumber, snakeStoreSellingNumber, gangStoreSellingNumber;
     [SerializeField]
-    int crookMinLevel, crookMaxLevel, snakeMinLevel, snakeMaxLevel, gangMinLevel, gangMaxLevel;
+    public int crookMinLevel, crookMaxLevel, snakeMinLevel, snakeMaxLevel, gangMinLevel, gangMaxLevel;
 
 
 

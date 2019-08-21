@@ -50,7 +50,7 @@ public class Technology : MonoBehaviour
     [SerializeField]
     Upgrade upgrade;
     [SerializeField]
-    List<int> values;
+    List<float> values;
 
     public void Start()
     {
@@ -99,11 +99,10 @@ public class Technology : MonoBehaviour
             case Upgrade.calander:
                 break;
             case Upgrade.constantIncrease:
-                //GameManager.instance.crookTechConstantIncrease = 1 + values[skillLevel] / 100;
+                GameManager.instance.crookConstantTech = values[skillLevel];
                 break;
             case Upgrade.desperateControlIncrease:
-                break;
-            case Upgrade.desperateDecrease:
+                GameManager.instance.desConTech = values[skillLevel];
                 break;
             case Upgrade.expandSlot:
                 break;
@@ -122,13 +121,27 @@ public class Technology : MonoBehaviour
             case Upgrade.priceDecrease:
                 break;
             case Upgrade.ratioIncrease:
-                //GameManager.instance.crookTechRichPercentageIncrease = 1 + values[skillLevel] / 100;
+                GameManager.instance.crookTechRichPercentageIncrease = values[skillLevel];
                 break;
             case Upgrade.rerollNumIncrease:
+                switch(whatJob)
+                {
+                    case GameManager.Job.crook:
+                        GameManager.instance.crookStoreSellingNumber = 3 + skillLevel;
+                        break;
+                    case GameManager.Job.gang:
+                        GameManager.instance.gangStoreSellingNumber = 3 + skillLevel;
+                        break;
+                    case GameManager.Job.snake:
+                        GameManager.instance.snakeStoreSellingNumber = 3 + skillLevel;
+                        break;
+                }
                 break;
             case Upgrade.richCostIncrease:
+                GameManager.instance.behaviorCostTech = values[skillLevel];
                 break;
             case Upgrade.staminaDecrease:
+                GameManager.instance.unitAttatchStaminaDecrease = 3 - skillLevel;
                 break;
             case Upgrade.stealAgain:
                 break;

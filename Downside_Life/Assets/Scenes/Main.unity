@@ -9289,7 +9289,7 @@ MonoBehaviour:
   unitsCanvas: {fileID: 11083682}
   storeCanvas: {fileID: 1149492180}
   richHouseCanvas: {fileID: 717070170}
-  richHouse: {fileID: 1443106777}
+  richHouse: {fileID: 1586805433}
   firstFloorCanvas: {fileID: 376918096}
   secondFloorCanvas: {fileID: 1656190019}
   thirdFloorCanvas: {fileID: 1343857624}
@@ -9400,6 +9400,9 @@ MonoBehaviour:
   - 1000
   gangReturnMoneyItem:
   - 1.2
+  gangAttackTech1: 0
+  gangAttackTech2: 0
+  gangReturnMoneyTech: 0
   unitAttatchStaminaDecrease: 3
   unitRetireStaminaDecrease: 1
   crookStoreSellingNumber: 3
@@ -12915,7 +12918,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 5.0289753e+36, z: 5.9e-43, w: 6.4247625e+36}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -15967,8 +15970,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -1125200408973241842, guid: df7c87d675f457d49b094e8089c191df,
+    type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -33787,8 +33791,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -6028354313617427870, guid: df7c87d675f457d49b094e8089c191df,
+    type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -34873,8 +34878,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -3844227554101019146, guid: df7c87d675f457d49b094e8089c191df,
+    type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
