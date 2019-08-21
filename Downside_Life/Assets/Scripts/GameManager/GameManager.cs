@@ -83,6 +83,11 @@ public partial class GameManager : MonoBehaviour
         //ResourceManage();
         playerSalary = 100;
         richSalary = -100;
+
+        for ( int i = 0; i < 3; ++i )
+        {
+            attachedGangs[i] = new List<Gang>();
+        }
     }
 
     private void Start()

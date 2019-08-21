@@ -502,7 +502,7 @@ public partial class GameManager : MonoBehaviour
                     return false;
                 }
             case Job.gang:
-                if ( factories[slotIndex] == null)                  //갱단은 여러 개 붙일 수 있지만, 공장이 일단 있어야 함
+                if ( factories[slotIndex] != null)                  //갱단은 여러 개 붙일 수 있지만, 공장이 일단 있어야 함
                 {
                     if (!CheckStamina(freeGangAttachThisTurn ? 0 : unitAttatchStaminaDecrease)) return false;
                     return true;
@@ -535,6 +535,7 @@ public partial class GameManager : MonoBehaviour
                 attatchedSnakes[slotIndex] = movingSnake;
                 break;
             case Job.gang:
+                Debug.Log(unitIndex + " " + slotIndex);
                 ConsumeStamina(freeGangAttachThisTurn ? 0 : unitAttatchStaminaDecrease);
                 if (freeGangAttachPossible )
                 {

@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2226357559971961608}
+  - component: {fileID: 2624088203315037797}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: AttachedGangListItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,6 +37,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2624088203315037797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2225648205213537558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad84aa285b0f3b6499354a97a186115e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strongGang: {fileID: 21300000, guid: 4f7455eabde69c343a708466cd213219, type: 3}
+  moneyGang: {fileID: 21300000, guid: 7dea3a96e0743784f94b8f419139a5a3, type: 3}
+  debuffGang: {fileID: 21300000, guid: 65635feac43cc164ca0d509356a62894, type: 3}
+  globalGang: {fileID: 21300000, guid: 48fae86ce21c9a54086a75166412edff, type: 3}
+  levelMaxGang: {fileID: 21300000, guid: 74dd5ee5872a9a34ab04a5b66b382a15, type: 3}
 --- !u!1 &3998355872964846887
 GameObject:
   m_ObjectHideFlags: 0

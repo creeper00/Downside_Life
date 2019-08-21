@@ -386,6 +386,7 @@ GameObject:
   - component: {fileID: 8254486848621272632}
   - component: {fileID: 8254486848621272635}
   - component: {fileID: 8254486848621272630}
+  - component: {fileID: 3400634768187011929}
   m_Layer: 5
   m_Name: TechTreeItem
   m_TagString: Untagged
@@ -519,7 +520,26 @@ MonoBehaviour:
   temporaryLevel: 0
   tier: 0
   upgrade: 0
-  values: 
+  values: []
+--- !u!114 &3400634768187011929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8254486848621272637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &8794214180489143316
 GameObject:
   m_ObjectHideFlags: 0
