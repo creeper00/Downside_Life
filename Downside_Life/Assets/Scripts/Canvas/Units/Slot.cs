@@ -21,6 +21,8 @@ public class Slot : MonoBehaviour, IDropHandler
     GameObject unitNew;
     GameObject unitPopup;
     GameObject unitPopupYesButton;
+    Text unitText;
+    public int staminaUse_Unit=3;
 
     GameObject GangItemAsk;
     GameObject GangItemCheck;
@@ -36,6 +38,8 @@ public class Slot : MonoBehaviour, IDropHandler
         GangItemAsk = GameObject.Find("GangItemAsk");
         GangItemCheck = GangItemAsk.transform.Find("GangItemCheck").gameObject;
         ItemList = GameObject.Find("ItemList");
+        unitText = unitPopup.GetComponentInChildren<Text>();
+        unitText.text = "정말 투입하시겠습니까?\n" + "행동력 : " + staminaUse_Unit;
     }
 
     public GameObject item

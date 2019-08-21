@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2803,7 +2803,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC815\uB9D0 \uD22C\uC785\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+  m_Text: 
 --- !u!222 &126844895
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7956,6 +7956,7 @@ MonoBehaviour:
   slotItemPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
     type: 3}
   slotIndex: 1
+  staminaUse_Unit: 3
 --- !u!1001 &431534906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15652,6 +15653,7 @@ MonoBehaviour:
   slotItemPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
     type: 3}
   slotIndex: 2
+  staminaUse_Unit: 3
 --- !u!1 &803564759
 GameObject:
   m_ObjectHideFlags: 0
@@ -16263,8 +16265,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 29, y: 53}
-  m_SizeDelta: {x: 210.38, y: 44.1}
+  m_AnchoredPosition: {x: -10, y: 68}
+  m_SizeDelta: {x: 210.4, y: 86.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &850873174
 MonoBehaviour:
@@ -16299,7 +16301,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC815\uB9D0 \uC18C\uC911\uD55C \uCE5C\uAD6C\uB97C \uBC84\uB9AC\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+  m_Text: 
 --- !u!222 &850873175
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19815,6 +19817,7 @@ MonoBehaviour:
   slotItemPrefab: {fileID: 74436601329055264, guid: c7e4a4b0cbdaa9e4faf714bbdc4f1ec3,
     type: 3}
   slotIndex: 1
+  staminaUse_Unit: 3
 --- !u!114 &971492955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20805,6 +20808,7 @@ MonoBehaviour:
   slotItemPrefab: {fileID: 7293153464812202590, guid: d034962146d73ae4ebbea9ef6764db45,
     type: 3}
   slotIndex: 0
+  staminaUse_Unit: 3
 --- !u!114 &1026796677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21509,6 +21513,7 @@ MonoBehaviour:
   slotItemPrefab: {fileID: 7293153464812202590, guid: d034962146d73ae4ebbea9ef6764db45,
     type: 3}
   slotIndex: 1
+  staminaUse_Unit: 3
 --- !u!114 &1099497267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22759,8 +22764,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -21, y: 44}
-  m_SizeDelta: {x: 200, y: 150}
+  m_AnchoredPosition: {x: -21, y: 59}
+  m_SizeDelta: {x: 219.2, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1148347749
 MonoBehaviour:
@@ -23989,6 +23994,7 @@ MonoBehaviour:
   slotItemPrefab: {fileID: 74436601329055264, guid: c7e4a4b0cbdaa9e4faf714bbdc4f1ec3,
     type: 3}
   slotIndex: 0
+  staminaUse_Unit: 3
 --- !u!114 &1241569104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27243,6 +27249,7 @@ MonoBehaviour:
   slotItemPrefab: {fileID: 7293153464812202590, guid: d034962146d73ae4ebbea9ef6764db45,
     type: 3}
   slotIndex: 2
+  staminaUse_Unit: 3
 --- !u!114 &1383023283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33171,6 +33178,7 @@ MonoBehaviour:
   slotItemPrefab: {fileID: 74436601329055264, guid: c7e4a4b0cbdaa9e4faf714bbdc4f1ec3,
     type: 3}
   slotIndex: 2
+  staminaUse_Unit: 3
 --- !u!114 &1814510253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36921,6 +36929,7 @@ MonoBehaviour:
   slotItemPrefab: {fileID: 7505481867894768633, guid: 3c3c31d779e4cfe4b82c0b903ed29b3e,
     type: 3}
   slotIndex: 0
+  staminaUse_Unit: 3
 --- !u!1 &1998964099
 GameObject:
   m_ObjectHideFlags: 0
