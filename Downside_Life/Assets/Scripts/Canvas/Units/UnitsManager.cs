@@ -11,7 +11,6 @@ public class UnitsManager : MonoBehaviour
     private float bookmarkClickedYChange;
     [SerializeField]
     private GameObject crookBookmark, snakeBookmark, gangBookmark;
-    private Vector3 crookBookmarkPosition, snakeBookmarkPosition, gangBookmarkPosition;
     [SerializeField]
     private GameObject crookTab, snakeTab, gangTab;
     [SerializeField]
@@ -29,16 +28,15 @@ public class UnitsManager : MonoBehaviour
 
     public enum Tabs
     {
-        crook, snake, gang
+        initialnull, crook, snake, gang
     }
 
     public Tabs currentTab;
 
     void Awake()
     {
-        crookBookmarkPosition = crookBookmark.transform.position;
-        snakeBookmarkPosition = snakeBookmark.transform.position;
-        gangBookmarkPosition = gangBookmark.transform.position;
+        currentTab = Tabs.initialnull;
+        ChangeTab(Tabs.crook);
     }
 
     private void ResetUnitScrollView()
@@ -168,15 +166,20 @@ public class UnitsManager : MonoBehaviour
 
     public void ChangeTab(Tabs tab)
     {
+        crookBookmark.transform.position -= new Vector3((currentTab == Tabs.crook) ? bookmarkClickedYChange : 0, 0, 0);
+        snakeBookmark.transform.position -= new Vector3((currentTab == Tabs.snake) ? bookmarkClickedYChange : 0, 0, 0);
+        gangBookmark.transform.position -= new Vector3((currentTab == Tabs.gang) ? bookmarkClickedYChange : 0, 0, 0);
+
         currentTab = tab;
+
         crookTab.SetActive(currentTab == Tabs.crook);
-        crookBookmark.transform.position = crookBookmarkPosition + new Vector3((currentTab == Tabs.crook) ? bookmarkClickedYChange : 0, 0, 0);
-
         snakeTab.SetActive(currentTab == Tabs.snake);
-        snakeBookmark.transform.position = snakeBookmarkPosition + new Vector3((currentTab == Tabs.snake) ? bookmarkClickedYChange : 0, 0, 0);
-
         gangTab.SetActive(currentTab == Tabs.gang);
-        gangBookmark.transform.position = gangBookmarkPosition + new Vector3((currentTab == Tabs.gang) ? bookmarkClickedYChange : 0, 0, 0);
+
+        crookBookmark.transform.position += new Vector3((currentTab == Tabs.crook) ? bookmarkClickedYChange : 0, 0, 0);
+        snakeBookmark.transform.position += new Vector3((currentTab == Tabs.snake) ? bookmarkClickedYChange : 0, 0, 0);
+        gangBookmark.transform.position += new Vector3((currentTab == Tabs.gang) ? bookmarkClickedYChange : 0, 0, 0);
+
         switch (tab)
         {
             case Tabs.crook:
