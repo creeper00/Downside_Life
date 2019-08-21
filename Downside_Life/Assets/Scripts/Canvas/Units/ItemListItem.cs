@@ -18,7 +18,7 @@ public class ItemListItem : MonoBehaviour
     {
         this.index = index;
 
-        Sprite icon = transform.Find("Icon").GetComponent<Image>().sprite;
+        Sprite icon = null;
 
         int type = item.type;
         int grade = item.grade;
@@ -146,6 +146,7 @@ public class ItemListItem : MonoBehaviour
                 }
             }
         }
+        transform.Find("Icon").GetComponent<Image>().sprite = icon;
         //등급 적는 코드 작성
     }
 }
