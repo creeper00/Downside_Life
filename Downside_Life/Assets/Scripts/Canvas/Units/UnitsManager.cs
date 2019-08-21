@@ -19,14 +19,14 @@ public class UnitsManager : MonoBehaviour
     private Text RichMoneyChange;
     [Header("Unit List관련")]
     [SerializeField]
-    Transform crookListItemPrefab, snakeListItemPrefab, gangListItemPrefab, factoryPrefab;
-    [SerializeField]
     private GameObject unitContents;
+    [SerializeField]
+    private Transform crookListItemPrefab, snakeListItemPrefab, gangListItemPrefab, factoryPrefab;
     [Header("Item List관련")]
-    //[SerializeField]          //씬 충돌 나지 않도록 나중에 주석 해제할 것
+    [SerializeField]          //씬 충돌 나지 않도록 나중에 주석 해제할 것
     private Transform itemPrefab;
     [SerializeField]
-    private GameObject itemContents;
+    public GameObject itemContents;
     [Header("공장 관련")]
     public int numberOfFactories = 3;
     [SerializeField]
@@ -127,7 +127,7 @@ public class UnitsManager : MonoBehaviour
     public void ShowCrookItems()
     {
         ResetItemScrollView();
-        itemContents.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.crookItems.Count * 90 - 710, 0, 0);
+        itemContents.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.crookItems.Count * 90 - 690, 0, 0);
         int index = 0;
         foreach(var item in GameManager.instance.crookItems)
         {
@@ -141,7 +141,7 @@ public class UnitsManager : MonoBehaviour
     public void ShowSnakeItems()
     {
         ResetItemScrollView();
-        itemContents.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.snakeItems.Count * 90 - 710, 0, 0);
+        itemContents.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.snakeItems.Count * 90 - 690, 0, 0);
         int index = 0;
         foreach (var item in GameManager.instance.snakeItems)
         {
@@ -155,7 +155,7 @@ public class UnitsManager : MonoBehaviour
     public void ShowGangItems()
     {
         ResetItemScrollView();
-        itemContents.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.gangItems.Count * 90 - 710, 0, 0);
+        itemContents.GetComponent<RectTransform>().sizeDelta = new Vector3(GameManager.instance.gangItems.Count * 90 - 690, 0, 0);
         int index = 0;
         foreach (var item in GameManager.instance.gangItems)
         {
@@ -226,9 +226,9 @@ public class UnitsManager : MonoBehaviour
     public void ShowFactories()
     {
         List<GameObject> factories = new List<GameObject>();
+        factories.Add(GameObject.Find("Factory0"));
         factories.Add(GameObject.Find("Factory1"));
         factories.Add(GameObject.Find("Factory2"));
-        factories.Add(GameObject.Find("Factory3"));
         for (int i=0; i<3; i++)
         {
             foreach (Transform child in factories[i].GetComponent<Transform>())

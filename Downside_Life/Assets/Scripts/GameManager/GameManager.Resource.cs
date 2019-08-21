@@ -65,7 +65,6 @@ public partial class GameManager : MonoBehaviour
             }
         }
         crookIncome = (int)((crookConstantIncome + crookPercentageIncome * richMoney / 100));//사기꾼 터는양
-        Debug.Log(crookPercentageIncome);
 
         int tempRichSalary = RichSalary();
 
@@ -195,7 +194,6 @@ public partial class GameManager : MonoBehaviour
             }
         }
         ChangeDesperate((double)(-crookIncome) / richMoney);
-        Debug.Log(crookIncome);
         return factoryIncome - crookIncome;
     }
 
