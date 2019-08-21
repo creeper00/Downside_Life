@@ -18,7 +18,8 @@ public class ItemListItem : MonoBehaviour
     {
         this.index = index;
 
-        Sprite icon = null;
+        Sprite sprite = null;
+        Image icon = transform.Find("Icon").GetComponent<Image>();
 
         int type = item.type;
         int grade = item.grade;
@@ -32,29 +33,29 @@ public class ItemListItem : MonoBehaviour
             {
                 if(itemCode == 0)
                 {
-                    icon = crookNormalBook;
+                    sprite = crookNormalBook;
                 }
                 else if(itemCode == 2)
                 {
-                    icon = crookNormalMoneyPocket;
+                    sprite = crookNormalMoneyPocket;
                 }
             }
             else if(grade == 1)
             {
                 if (itemCode == 0)
                 {
-                    icon = crookRareBook;
+                    sprite = crookRareBook;
                 }
                 else if (itemCode == 1)
                 {
-                    icon = crookRareWax;
+                    sprite = crookRareWax;
                 }
             }
             else if(grade == 2)
             {
                 if (itemCode == 0)
                 {
-                    icon = crookLegendaryBook;
+                    sprite = crookLegendaryBook;
                 }
             }
         }
@@ -64,33 +65,33 @@ public class ItemListItem : MonoBehaviour
             {
                 if (itemCode == 0)
                 {
-                    icon = snakeNormalCosmetic;
+                    sprite = snakeNormalCosmetic;
                 }
             }
             else if (grade == 1)
             {
                 if (itemCode == 0)
                 {
-                    icon = snakeRareCosmetic;
+                    sprite = snakeRareCosmetic;
                 }
                 else if (itemCode == 1)
                 {
-                    icon = snakeRareOnePiece;
+                    sprite = snakeRareOnePiece;
                 }
             }
             else if (grade == 2)
             {
                 if (itemCode == 0)
                 {
-                    icon = snakeLegendaryMagazineDesperate;
+                    sprite = snakeLegendaryMagazineDesperate;
                 }
                 else if (itemCode == 1)
                 {
-                    icon = snakeLegendaryMagazineCostIncrease;
+                    sprite = snakeLegendaryMagazineCostIncrease;
                 }
                 else if (itemCode == 2)
                 {
-                    icon = snakeLegendaryMagazineExtort;
+                    sprite = snakeLegendaryMagazineExtort;
                 }
             }
         }
@@ -100,53 +101,57 @@ public class ItemListItem : MonoBehaviour
             {
                 if (itemCode == 0)
                 {
-                    icon = gangNormalPistol;
+                    sprite = gangNormalPistol;
                 }
                 else if (itemCode == 2)
                 {
-                    icon = gangNormalMoneyBotarri;
+                    sprite = gangNormalMoneyBotarri;
                 }
             }
             else if (grade == 1)
             {
                 if (itemCode == 0)
                 {
-                    icon = gangRareGun;
+                    sprite = gangRareGun;
                 }
                 else if (itemCode == 1)
                 {
-                    icon = gangRareHena;
+                    sprite = gangRareHena;
                 }
                 else if (itemCode == 2)
                 {
-                    icon = gangRareDevice;
+                    sprite = gangRareDevice;
                 }
             }
             else if (grade == 2)
             {
                 if (itemCode == 0)
                 {
-                    icon = gangLegendarySekom;
+                    sprite = gangLegendarySekom;
                 }
                 else if (itemCode == 1)
                 {
-                    icon = gangLegendaryAggro;
+                    sprite = gangLegendaryAggro;
                 }
                 else if (itemCode == 2)
                 {
-                    icon = gangLegendaryAttorny;
+                    sprite = gangLegendaryAttorny;
                 }
                 else if (itemCode == 3)
                 {
-                    icon = gangLegendaryStock;
+                    sprite = gangLegendaryStock;
                 }
                 else if (itemCode == 4)
                 {
-                    icon = gangLegendaryNormal;
+                    sprite = gangLegendaryNormal;
                 }
             }
         }
-        transform.Find("Icon").GetComponent<Image>().sprite = icon;
+
+        if ( sprite != null )
+        {
+            icon.sprite = sprite;
+        }
         //등급 적는 코드 작성
     }
 }
