@@ -139,12 +139,11 @@ public class Technology : MonoBehaviour
                             {
                                 break;
                             }
-                            if (i == GameManager.instance.crookType.Count - 1)
+                            if (i == GameManager.instance.crookType.Count - 1 && skillLevel == 1)
                             {
                                 GameManager.instance.crookType.Add((int)values[0]);
                             }
                         }
-                        GameManager.instance.crookType.Add((int)values[0]);
                         break;
                     case GameManager.Job.gang:
                         for (int i = 0; i < GameManager.instance.gangType.Count; i++)
@@ -153,12 +152,11 @@ public class Technology : MonoBehaviour
                             {
                                 break;
                             }
-                            if (i == GameManager.instance.gangType.Count - 1)
+                            if (i == GameManager.instance.gangType.Count - 1 && skillLevel == 1)
                             {
                                 GameManager.instance.gangType.Add((int)values[0]);
                             }
                         }
-                        GameManager.instance.gangType.Add((int)values[0]);
                         break;
                     case GameManager.Job.snake:
                         for (int i = 0; i < GameManager.instance.snakeType.Count; i++)
@@ -167,7 +165,7 @@ public class Technology : MonoBehaviour
                             {
                                 break;
                             }
-                            if (i == GameManager.instance.snakeType.Count - 1)
+                            if (i == GameManager.instance.snakeType.Count - 1 && skillLevel == 1)
                             {
                                 GameManager.instance.snakeType.Add((int)values[0]);
                             }

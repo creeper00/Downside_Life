@@ -10,6 +10,44 @@ public class Item
     public int itemCode;                                //아이템 하는 일 0 - 강화, 1 - 유형 변경, 2 - 기타
     public Sprite icon;
 
+    public Item()
+    {
+        string str = "";
+        type = Random.Range(0, 3);
+        switch(type)
+        {
+            case 0:
+                str = GameManager.instance.crookItemsList[Random.Range(0, GameManager.instance.crookItemsList.Count)];
+                break;
+            case 1:
+                str = GameManager.instance.snakeItemsList[Random.Range(0, GameManager.instance.snakeItemsList.Count)];
+                break;
+            case 2:
+                str = GameManager.instance.gangItemsList[Random.Range(0, GameManager.instance.gangItemsList.Count)];
+                break;
+        }
+        grade = int.Parse(str.Substring(1, 2));
+        itemCode = int.Parse(str.Substring(2, 3));
+    }
+    public Item(int type)//get random item
+    {
+        this.type = type;
+        string str = "";
+        switch(type)
+        {
+            case 0:
+                str = GameManager.instance.crookItemsList[Random.Range(0, GameManager.instance.crookItemsList.Count)];
+                break;
+            case 1:
+                str = GameManager.instance.snakeItemsList[Random.Range(0, GameManager.instance.snakeItemsList.Count)];
+                break;
+            case 2:
+                str = GameManager.instance.gangItemsList[Random.Range(0, GameManager.instance.gangItemsList.Count)];
+                break;
+        }
+        grade = int.Parse(str.Substring(1, 2));
+        itemCode = int.Parse(str.Substring(2, 3));
+    }
     public string getItemName()
     {
         string id = type.ToString() + grade.ToString() + itemCode.ToString();

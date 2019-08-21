@@ -66,6 +66,10 @@ public partial class GameManager : MonoBehaviour
     public int crookStoreSellingNumber, snakeStoreSellingNumber, gangStoreSellingNumber;
     [SerializeField]
     public int crookMinLevel, crookMaxLevel, snakeMinLevel, snakeMaxLevel, gangMinLevel, gangMaxLevel;
+    [SerializeField]
+    public List<string> crookItemsList;
+    public List<string> snakeItemsList;
+    public List<string> gangItemsList;
     private bool freeGangAttachPossible = false, freeGangAttachThisTurn = false;
 
     public void SetFreeGangAttachPossible(bool boolean)
