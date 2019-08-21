@@ -10,7 +10,8 @@ public class TechButtons : MonoBehaviour
     GameObject techInfo;
     [SerializeField]
     GameObject confirmInfo;
-
+    GameObject techPoint;
+    GameObject techPointBuy;
     private void Start()
     {
         techInfo = GameObject.Find("TechInfo");
@@ -43,20 +44,7 @@ public class TechButtons : MonoBehaviour
         TechManager.instance.ShowCanSkillPoint();
     }
 
-    public void TechSkillPointBuy()
-    {
-        int temp = GameManager.instance.skillPointPrice * GameManager.instance.totalSkillPoint;
-        if (GameManager.instance.playerMoney > temp)
-        {
-            GameManager.instance.playerMoney -= temp;
-            GameManager.instance.totalSkillPoint++;
-            GameManager.instance.skillPoint++;
-            TechManager.instance.ShowSkillPoint();
-        } else
-        {
-            //스킬포인트 구매 돈 모자람
-        }
-    }
+   
 
     public void CloseConfirmInfo()
     {

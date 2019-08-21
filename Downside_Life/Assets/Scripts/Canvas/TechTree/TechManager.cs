@@ -18,6 +18,9 @@ public class TechManager : MonoBehaviour
 
     public bool changeCanvas = false;
     public GameManager.Screen screen;
+
+    GameObject techPoint;
+    GameObject techPointBuy;
     void Awake()
     {
         instance = this;
@@ -188,12 +191,29 @@ public class TechManager : MonoBehaviour
     }
     public void BuySkillPoint()
     {
-        GameManager.instance.skillPoint++;
-        temporarySkillPoint++;
-        ShowTemporarySkillPoint();
-        TechManager.instance.ShowCanSkillPoint();
+        int temp = GameManager.instance.skillPointPrice * GameManager.instance.totalSkillPoint;
+        if (GameManager.instance.playerMoney > temp)
+        {
+            GameManager.instance.totalSkillPoint++;
+            GameManager.instance.skillPoint++;
+            temporarySkillPoint++;
+            ShowTemporarySkillPoint();
+            TechManager.instance.ShowCanSkillPoint();
+        }
+        else
+        {
+            techPoint = GameObject.Find("TechPoint");
+            techPointBuy = techPoint.transform.Find("TechCheck").gameObject;
+            StartCoroutine("showBuyPointPopup");
+        }
     }
 
+    IEnumerator showBuyPointPopup()
+    {
+        techPointBuy.SetActive(true);
+        yield return new WaitForSeconds(0.6f);
+        techPointBuy.SetActive(false);
+    }
     public void ShowCanSkillPoint()
     {
         for (int i=0; i<crookTechnologies.Count; i++)
