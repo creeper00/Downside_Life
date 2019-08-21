@@ -61,7 +61,7 @@ public class Slot : MonoBehaviour, IDropHandler
                     item = Instantiate(slotItemPrefab, transform);
                     break;
                 case GameManager.Job gang:
-                    item = Instantiate(slotItemPrefab, transform);
+                    //item = Instantiate(slotItemPrefab, transform);
                     break;
             }
 
@@ -123,17 +123,7 @@ public class Slot : MonoBehaviour, IDropHandler
                 item.transform.Find("RetireButton").GetComponent<RetireButton>().InitializeRetireButton(kindOfUnit, slotIndex);
                 break;
             case GameManager.Job.gang:
-                GameManager.Gang currentGang = GameManager.instance.attachedGangs[slotIndex];
-                statusText = "Lv " + currentGang.level + " 갱단";
-                item.transform.Find("Status").GetComponent<Text>().text = statusText;
-
-                item.transform.Find("ItemSlot").GetComponent<ItemSlot>().unitIndex = slotIndex;
-
-                item.transform.Find("Attack").GetComponent<Text>().text = currentGang.attack().ToString();
-
-                item.transform.Find("Attribute").GetComponent<Text>().text = "특수능력 없음";
-
-                item.transform.Find("RetireButton").GetComponent<RetireButton>().InitializeRetireButton(kindOfUnit, slotIndex);
+                UnitsManager.instance.ShowAttachedGangs();
                 break;
         }
         

@@ -498,11 +498,13 @@ public partial class GameManager : MonoBehaviour
                 UnitsManager.instance.DeleteSlot(UnitsManager.Tabs.snake, index);
                 break;
             case Job.gang:
+                /*
                 Gang movingGang = attachedGangs[index];
                 attachedGangs[index] = null;
                 gangs.Add(movingGang);
                 UnitsManager.instance.DeleteSlot(UnitsManager.Tabs.gang, index);
                 UnitsManager.instance.ShowGangs();
+                */
                 break;
         }
         UnitsManager.instance.UpdateRichMoneyChange();

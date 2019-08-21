@@ -110,7 +110,7 @@ public class UnitsManager : MonoBehaviour
             foreach(var gang in GameManager.instance.attachedGangs[i])
             {
                 var attachedGangListItemObject = Instantiate(attachedGangListItemPrefab, unitContents.transform);
-                attachedGangListItemObject.GetComponent<AttachedGangListItem>().SetInformation(gang);
+                attachedGangListItemObject.GetComponent<AttachedGangListItem>().SetGangUnitInformation(gang);
             }
         }
 
