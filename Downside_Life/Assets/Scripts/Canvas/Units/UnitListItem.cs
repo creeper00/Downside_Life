@@ -18,7 +18,8 @@ public class UnitListItem : MonoBehaviour
         this.index = index;
 
         string statusText = "Lv " + crook.level;
-        Sprite icon = null;
+        Sprite sprite = null;
+        Image icon = transform.Find("Icon").GetComponent<Image>();
         switch (crook.type)
         {
             case 0: statusText += " 상수형"; break;
@@ -28,16 +29,19 @@ public class UnitListItem : MonoBehaviour
         }
         switch (crook.type)
         {
-            case 0: icon = crookConstant; break;
-            case 1: icon = crookRate; break;
-            case 2: icon = crookBalanced; break;
-            case 3: icon = crookIdiot; break;
+            case 0: sprite = crookConstant; break;
+            case 1: sprite = crookRate; break;
+            case 2: sprite = crookBalanced; break;
+            case 3: sprite = crookIdiot; break;
         }
         statusText += " 사기꾼";
         transform.Find("Status").GetComponent<Text>().text = statusText;
         transform.Find("Attack").GetComponent<Text>().text = crook.GetRichConstantDown() + " + " + crook.GetRichRatioDown() + "%";
         transform.Find("Return").GetComponent<Text>().text = crook.GetMoneyUp() + "%";
-        transform.Find("Icon").GetComponent<Image>().sprite = icon;
+        if(sprite != null)
+        {
+            icon.sprite = sprite;
+        }
     }
 
     public void SetUnitInformation(int index, GameManager.Snake snake)
@@ -45,7 +49,8 @@ public class UnitListItem : MonoBehaviour
         this.index = index;
 
         string statusText = "Lv " + snake.level;
-        Sprite icon = null;
+        Sprite sprite = null;
+        Image icon = transform.Find("Icon").GetComponent<Image>();
         switch (snake.type)
         {
             case 0: statusText += " 둔감형"; break;
@@ -56,10 +61,10 @@ public class UnitListItem : MonoBehaviour
         }
         switch (snake.type)
         {
-            case 0: icon = snakeDesp; break;
-            case 1: icon = snakeMoney; break;
-            case 2: icon = snakeWaste; break;
-            case 3: icon = snakeSlow; break;
+            case 0: sprite = snakeDesp; break;
+            case 1: sprite = snakeMoney; break;
+            case 2: sprite = snakeWaste; break;
+            case 3: sprite = snakeSlow; break;
 
         }
         statusText += " 꽃뱀";
@@ -75,7 +80,10 @@ public class UnitListItem : MonoBehaviour
         }
 
         transform.Find("Attribute").GetComponent<Text>().text = attributeText;
-        transform.Find("Icon").GetComponent<Image>().sprite = icon;
+        if(sprite != null)
+        {
+            icon.sprite = sprite;
+        }
     }
 
     public void SetUnitInformation(int index, GameManager.Gang gang)
