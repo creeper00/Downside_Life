@@ -123,7 +123,7 @@ public class Slot : MonoBehaviour, IDropHandler
                 item.transform.Find("RetireButton").GetComponent<RetireButton>().InitializeRetireButton(kindOfUnit, slotIndex);
                 break;
             case GameManager.Job.gang:
-                GameManager.Gang currentGang = GameManager.instance.attatchedGangs[slotIndex];
+                GameManager.Gang currentGang = GameManager.instance.attachedGangs[slotIndex];
                 statusText = "Lv " + currentGang.level + " 갱단";
                 item.transform.Find("Status").GetComponent<Text>().text = statusText;
 

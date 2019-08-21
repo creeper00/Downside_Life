@@ -7,24 +7,34 @@ public class UnitsManager : MonoBehaviour
 {
     public static UnitsManager instance;
 
+    [Header("탭 전환 관련")]
     [SerializeField]
     private float bookmarkClickedYChange;
     [SerializeField]
     private GameObject crookBookmark, snakeBookmark, gangBookmark;
     [SerializeField]
     private GameObject crookTab, snakeTab, gangTab;
+    [Header("부자 돈 변화 창 관련")]
     [SerializeField]
     private Text RichMoneyChange;
+    [Header("Unit List관련")]
     [SerializeField]
     Transform crookListItemPrefab, snakeListItemPrefab, gangListItemPrefab, factoryPrefab;
     [SerializeField]
     private GameObject unitContents;
+    [Header("Item List관련")]
     //[SerializeField]          //씬 충돌 나지 않도록 나중에 주석 해제할 것
     private Transform itemPrefab;
     [SerializeField]
     private GameObject itemContents;
+    [Header("공장 관련")]
+    public int numberOfFactories = 3;
+    [SerializeField]
+    private Transform attachedGangListItemPrefab;
     [SerializeField]
     GameObject factory1, factory2, factory3;
+    [SerializeField]
+    private GameObject[] attachedGangScrollViewContents = new GameObject[3];
 
     public enum Tabs
     {
@@ -56,8 +66,7 @@ public class UnitsManager : MonoBehaviour
         foreach (var unit in GameManager.instance.crooks)
         {
             var listItemObject = Instantiate(crookListItemPrefab, unitContents.transform);
-            var crookItemList = listItemObject.GetComponent<UnitListItem>();
-            crookItemList.SetUnitInformation(index, unit);
+            listItemObject.GetComponent<UnitListItem>().SetUnitInformation(index, unit);
             ++index;
         }
     }
@@ -70,8 +79,7 @@ public class UnitsManager : MonoBehaviour
         foreach (var unit in GameManager.instance.snakes)
         {
             var listItemObject = Instantiate(snakeListItemPrefab, unitContents.transform);
-            var snakeItemList = listItemObject.GetComponent<UnitListItem>();
-            snakeItemList.SetUnitInformation(index, unit);
+            listItemObject.GetComponent<UnitListItem>().SetUnitInformation(index, unit);
             ++index;
         }
     }
@@ -84,10 +92,28 @@ public class UnitsManager : MonoBehaviour
         foreach (var unit in GameManager.instance.gangs)
         {
             var listItemObject = Instantiate(gangListItemPrefab, unitContents.transform);
-            var gangItemList = listItemObject.GetComponent<UnitListItem>();
-            gangItemList.SetUnitInformation(index, unit);
+            listItemObject.GetComponent<UnitListItem>().SetUnitInformation(index, unit);
             ++index;
         }
+    }
+
+    public void ShowAttachedGangs()
+    {
+        for (int i = 0; i < numberOfFactories; ++i)
+        {
+            foreach (Transform child in attachedGangScrollViewContents[i].GetComponent<Transform>())
+            {
+                Destroy(child.gameObject);
+            }
+
+            attachedGangScrollViewContents[i].GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.gangs.Count * 120 - 510, 0);
+            foreach(var gang in GameManager.instance.attachedGangs[i])
+            {
+                var attachedGangListItemObject = Instantiate(attachedGangListItemPrefab, unitContents.transform);
+                attachedGangListItemObject.GetComponent<AttachedGangListItem>().SetInformation(gang);
+            }
+        }
+
     }
 
     private void ResetItemScrollView()

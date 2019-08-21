@@ -18,7 +18,7 @@ public partial class GameManager : MonoBehaviour
 
     public List<Gang> gangs;
     public List<Gang> sellingGangs;
-    public Gang[] attatchedGangs = new Gang[3];
+    public List<Gang>[] attachedGangs = new List<Gang>[3];
     public List<Item> gangItems;
     
 
@@ -26,7 +26,7 @@ public partial class GameManager : MonoBehaviour
 
     [Header("공장")]
     [HideInInspector]
-    public Factory[] factories;
+    public Factory[] factories = new Factory[3];
     [SerializeField]
     public List<int> factoryHealthPerLevel, factoryValue, factoryIncome;
     bool isFirstBuilt = true;
@@ -369,15 +369,15 @@ public partial class GameManager : MonoBehaviour
 
 
 
-    /// <summary>유닛을 붙일 수 있는지 확인</summary>
+    /// <summary>유닛을 붙일 수 있는지 확인. 붙일 수 있는지 여부를 boolean으로 반환</summary>
     public bool CanAttatchUnit(Job kindOfUnit, int slotIndex)
     {
-        if (!CheckStamina(unitAttatchStaminaDecrease)) return false;
         switch (kindOfUnit)
         {
             case Job.crook:
-                if (attatchedCrooks[slotIndex] == null)
+                if (attatchedCrooks[slotIndex] == null)             //사기꾼이 이 슬롯에 안 붙어 있어야 하니까
                 {
+                    if (!CheckStamina(unitAttatchStaminaDecrease)) return false;
                     return true;
                 }
                 else
@@ -386,8 +386,9 @@ public partial class GameManager : MonoBehaviour
                     return false;
                 }
             case Job.snake:
-                if (attatchedSnakes[slotIndex] == null)
+                if (attatchedSnakes[slotIndex] == null)             //꽃뱀이 이 슬롯에 안 붙어 있어야 하니까
                 {
+                    if (!CheckStamina(unitAttatchStaminaDecrease)) return false;
                     return true;
                 }
                 else
@@ -396,13 +397,14 @@ public partial class GameManager : MonoBehaviour
                     return false;
                 }
             case Job.gang:
-                if (attatchedGangs[slotIndex] == null)
+                if ( factories[slotIndex] == null)                  //갱단은 여러 개 붙일 수 있지만, 공장이 일단 있어야 함
                 {
+                    if (!CheckStamina(unitAttatchStaminaDecrease)) return false;
                     return true;
                 }
                 else
                 {
-                    Debug.Log("Gang in the slot must retire first!!!");
+                    Debug.Log("The factory is not built yet");
                     return false;
                 }
             default:
@@ -430,7 +432,7 @@ public partial class GameManager : MonoBehaviour
             case Job.gang:
                 Gang movingGang = gangs[unitIndex];
                 gangs.RemoveAt(unitIndex);
-                attatchedGangs[slotIndex] = movingGang;
+                attachedGangs[slotIndex].Add(movingGang);
                 break;
         }
     }
@@ -463,7 +465,7 @@ public partial class GameManager : MonoBehaviour
                     return false;
                 }
             case Job.gang:
-                if (attatchedGangs[index] != null)
+                if (attachedGangs[index] != null)
                 {
                     return true;
                 }
@@ -496,8 +498,8 @@ public partial class GameManager : MonoBehaviour
                 UnitsManager.instance.DeleteSlot(UnitsManager.Tabs.snake, index);
                 break;
             case Job.gang:
-                Gang movingGang = attatchedGangs[index];
-                attatchedGangs[index] = null;
+                Gang movingGang = attachedGangs[index];
+                attachedGangs[index] = null;
                 gangs.Add(movingGang);
                 UnitsManager.instance.DeleteSlot(UnitsManager.Tabs.gang, index);
                 UnitsManager.instance.ShowGangs();

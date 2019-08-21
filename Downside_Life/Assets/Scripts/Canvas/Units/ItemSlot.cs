@@ -60,9 +60,9 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                     }
                     break;
                 case GameManager.Job.gang:
-                    if (GameManager.instance.attatchedGangs[unitIndex] != null)
+                    if (GameManager.instance.attachedGangs[unitIndex] != null)
                     {
-                        succeedAttach = GameManager.instance.attatchedGangs[unitIndex].PutItem(itemIndex);
+                        succeedAttach = GameManager.instance.attachedGangs[unitIndex].PutItem(itemIndex);
                     }
                     if (succeedAttach)
                     {
