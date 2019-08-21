@@ -152,6 +152,21 @@ public partial class GameManager : MonoBehaviour
         public int type;
         Item item;
 
+        public string GetType()
+        {
+            switch(type)
+            {
+                case 0:
+                    return "상수형";
+                case 1:
+                    return "계수형";
+                case 2:
+                    return "밸런스형";
+                case 3:
+                    return "호구형";
+            }
+            return "";
+        }
         public float unitPrice()
         {
             return instance.crookUnitCostInit[type] + level * instance.crookUnitCostPerLevel[type];
@@ -212,7 +227,21 @@ public partial class GameManager : MonoBehaviour
         public int level;
         public int type; // 0 = 절박함 증가 억제, 1 = 환금형 아이템, 2 = 행동 비용 증가, 3 = 행동 주기 증가, 4 = 만렙 특성
         Item item;
-
+        public string GetType()
+        {
+            switch (type)
+            {
+                case 0:
+                    return "둔감형";
+                case 1:
+                    return "갈취형";
+                case 2:
+                    return "낭비형";
+                case 3:
+                    return "둔화형";
+            }
+            return "";
+        }
         public float unitPrice()
         {
             return instance.snakeUnitCostInit[type] + level * instance.snakeUnitCostPerLevel[type];
@@ -234,6 +263,14 @@ public partial class GameManager : MonoBehaviour
             }
             return ret;
         }
+        public float GetLowerBound()
+        {
+            return instance.itemPriceItemsLowerBound + instance.itemPriceItemsLowerBoundPerLevel * level;
+        }
+        public float GetUpperBound()
+        {
+            return instance.itemPriceItemsUpperBound + instance.itemPriceItemsUpperBoundPerLevel * level;
+        }
         public float GetItemPrice()
         {
             float temp = 1;
@@ -249,7 +286,7 @@ public partial class GameManager : MonoBehaviour
             {
                 equippedItemRatio = instance.itemPriceItems[item.grade];
             }
-            float ret = Random.Range(instance.itemPriceItemsLowerBound + instance.itemPriceItemsLowerBoundPerLevel * level , instance.itemPriceItemsUpperBound + instance.itemPriceItemsUpperBoundPerLevel * level) * instance.itemPriceTech * equippedItemRatio * temp;
+            float ret = Random.Range(GetLowerBound() , GetUpperBound()) * instance.itemPriceTech * equippedItemRatio * temp;
             if (type != 1)
             {
                 ret = 0;
@@ -314,6 +351,23 @@ public partial class GameManager : MonoBehaviour
 
     public class Gang
     {
+        public string GetType()
+        {
+            switch (type)
+            {
+                case 0:
+                    return "딜러형";
+                case 1:
+                    return "수금형";
+                case 2:
+                    return "도벽형";
+                case 3:
+                    return "광역형";
+                case 4:
+                    return "점령";
+            }
+            return "";
+        }
         public int level, type;
         Item item;
 

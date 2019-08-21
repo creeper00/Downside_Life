@@ -13,7 +13,6 @@ public class TemporaryButton : MonoBehaviour
     GameManager.Snake snake;
     GameManager.Gang gang;
 
-
     public void showBuyInfo()
     {
         switch(job)
@@ -22,7 +21,6 @@ public class TemporaryButton : MonoBehaviour
                 if (StoreManager.instance.isCrookBuyed[index])
                 {
                     //이미 구매했다는 팝업창
-
                     StoreManager.instance.showAlreadyPurchased();
                     break;
                 }
@@ -101,20 +99,26 @@ public class TemporaryButton : MonoBehaviour
         job = GameManager.Job.crook;
         this.crook = crook;
         this.index = index;
-        transform.Find("Level").GetComponent<Text>().text = "Lv : " + crook.level+"\n"+ "$ : "+(int)crook.unitPrice();
+        transform.Find("Level").GetComponent<Text>().text = crook.level.ToString();
+        transform.Find("Price").GetComponent<Text>().text = ((int)crook.unitPrice()).ToString() + "만원";
+        transform.Find("Type").GetComponent<Text>().text = crook.GetType();
     }
     public void setSnakeUnitInformation(int index, GameManager.Snake snake)
     {
         job = GameManager.Job.snake;
         this.snake = snake;
         this.index = index;
-        transform.Find("Level").GetComponent<Text>().text = "Lv : " + snake.level+ "\n" + "$ : "+(int)snake.unitPrice();
+        transform.Find("Level").GetComponent<Text>().text = snake.level.ToString();
+        transform.Find("Price").GetComponent<Text>().text = ((int)snake.unitPrice()).ToString() + "만원";
+        transform.Find("Type").GetComponent<Text>().text = snake.GetType();
     }
     public void setGangUnitInformation(int index, GameManager.Gang gang)
     {
         job = GameManager.Job.gang;
         this.gang = gang;
         this.index = index;
-        transform.Find("Level").GetComponent<Text>().text = "Lv : " + gang.level+ "\n" + "$ : "+(int)gang.unitPrice();
+        transform.Find("Level").GetComponent<Text>().text = gang.level.ToString();
+        transform.Find("Price").GetComponent<Text>().text = ((int)gang.unitPrice()).ToString() + "만원";
+        transform.Find("Type").GetComponent<Text>().text = gang.GetType();
     }
 }

@@ -10,7 +10,6 @@ public partial class GameManager : MonoBehaviour
         FactoryBehavior();
         EventManage();
         SetStamina((stamina > 2) ? 10 : stamina + 8);
-        SnakeIncome();
         CrookReroll();
         GangReroll();
         SnakeReroll();

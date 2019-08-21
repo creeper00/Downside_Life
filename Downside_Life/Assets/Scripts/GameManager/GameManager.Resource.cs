@@ -88,25 +88,6 @@ public partial class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         snakeSteallSuccessCanvas.SetActive(false);
     }
-    void SnakeIncome()  // 환급형 꽃뱀 매 턴마다 확률적으로 돈 훔쳐오기.
-    {
-        int snakeStealMoney = 0;
-        for(int i=0;i<attatchedSnakes.Length;i++)
-        {
-            if(attatchedSnakes[i] != null)
-            {
-                if(Random.Range(0,100) < snakeItemSuccessPercentage) snakeStealMoney += (int) attatchedSnakes[i].GetItemPrice();
-            }
-        }
-        if( snakeStealMoney != 0 )     
-        {
-            // 창 1초간 띄우기
-            snakeMoneyText.text = "꽃뱀이 " + snakeStealMoney.ToString() + "만원을 부자에게서 얻었습니다!";
-            StartCoroutine(showSnakeStealSuccessWindow());
-            playerMoney += snakeStealMoney;
-            UpdateResourcesUI();
-        }
-    }
 
     public void ChangeRichMoney(int moneyDecrease, bool isIncreaseDesperate)
     {
@@ -229,6 +210,22 @@ public partial class GameManager : MonoBehaviour
             }
         }
 
+        int snakeStealMoney = 0;
+        for (int i = 0; i < attatchedSnakes.Length; i++)
+        {
+            if (attatchedSnakes[i] != null)
+            {
+                if (Random.Range(0, 100) < snakeItemSuccessPercentage) snakeStealMoney += (int)attatchedSnakes[i].GetItemPrice();
+            }
+        }
+        if (snakeStealMoney != 0)
+        {
+            // 창 1초간 띄우기
+            snakeMoneyText.text = "꽃뱀이 " + snakeStealMoney.ToString() + "만원을 부자에게서 얻었습니다!";
+            StartCoroutine(showSnakeStealSuccessWindow());
+            playerMoney += snakeStealMoney;
+            UpdateResourcesUI();
+        }
         return (int)(crookIncome * ratio);
     }
 }
