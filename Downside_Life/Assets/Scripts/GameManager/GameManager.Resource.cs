@@ -18,7 +18,7 @@ public partial class GameManager : MonoBehaviour
     [HideInInspector]
     public int crookTemporarySkillPoint, robberTemporarySkillPoint, snakeTemporarySkillPoint, gangTemporarySkillPoint;
     [SerializeField]
-    public int thiefSuccessPercentage, thiefGreatSuccessPercentage, stealMoney, skillPointPrice;
+    public int thiefSuccessPercentage, thiefGreatSuccessPercentage, skillPointPrice;
     [Header("꽃뱀")]
     [SerializeField]
     public int snakeItemSuccessPercentage;

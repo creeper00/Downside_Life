@@ -50,8 +50,15 @@ public partial class GameManager : MonoBehaviour
     public List<float> gangAttackInit, gangAttackPerLevel, gangAttackItem, gangReturnMoneyPerType, gangReturnMoneyItem, gangUnitCostInit, gangUnitCostPerLevel;
     public float gangAttackTech1, gangAttackTech2, gangReturnMoneyTech, gangDecreaseUnitCost;
 
-    [Header("전체적인 특성")]
+    [Header("도둑")]
+    public int maxGrade = 1, stealTwicePercentage;
+    [SerializeField]
+    public int thiefStealMoneyLowerBound, thiefStealMoneyUpperBound;
+    public int additionalMoney;
+    public float rangeDecrease;
+    public bool isItemFloor = false;
 
+    [Header("전체적인 특성")]
     [SerializeField]
     public int unitAttatchStaminaDecrease, unitRetireStaminaDecrease, crookRerollCost, gangRerollCost, snakeRerollCost;
     public List<int> crookType, snakeType, gangType;
@@ -61,7 +68,10 @@ public partial class GameManager : MonoBehaviour
     public int crookMinLevel, crookMaxLevel, snakeMinLevel, snakeMaxLevel, gangMinLevel, gangMaxLevel;
     private bool freeGangAttachPossible = false, freeGangAttachThisTurn = false;
 
-
+    public void SetFreeGangAttachPossible(bool boolean)
+    {
+        freeGangAttachPossible = boolean;
+    }
 
     public class Factory
     {
@@ -609,10 +619,7 @@ public partial class GameManager : MonoBehaviour
         }
         UnitsManager.instance.UpdateRichMoneyChange();
     }
-
-
-
-
+    
     public void CrookReroll()
     {
         if (crookRerollCost > instance.playerMoney)
