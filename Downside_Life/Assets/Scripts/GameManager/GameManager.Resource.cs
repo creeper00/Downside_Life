@@ -73,7 +73,34 @@ public partial class GameManager : MonoBehaviour
 
         int tempPlayerSalary = PlayerSalary();
         playerMoney += tempPlayerSalary;
+
+
         UpdateResourcesUI();
+    }
+    // 아래 SnakeIncome 함수 쓰기 위한 코드.
+    private IEnumerator showSnakeStealSuccessWindow()
+    {
+        snakeSteallSuccessCanvas.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        snakeSteallSuccessCanvas.SetActive(false);
+    }
+    void SnakeIncome()  // 환급형 꽃뱀 매 턴마다 확률적으로 돈 훔쳐오기.
+    {
+        int snakeStealMoney = 0;
+        for(int i=0;i<attatchedSnakes.Length;i++)
+        {
+            if(attatchedSnakes[i] != null)
+            {
+                snakeStealMoney += (int)attatchedSnakes[i].GetItemPrice();
+            }
+        }
+        if( snakeStealMoney != 0 )     
+        {
+            // 창 1초간 띄우기
+            StartCoroutine(showSnakeStealSuccessWindow());
+            playerMoney += snakeStealMoney;
+            UpdateResourcesUI();
+        }
     }
 
     public void ChangeRichMoney(int moneyDecrease, bool isIncreaseDesperate)
