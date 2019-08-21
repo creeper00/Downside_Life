@@ -19,6 +19,9 @@ public partial class GameManager : MonoBehaviour
     public int crookTemporarySkillPoint, robberTemporarySkillPoint, snakeTemporarySkillPoint, gangTemporarySkillPoint;
     [SerializeField]
     public int thiefSuccessPercentage, thiefGreatSuccessPercentage, stealMoney, skillPointPrice;
+    [Header("꽃뱀")]
+    [SerializeField]
+    public int snakeItemSuccessPercentage;
 
     int crookIncome = 0;
 
@@ -91,7 +94,7 @@ public partial class GameManager : MonoBehaviour
         {
             if(attatchedSnakes[i] != null)
             {
-                snakeStealMoney += (int)attatchedSnakes[i].GetItemPrice();
+                if(Random.Range(0,100) < snakeItemSuccessPercentage) snakeStealMoney += (int) attatchedSnakes[i].GetItemPrice();
             }
         }
         if( snakeStealMoney != 0 )     
