@@ -151,7 +151,8 @@ public partial class GameManager : MonoBehaviour
         public int level;
         public int type;
         Item item;
-
+        [HideInInspector]
+        private Sprite crookConstant, crookRate, crookBalanced, crookIdiot; // 순서대로 상수형, 계수형, 밸런스형, 호구형
         public string GetType()
         {
             switch(type)
@@ -166,6 +167,22 @@ public partial class GameManager : MonoBehaviour
                     return "호구형";
             }
             return "";
+        }
+
+        public Sprite GetSprite()
+        {
+            switch(type)
+            {
+                case 0:
+                    return crookConstant;
+                case 1:
+                    return crookRate;
+                case 2:
+                    return crookBalanced;
+                case 3:
+                    return crookIdiot;   
+            }
+            return null;
         }
         public float unitPrice()
         {
@@ -227,6 +244,8 @@ public partial class GameManager : MonoBehaviour
         public int level;
         public int type; // 0 = 절박함 증가 억제, 1 = 환금형 아이템, 2 = 행동 비용 증가, 3 = 행동 주기 증가, 4 = 만렙 특성
         Item item;
+        [HideInInspector]
+        private Sprite snakeDesp, snakeWaste, snakeSlow, snakeMoney; // 순서대로 둔감형, 낭비형, 둔화형, 갈취형
         public string GetType()
         {
             switch (type)
@@ -241,6 +260,21 @@ public partial class GameManager : MonoBehaviour
                     return "둔화형";
             }
             return "";
+        }
+        public Sprite GetSprite()
+        {
+            switch (type)
+            {
+                case 0:
+                    return snakeDesp;
+                case 1:
+                    return snakeMoney;
+                case 2:
+                    return snakeWaste;
+                case 3:
+                    return snakeSlow;
+            }
+            return null;
         }
         public float unitPrice()
         {

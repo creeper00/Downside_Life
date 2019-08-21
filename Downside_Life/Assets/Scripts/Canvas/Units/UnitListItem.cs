@@ -7,10 +7,6 @@ public class UnitListItem : MonoBehaviour
 {
     [HideInInspector]
     public int index;
-    [HideInInspector]
-    private Sprite crookConstant, crookRate, crookBalanced, crookIdiot; // 순서대로 상수형, 계수형, 밸런스형, 호구형
-    [HideInInspector]
-    private Sprite snakeDesp, snakeWaste, snakeSlow, snakeMoney; // 순서대로 둔감형, 낭비형, 둔화형, 갈취형
 
     /// <summary>스크롤 뷰의 한 슬롯에 유닛 정보들을 표시</summary>
     public void SetUnitInformation(int index, GameManager.Crook crook)
@@ -20,20 +16,15 @@ public class UnitListItem : MonoBehaviour
         string statusText = "Lv " + crook.level;
         Sprite sprite = null;
         Image icon = transform.Find("Icon").GetComponent<Image>();
-        switch (crook.type)
+        /*switch (crook.type)
         {
             case 0: statusText += " 상수형"; break;
             case 1: statusText += " 계수형"; break;
             case 2: statusText += " 밸런스형"; break;
             case 3: statusText += " 호구형"; break;
-        }
-        switch (crook.type)
-        {
-            case 0: sprite = crookConstant; break;
-            case 1: sprite = crookRate; break;
-            case 2: sprite = crookBalanced; break;
-            case 3: sprite = crookIdiot; break;
-        }
+        }*/
+        statusText += (" " + crook.GetType());
+        sprite = crook.GetSprite();
         statusText += " 사기꾼";
         transform.Find("Status").GetComponent<Text>().text = statusText;
         transform.Find("Attack").GetComponent<Text>().text = crook.GetRichConstantDown() + " + " + crook.GetRichRatioDown() + "%";
@@ -51,22 +42,16 @@ public class UnitListItem : MonoBehaviour
         string statusText = "Lv " + snake.level;
         Sprite sprite = null;
         Image icon = transform.Find("Icon").GetComponent<Image>();
-        switch (snake.type)
+        /*switch (snake.type)
         {
             case 0: statusText += " 둔감형"; break;
             case 1: statusText += " 갈취형"; break;
             case 2: statusText += " 낭비형"; break;
             case 3: statusText += " 둔화형"; break;
             
-        }
-        switch (snake.type)
-        {
-            case 0: sprite = snakeDesp; break;
-            case 1: sprite = snakeMoney; break;
-            case 2: sprite = snakeWaste; break;
-            case 3: sprite = snakeSlow; break;
-
-        }
+        }*/
+        statusText += (" " + snake.GetType());
+        sprite = snake.GetSprite();
         statusText += " 꽃뱀";
         transform.Find("Status").GetComponent<Text>().text = statusText;
 
