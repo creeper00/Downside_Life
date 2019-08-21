@@ -101,20 +101,20 @@ public class TemporaryButton : MonoBehaviour
         job = GameManager.Job.crook;
         this.crook = crook;
         this.index = index;
-        transform.Find("Level").GetComponent<Text>().text = "Lv : " + crook.level;
+        transform.Find("Level").GetComponent<Text>().text = "Lv : " + crook.level+"\n"+ "$ : "+(int)crook.unitPrice();
     }
     public void setSnakeUnitInformation(int index, GameManager.Snake snake)
     {
         job = GameManager.Job.snake;
         this.snake = snake;
         this.index = index;
-        transform.Find("Level").GetComponent<Text>().text = "Lv : " + snake.level;
+        transform.Find("Level").GetComponent<Text>().text = "Lv : " + snake.level+ "\n" + "$ : "+(int)snake.unitPrice();
     }
     public void setGangUnitInformation(int index, GameManager.Gang gang)
     {
         job = GameManager.Job.gang;
         this.gang = gang;
         this.index = index;
-        transform.Find("Level").GetComponent<Text>().text = "Lv : " + gang.level;
+        transform.Find("Level").GetComponent<Text>().text = "Lv : " + gang.level+ "\n" + "$ : "+(int)gang.unitPrice();
     }
 }
