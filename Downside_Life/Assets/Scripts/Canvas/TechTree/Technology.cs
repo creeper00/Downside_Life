@@ -99,7 +99,7 @@ public class Technology : MonoBehaviour
             case Upgrade.calander:
                 break;
             case Upgrade.constantIncrease:
-                GameManager.instance.crookTechConstantIncrease = 1 + values[skillLevel] / 100;
+                //GameManager.instance.crookTechConstantIncrease = 1 + values[skillLevel] / 100;
                 break;
             case Upgrade.desperateControlIncrease:
                 break;
@@ -122,7 +122,7 @@ public class Technology : MonoBehaviour
             case Upgrade.priceDecrease:
                 break;
             case Upgrade.ratioIncrease:
-                GameManager.instance.crookTechRichPercentageIncrease = 1 + values[skillLevel] / 100;
+                //GameManager.instance.crookTechRichPercentageIncrease = 1 + values[skillLevel] / 100;
                 break;
             case Upgrade.rerollNumIncrease:
                 break;
