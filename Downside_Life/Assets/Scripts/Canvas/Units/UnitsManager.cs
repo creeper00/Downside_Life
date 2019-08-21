@@ -97,7 +97,7 @@ public class UnitsManager : MonoBehaviour
         }
     }
 
-    public void ShowAttachedGangs()
+    public void ResetAttachedGangsScrollView()
     {
         for (int i = 0; i < numberOfFactories; ++i)
         {
@@ -105,7 +105,14 @@ public class UnitsManager : MonoBehaviour
             {
                 Destroy(child.gameObject);
             }
+        }
+    }
 
+    public void ShowAttachedGangs()
+    {
+        ResetAttachedGangsScrollView();
+        for (int i = 0; i < numberOfFactories; ++i)
+        {
             attachedGangScrollViewContents[i].GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.gangs.Count * 120 - 510, 0);
             foreach(var gang in GameManager.instance.attachedGangs[i])
             {

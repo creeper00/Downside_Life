@@ -60,8 +60,11 @@ public class Slot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        unitPopup.SetActive(true);
-        unitAsk.slot = this;
+        if ( UnitDragHandler.unitBeingDragged != null )
+        {
+            unitPopup.SetActive(true);
+            unitAsk.slot = this;
+        }
     }
     public void B()
     {
@@ -120,7 +123,7 @@ public class Slot : MonoBehaviour, IDropHandler
                     case 2: statusText += " 밸런스형"; break;
                     case 3: statusText += " 호구형"; break;
                 }*/
-                item.transform.Find("Icon").GetComponent<Image>().sprite = currentCrook.GetSprite();
+                item.transform.Find("CrookImage").GetComponent<Image>().sprite = currentCrook.GetSprite();
                 statusText += " 사기꾼";
                 item.transform.Find("Status").GetComponent<Text>().text = statusText;
 
@@ -134,7 +137,7 @@ public class Slot : MonoBehaviour, IDropHandler
             case GameManager.Job.snake:
                 GameManager.Snake currentSnake = GameManager.instance.attatchedSnakes[slotIndex];
                 statusText = "Lv " + currentSnake.level + " 꽃뱀";
-                item.transform.Find("Icon").GetComponent<Image>().sprite = currentSnake.GetSprite();
+                item.transform.Find("SnakeImage").GetComponent<Image>().sprite = currentSnake.GetSprite();
                 item.transform.Find("Status").GetComponent<Text>().text = statusText;
 
                 item.transform.Find("ItemSlot").GetComponent<ItemSlot>().unitIndex = slotIndex;

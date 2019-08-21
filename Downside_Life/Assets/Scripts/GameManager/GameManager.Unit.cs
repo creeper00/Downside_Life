@@ -225,6 +225,7 @@ public partial class GameManager : MonoBehaviour
                 instance.alreadyHasItem();
                 return false;
             } else if (item.type != 0) {
+                Debug.Log("타입 번호는 " + item.type);
                 instance.itemTypeNotMatch();
                 return false;
             } else {
