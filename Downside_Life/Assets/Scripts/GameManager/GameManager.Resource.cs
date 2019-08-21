@@ -49,7 +49,8 @@ public partial class GameManager : MonoBehaviour
     private Text moneyText;
     [SerializeField]
     private Text staminaText;
-
+    [SerializeField]
+    private Text snakeMoneyText;
     void ResourceManage()
     {
 
@@ -97,9 +98,10 @@ public partial class GameManager : MonoBehaviour
                 if(Random.Range(0,100) < snakeItemSuccessPercentage) snakeStealMoney += (int) attatchedSnakes[i].GetItemPrice();
             }
         }
-        if( snakeStealMoney != 0 )     
+        if( snakeStealMoney == 0 )     
         {
             // 창 1초간 띄우기
+            snakeMoneyText.text = "꽃뱀이 " + snakeStealMoney.ToString() + "만원을 부자에게서 얻었습니다!";
             StartCoroutine(showSnakeStealSuccessWindow());
             playerMoney += snakeStealMoney;
             UpdateResourcesUI();

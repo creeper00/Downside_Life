@@ -9532,6 +9532,7 @@ MonoBehaviour:
   staminaGauge: {fileID: 983049505}
   moneyText: {fileID: 352180210}
   staminaText: {fileID: 872225099}
+  snakeMoneyText: {fileID: 824633200}
   crookItems: []
   snakeItems: []
   gangItems: []
@@ -13170,7 +13171,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1e-45, y: 1e-45, z: 7.5592e-41, w: 0.23828125}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -15327,7 +15328,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 772be333f4192d7408eb98a98b0912a2, type: 3}
-    m_FontSize: 30
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
