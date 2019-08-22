@@ -233,7 +233,7 @@ public partial class GameManager : MonoBehaviour
             }
             return (instance.crookMoneyInit[type]) * instance.crookMoneyTech * itemRatio;//가져오는 비율
         }
-        public bool putItem(int itemIndex)                  //붙었으면 true, 안 붙었으면 false 반환
+        public bool putItem(int itemIndex, int slotIndex)                  //붙었으면 true, 안 붙었으면 false 반환
         {
             Item movingItem = instance.crookItems[itemIndex];
             if (item != null) {
@@ -244,6 +244,7 @@ public partial class GameManager : MonoBehaviour
                 return false;
             } else {
                 item = movingItem;
+                UnitsManager.instance.crookSlots[slotIndex].InitializeSlotObject();
                 return true;
             }
         }
@@ -380,7 +381,7 @@ public partial class GameManager : MonoBehaviour
             }
             return 0;
         }
-        public bool putItem(int itemIndex)                          //붙었으면 true, 안 붙었으면 false 반환
+        public bool putItem(int itemIndex, int slotIndex)                          //붙었으면 true, 안 붙었으면 false 반환
         {
             Item item = instance.snakeItems[itemIndex];
             if (this.item != null)
@@ -396,6 +397,7 @@ public partial class GameManager : MonoBehaviour
             else
             {
                 this.item = item;
+                UnitsManager.instance.snakeSlots[slotIndex].InitializeSlotObject();
                 return true;
             }
         }
@@ -451,7 +453,7 @@ public partial class GameManager : MonoBehaviour
             }
             return attack() * instance.gangReturnMoneyPerType[type] * equippedItemRatio + instance.gangReturnMoneyTech;
         }
-        public bool PutItem(int itemIndex)                          //붙었으면 true, 안 붙었으면 false 반환
+        public bool PutItem(int itemIndex, int slotIndex)                          //붙었으면 true, 안 붙었으면 false 반환
         {
             Item item = instance.gangItems[itemIndex];
             if (this.item != null)
@@ -631,9 +633,9 @@ public partial class GameManager : MonoBehaviour
         UnitsManager.instance.UpdateRichMoneyChange();
     }
     
-    public void CrookReroll()
+    public void CrookReroll(bool isMoney)
     {
-        if (crookRerollCost > instance.playerMoney)
+        if (isMoney && crookRerollCost > instance.playerMoney)
         {
             //리롤 돈 부족
             return;
@@ -649,12 +651,16 @@ public partial class GameManager : MonoBehaviour
         {
             StoreManager.instance.isCrookBuyed.Add(false);
         }
+        if (!isMoney)
+        {
+            return;
+        }
         instance.playerMoney -= crookRerollCost;
         UpdateResourcesUI();
     }
-    public void SnakeReroll()
+    public void SnakeReroll(bool isMoney)
     {
-        if (snakeRerollCost > instance.playerMoney)
+        if (isMoney && snakeRerollCost > instance.playerMoney)
         {
             //리롤 돈 부족
             return;
@@ -669,12 +675,16 @@ public partial class GameManager : MonoBehaviour
         {
             StoreManager.instance.isSnakeBuyed.Add(false);
         }
+        if (!isMoney)
+        {
+            return;
+        }
         instance.playerMoney -= snakeRerollCost;
         UpdateResourcesUI();
     }
-    public void GangReroll()
+    public void GangReroll(bool isMoney)
     {
-        if (gangRerollCost > instance.playerMoney)
+        if (isMoney && gangRerollCost > instance.playerMoney)
         {
             //리롤 돈 부족
             return;
@@ -688,6 +698,10 @@ public partial class GameManager : MonoBehaviour
         for (int i = 0; i < gangStoreSellingNumber; i++)
         {
             StoreManager.instance.isGangBuyed.Add(false);
+        }
+        if (!isMoney)
+        {
+            return;
         }
         instance.playerMoney -= gangRerollCost;
         UpdateResourcesUI();

@@ -35,6 +35,9 @@ public class UnitsManager : MonoBehaviour
     GameObject factory1, factory2, factory3;
     [SerializeField]
     private GameObject[] attachedGangScrollViewContents = new GameObject[3];
+    [Header("슬롯")]
+    [SerializeField]
+    public List<Slot> crookSlots, gangSlots, snakeSlots;
 
     public enum Tabs
     {
