@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Factory : MonoBehaviour
 {
+
+    
+    
     public void SetFactoryListItem(GameManager.Factory factory)
     {
         transform.Find("Level").GetComponent<Text>().text = factory.level.ToString();
@@ -14,18 +17,23 @@ public class Factory : MonoBehaviour
         {
             case GameManager.Factory.FactoryType.bank:
                 transform.Find("Type").GetComponent<Text>().text = "은행";
+                transform.Find("FactoryBank").gameObject.SetActive(true);
                 break;
             case GameManager.Factory.FactoryType.lawyer:
                 transform.Find("Type").GetComponent<Text>().text = "변호사 사무소";
+                transform.Find("FactoryLawyer").gameObject.SetActive(true);
                 break;
             case GameManager.Factory.FactoryType.normal:
                 transform.Find("Type").GetComponent<Text>().text = "일반 공장";
+                transform.Find("FactoryNormal").gameObject.SetActive(true);
                 break;
             case GameManager.Factory.FactoryType.taunt:
                 transform.Find("Type").GetComponent<Text>().text = "갈리오 공장";
+                transform.Find("FactoryTaunt").gameObject.SetActive(true);
                 break;
             case GameManager.Factory.FactoryType.thief:
                 transform.Find("Type").GetComponent<Text>().text = "김연웅 공장";
+                transform.Find("FactoryThief").gameObject.SetActive(true);
                 break;
         }
         transform.Find("IsUpgrade").GetComponent<Text>().text = factory.isUpgrade ? "업그레이드중" : "";
