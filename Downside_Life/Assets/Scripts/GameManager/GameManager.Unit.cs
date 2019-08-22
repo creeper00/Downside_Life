@@ -108,7 +108,7 @@ public partial class GameManager : MonoBehaviour
 
         public float CalculateIncome()
         {
-            return RateOfOperation() * income;
+            return RateOfOperation()/100 * income;
         }
         public Factory(FactoryType factoryType, int value)
         {
@@ -693,7 +693,7 @@ public partial class GameManager : MonoBehaviour
     {
         for (int i = 0; i < factories.Length; i++)              //공장이 레벨 업 하는 부분
         {
-            if (factories[i] != null && factories[i].isUpgrade)
+            if (factories[i] != null && factories[i].isUpgrade )
             {
                 factories[i].FactoryLevelup();
             }
@@ -719,7 +719,7 @@ public partial class GameManager : MonoBehaviour
     }
     void LevelUpFactories(int pos)
     {
-        if (factories[pos].level < 5)
+        if (factories[pos].level < 4)
         {
             if (Random.Range(0, 100) < 40)
             {

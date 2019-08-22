@@ -24,6 +24,7 @@ public partial class GameManager : MonoBehaviour
     public int snakeItemSuccessPercentage;
 
     int crookIncome = 0;
+    int snakeCost = 0;
 
     [Header("부자의 스탯")]
     public int richInitialMoney;
@@ -68,6 +69,21 @@ public partial class GameManager : MonoBehaviour
             }
         }
         crookIncome = (int)((crookConstantIncome + crookPercentageIncome * richMoney / 100));//사기꾼 터는양
+        float snakeBehaviourCost=0;
+        int checker = 0;
+        for (int i=0; i<attatchedSnakes.Length; i++)
+        {
+            if(attatchedSnakes[i]!=null)
+            {
+                if(attatchedSnakes[i].type==2)
+                {
+                    snakeBehaviourCost += attatchedSnakes[i].GetBehaviorCostIncrease();
+                    checker++;
+                }
+            }
+        }
+        snakeCost = (int)snakeBehaviourCost;
+        Debug.Log("Checker " + checker+" cost " + snakeCost);
 
         int tempRichSalary = RichSalary();
 
@@ -94,7 +110,7 @@ public partial class GameManager : MonoBehaviour
     public void ChangeRichMoney(int moneyDecrease, bool isIncreaseDesperate)
     {
         double desperate = 0;
-        desperate = richMoney > 10000000 ? 0.5 * (moneyDecrease) / richMoney : 1.5 * (moneyDecrease) / richMoney;
+        if(moneyDecrease >= 0) desperate = richMoney > 10000000 ? 0.5 * (moneyDecrease) / richMoney : 1.5 * (moneyDecrease) / richMoney;
         ChangeDesperate(desperate);
         richMoney -= moneyDecrease;
         richMoneyBar.GetComponent<RichMoneyBar>().ChangeBar(richMoney, richInitialMoney);
@@ -103,11 +119,17 @@ public partial class GameManager : MonoBehaviour
     ///<summary>부자의 절박함 수치를 증가시킴 / 입력값은 여러 보정들을 거치기 전</summary>
     private void ChangeDesperate(double desperateIncrease)
     {
+        int snakeDes = 0;
         //꽃뱀의 감소
-        for ( int i = 0; i < GameManager.instance.snakes.Count; ++i )
+        for ( int i = 0; i < attatchedSnakes.Length; i++ )
         {
-            desperateIncrease *= ((100 - snakes[i].GetDesperateControl()) / 100);
+            if (attatchedSnakes[i] != null)
+            {
+                snakeDes += (int)attatchedSnakes[i].GetDesperateControl();
+            }
         }
+        desperateIncrease *= ((100 - snakeDes) / 100);
+        Debug.Log("des IN " + snakeDes);
         richDesperate += desperateIncrease;
         EventManage();
 
@@ -130,7 +152,7 @@ public partial class GameManager : MonoBehaviour
     ///<summary>UI에 표시된 내 재산을 업데이트</summary>
     public void UpdateMoneyText()
     {
-        moneyText.text = playerMoney + "";
+        moneyText.text = playerMoney + "만 원";
         
     }
 
@@ -190,8 +212,8 @@ public partial class GameManager : MonoBehaviour
                 factoryIncome += (int)factories[i].CalculateIncome();//공장 수입
             }
         }
-        ChangeDesperate((double)(-crookIncome) / richMoney);
-        return factoryIncome - crookIncome;
+        ChangeDesperate((double)(-crookIncome -snakeCost) / richMoney);
+        return factoryIncome - crookIncome - snakeCost;
     }
 
     int PlayerSalary()

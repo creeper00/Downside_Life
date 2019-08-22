@@ -26,6 +26,7 @@ public class ItemExplanation : MonoBehaviour
         type = gameObject.GetComponent<ItemListItem>().type;
         grade = gameObject.GetComponent<ItemListItem>().grade;
         itemCode = gameObject.GetComponent<ItemListItem>().itemCode;
+        unitExplanationPanel.transform.position = gameObject.transform.position;
         if (grade == 0)
         {
             unitExplanationText.GetComponent<Text>().text = "Normal\n";
