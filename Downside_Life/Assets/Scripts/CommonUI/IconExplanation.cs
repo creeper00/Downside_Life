@@ -19,6 +19,7 @@ public class IconExplanation : MonoBehaviour
     public void infopopup()
     {
         unitExplanationCanvas.SetActive(true);
+        unitExplanationPanel.transform.position = gameObject.transform.position;
         if(gameObject.name == "AttackIcon" || gameObject.name == "MoneyStealIcon")
         {
             unitExplanationText.GetComponent<Text>().text = "부자에게서 뜯어오는 돈";
