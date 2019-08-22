@@ -24,6 +24,7 @@ public partial class GameManager : MonoBehaviour
     public int snakeItemSuccessPercentage;
 
     int crookIncome = 0;
+    int snakeCost = 0;
 
     [Header("부자의 스탯")]
     public int richInitialMoney;
@@ -65,6 +66,21 @@ public partial class GameManager : MonoBehaviour
             }
         }
         crookIncome = (int)((crookConstantIncome + crookPercentageIncome * richMoney / 100));//사기꾼 터는양
+        float snakeBehaviourCost=0;
+        int checker = 0;
+        for (int i=0; i<attatchedSnakes.Length; i++)
+        {
+            if(attatchedSnakes[i]!=null)
+            {
+                if(attatchedSnakes[i].type==2)
+                {
+                    snakeBehaviourCost += attatchedSnakes[i].GetBehaviorCostIncrease();
+                    checker++;
+                }
+            }
+        }
+        snakeCost = (int)snakeBehaviourCost;
+        Debug.Log("Checker " + checker+" cost " + snakeCost);
 
         int tempRichSalary = RichSalary();
 
@@ -193,8 +209,8 @@ public partial class GameManager : MonoBehaviour
                 factoryIncome += (int)factories[i].CalculateIncome();//공장 수입
             }
         }
-        ChangeDesperate((double)(-crookIncome) / richMoney);
-        return factoryIncome - crookIncome;
+        ChangeDesperate((double)(-crookIncome -snakeCost) / richMoney);
+        return factoryIncome - crookIncome - snakeCost;
     }
 
     int PlayerSalary()
