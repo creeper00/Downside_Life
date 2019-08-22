@@ -132,13 +132,9 @@ public partial class GameManager : MonoBehaviour
         desperateIncrease *= ((100 - snakeDes) / 100);
         Debug.Log(desperateIncrease);
         richDesperate += desperateIncrease;
-<<<<<<< HEAD
         float despChange = (float)(richDesperate / 100);
         DespGauge.transform.localScale = new Vector3( despChange, 1f, 1f);
         maxRichDesperate = Mathf.Max((float)maxRichDesperate, (float)richDesperate);
-=======
-        maxRichDesperate = Mathf.Min((float)maxRichDesperate, (float)richDesperate);
->>>>>>> c00e47c03d0ad31af8017402e545a24a7f5cff1a
         EventManage();
     }
 
