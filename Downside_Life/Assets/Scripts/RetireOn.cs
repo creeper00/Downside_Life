@@ -7,6 +7,7 @@ public class RetireOn : MonoBehaviour
     // Start is called before the first frame update
     Button yes;
     public static RetireOn instance;
+    public RetireChecker retireChecker;
     private void Awake()
     {
         instance = this;
@@ -20,6 +21,6 @@ public class RetireOn : MonoBehaviour
     // Update is called once per frame
     public void yesClick()
     {
-       GameObject.Find("RetireButton").GetComponent<RetireButton>().Retire();
+        retireChecker.doRetire();
     }
 }

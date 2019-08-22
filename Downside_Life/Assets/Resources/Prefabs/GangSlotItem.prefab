@@ -494,6 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3db92eb51cf6b14ba3e7d8c87787b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotIndex: 0
 --- !u!114 &6248381364480610925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,6 +507,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf102deaa6d058047be9e78f26ba1e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RetireObject: {fileID: 74436601816882920}
+  staminaUse_Retire: 1
 --- !u!1 &74436602094943915
 GameObject:
   m_ObjectHideFlags: 0

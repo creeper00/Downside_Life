@@ -6,7 +6,7 @@ public class RetireButton : MonoBehaviour
 {
 
     private GameManager.Job kindOfUnit;
-    private int slotIndex;
+    public int slotIndex;
 
     public void InitializeRetireButton(GameManager.Job kindOfUnit, int slotIndex)
     {
