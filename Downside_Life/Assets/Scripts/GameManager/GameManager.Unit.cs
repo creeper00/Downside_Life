@@ -108,7 +108,7 @@ public partial class GameManager : MonoBehaviour
 
         public float CalculateIncome()
         {
-            return RateOfOperation() * income;
+            return RateOfOperation()/100 * income;
         }
         public Factory(FactoryType factoryType, int value)
         {
