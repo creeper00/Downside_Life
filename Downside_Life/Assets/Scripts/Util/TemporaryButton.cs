@@ -102,6 +102,7 @@ public class TemporaryButton : MonoBehaviour
         transform.Find("Level").GetComponent<Text>().text = crook.level.ToString();
         transform.Find("Price").GetComponent<Text>().text = ((int)crook.unitPrice()).ToString() + "만원";
         transform.Find("Type").GetComponent<Text>().text = crook.GetType();
+        transform.Find("Character").GetComponent<Image>().sprite = crook.GetSprite();
     }
     public void setSnakeUnitInformation(int index, GameManager.Snake snake)
     {
@@ -111,6 +112,7 @@ public class TemporaryButton : MonoBehaviour
         transform.Find("Level").GetComponent<Text>().text = snake.level.ToString();
         transform.Find("Price").GetComponent<Text>().text = ((int)snake.unitPrice()).ToString() + "만원";
         transform.Find("Type").GetComponent<Text>().text = snake.GetType();
+        transform.Find("Character").GetComponent<Image>().sprite = snake.GetSprite();
     }
     public void setGangUnitInformation(int index, GameManager.Gang gang)
     {
@@ -120,5 +122,6 @@ public class TemporaryButton : MonoBehaviour
         transform.Find("Level").GetComponent<Text>().text = gang.level.ToString();
         transform.Find("Price").GetComponent<Text>().text = ((int)gang.unitPrice()).ToString() + "만원";
         transform.Find("Type").GetComponent<Text>().text = gang.GetType();
+        transform.Find("Character").GetComponent<Image>().sprite = gang.GetSprite();
     }
 }
