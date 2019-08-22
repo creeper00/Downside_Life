@@ -467,7 +467,6 @@ public partial class GameManager : MonoBehaviour
             else
             {
                 this.item = item;
-                                instance.gangItems.RemoveAt(itemIndex);
                 return true;
             }
         }
