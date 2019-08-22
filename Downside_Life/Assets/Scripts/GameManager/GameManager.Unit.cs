@@ -205,7 +205,7 @@ public partial class GameManager : MonoBehaviour
         {
             if ( sprite == null )
             {
-                string spriteName = "";
+                string spriteName = "crook";
                 switch (type)
                 {
                     case 0:
@@ -221,7 +221,7 @@ public partial class GameManager : MonoBehaviour
                         spriteName += "Idiot";
                         break;
                 }
-                sprite = Resources.Load<Sprite>("Characters/crook" + spriteName);
+                sprite = Resources.Load<Sprite>("Characters/" + spriteName);
             }
             return sprite;
         }
@@ -467,19 +467,19 @@ public partial class GameManager : MonoBehaviour
                 switch (type)
                 {
                     case 0:
-                        spriteName += "";
+                        spriteName += "Strong";
                         break;
                     case 1:
-                        spriteName += "";
+                        spriteName += "Money";
                         break;
                     case 2:
-                        spriteName += "";
+                        spriteName += "Debuff";
                         break;
                     case 3:
-                        spriteName += "";
+                        spriteName += "Global";
                         break;
                     case 4:
-                        spriteName += "";
+                        spriteName += "Conquer";
                         break;
                 }
                 sprite = Resources.Load<Sprite>("Characters/" + spriteName);
