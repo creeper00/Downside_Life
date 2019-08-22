@@ -86,7 +86,7 @@ public class TemporaryButton : MonoBehaviour
 
     public void addSnakes()
     {
-        GameManager.instance.snakes.Add(new GameManager.Snake(1, 1));
+        GameManager.instance.snakes.Add(new GameManager.Snake(1, 3));
     }
 
     public void addGangs()
