@@ -213,7 +213,7 @@ public partial class GameManager : MonoBehaviour
             {
                 itemRatio = instance.crookAttackItems[item.grade];
             }
-            return (instance.crookConstantInit[type] + level * instance.crookConstantPerLevel[type]) * instance.crookConstantTech * itemRatio;
+            return (instance.crookConstantInit[type] + level * instance.crookConstantPerLevel[type]) * instance.crookConstantTech * itemRatio * instance.crookAttackMultiplyByEvent;
         }
         public float GetRichRatioDown()
         {

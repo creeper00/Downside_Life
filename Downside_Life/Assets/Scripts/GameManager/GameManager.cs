@@ -56,7 +56,10 @@ public partial class GameManager : MonoBehaviour
         richHouseCanvas.transform.position = new Vector3(640, 360-folderMoveYDistance, 0);
         
         currentScreen = Screen.main;
-        
+
+        //이벤트 설정
+        InitializeEventSettings();
+
         SetStamina(10);
         
         GotoMainButton = GameObject.Find("GotoMainButton");

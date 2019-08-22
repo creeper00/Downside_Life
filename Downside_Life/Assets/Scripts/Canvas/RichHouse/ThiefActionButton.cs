@@ -26,7 +26,7 @@ public class ThiefActionButton : MonoBehaviour
             int lowerBound = GameManager.instance.thiefStealMoneyLowerBound + (int)((GameManager.instance.thiefStealMoneyUpperBound - GameManager.instance.thiefStealMoneyLowerBound) * (GameManager.instance.rangeDecrease)) + GameManager.instance.additionalMoney;
             int upperBound = GameManager.instance.thiefStealMoneyUpperBound + GameManager.instance.additionalMoney;
             Debug.Log(lowerBound + " " + upperBound);
-            if (Random.Range(0, 100) < GameManager.instance.thiefSuccessPercentage)
+            if (Random.Range(0, 100) < GameManager.instance.thiefSuccessPercentage * GameManager.instance.robberSuccessRateMultiplyByEvent)
             {
                 //터는데 성공함
                 if (floor == 0)
