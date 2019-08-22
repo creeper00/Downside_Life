@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public partial class GameManager : MonoBehaviour
 {
     [Header("이벤트 관련 수치들")]
-    //[SerializeField]
-    private double robberSuccessRateDecrease;
-    //[SerializeField]
-    private double crookStealMoneyDecrease;
+    [SerializeField]
+    private float robberSuccessRateDecrease;
+    [SerializeField]
+    private float crookAttackDecrease;
     private int numOfTotalEvents = 0;
     private int nextEventIndex;
     private double nextEventDesperate;
@@ -19,7 +19,8 @@ public partial class GameManager : MonoBehaviour
     [Header("이거에 영향을 받는 것들")]
     private int factoryCoolDownDecrease = 0;
     [HideInInspector]
-    public double robberSuccessRateMultiply = 1f;
+    public float robberSuccessRateMultiplyByEvent = 1f;
+    private float crookAttackMultiplyByEvent = 1f;
 
     List<DesperateEvent> events = new List<DesperateEvent>();
 
@@ -67,8 +68,10 @@ public partial class GameManager : MonoBehaviour
 
     void EventManage()
     {
-        while(nextEventIndex < numOfTotalEvents && instance.maxRichDesperate >= nextEventDesperate )    //실행해야 되는 이벤트 체크하고 실행
+        Debug.Log(nextEventIndex + " " + numOfTotalEvents);
+        while (nextEventIndex < numOfTotalEvents && instance.maxRichDesperate >= nextEventDesperate )    //실행해야 되는 이벤트 체크하고 실행
         {
+            
             ExecuteEvent(events[nextEventIndex]);
             ++nextEventIndex;
             nextEventDesperate = events[nextEventIndex].GetEventDesperate();
@@ -87,7 +90,7 @@ public partial class GameManager : MonoBehaviour
                 ++factoryCoolDownDecrease;
                 break;
             case 2:         //도둑질 확률 감소
-                robberSuccessRateMultiply -= robberSuccessRateDecrease;
+                robberSuccessRateMultiplyByEvent -= robberSuccessRateDecrease;
                 break;
             case 3:         //꽃뱀 슬롯 삭제
                 if ( instance.attatchedSnakes[snakeSlotDisableIndex] != null )
@@ -99,7 +102,7 @@ public partial class GameManager : MonoBehaviour
                 --snakeSlotDisableIndex;
                 break;
             case 4:         //사기꾼에게 뜯기는 돈 감소
-
+                crookAttackMultiplyByEvent -= crookAttackDecrease;
                 break;
         }
     }

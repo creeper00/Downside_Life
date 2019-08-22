@@ -131,6 +131,7 @@ public partial class GameManager : MonoBehaviour
         desperateIncrease *= ((100 - snakeDes) / 100);
         Debug.Log("des IN " + snakeDes);
         richDesperate += desperateIncrease;
+        maxRichDesperate = Mathf.Max((float)maxRichDesperate, (float)richDesperate);
         EventManage();
 
     }
@@ -205,6 +206,7 @@ public partial class GameManager : MonoBehaviour
             if (attatchedSnakes[i] != null && attatchedSnakes[i].type == 3) ret++;
         }
         Debug.Log(ret.ToString());
+        ret += factoryCoolDownDecrease;
         return ret;
     }
     int RichSalary()
