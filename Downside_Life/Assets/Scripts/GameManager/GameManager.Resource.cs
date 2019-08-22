@@ -37,7 +37,7 @@ public partial class GameManager : MonoBehaviour
     private double richDesperateBound;
     [SerializeField]
     private int fasterSetupFactory;
-    private int factoryCoolDown;                    //현재 턴 수
+    private int factoryCoolDown = 3;                    //현재 턴 수
 
     [SerializeField]
     private GameObject desperateGauge;
@@ -200,6 +200,11 @@ public partial class GameManager : MonoBehaviour
     int FactoryCooldown()               //공장 주기 정하는 값
     {
         int ret = 3;
+        for(int i=0;i<attatchedSnakes.Length;i++)
+        {
+            if (attatchedSnakes[i] != null && attatchedSnakes[i].type == 3) ret++;
+        }
+        Debug.Log(ret.ToString());
         return ret;
     }
     int RichSalary()

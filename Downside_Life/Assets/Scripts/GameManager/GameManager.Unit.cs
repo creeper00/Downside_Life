@@ -650,6 +650,7 @@ public partial class GameManager : MonoBehaviour
             StoreManager.instance.isCrookBuyed.Add(false);
         }
         instance.playerMoney -= crookRerollCost;
+        UpdateResourcesUI();
     }
     public void SnakeReroll()
     {
@@ -669,6 +670,7 @@ public partial class GameManager : MonoBehaviour
             StoreManager.instance.isSnakeBuyed.Add(false);
         }
         instance.playerMoney -= snakeRerollCost;
+        UpdateResourcesUI();
     }
     public void GangReroll()
     {
@@ -688,6 +690,7 @@ public partial class GameManager : MonoBehaviour
             StoreManager.instance.isGangBuyed.Add(false);
         }
         instance.playerMoney -= gangRerollCost;
+        UpdateResourcesUI();
     }
     void FactoryBehavior()
     {
