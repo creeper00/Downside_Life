@@ -30,7 +30,7 @@ public partial class GameManager : MonoBehaviour
 
     [Header("부자의 스탯")]
     public int richInitialMoney;
-    private int richMoney, richSalary;
+    public int richMoney, richSalary;
     public double richDesperate;
     private double maxRichDesperate;                //지금까지 있었던 절박함의 최댓값
     [SerializeField]
@@ -108,7 +108,6 @@ public partial class GameManager : MonoBehaviour
     {
         double desperate = 0;
         if(moneyDecrease >= 0) desperate = richMoney > 10000000 ? 0.5 * (moneyDecrease) / richMoney * 100 : 1.5 * (moneyDecrease) / richMoney * 100;
-        Debug.Log("desperate : " + desperate);
         if (isIncreaseDesperate)
         {
             ChangeDesperate(desperate);
@@ -130,7 +129,6 @@ public partial class GameManager : MonoBehaviour
             }
         }
         desperateIncrease *= ((100 - snakeDes) / 100);
-        Debug.Log(desperateIncrease);
         richDesperate += desperateIncrease;
         float despChange = (float)(richDesperate / 100);
         if (despChange > 0) DespGauge.transform.localScale = new Vector3(despChange, 1f, 1f);
@@ -208,7 +206,6 @@ public partial class GameManager : MonoBehaviour
         {
             if (attatchedSnakes[i] != null && attatchedSnakes[i].type == 3) ret += attatchedSnakes[i].RichCycleIncrease();
         }
-        Debug.Log(ret.ToString());
         ret += factoryCoolDownDecrease;
         return ret;
     }

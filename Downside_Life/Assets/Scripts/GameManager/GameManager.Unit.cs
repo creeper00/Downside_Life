@@ -44,7 +44,7 @@ public partial class GameManager : MonoBehaviour
     public float crookConstantTech;
     [SerializeField]
     public float crookRatioTech, crookMoneyTech, crookDecreaseUnitCost;
-    [SerializeField]
+    public bool doTuja;
     public List<float> crookConstantInit, crookConstantPerLevel, crookAttackItems, crookRatioInit, crookRatioPerLevel, crookMoneyInit, crookMoneyItems, crookUnitCostInit, crookUnitCostPerLevel;
 
     [Header("꽃뱀")]
@@ -107,6 +107,8 @@ public partial class GameManager : MonoBehaviour
         public int maxhealth;
         public int income;
         public bool isUpgrade;
+        public int isStolen;
+        public float[] debuffGangRatio = new float[3];
 
         public FactoryType factoryType;
         int value;
@@ -122,7 +124,12 @@ public partial class GameManager : MonoBehaviour
 
         public float CalculateIncome()
         {
-            return RateOfOperation()/100 * income;
+            float debuff = debuffGangRatio[0];
+            debuffGangRatio[0] = debuffGangRatio[1];
+            debuffGangRatio[1] = debuffGangRatio[2];
+            debuffGangRatio[2] = 1;
+            Debug.Log("debuff : " + debuff);
+            return RateOfOperation() / 100 * income * debuff;
         }
         public Factory(FactoryType factoryType, int value)
         {
@@ -137,6 +144,9 @@ public partial class GameManager : MonoBehaviour
             this.income = GameManager.instance.factoryIncome[level];
             this.factoryType = factoryType;
             this.value = value;
+            debuffGangRatio[0] = 1;
+            debuffGangRatio[1] = 1;
+            debuffGangRatio[2] = 1;
         }
 
         public void FactoryLevelup()
@@ -506,7 +516,14 @@ public partial class GameManager : MonoBehaviour
         }
         public int level, type;
         Item item;
-
+        public float ratioMinus()
+        {
+            if (type == 2)
+            {
+                return 0.5f - level / 100;
+            }
+            else return 1;
+        }
         public float unitPrice()
         {
             return (instance.gangUnitCostInit[type] + level * instance.gangUnitCostPerLevel[type]) * (1 - instance.gangDecreaseUnitCost);
@@ -869,7 +886,6 @@ public partial class GameManager : MonoBehaviour
             temp = 0;
             isFirstBuilt = false;
         }
-        Debug.Log(temp);
         factories[pos] = new Factory((Factory.FactoryType)temp, factoryValue[temp]);
         ChangeRichMoney(100000, false);
     }
@@ -884,10 +900,8 @@ public partial class GameManager : MonoBehaviour
             int attack = 0;
             if (factories[i] != null)
             {
-                Debug.Log(attachedGangs[i].Count);
                 for (int j=0; j<attachedGangs[i].Count; j++)
                 {
-                    Debug.Log(attachedGangs[i][j].type);
                     switch (attachedGangs[i][j].type)
                     {
                         case 0:
@@ -901,6 +915,11 @@ public partial class GameManager : MonoBehaviour
                         case 2:
                             attack += (int)attachedGangs[i][j].attack();
                             totalMoney += (int)attachedGangs[i][j].returnMoney();
+                            for (int k=0; k<3; k++)
+                            {
+                                Debug.Log("RatioMinus " + attachedGangs[i][j].ratioMinus());
+                                factories[i].debuffGangRatio[k] *= attachedGangs[i][j].ratioMinus();
+                            }
                             break;
                         case 3:
                             totalAttack += (int)attachedGangs[i][j].attack();

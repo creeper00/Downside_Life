@@ -84,7 +84,7 @@ public partial class GameManager : MonoBehaviour
 
     void EventManage()
     {
-        Debug.Log(nextEventIndex + " " + numOfTotalEvents);
+        //Debug.Log(nextEventIndex + " " + numOfTotalEvents);
         while (nextEventIndex < numOfTotalEvents && instance.maxRichDesperate >= nextEventDesperate )    //실행해야 되는 이벤트 체크하고 실행
         {
             
