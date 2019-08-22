@@ -119,12 +119,14 @@ public class TechManager : MonoBehaviour
     }
     public void ShowSkillPoint()
     {
-        skillPointText.text = "skillpoint : " + GameManager.instance.skillPoint;
+        int temp = GameManager.instance.skillPointPrice * (GameManager.instance.totalSkillPoint + 1);
+        skillPointText.text = "skillpoint : " + GameManager.instance.skillPoint+"\n가격 : "+temp;
     }
     public void ShowTemporarySkillPoint()
     {
+        int temp = GameManager.instance.skillPointPrice * (GameManager.instance.totalSkillPoint + 1);
         skillPointText.color = new Color32(255, 0, 0, 255);
-        skillPointText.text = "skillpoint : " + temporarySkillPoint;
+        skillPointText.text = "skillpoint : " + temporarySkillPoint+ "\n가격 : " + temp;
     }
     public bool CanMinusSkillLevel(Technology technology)
     {
