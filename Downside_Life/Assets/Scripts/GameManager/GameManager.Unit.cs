@@ -44,6 +44,7 @@ public partial class GameManager : MonoBehaviour
     public float desConInit, desConPerLevel, desConTech, itemPriceTech, itemPercent, behaviorCostInit, behaviorCostPerLevel, behaviorCostTech, itemPriceItemsLowerBound, itemPriceItemsLowerBoundPerLevel, itemPriceItemsUpperBound, itemPriceItemsUpperBoundPerLevel, snakeDecreaseUnitCost;
 
     public List<float> itemPriceItems, snakeUnitCostInit, snakeUnitCostPerLevel;
+    public bool doRichDesperateDown;
 
     [Header("갱단")]
     [SerializeField]
@@ -780,6 +781,7 @@ public partial class GameManager : MonoBehaviour
         }
         Debug.Log(temp);
         factories[pos] = new Factory((Factory.FactoryType)temp, factoryValue[temp]);
+        ChangeRichMoney(100000, false);
     }
 
     void FactoryAttack()

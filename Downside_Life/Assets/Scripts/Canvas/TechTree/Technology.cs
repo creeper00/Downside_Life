@@ -135,7 +135,14 @@ public class Technology : MonoBehaviour
                 GameManager.instance.itemPriceTech = values[skillLevel];
                 break;
             case Upgrade.desperateDecrease:
-                GameManager.instance.richDesperate -= values[0];
+                if (GameManager.instance.doRichDesperateDown)
+                {
+                    GameManager.instance.ChangeDesperate(values[skillLevel]);
+                    if (skillLevel == 1)
+                    {
+                        GameManager.instance.doRichDesperateDown = false;
+                    }
+                }
                 break;
             //snake
             case Upgrade.attachGangIncrease:

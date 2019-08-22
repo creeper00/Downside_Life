@@ -118,7 +118,7 @@ public partial class GameManager : MonoBehaviour
     }
 
     ///<summary>부자의 절박함 수치를 증가시킴 / 입력값은 여러 보정들을 거치기 전</summary>
-    private void ChangeDesperate(double desperateIncrease)
+    public void ChangeDesperate(double desperateIncrease)
     {
         int snakeDes = 0;
         //꽃뱀의 감소
