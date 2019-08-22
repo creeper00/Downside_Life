@@ -21,6 +21,9 @@ public partial class GameManager : MonoBehaviour
     [HideInInspector]
     public float robberSuccessRateMultiplyByEvent = 1f;
     private float crookAttackMultiplyByEvent = 1f;
+    [Header("스마트폰 UI 내용")]
+    [SerializeField]
+    private GameObject smartPhoneText;
 
     List<DesperateEvent> events = new List<DesperateEvent>();
 
@@ -50,6 +53,19 @@ public partial class GameManager : MonoBehaviour
         events.Add(new DesperateEvent(2, 80));
     }
 
+    private string GetNextEventExplanation()
+    {
+        string ret;
+        if (nextEventIndex < numOfTotalEvents )
+        {
+            ret = events[nextEventIndex].GetEventExplanation();
+        }
+        else
+        {
+            ret = "부자가 곧 나를 버릴 것 같은데...조심해서 행동해야겠다.";
+        }
+        return ret;
+    }
 
     public void Ending(Endings ending)
     {
@@ -76,6 +92,8 @@ public partial class GameManager : MonoBehaviour
             ++nextEventIndex;
             nextEventDesperate = events[nextEventIndex].GetEventDesperate();
         }
+
+        smartPhoneText.GetComponent<Text>().text = GetNextEventExplanation();
 
         if (richMoney <= 0) Ending(Endings.success);
         if (richMoney >= richMoneyBound) Ending(Endings.tooBig);

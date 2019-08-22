@@ -20,22 +20,22 @@ public class DesperateEvent
         return eventDesperate;
     }
 
-    public string EventExplanation()
+    public string GetEventExplanation()
     {
         string ret = "";
         switch(eventType)
         {
             case 1:
-                ret = "부자가 공장 관리에 더 집중할 것 같다";
+                ret = "부자가 공장 관리에 더 집중할 것 같다.";
                 break;
             case 2:
-                ret = "부자가 자기 집의 관리를 강화할 것 같다";
+                ret = "부자가 자기 집의 관리를 강화할 것 같다.";
                 break;
             case 3:
-                ret = "부자가 꽃뱀의 행동을 눈치챈 듯하다";
+                ret = "부자가 꽃뱀의 행동을 눈치챈 듯하다.";
                 break;
             case 4:
-                ret = "부자가 사기꾼들을 경계하는 듯하다";
+                ret = "부자가 사기꾼들을 경계하는 듯하다.";
                 break;
         }
         return ret;
