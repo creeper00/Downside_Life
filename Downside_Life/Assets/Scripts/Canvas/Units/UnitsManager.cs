@@ -113,7 +113,7 @@ public class UnitsManager : MonoBehaviour
         ResetAttachedGangsScrollView();
         for (int i = 0; i < numberOfFactories; ++i)
         {
-            attachedGangScrollViewContents[i].GetComponent<RectTransform>().sizeDelta = new Vector3(0, GameManager.instance.gangs.Count * 120 - 510, 0);
+            attachedGangScrollViewContents[i].GetComponent<RectTransform>().sizeDelta = new Vector3(Mathf.Max(GameManager.instance.attachedGangs[i].Count * 70 - 240, 0), 0, 0);
             foreach(var gang in GameManager.instance.attachedGangs[i])
             {
                 var attachedGangListItemObject = Instantiate(attachedGangListItemPrefab, attachedGangScrollViewContents[i].transform);
