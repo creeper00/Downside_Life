@@ -91,7 +91,7 @@ public partial class GameManager : MonoBehaviour
     public void ChangeRichMoney(int moneyDecrease, bool isIncreaseDesperate)
     {
         double desperate = 0;
-        desperate = richMoney > 10000000 ? 0.5 * (moneyDecrease) / richMoney : 1.5 * (moneyDecrease) / richMoney;
+        if(moneyDecrease >= 0) desperate = richMoney > 10000000 ? 0.5 * (moneyDecrease) / richMoney : 1.5 * (moneyDecrease) / richMoney;
         ChangeDesperate(desperate);
         richMoney -= moneyDecrease;
         richMoneyBar.GetComponent<RichMoneyBar>().ChangeBar(richMoney, richInitialMoney);

@@ -33,7 +33,7 @@ public class UnitListItem : MonoBehaviour
         statusText += " 사기꾼";
         transform.Find("Status").GetComponent<Text>().text = statusText;
         transform.Find("Attack").GetComponent<Text>().text = crook.GetRichConstantDown() + " + " + crook.GetRichRatioDown() + "%";
-        transform.Find("Return").GetComponent<Text>().text = crook.GetMoneyUp() + "%";
+        transform.Find("Return").GetComponent<Text>().text = crook.GetMoneyUp() * 100 + "%";
         if(sprite != null)
         {
             icon.sprite = sprite;
