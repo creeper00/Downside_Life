@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 6682306390571536519}
   - component: {fileID: 1233679090673156744}
   m_Layer: 5
-  m_Name: AttriubuteIcon
+  m_Name: AttributeIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
