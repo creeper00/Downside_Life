@@ -170,12 +170,12 @@ GameObject:
   - component: {fileID: 8407529543416151752}
   - component: {fileID: 8563402302951425861}
   m_Layer: 5
-  m_Name: FactoryNormal (3)
+  m_Name: FactoryNormal3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2391086718899300174
 RectTransform:
   m_ObjectHideFlags: 0
@@ -244,12 +244,12 @@ GameObject:
   - component: {fileID: 1603090892089180924}
   - component: {fileID: 1927934327669114663}
   m_Layer: 5
-  m_Name: FactoryTaunt (1)
+  m_Name: FactoryTaunt1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &357022560867201033
 RectTransform:
   m_ObjectHideFlags: 0
@@ -318,12 +318,12 @@ GameObject:
   - component: {fileID: 3071595849790945647}
   - component: {fileID: 4820115359341884935}
   m_Layer: 5
-  m_Name: FactoryBank (5)
+  m_Name: FactoryBank5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7673298296608155324
 RectTransform:
   m_ObjectHideFlags: 0
@@ -471,12 +471,12 @@ GameObject:
   - component: {fileID: 2399468024150899790}
   - component: {fileID: 3909668333996740444}
   m_Layer: 5
-  m_Name: FactoryBank (2)
+  m_Name: FactoryBank2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2647531067150290403
 RectTransform:
   m_ObjectHideFlags: 0
@@ -619,12 +619,12 @@ GameObject:
   - component: {fileID: 2959579089647095036}
   - component: {fileID: 7186174895459170321}
   m_Layer: 5
-  m_Name: FactoryTaunt (3)
+  m_Name: FactoryTaunt3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4131840898964726691
 RectTransform:
   m_ObjectHideFlags: 0
@@ -851,12 +851,12 @@ GameObject:
   - component: {fileID: 396204537526627101}
   - component: {fileID: 7217718589038609826}
   m_Layer: 5
-  m_Name: FactoryThief (3)
+  m_Name: FactoryThief3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3235483662268419761
 RectTransform:
   m_ObjectHideFlags: 0
@@ -925,12 +925,12 @@ GameObject:
   - component: {fileID: 7207070372644245827}
   - component: {fileID: 9200281995170127784}
   m_Layer: 5
-  m_Name: FactoryNormal (5)
+  m_Name: FactoryNormal5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3304886245412280304
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1078,12 +1078,12 @@ GameObject:
   - component: {fileID: 3019996039546094406}
   - component: {fileID: 9212482920729112190}
   m_Layer: 5
-  m_Name: FactoryBank (3)
+  m_Name: FactoryBank3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3183307200689003270
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1152,12 +1152,12 @@ GameObject:
   - component: {fileID: 3244233047101376457}
   - component: {fileID: 4843788267637857957}
   m_Layer: 5
-  m_Name: FactoryThief (4)
+  m_Name: FactoryThief4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2178362735621899117
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1305,12 +1305,12 @@ GameObject:
   - component: {fileID: 5973973860256315200}
   - component: {fileID: 2190719888446292089}
   m_Layer: 5
-  m_Name: FactoryLawyer (5)
+  m_Name: FactoryLawyer5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9128191896322458342
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1379,12 +1379,12 @@ GameObject:
   - component: {fileID: 3394678557892434660}
   - component: {fileID: 4827034351126416649}
   m_Layer: 5
-  m_Name: FactoryNormal (4)
+  m_Name: FactoryNormal4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3051508597891251794
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1527,12 +1527,12 @@ GameObject:
   - component: {fileID: 2848043364883751145}
   - component: {fileID: 2067686237725868197}
   m_Layer: 5
-  m_Name: FactoryBank (1)
+  m_Name: FactoryBank1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3346131014887840914
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1601,12 +1601,12 @@ GameObject:
   - component: {fileID: 5365054755035084182}
   - component: {fileID: 1613825105578503148}
   m_Layer: 5
-  m_Name: FactoryTaunt (2)
+  m_Name: FactoryTaunt2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &632914524805441907
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1675,12 +1675,12 @@ GameObject:
   - component: {fileID: 8615198857120833318}
   - component: {fileID: 6105274831805380603}
   m_Layer: 5
-  m_Name: FactoryLawyer (3)
+  m_Name: FactoryLawyer3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2764599768511656329
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1749,12 +1749,12 @@ GameObject:
   - component: {fileID: 740908523437300778}
   - component: {fileID: 5709345857754054161}
   m_Layer: 5
-  m_Name: FactoryThief (2)
+  m_Name: FactoryThief2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3242753454784366704
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1823,12 +1823,12 @@ GameObject:
   - component: {fileID: 2505889013278293172}
   - component: {fileID: 3951780714204521192}
   m_Layer: 5
-  m_Name: FactoryLawyer (4)
+  m_Name: FactoryLawyer4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8071770925116371985
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1897,12 +1897,12 @@ GameObject:
   - component: {fileID: 3872863075883065216}
   - component: {fileID: 8644591210970990202}
   m_Layer: 5
-  m_Name: FactoryLawyer (1)
+  m_Name: FactoryLawyer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4810134778521539663
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2050,12 +2050,12 @@ GameObject:
   - component: {fileID: 1061627131691050544}
   - component: {fileID: 1345019709426266135}
   m_Layer: 5
-  m_Name: FactoryTaunt (4)
+  m_Name: FactoryTaunt4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6725416469928533584
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2124,12 +2124,12 @@ GameObject:
   - component: {fileID: 5218055169929397154}
   - component: {fileID: 7872027237918534058}
   m_Layer: 5
-  m_Name: FactoryThief (1)
+  m_Name: FactoryThief1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6024991847005228619
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2198,12 +2198,12 @@ GameObject:
   - component: {fileID: 6710258803377133544}
   - component: {fileID: 1840999489582413578}
   m_Layer: 5
-  m_Name: FactoryThief (5)
+  m_Name: FactoryThief5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &633569780875075141
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2272,12 +2272,12 @@ GameObject:
   - component: {fileID: 4606607898579106897}
   - component: {fileID: 52319831208311179}
   m_Layer: 5
-  m_Name: FactoryNormal (1)
+  m_Name: FactoryNormal1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1274775851109613695
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2346,12 +2346,12 @@ GameObject:
   - component: {fileID: 622823166185622746}
   - component: {fileID: 7688541432214056765}
   m_Layer: 5
-  m_Name: FactoryNormal (2)
+  m_Name: FactoryNormal2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &862840930826799819
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2633,12 +2633,12 @@ GameObject:
   - component: {fileID: 7267675793138994456}
   - component: {fileID: 5748130307716694385}
   m_Layer: 5
-  m_Name: FactoryBank (4)
+  m_Name: FactoryBank4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8146679325230322292
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2707,12 +2707,12 @@ GameObject:
   - component: {fileID: 8189506844328640277}
   - component: {fileID: 6444205395691335191}
   m_Layer: 5
-  m_Name: FactoryLawyer (2)
+  m_Name: FactoryLawyer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7273042286372715507
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2781,12 +2781,12 @@ GameObject:
   - component: {fileID: 4478627252789596825}
   - component: {fileID: 3780847423382459150}
   m_Layer: 5
-  m_Name: FactoryTaunt (5)
+  m_Name: FactoryTaunt5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4588920664815042594
 RectTransform:
   m_ObjectHideFlags: 0
