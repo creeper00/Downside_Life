@@ -57,7 +57,6 @@ public partial class GameManager : MonoBehaviour
 
     void ResourceManage()
     {
-
         float crookConstantIncome = 0;
         float crookPercentageIncome = 0;
         for (int i = 0; i < attatchedCrooks.Length; i++)
@@ -83,12 +82,8 @@ public partial class GameManager : MonoBehaviour
             }
         }
         snakeCost = (int)snakeBehaviourCost;
-        Debug.Log("Checker " + checker+" cost " + snakeCost);
-
         int tempRichSalary = RichSalary();
-
         
-        richMoney += tempRichSalary;
 
         desperateGauge.GetComponent<Transform>().localScale = new Vector3((float)richDesperate, 1, 1);
         richMoneyBar.GetComponent<RichMoneyBar>().ChangeBar(richMoney, richInitialMoney);
@@ -110,8 +105,12 @@ public partial class GameManager : MonoBehaviour
     public void ChangeRichMoney(int moneyDecrease, bool isIncreaseDesperate)
     {
         double desperate = 0;
-        if(moneyDecrease >= 0) desperate = richMoney > 10000000 ? 0.5 * (moneyDecrease) / richMoney : 1.5 * (moneyDecrease) / richMoney;
-        ChangeDesperate(desperate);
+        if(moneyDecrease >= 0) desperate = richMoney > 10000000 ? 0.5 * (moneyDecrease) / richMoney * 100 : 1.5 * (moneyDecrease) / richMoney * 100;
+        Debug.Log("desperate : " + desperate);
+        if (isIncreaseDesperate)
+        {
+            ChangeDesperate(desperate);
+        }
         richMoney -= moneyDecrease;
         richMoneyBar.GetComponent<RichMoneyBar>().ChangeBar(richMoney, richInitialMoney);
     }
@@ -129,11 +128,10 @@ public partial class GameManager : MonoBehaviour
             }
         }
         desperateIncrease *= ((100 - snakeDes) / 100);
-        Debug.Log("des IN " + snakeDes);
+        Debug.Log(desperateIncrease);
         richDesperate += desperateIncrease;
-        maxRichDesperate = Mathf.Max((float)maxRichDesperate, (float)richDesperate);
+        maxRichDesperate = Mathf.Min((float)maxRichDesperate, (float)richDesperate);
         EventManage();
-
     }
 
     ///<summary>UI에 표시된 내 재산과 스태미나를 업데이트</summary>
@@ -219,7 +217,8 @@ public partial class GameManager : MonoBehaviour
                 factoryIncome += (int)factories[i].CalculateIncome();//공장 수입
             }
         }
-        ChangeDesperate((double)(-crookIncome -snakeCost) / richMoney);
+        ChangeRichMoney(-factoryIncome, false);
+        ChangeRichMoney(crookIncome + snakeCost , true);
         return factoryIncome - crookIncome - snakeCost;
     }
 

@@ -85,10 +85,12 @@ public partial class GameManager : MonoBehaviour
         {
             attachedGangs[i] = new List<Gang>();
         }
+        storeCanvas.SetActive(true);
     }
 
     private void Start()
     {
+        storeCanvas.SetActive(false);
         ChangeCanvas();
 
         //GameManager.Units
