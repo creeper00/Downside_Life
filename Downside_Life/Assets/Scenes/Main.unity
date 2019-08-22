@@ -5415,8 +5415,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 905367988}
   m_HandleRect: {fileID: 905367987}
   m_Direction: 2
-  m_Value: -0.00000068570716
-  m_Size: 0.2953009
+  m_Value: -0.0000018405824
+  m_Size: 0.29533333
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9905,7 +9905,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 211.40015}
+  m_AnchoredPosition: {x: 0, y: 211.40038}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &443168015
@@ -12414,9 +12414,9 @@ MonoBehaviour:
   unitAttatchStaminaDecrease: 3
   unitRetireStaminaDecrease: 1
   StealStaminaDecrease: 3
-  crookRerollCost: 0
-  gangRerollCost: 0
-  snakeRerollCost: 0
+  crookRerollCost: 50
+  gangRerollCost: 50
+  snakeRerollCost: 50
   crookType: 
   snakeType: 
   gangType: 
@@ -14033,7 +14033,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 211.40012}
+  m_AnchoredPosition: {x: 0, y: 211.4004}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1001 &575996087
@@ -25960,8 +25960,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 93586539}
   m_HandleRect: {fileID: 93586538}
   m_Direction: 2
-  m_Value: -0.00000068570716
-  m_Size: 0.2953007
+  m_Value: -0.0000018405824
+  m_Size: 0.29533333
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -26510,7 +26510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 211.40012}
+  m_AnchoredPosition: {x: 0, y: 211.4004}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1011341065
@@ -27957,8 +27957,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 85783350}
   m_HandleRect: {fileID: 85783349}
   m_Direction: 2
-  m_Value: -0.00000046916807
-  m_Size: 0.29530066
+  m_Value: -0.0000019127622
+  m_Size: 0.29533333
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -39102,7 +39102,7 @@ PrefabInstance:
     - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
       propertyPath: values.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
@@ -39152,12 +39152,17 @@ PrefabInstance:
     - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
       propertyPath: values.Array.data[1]
-      value: 0.15
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
       propertyPath: values.Array.data[2]
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: values.Array.data[3]
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8254486848621272635, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
