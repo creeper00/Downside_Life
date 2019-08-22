@@ -133,7 +133,8 @@ public partial class GameManager : MonoBehaviour
         Debug.Log(desperateIncrease);
         richDesperate += desperateIncrease;
         float despChange = (float)(richDesperate / 100);
-        DespGauge.transform.localScale = new Vector3( despChange, 1f, 1f);
+        if (despChange > 0) DespGauge.transform.localScale = new Vector3(despChange, 1f, 1f);
+        else DespGauge.transform.localScale = new Vector3(0f, 1f, 1f);
         maxRichDesperate = Mathf.Max((float)maxRichDesperate, (float)richDesperate);
         EventManage();
     }
