@@ -22,6 +22,8 @@ public partial class GameManager : MonoBehaviour
     [Header("꽃뱀")]
     [SerializeField]
     public int snakeItemSuccessPercentage;
+    [SerializeField]
+    GameObject DespGauge;
 
     int crookIncome = 0;
     int snakeCost = 0;
@@ -131,6 +133,8 @@ public partial class GameManager : MonoBehaviour
         desperateIncrease *= ((100 - snakeDes) / 100);
         Debug.Log("des IN " + snakeDes);
         richDesperate += desperateIncrease;
+        float despChange = (float)(richDesperate / 100);
+        DespGauge.transform.localScale = new Vector3( despChange, 1f, 1f);
         maxRichDesperate = Mathf.Max((float)maxRichDesperate, (float)richDesperate);
         EventManage();
 
