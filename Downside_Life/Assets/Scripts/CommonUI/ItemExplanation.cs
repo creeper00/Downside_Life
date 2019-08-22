@@ -18,17 +18,17 @@ public class ItemExplanation : MonoBehaviour
         unitExplanationCanvas = popUp.transform.Find("UnitExplanationCanvas").gameObject;
         unitExplanationPanel = unitExplanationCanvas.transform.Find("UnitExplanationPanel").gameObject;
         unitExplanationText = unitExplanationPanel.transform.Find("ExplanationText").gameObject;
-        type = gameObject.GetComponent<ItemListItem>().type;
-        grade = gameObject.GetComponent<ItemListItem>().grade;
-        itemCode = gameObject.GetComponent<ItemListItem>().itemCode;
     }
 
     public void ItemIconPopUp()
     {
         unitExplanationCanvas.SetActive(true);
+        type = gameObject.GetComponent<ItemListItem>().type;
+        grade = gameObject.GetComponent<ItemListItem>().grade;
+        itemCode = gameObject.GetComponent<ItemListItem>().itemCode;
         if (grade == 0)
         {
-            unitExplanationText.GetComponent<Text>().text += "Normal\n";
+            unitExplanationText.GetComponent<Text>().text = "Normal\n";
             if (type == 0)
             {
                 if (itemCode == 0)
@@ -66,7 +66,7 @@ public class ItemExplanation : MonoBehaviour
         }
         if (grade == 1)
         {
-            unitExplanationText.GetComponent<Text>().text += "Rare\n";
+            unitExplanationText.GetComponent<Text>().text = "Rare\n";
             if (type == 0)
             {
                 if (itemCode == 0)
@@ -114,7 +114,7 @@ public class ItemExplanation : MonoBehaviour
         }
         if (grade == 2)
         {
-            unitExplanationText.GetComponent<Text>().text += "Legendary\n";
+            unitExplanationText.GetComponent<Text>().text = "Legendary\n";
             if (type == 0)
             {
                 if (itemCode == 0)
