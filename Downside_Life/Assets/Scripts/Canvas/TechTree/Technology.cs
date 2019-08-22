@@ -302,6 +302,28 @@ public class Technology : MonoBehaviour
                 
                 break;
             case Upgrade.tuja:
+                if (skillLevel == 1 && !GameManager.instance.doTuja)
+                {
+                    int richMoney = (int)(GameManager.instance.richMoney * 0.9);
+                    int percentage = Random.Range(0, 100);
+                    if (Random.Range(0, 100) < values[0])
+                    {
+                        GameManager.instance.ChangeRichMoney(richMoney, false);
+                        Debug.Log("망함 ㅋ");
+                        //망함 ㅋ
+                    } else if (Random.Range(0, 100) <values[0] + values[1])
+                    {
+                        GameManager.instance.ChangeRichMoney((int)(richMoney * 0.3), false);
+                        Debug.Log("덜 망함 ㅋ");
+                        //덜 망함 ㅋ
+                    } else
+                    {
+                        GameManager.instance.ChangeRichMoney(-richMoney, false);
+                        Debug.Log("대박");
+                        //대박
+                    }
+                    GameManager.instance.doTuja = true;
+                }
                 break;
         }
         GameManager.instance.storeCanvas.SetActive(true);

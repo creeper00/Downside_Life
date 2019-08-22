@@ -30,7 +30,7 @@ public partial class GameManager : MonoBehaviour
 
     [Header("부자의 스탯")]
     public int richInitialMoney;
-    private int richMoney, richSalary;
+    public int richMoney, richSalary;
     public double richDesperate;
     private double maxRichDesperate;                //지금까지 있었던 절박함의 최댓값
     [SerializeField]

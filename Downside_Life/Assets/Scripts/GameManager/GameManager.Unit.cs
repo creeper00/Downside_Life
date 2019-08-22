@@ -36,6 +36,7 @@ public partial class GameManager : MonoBehaviour
     public List<float> crookConstantInit, crookConstantPerLevel, crookAttackItems, crookRatioInit, crookRatioPerLevel, crookMoneyInit, crookMoneyItems, crookUnitCostInit, crookUnitCostPerLevel;
     [SerializeField]
     public float crookConstantTech, crookRatioTech, crookMoneyTech, crookDecreaseUnitCost;
+    public bool doTuja;
 
     
     [Header("꽃뱀")]
