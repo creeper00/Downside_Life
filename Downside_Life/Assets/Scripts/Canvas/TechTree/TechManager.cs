@@ -119,12 +119,12 @@ public class TechManager : MonoBehaviour
     }
     public void ShowSkillPoint()
     {
-        int temp = GameManager.instance.skillPointPrice * (GameManager.instance.totalSkillPoint + 1);
+        int temp = 350 + GameManager.instance.skillPointPrice * (GameManager.instance.totalSkillPoint + 1);
         skillPointText.text = "skillpoint : " + GameManager.instance.skillPoint+"\n가격 : "+temp;
     }
     public void ShowTemporarySkillPoint()
     {
-        int temp = GameManager.instance.skillPointPrice * (GameManager.instance.totalSkillPoint + 1);
+        int temp = 350 + GameManager.instance.skillPointPrice * (GameManager.instance.totalSkillPoint + 1);
         skillPointText.color = new Color32(255, 0, 0, 255);
         skillPointText.text = "skillpoint : " + temporarySkillPoint+ "\n가격 : " + temp;
     }
@@ -194,7 +194,7 @@ public class TechManager : MonoBehaviour
     }
     public void BuySkillPoint()
     {
-        int temp = GameManager.instance.skillPointPrice * (GameManager.instance.totalSkillPoint+1);
+        int temp = 350 + GameManager.instance.skillPointPrice * (GameManager.instance.totalSkillPoint+1);
         if (GameManager.instance.playerMoney > temp)
         {
             GameManager.instance.totalSkillPoint++;
