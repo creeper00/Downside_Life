@@ -190,6 +190,7 @@ public class ThiefActionButton : MonoBehaviour
 
         //실제 적용하는 부분
         GameManager.instance.playerMoney += tempMoney;
+        GameManager.instance.ChangeRichMoney(tempMoney,true);
         for (int i=0; i<items.Count; i++)
         {
             switch(items[i].type)
