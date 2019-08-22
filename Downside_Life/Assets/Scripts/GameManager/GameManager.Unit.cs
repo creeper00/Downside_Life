@@ -1,27 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public partial class GameManager : MonoBehaviour
 {
     [HideInInspector]
     public List<Crook> crooks;
+    [HideInInspector]
     public List<Crook> sellingCrooks;
+    [HideInInspector]
     public Crook[] attatchedCrooks = new Crook[3];
+    [HideInInspector]
     public List<Item> crookItems = new List<Item>();
 
+    [HideInInspector]
     public List<Snake> snakes;
+    [HideInInspector]
     public List<Snake> sellingSnakes;
+    [HideInInspector]
     public Snake[] attatchedSnakes = new Snake[3];
+    [HideInInspector]
     public List<Item> snakeItems = new List<Item>();
 
+    [HideInInspector]
     public List<Gang> gangs;
+    [HideInInspector]
     public List<Gang> sellingGangs;
+    [HideInInspector]
     public List<Gang>[] attachedGangs = new List<Gang>[3];
+    [HideInInspector]
     public List<Item> gangItems = new List<Item>();
-
-
 
     [Header("공장")]
     [HideInInspector]
@@ -31,27 +40,30 @@ public partial class GameManager : MonoBehaviour
     bool isFirstBuilt = true;
 
     [Header("사기꾼")]
-
+    [SerializeField]
+    public float crookConstantTech;
+    [SerializeField]
+    public float crookRatioTech, crookMoneyTech, crookDecreaseUnitCost;
     [SerializeField]
     public List<float> crookConstantInit, crookConstantPerLevel, crookAttackItems, crookRatioInit, crookRatioPerLevel, crookMoneyInit, crookMoneyItems, crookUnitCostInit, crookUnitCostPerLevel;
-    [SerializeField]
-    public float crookConstantTech, crookRatioTech, crookMoneyTech, crookDecreaseUnitCost;
 
-    
     [Header("꽃뱀")]
-
     [SerializeField]
-    public float desConInit, desConPerLevel, desConTech, itemPriceTech, itemPercent, behaviorCostInit, behaviorCostPerLevel, behaviorCostTech, itemPriceItemsLowerBound, itemPriceItemsLowerBoundPerLevel, itemPriceItemsUpperBound, itemPriceItemsUpperBoundPerLevel, snakeDecreaseUnitCost;
+    public float desConInit;
+    public float desConPerLevel, desConTech, itemPriceTech, itemPercent, behaviorCostInit, behaviorCostPerLevel, behaviorCostTech, itemPriceItemsLowerBound, itemPriceItemsLowerBoundPerLevel, itemPriceItemsUpperBound, itemPriceItemsUpperBoundPerLevel, snakeDecreaseUnitCost;
 
     public List<float> itemPriceItems, snakeUnitCostInit, snakeUnitCostPerLevel;
 
     [Header("갱단")]
+    public float gangAttackTech1;
+    public float gangAttackTech2, gangReturnMoneyTech, gangDecreaseUnitCost;
     [SerializeField]
     public List<float> gangAttackInit, gangAttackPerLevel, gangAttackItem, gangReturnMoneyPerType, gangReturnMoneyItem, gangUnitCostInit, gangUnitCostPerLevel;
-    public float gangAttackTech1, gangAttackTech2, gangReturnMoneyTech, gangDecreaseUnitCost;
+
 
     [Header("도둑")]
-    public int maxGrade = 1, stealTwicePercentage;
+    public int maxGrade = 1;
+    public int stealTwicePercentage;
     [SerializeField]
     public int thiefStealMoneyLowerBound, thiefStealMoneyUpperBound, canStealRare, canSteal;
     public int additionalMoney;
@@ -60,7 +72,8 @@ public partial class GameManager : MonoBehaviour
 
     [Header("전체적인 특성")]
     [SerializeField]
-    public int unitAttatchStaminaDecrease, unitRetireStaminaDecrease, StealStaminaDecrease, crookRerollCost, gangRerollCost, snakeRerollCost;
+    public int unitAttatchStaminaDecrease;
+    public int unitRetireStaminaDecrease, StealStaminaDecrease, crookRerollCost, gangRerollCost, snakeRerollCost;
     public List<int> crookType, snakeType, gangType;
     [SerializeField]
     public int crookStoreSellingNumber, snakeStoreSellingNumber, gangStoreSellingNumber;
@@ -169,8 +182,8 @@ public partial class GameManager : MonoBehaviour
         public int level;
         public int type;
         Item item;
-        [HideInInspector]
-        private Sprite crookConstant, crookRate, crookBalanced, crookIdiot; // 순서대로 상수형, 계수형, 밸런스형, 호구형
+        Sprite sprite = null;
+
         public string GetType()
         {
             switch(type)
@@ -189,19 +202,30 @@ public partial class GameManager : MonoBehaviour
 
         public Sprite GetSprite()
         {
-            switch(type)
+            if ( sprite == null )
             {
-                case 0:
-                    return crookConstant;
-                case 1:
-                    return crookRate;
-                case 2:
-                    return crookBalanced;
-                case 3:
-                    return crookIdiot;   
+                string spriteName = "";
+                switch (type)
+                {
+                    case 0:
+                        spriteName += "Constant";
+                        break;
+                    case 1:
+                        spriteName += "Rate";
+                        break;
+                    case 2:
+                        spriteName += "Balanced";
+                        break;
+                    case 3:
+                        spriteName += "Idiot";
+                        break;
+                }
+                sprite = Resources.Load<Sprite>("Characters/crook" + spriteName);
             }
-            return null;
+            return sprite;
         }
+
+
         public float unitPrice()
         {
             return (instance.crookUnitCostInit[type] + level * instance.crookUnitCostPerLevel[type]) * (1 - instance.crookDecreaseUnitCost);
@@ -274,8 +298,8 @@ public partial class GameManager : MonoBehaviour
         public int level;
         public int type; // 0 = 절박함 증가 억제, 1 = 환금형 아이템, 2 = 행동 비용 증가, 3 = 행동 주기 증가, 4 = 만렙 특성
         Item item;
-        [HideInInspector]
-        private Sprite snakeDesp, snakeWaste, snakeSlow, snakeMoney; // 순서대로 둔감형, 낭비형, 둔화형, 갈취형
+        Sprite sprite = null;
+
         public string GetType()
         {
             switch (type)
@@ -291,21 +315,32 @@ public partial class GameManager : MonoBehaviour
             }
             return "";
         }
+
         public Sprite GetSprite()
         {
-            switch (type)
+            if (sprite == null)
             {
-                case 0:
-                    return snakeDesp;
-                case 1:
-                    return snakeMoney;
-                case 2:
-                    return snakeWaste;
-                case 3:
-                    return snakeSlow;
+                string spriteName = "snake";
+                switch (type)
+                {
+                    case 0:
+                        spriteName += "Desp";
+                        break;
+                    case 1:
+                        spriteName += "Waste";
+                        break;
+                    case 2:
+                        spriteName += "Slow";
+                        break;
+                    case 3:
+                        spriteName += "Money";
+                        break;
+                }
+                sprite = Resources.Load<Sprite>("Characters/" + spriteName);
             }
-            return null;
+            return sprite;
         }
+
         public float unitPrice()
         {
             return (instance.snakeUnitCostInit[type] + level * instance.snakeUnitCostPerLevel[type]) * (1 - instance.snakeDecreaseUnitCost);
@@ -421,6 +456,36 @@ public partial class GameManager : MonoBehaviour
 
     public class Gang
     {
+        private Sprite sprite = null;
+
+        public Sprite GetSprite()
+        {
+            if (sprite == null)
+            {
+                string spriteName = "gang";
+                switch (type)
+                {
+                    case 0:
+                        spriteName += "";
+                        break;
+                    case 1:
+                        spriteName += "";
+                        break;
+                    case 2:
+                        spriteName += "";
+                        break;
+                    case 3:
+                        spriteName += "";
+                        break;
+                    case 4:
+                        spriteName += "";
+                        break;
+                }
+                sprite = Resources.Load<Sprite>("Characters/" + spriteName);
+            }
+            return sprite;
+        }
+
         public string GetType()
         {
             switch (type)
@@ -496,7 +561,31 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
-
+    /// <summary>메인 화면 유닛들을 갱신</summary>
+    private void ShowMainScreenUnits()
+    {
+        for ( int i = 0; i < 3; ++i )
+        {
+            if ( attatchedCrooks[i] != null )
+            {
+                showAttachedCrooks.transform.GetChild(i).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                showAttachedCrooks.transform.GetChild(i).GetComponent<Image>().sprite = attatchedCrooks[i].GetSprite();
+            }
+            else
+            {
+                showAttachedCrooks.transform.GetChild(i).GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+            }
+            if ( attatchedSnakes[i] != null)
+            {
+                showAttachedSnakes.transform.GetChild(i).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                showAttachedSnakes.transform.GetChild(i).GetComponent<Image>().sprite = attatchedSnakes[i].GetSprite();
+            }
+            else
+            {
+                showAttachedSnakes.transform.GetChild(i).GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+            }
+        }
+    }
 
     /// <summary>유닛을 붙일 수 있는지 확인. 붙일 수 있는지 여부를 boolean으로 반환</summary>
     public bool CanAttatchUnit(Job kindOfUnit, int slotIndex)

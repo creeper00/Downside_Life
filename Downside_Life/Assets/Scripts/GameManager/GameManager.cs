@@ -33,6 +33,11 @@ public partial class GameManager : MonoBehaviour
     [Header("팝업창")]
     public GameObject notEnoughStaminaCanvas;
     public GameObject itemTypeNotMatchCanvas, alreadyHasItemCanvas, snakeSteallSuccessCanvas;
+    [Header("메인 화면 유닛들")]
+    [SerializeField]
+    private GameObject showAttachedCrooks;
+    [SerializeField]
+    private GameObject showAttachedSnakes;
     [Header("Canvas")]
     public GameObject CommonCanvas;
     public GameObject techTreeCanvas, unitsCanvas, storeCanvas, richHouseCanvas,richHouse, firstFloorCanvas, secondFloorCanvas, thirdFloorCanvas, fourthFloorCanvas, fifthFloorCanvas, techInfoCanvas;
@@ -59,6 +64,9 @@ public partial class GameManager : MonoBehaviour
 
         //이벤트 설정
         InitializeEventSettings();
+
+        //시작 화면 유닛 표시
+        ShowMainScreenUnits();
 
         SetStamina(10);
         
