@@ -87,7 +87,7 @@ public partial class GameManager : MonoBehaviour
         int tempRichSalary = RichSalary();
         
 
-        desperateGauge.GetComponent<Transform>().localScale = new Vector3((float)richDesperate, 1, 1);
+        desperateGauge.GetComponent<Transform>().localScale = new Vector3((float)richDesperate / 100, 1, 1);
         richMoneyBar.GetComponent<RichMoneyBar>().ChangeBar(richMoney, richInitialMoney);
 
         int tempPlayerSalary = PlayerSalary();
