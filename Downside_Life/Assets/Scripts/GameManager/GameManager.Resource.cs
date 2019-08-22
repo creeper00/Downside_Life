@@ -216,7 +216,11 @@ public partial class GameManager : MonoBehaviour
         {
             if (factories[i] != null)
             {
-                factoryIncome += (int)factories[i].CalculateIncome();//공장 수입
+                if (factories[i].isConquered == 0)
+                {
+                    factoryIncome += (int)factories[i].CalculateIncome();//공장 수입
+                }
+                
             }
         }
         ChangeRichMoney(-factoryIncome, false);

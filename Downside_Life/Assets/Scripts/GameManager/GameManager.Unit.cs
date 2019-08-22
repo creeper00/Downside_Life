@@ -109,6 +109,7 @@ public partial class GameManager : MonoBehaviour
         public bool isUpgrade;
         public int isStolen;
         public float[] debuffGangRatio = new float[3];
+        public int isConquered;
 
         public FactoryType factoryType;
         int value;
