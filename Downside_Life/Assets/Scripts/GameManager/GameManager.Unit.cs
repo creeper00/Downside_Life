@@ -691,7 +691,7 @@ public partial class GameManager : MonoBehaviour
     }
     void FactoryBehavior()
     {
-        for (int i = 0; i < factories.Length; i++)
+        for (int i = 0; i < factories.Length; i++)              //공장이 레벨 업 하는 부분
         {
             if (factories[i] != null && factories[i].isUpgrade)
             {
@@ -703,7 +703,7 @@ public partial class GameManager : MonoBehaviour
             factoryCoolDown--;
         }
         else
-        {
+        {                   //0 됐다->
             int pos = Random.Range(0, 3); // factory중 하나 선택
 
             if (factories[pos] == null)

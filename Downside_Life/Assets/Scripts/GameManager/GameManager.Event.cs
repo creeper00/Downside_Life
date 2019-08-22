@@ -5,19 +5,41 @@ using UnityEngine.UI;
 
 public partial class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    Text eventText;
+    [Header("이벤트 관련 수치들")]
+    //[SerializeField]
+    private double robberSuccessRateDecrease;
+    //[SerializeField]
+    private double crookStealMoneyDecrease;
+    private int nextEventIndex;
 
-    [Header("이벤트 시작 수치")]
-    [SerializeField]
-    int addFactoryFix;
-    [SerializeField]
-    List<int> addBangBum, addDropSnake, addDropCrook;
+    List<DesperateEvent> events = new List<DesperateEvent>();
 
     public enum Endings
     {
         success, tooBig, dropped
     }
+
+    public void InitializeEventSettings()
+    {
+        SetEvents();
+
+        nextEventIndex = 0;
+
+    }
+
+    private void SetEvents()                        //이벤트들을 순서대로 넣음
+    {
+        events.Add(new DesperateEvent(2, 20));
+        events.Add(new DesperateEvent(3, 35));
+        events.Add(new DesperateEvent(4, 35));
+        events.Add(new DesperateEvent(2, 40));
+        events.Add(new DesperateEvent(1, 60));
+        events.Add(new DesperateEvent(2, 60));
+        events.Add(new DesperateEvent(3, 70));
+        events.Add(new DesperateEvent(4, 70));
+        events.Add(new DesperateEvent(2, 80));
+    }
+
 
     public void Ending(Endings ending)
     {
@@ -33,29 +55,18 @@ public partial class GameManager : MonoBehaviour
                 break;
         }
     }
-    
+
     void EventManage()
     {
-        if (richDesperate > addFactoryFix)
-        {
-            isFactoryFix = true;
-        }
-        if (isAddBangBum < addBangBum.Count && richDesperate > addBangBum[isAddBangBum])
-        {
-            isAddBangBum++;
-        }
-        if (isAddDropSnake < addDropSnake.Count && richDesperate > addDropSnake[isAddDropSnake])
-        {
-            isAddDropSnake++;
-            //꽃뱀떨구기
-        }
-        if (isAddDropCrook < addDropCrook.Count && richDesperate > addDropSnake[isAddDropCrook])
-        {
-            isAddDropCrook++;
-            //사기꾼떨구기
-        }
+        
         if (richMoney <= 0) Ending(Endings.success);
         if (richMoney >= richMoneyBound) Ending(Endings.tooBig);
         if (richDesperate >= richDesperateBound) Ending(Endings.dropped);
     }
+
+    private void ExecuteEvent()
+    {
+
+    }
+
 }

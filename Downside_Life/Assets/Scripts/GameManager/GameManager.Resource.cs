@@ -29,17 +29,14 @@ public partial class GameManager : MonoBehaviour
     public int richInitialMoney;
     private int richMoney, richSalary;
     public double richDesperate;
+    private double maxRichDesperate;                //지금까지 있었던 절박함의 최댓값
     [SerializeField]
     private int richMoneyBound;
     [SerializeField]
     private double richDesperateBound;
     [SerializeField]
     private int fasterSetupFactory;
-    private int factoryCoolDown;
-    bool isFactoryFix;
-    int isAddBangBum;
-    int isAddDropSnake;
-    int isAddDropCrook;
+    private int factoryCoolDown;                    //현재 턴 수
 
     [SerializeField]
     private GameObject desperateGauge;
@@ -51,6 +48,12 @@ public partial class GameManager : MonoBehaviour
     private Text staminaText;
     [SerializeField]
     private Text snakeMoneyText;
+
+    public double GetRichDesperate()
+    {
+        return richDesperate;
+    }
+
     void ResourceManage()
     {
 
@@ -172,16 +175,10 @@ public partial class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         notEnoughStaminaCanvas.SetActive(false);
     }
-    int FactoryCooldown()
+    int FactoryCooldown()               //공장 주기 정하는 값
     {
-        if (richDesperate > fasterSetupFactory)
-        {
-            return 2;
-        }
-        else
-        {
-            return 3;
-        }
+        int ret = 3;
+        return ret;
     }
     int RichSalary()
     {
