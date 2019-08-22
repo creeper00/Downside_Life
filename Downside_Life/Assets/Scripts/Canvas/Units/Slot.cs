@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour, IDropHandler
 {
+    [HideInInspector]
+    public static int currentActiveSlotIndex = 0;
     [SerializeField]
     private GameManager.Job kindOfUnit;
     [SerializeField]
@@ -36,7 +38,7 @@ public class Slot : MonoBehaviour, IDropHandler
         unitPopupYesButton = unitPopup.transform.Find("UnitCheck_yes").gameObject;
         unitAsk = unitPopupYesButton.GetComponent<UnitCheckButton>();
         GangItemAsk = GameObject.Find("GangItemAsk");
-        GangItemCheck = GangItemAsk.transform.Find("GangItemCheck").gameObject;
+        GangItemCheck = GangItemAsk.transform.GetChild(0).gameObject;
         ItemList = GameObject.Find("ItemList");
         unitText = unitPopup.GetComponentInChildren<Text>();
         unitText.text = "정말 투입하시겠습니까?\n" + "행동력 : " + staminaUse_Unit;
@@ -81,7 +83,9 @@ public class Slot : MonoBehaviour, IDropHandler
                     item = Instantiate(slotItemPrefab, transform);
                     break;
                 case GameManager.Job gang:
-                    //item = Instantiate(slotItemPrefab, transform);
+                    currentActiveSlotIndex = slotIndex;
+                    GangItemCheck.SetActive(true);
+                    ItemList.GetComponent<Image>().color = Color.red;
                     break;
             }
 
@@ -99,8 +103,6 @@ public class Slot : MonoBehaviour, IDropHandler
                     break;
                 case GameManager.Job gang:
                     UnitsManager.instance.ShowGangs();
-                    GangItemCheck.SetActive(true);
-                    ItemList.GetComponent<Image>().color = Color.red;
                     break;
             }
             InitializeSlotObject();                         //슬롯에 유닛 정보를 띄움
