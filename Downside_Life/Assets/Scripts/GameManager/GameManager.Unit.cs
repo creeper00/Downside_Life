@@ -244,7 +244,6 @@ public partial class GameManager : MonoBehaviour
                 return false;
             } else {
                 item = movingItem;
-                            instance.crookItems.RemoveAt(itemIndex);
                 return true;
             }
         }
@@ -253,6 +252,11 @@ public partial class GameManager : MonoBehaviour
         {
             this.level = level;
             this.type = type;
+        }
+
+        public Item GetItem()
+        {
+            return item;
         }
     }
 
@@ -392,7 +396,6 @@ public partial class GameManager : MonoBehaviour
             else
             {
                 this.item = item;
-                                instance.snakeItems.RemoveAt(itemIndex);
                 return true;
             }
         }
@@ -450,7 +453,6 @@ public partial class GameManager : MonoBehaviour
         }
         public bool PutItem(int itemIndex)                          //붙었으면 true, 안 붙었으면 false 반환
         {
-            Debug.Log("bio");
             Item item = instance.gangItems[itemIndex];
             if (this.item != null)
             {

@@ -32,22 +32,22 @@ public class ItemSlot : MonoBehaviour, IDropHandler
         if ( ItemDragHandler.itemBeingDragged != null)
         {
             int itemIndex = ItemDragHandler.itemBeingDraggedIndex;
-            //데이터상으로 아이템을 이동, 아이템 스크롤 뷰 갱신
-            bool succeedAttach = false;
+            bool succeedAttach = false;                         //데이터 상으로 아이템 이동 성공 여부
             switch (kindOfUnit)
             {
                 case GameManager.Job.crook:
                     if ( GameManager.instance.attatchedCrooks[unitIndex] != null )
                     {
-                        succeedAttach = GameManager.instance.attatchedCrooks[unitIndex].putItem(itemIndex);
+                        succeedAttach = GameManager.instance.attatchedCrooks[unitIndex].putItem(itemIndex);     //만약 가능하면 데이터 상으로 아이템을 이동
 
                     }
                     if (succeedAttach)
                     {
-                        ItemDragHandler.DestroyItem();
-                        transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.crookItems[itemIndex].getIcon();
-                        //GameManager.instance.crookItems.RemoveAt(itemIndex);
-                        UnitsManager.instance.ShowCrookItems();
+                        ItemDragHandler.DestroyItem();                  //끌고 움직이던 반투명 아이템 스프라이트 파괴
+                        transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.crookItems[itemIndex].getIcon();      //아이템 슬롯에 아이콘 설정
+                        GameManager.instance.crookItems.RemoveAt(itemIndex);                        //데이터 상으로 아이템을 파괴
+                        GameObject.Find("Popups").transform.Find("UnitExplanationCanvas").gameObject.SetActive(false);      //혹시나 아이템 설명 창이 남아 있으면 지워야 함
+                        UnitsManager.instance.ShowCrookItems();                 //아이템 리스트 갱신
                     }
                     break;
                 case GameManager.Job.snake:
@@ -59,31 +59,14 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                     {
                         ItemDragHandler.DestroyItem();
                         transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.snakeItems[itemIndex].getIcon();
-                        //GameManager.instance.snakeItems.RemoveAt(itemIndex);
+                        GameManager.instance.snakeItems.RemoveAt(itemIndex);
+                        GameObject.Find("Popups").transform.Find("UnitExplanationCanvas").gameObject.SetActive(false);
                         UnitsManager.instance.ShowSnakeItems();
                     }
                     break;
                 case GameManager.Job.gang:
-                    /*
-                    if (GameManager.instance.attachedGangs[unitIndex] != null)
-                    {
-                        succeedAttach = GameManager.instance.attachedGangs[unitIndex].PutItem(itemIndex);
-                    }
-                    if (succeedAttach)
-                    {
-                        GameManager.instance.gangItems.RemoveAt(itemIndex);
-                        UnitsManager.instance.ShowGangItems();
-                    }
-                    */
                     break;
             }
-            /*
-            if ( succeedAttach)
-            {
-                item = Instantiate(ItemDragHandler.itemBeingDragged, transform);
-                item.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-            }
-            */
         }
     }
 }
