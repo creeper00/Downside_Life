@@ -233,7 +233,7 @@ public class Factory : MonoBehaviour
     public void SetFactoryListItem(GameManager.Factory factory)
     {
         transform.Find("Level").GetComponent<Text>().text = (factory.level+1).ToString();
-        transform.Find("HealthBar").GetComponent<Transform>().localScale = new Vector3(factory.health / factory.maxhealth, 1, 1);
+        transform.Find("HealthBar").GetComponent<Transform>().localScale = new Vector3((float)factory.health / (float)factory.maxhealth, 1, 1);
         transform.Find("HPUI").GetComponent<Text>().text = factory.health + "/" + factory.maxhealth;
         switch(factory.factoryType)
         {

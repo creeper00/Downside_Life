@@ -242,7 +242,13 @@ public partial class GameManager : MonoBehaviour
             } else if (movingItem.type != 0) {
                 instance.itemTypeNotMatch();
                 return false;
-            } else {
+            } else
+            {
+                if (item.itemCode == 1 && item.grade == 1)
+                {
+                    //유형 변경
+                    return false;
+                }
                 item = movingItem;
                 UnitsManager.instance.crookSlots[slotIndex].InitializeSlotObject();
                 return true;
@@ -396,6 +402,11 @@ public partial class GameManager : MonoBehaviour
             }
             else
             {
+                if (item.itemCode == 1 && item.grade == 1)
+                {
+                    //유형 변경
+                    return false;
+                }
                 this.item = item;
                 UnitsManager.instance.snakeSlots[slotIndex].InitializeSlotObject();
                 return true;
@@ -468,6 +479,11 @@ public partial class GameManager : MonoBehaviour
             }
             else
             {
+                if (item.itemCode == 1 && item.grade == 1)
+                {
+                    //유형 변경
+                    return false;
+                }
                 this.item = item;
                 return true;
             }
@@ -764,5 +780,64 @@ public partial class GameManager : MonoBehaviour
         }
         Debug.Log(temp);
         factories[pos] = new Factory((Factory.FactoryType)temp, factoryValue[temp]);
+    }
+
+    void FactoryAttack()
+    {
+        int totalAttack = 0;
+        int totalMoney = 0;
+        int multiAttackMoney = 0;
+        for (int i=0; i<factories.Length; i++)
+        {
+            int attack = 0;
+            if (factories[i] != null)
+            {
+                Debug.Log(attachedGangs[i].Count);
+                for (int j=0; j<attachedGangs[i].Count; j++)
+                {
+                    Debug.Log(attachedGangs[i][j].type);
+                    switch (attachedGangs[i][j].type)
+                    {
+                        case 0:
+                            attack += (int)attachedGangs[i][j].attack();
+                            totalMoney += (int)attachedGangs[i][j].returnMoney();
+                            break;
+                        case 1:
+                            attack += (int)attachedGangs[i][j].attack();
+                            totalMoney += (int)attachedGangs[i][j].returnMoney();
+                            break;
+                        case 2:
+                            attack += (int)attachedGangs[i][j].attack();
+                            totalMoney += (int)attachedGangs[i][j].returnMoney();
+                            break;
+                        case 3:
+                            totalAttack += (int)attachedGangs[i][j].attack();
+                            multiAttackMoney += (int)attachedGangs[i][j].returnMoney();
+                            break;
+                        case 4:
+                            attack += (int)attachedGangs[i][j].attack();
+                            totalMoney += (int)attachedGangs[i][j].returnMoney();
+                            break;
+                    }
+                }
+                attachedGangs[i] = new List<Gang>();
+                factories[i].health -= attack;
+            }
+        }
+        for (int i=0; i<factories.Length; i++)
+        {
+            if (factories[i] != null)
+            {
+                factories[i].health -= totalAttack;
+                totalMoney += multiAttackMoney;
+                if (factories[i].health < 0)
+                {
+                    factories[i] = null;
+                }
+            }
+        }
+        playerMoney += totalMoney;
+        UnitsManager.instance.ShowFactories();
+        
     }
 }
