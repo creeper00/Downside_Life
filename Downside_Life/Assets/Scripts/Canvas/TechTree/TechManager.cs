@@ -11,7 +11,7 @@ public class TechManager : MonoBehaviour
     [HideInInspector]
     public int temporarySkillPoint;
     [SerializeField]
-    public List<Technology> crookTechnologies, snakeTechnologies, gangTechnologies, thiefTechnologies;
+    public List<Technology> crookTechnologies, snakeTechnologies, gangTechnologies, thiefTechnologies, passiveTechnologies;
     // Start is called before the first frame update
     [SerializeField]
     GameObject confirmInfo;
@@ -157,6 +157,7 @@ public class TechManager : MonoBehaviour
         }
         for (int i=0; i<4; i++)
         {
+            passiveTechnologies[i].confirmSkillLevel();
             GameManager.instance.jobSkillPoint[i] = temporaryJobSkillPoint[i];
         }
         GameManager.instance.skillPoint = temporarySkillPoint;
@@ -226,6 +227,10 @@ public class TechManager : MonoBehaviour
             snakeTechnologies[i].ShowTempoaryTechnology();
             gangTechnologies[i].ShowTempoaryTechnology();
             thiefTechnologies[i].ShowTempoaryTechnology();
+        }
+        for (int i=0; i<4; i++)
+        {
+            passiveTechnologies[i].SetTemporaryPassive();
         }
     }
 

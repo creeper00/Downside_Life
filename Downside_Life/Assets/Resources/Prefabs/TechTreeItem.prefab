@@ -106,10 +106,10 @@ RectTransform:
   m_Father: {fileID: 8254486848621272634}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 109.700005, y: -37.27997}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 83.4, y: -37.27997}
+  m_SizeDelta: {x: 28.4, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4579869004452101604
 CanvasRenderer:
@@ -521,6 +521,8 @@ MonoBehaviour:
   tier: 0
   upgrade: 0
   values: []
+  isPassive: 0
+  skillPointNeeded: 
 --- !u!114 &3400634768187011929
 MonoBehaviour:
   m_ObjectHideFlags: 0

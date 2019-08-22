@@ -55,9 +55,29 @@ public class Technology : MonoBehaviour
     [SerializeField]
     List<float> values;
 
+    [SerializeField]
+    public bool isPassive;
+    [SerializeField]
+    public List<int> skillPointNeeded;
+
     public void Start()
     {
         showTechnology();
+    }
+    public bool SetTemporaryPassive()
+    {
+        bool temp = false;
+        if (skillPointNeeded[temporaryLevel] <= TechManager.instance.temporaryJobSkillPoint[(int)whatJob])
+        {
+            temporaryLevel++;
+            temp = true;
+        } else if (temporaryLevel > 0 && skillPointNeeded[temporaryLevel - 1] > TechManager.instance.temporaryJobSkillPoint[(int)whatJob])
+        {
+            temporaryLevel--;
+            temp = false;
+        }
+        transform.Find("LVText").GetComponent<Text>().text = temporaryLevel.ToString();
+        return temp;
     }
     public bool CanResearch()
     {

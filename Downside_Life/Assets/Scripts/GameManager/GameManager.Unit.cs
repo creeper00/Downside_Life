@@ -53,7 +53,7 @@ public partial class GameManager : MonoBehaviour
     [Header("도둑")]
     public int maxGrade = 1, stealTwicePercentage;
     [SerializeField]
-    public int thiefStealMoneyLowerBound, thiefStealMoneyUpperBound;
+    public int thiefStealMoneyLowerBound, thiefStealMoneyUpperBound, canStealRare, canSteal;
     public int additionalMoney;
     public float rangeDecrease;
     public bool isItemFloor = false;
