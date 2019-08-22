@@ -45,7 +45,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                     if (succeedAttach)
                     {
                         ItemDragHandler.DestroyItem();
-                        transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.crookItems[itemIndex].icon;
+                        transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.crookItems[itemIndex].getIcon();
                         //GameManager.instance.crookItems.RemoveAt(itemIndex);
                         UnitsManager.instance.ShowCrookItems();
                     }
@@ -58,7 +58,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                     if (succeedAttach)
                     {
                         ItemDragHandler.DestroyItem();
-                        transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.snakeItems[itemIndex].icon;
+                        transform.GetChild(0).GetComponent<Image>().sprite = GameManager.instance.snakeItems[itemIndex].getIcon();
                         //GameManager.instance.snakeItems.RemoveAt(itemIndex);
                         UnitsManager.instance.ShowSnakeItems();
                     }

@@ -23,7 +23,7 @@ public class ItemListItem : MonoBehaviour
         type = item.type;
         grade = item.grade;
         itemCode = item.itemCode;
-        transform.Find("Icon").GetComponent<Image>().sprite = item.icon;
+        transform.Find("Icon").GetComponent<Image>().sprite = item.getIcon();
 
         if(item.grade == 0)
         {
