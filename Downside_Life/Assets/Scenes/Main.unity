@@ -326,7 +326,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -100, y: -80}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: 120, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &10014180
 MonoBehaviour:
@@ -12687,10 +12687,13 @@ MonoBehaviour:
   snakeItemSuccessPercentage: 30
   DespGauge: {fileID: 478918285}
   richInitialMoney: 100000000
+  richMoney: 0
+  richSalary: 0
   richDesperate: 0
   richMoneyBound: 200000000
   richDesperateBound: 100
   fasterSetupFactory: 60
+  factoryCoolDown: 3
   desperateGauge: {fileID: 1631985079}
   staminaGauge: {fileID: 983049505}
   moneyText: {fileID: 352180210}
@@ -12703,6 +12706,7 @@ MonoBehaviour:
   crookRatioTech: 1
   crookMoneyTech: 1
   crookDecreaseUnitCost: 0
+  doTuja: 0
   crookConstantInit:
   - 400000
   - 100000
@@ -12770,6 +12774,8 @@ MonoBehaviour:
   - 10
   - 20
   - 0
+  doRichDesperateDown: 0
+  doVacation: 0
   gangAttackTech1: 0
   gangAttackTech2: 0
   gangReturnMoneyTech: 0
@@ -19406,7 +19412,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -247, y: -58}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: 120, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &799452917
 MonoBehaviour:
@@ -19953,7 +19959,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 202, y: -68}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: 120, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &811463724
 MonoBehaviour:
@@ -23587,7 +23593,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 100, y: -80}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: 120, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &901854145
 MonoBehaviour:
@@ -42428,7 +42434,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 146, y: -111}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: 120, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1692177854
 MonoBehaviour:
@@ -44293,7 +44299,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -179, y: -114}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: 120, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1799388994
 MonoBehaviour:
