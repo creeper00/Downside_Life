@@ -39,7 +39,7 @@ public partial class GameManager : MonoBehaviour
     private double richDesperateBound;
     [SerializeField]
     private int fasterSetupFactory;
-    private int factoryCoolDown = 3;                    //현재 턴 수
+    public int factoryCoolDown = 3;                    //현재 턴 수
 
     [SerializeField]
     private GameObject desperateGauge;
@@ -87,7 +87,7 @@ public partial class GameManager : MonoBehaviour
         int tempRichSalary = RichSalary();
         
 
-        desperateGauge.GetComponent<Transform>().localScale = new Vector3((float)richDesperate, 1, 1);
+        desperateGauge.GetComponent<Transform>().localScale = new Vector3((float)richDesperate / 100, 1, 1);
         richMoneyBar.GetComponent<RichMoneyBar>().ChangeBar(richMoney, richInitialMoney);
 
         int tempPlayerSalary = PlayerSalary();
@@ -118,7 +118,7 @@ public partial class GameManager : MonoBehaviour
     }
 
     ///<summary>부자의 절박함 수치를 증가시킴 / 입력값은 여러 보정들을 거치기 전</summary>
-    private void ChangeDesperate(double desperateIncrease)
+    public void ChangeDesperate(double desperateIncrease)
     {
         int snakeDes = 0;
         //꽃뱀의 감소
@@ -133,7 +133,8 @@ public partial class GameManager : MonoBehaviour
         Debug.Log(desperateIncrease);
         richDesperate += desperateIncrease;
         float despChange = (float)(richDesperate / 100);
-        DespGauge.transform.localScale = new Vector3( despChange, 1f, 1f);
+        if (despChange > 0) DespGauge.transform.localScale = new Vector3(despChange, 1f, 1f);
+        else DespGauge.transform.localScale = new Vector3(0f, 1f, 1f);
         maxRichDesperate = Mathf.Max((float)maxRichDesperate, (float)richDesperate);
         EventManage();
     }
@@ -205,7 +206,7 @@ public partial class GameManager : MonoBehaviour
         int ret = 3;
         for(int i=0;i<attatchedSnakes.Length;i++)
         {
-            if (attatchedSnakes[i] != null && attatchedSnakes[i].type == 3) ret++;
+            if (attatchedSnakes[i] != null && attatchedSnakes[i].type == 3) ret += attatchedSnakes[i].RichCycleIncrease();
         }
         Debug.Log(ret.ToString());
         ret += factoryCoolDownDecrease;
