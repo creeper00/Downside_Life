@@ -14,5 +14,6 @@ public partial class GameManager : MonoBehaviour
         CrookReroll(false);
         GangReroll(false);
         SnakeReroll(false);
+        Debug.Log("richDesperate : " + richDesperate);
     }
 }
