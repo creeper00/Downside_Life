@@ -62,6 +62,10 @@ public class Technology : MonoBehaviour
     [SerializeField]
     public List<int> skillPointNeeded;
 
+    GameObject MoneyWarn;
+    GameObject TechPopUp;
+    GameObject TechPop;
+
     public void Start()
     {
         showTechnology();
@@ -111,7 +115,10 @@ public class Technology : MonoBehaviour
     }
     public void confirmSkillLevel()
     {
-        
+        MoneyWarn = GameObject.Find("MoneyWarning");
+        TechPop = MoneyWarn.transform.Find("NotEnoughMoney").gameObject;
+        TechPopUp = TechPop.transform.Find("Text").gameObject;
+
         skillLevel = temporaryLevel;
         Debug.Log(upgrade + " " + skillLevel);
         switch (upgrade)
@@ -291,13 +298,17 @@ public class Technology : MonoBehaviour
                 }
                 break;
             case Upgrade.vacation:
-                if (GameManager.instance.doVacation)
+                if (!GameManager.instance.doVacation)
                 {
                     GameManager.instance.factoryCoolDown += skillLevel == 1 ? 4 : 0;
+                    TechPopUp.GetComponent<Text>().text = "바캉스!!";
+                    Debug.Log("Yeah");
+                    StartCoroutine("showPopup");
                     if (skillLevel == 1)
                     {
-                        GameManager.instance.doVacation = false;
-                    }
+                        GameManager.instance.doVacation = true;                   
+                    }                 
+
                 }
                 
                 break;
@@ -306,9 +317,11 @@ public class Technology : MonoBehaviour
                 {
                     int richMoney = (int)(GameManager.instance.richMoney * 0.9);
                     int percentage = Random.Range(0, 100);
+                    int Change = 0;
                     if (Random.Range(0, 100) < values[0])
                     {
                         GameManager.instance.ChangeRichMoney(richMoney, false);
+                        Change = richMoney;
                         Debug.Log("망함 ㅋ");
                         //망함 ㅋ
                     } else if (Random.Range(0, 100) <values[0] + values[1])
@@ -316,13 +329,21 @@ public class Technology : MonoBehaviour
                         GameManager.instance.ChangeRichMoney((int)(richMoney * 0.3), false);
                         Debug.Log("덜 망함 ㅋ");
                         //덜 망함 ㅋ
+                        Change = (int) (richMoney * 0.3);
                     } else
                     {
                         GameManager.instance.ChangeRichMoney(-richMoney, false);
                         Debug.Log("대박");
+                        Change = -richMoney;
                         //대박
                     }
                     GameManager.instance.doTuja = true;
+
+                    TechPopUp.GetComponent<Text>().fontSize = 16;
+                    if (Change < 0)  TechPopUp.GetComponent<Text>().text = "투자 유치!!\n" + "돈 변화: " + Change+" (대박)";
+                    else TechPopUp.GetComponent<Text>().text = "투자 유치!!\n" + "돈 변화: " + Change + " (망함)";
+                    StartCoroutine("showPopup");
+                    Debug.Log("asjfijfo");
                 }
                 break;
         }
@@ -331,6 +352,13 @@ public class Technology : MonoBehaviour
         StoreManager.instance.showStoreCrooks();
         StoreManager.instance.showStoreSnakes();
         StoreManager.instance.showStoreGangs();
+    }
+
+    IEnumerator showPopup()
+    {
+        TechPop.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        TechPop.SetActive(false);
     }
     public void ResetSkillLevel()
     {
