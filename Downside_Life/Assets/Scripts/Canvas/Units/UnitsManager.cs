@@ -236,9 +236,10 @@ public class UnitsManager : MonoBehaviour
     public void ShowFactories()
     {
         List<GameObject> factories = new List<GameObject>();
-        factories.Add(GameObject.Find("Factory0"));
-        factories.Add(GameObject.Find("Factory1"));
-        factories.Add(GameObject.Find("Factory2"));
+        factories.Add(factory1);
+        factories.Add(factory2);
+        factories.Add(factory3);
+
         for (int i=0; i<3; i++)
         {
             foreach (Transform child in factories[i].GetComponent<Transform>())
