@@ -7,6 +7,10 @@ public class ItemListItem : MonoBehaviour
 {
     [HideInInspector]
     public int index;
+    public int type;
+    public int grade;
+    public int itemCode;
+
     private GameObject GangItemAsk;
     private GameObject GangItemCheck;
 
@@ -16,6 +20,9 @@ public class ItemListItem : MonoBehaviour
         GangItemCheck = GangItemAsk.transform.GetChild(0).gameObject;
 
         this.index = index;
+        type = item.type;
+        grade = item.grade;
+        itemCode = item.itemCode;
         transform.Find("Icon").GetComponent<Image>().sprite = item.icon;
 
         if(item.grade == 0)
