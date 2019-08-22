@@ -148,7 +148,7 @@ public class Slot : MonoBehaviour, IDropHandler
                 item.transform.Find("Attribute").GetComponent<Text>().text = "아무것도 안 하고 있음";
                 switch(currentSnake.type)
                 {
-                    case 0: item.transform.Find("Attribute").GetComponent<Text>().text = "아무것도 안 하고 있음"; break;
+                    case 0: item.transform.Find("Attribute").GetComponent<Text>().text = "절박함 "+currentSnake.GetDesperateControl()+"% 감소"; break;
                     case 1: item.transform.Find("Attribute").GetComponent<Text>().text = "아무것도 안 하고 있음"; break;
                     case 2: item.transform.Find("Attribute").GetComponent<Text>().text = currentSnake.GetBehaviorCostIncrease()+" 억원 비용 증가"; break;
                     case 3: item.transform.Find("Attribute").GetComponent<Text>().text = currentSnake.RichCycleIncrease() + " 주기 증가"; break;

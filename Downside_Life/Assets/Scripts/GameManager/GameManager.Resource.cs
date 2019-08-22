@@ -116,11 +116,17 @@ public partial class GameManager : MonoBehaviour
     ///<summary>부자의 절박함 수치를 증가시킴 / 입력값은 여러 보정들을 거치기 전</summary>
     private void ChangeDesperate(double desperateIncrease)
     {
+        int snakeDes = 0;
         //꽃뱀의 감소
-        for ( int i = 0; i < GameManager.instance.snakes.Count; ++i )
+        for ( int i = 0; i < attatchedSnakes.Length; i++ )
         {
-            desperateIncrease *= ((100 - snakes[i].GetDesperateControl()) / 100);
+            if (attatchedSnakes[i] != null)
+            {
+                snakeDes += (int)attatchedSnakes[i].GetDesperateControl();
+            }
         }
+        desperateIncrease *= ((100 - snakeDes) / 100);
+        Debug.Log("des IN " + snakeDes);
         richDesperate += desperateIncrease;
         EventManage();
 
