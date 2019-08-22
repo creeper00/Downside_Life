@@ -54,13 +54,7 @@ public partial class GameManager : MonoBehaviour
         unitsCanvas.transform.position = new Vector3(640, 360-folderMoveYDistance, 0);
         storeCanvas.transform.position = new Vector3(640, 360-folderMoveYDistance, 0);
         richHouseCanvas.transform.position = new Vector3(640, 360-folderMoveYDistance, 0);
-
-        crookMinLevel = 0;
-        crookMaxLevel = 10;
-        snakeMinLevel = 0;
-        snakeMaxLevel = 10;
-        gangMinLevel = 0;
-        gangMaxLevel = 10;
+        
         currentScreen = Screen.main;
         
         SetStamina(10);

@@ -34,8 +34,9 @@ public class Technology : MonoBehaviour
         attributeUnlock,
         expandSlot,
         minLevelIncrease,
-        giveAdditionalMoney
+        giveAdditionalMoney,
         //Common
+        passive
 
     }
     [HideInInspector]
@@ -260,6 +261,27 @@ public class Technology : MonoBehaviour
                 break;
             case Upgrade.giveAdditionalMoney:
                 GameManager.instance.additionalMoney = (int)(values[skillLevel]);
+                break;
+            case Upgrade.passive:
+                switch(whatJob)
+                {
+                    case GameManager.Job.crook:
+                        GameManager.instance.crookMinLevel = (int)values[skillLevel * 2];
+                        GameManager.instance.crookMaxLevel = (int)values[skillLevel * 2 + 1];
+                        break;
+                    case GameManager.Job.gang:
+                        GameManager.instance.gangMinLevel = (int)values[skillLevel * 2];
+                        GameManager.instance.gangMaxLevel = (int)values[skillLevel * 2 + 1];
+                        break;
+                    case GameManager.Job.robber:
+                        GameManager.instance.thiefStealMoneyLowerBound = (int)values[skillLevel * 2];
+                        GameManager.instance.thiefStealMoneyUpperBound = (int)values[skillLevel * 2 + 1];
+                        break;
+                    case GameManager.Job.snake:
+                        GameManager.instance.snakeMinLevel = (int)values[skillLevel * 2];
+                        GameManager.instance.snakeMaxLevel = (int)values[skillLevel * 2 + 1];
+                        break;
+                }
                 break;
         }
         GameManager.instance.storeCanvas.SetActive(true);
