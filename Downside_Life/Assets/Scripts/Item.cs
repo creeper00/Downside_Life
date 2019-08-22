@@ -12,41 +12,63 @@ public class Item
 
     public Item()
     {
-        string str = "";
         type = Random.Range(0, 3);
-        switch(type)
+        int temp = Random.Range(0, 10);
+        if (temp < 6)
+        {
+            grade = 0;
+        }
+        else if (temp < 9)
+        {
+            grade = 1;
+        }
+        else
+        {
+            grade = 2;
+        }
+        switch (type)
         {
             case 0:
-                str = GameManager.instance.crookItemsList[Random.Range(0, GameManager.instance.crookItemsList.Count)];
+                itemCode = GameManager.instance.crookListItems[grade][Random.Range(0, GameManager.instance.crookListItems[grade].Count)];
                 break;
             case 1:
-                str = GameManager.instance.snakeItemsList[Random.Range(0, GameManager.instance.snakeItemsList.Count)];
+                itemCode = GameManager.instance.snakeListItems[grade][Random.Range(0, GameManager.instance.snakeListItems[grade].Count)];
                 break;
             case 2:
-                str = GameManager.instance.gangItemsList[Random.Range(0, GameManager.instance.gangItemsList.Count)];
+                itemCode = GameManager.instance.gangListItems[grade][Random.Range(0, GameManager.instance.gangListItems[grade].Count)];
                 break;
         }
-        grade = int.Parse(str.Substring(1, 2));
-        itemCode = int.Parse(str.Substring(2, 3));
+        Debug.Log(type + " " + grade + " " + itemCode + " " + getItemName());
     }
     public Item(int type)//get random item
     {
         this.type = type;
-        string str = "";
-        switch(type)
+        int temp = Random.Range(0, 10);
+        if (temp < 6)
+        {
+            grade = 0;
+        }
+        else if (temp < 9)
+        {
+            grade = 1;
+        }
+        else
+        {
+            grade = 2;
+        }
+        switch (type)
         {
             case 0:
-                str = GameManager.instance.crookItemsList[Random.Range(0, GameManager.instance.crookItemsList.Count)];
+                itemCode = GameManager.instance.crookListItems[grade][Random.Range(0, GameManager.instance.crookListItems[grade].Count)];
                 break;
             case 1:
-                str = GameManager.instance.snakeItemsList[Random.Range(0, GameManager.instance.snakeItemsList.Count)];
+                itemCode = GameManager.instance.snakeListItems[grade][Random.Range(0, GameManager.instance.snakeListItems[grade].Count)];
                 break;
             case 2:
-                str = GameManager.instance.gangItemsList[Random.Range(0, GameManager.instance.gangItemsList.Count)];
+                itemCode = GameManager.instance.gangListItems[grade][Random.Range(0, GameManager.instance.gangListItems[grade].Count)];
                 break;
         }
-        grade = int.Parse(str.Substring(1, 2));
-        itemCode = int.Parse(str.Substring(2, 3));
+        Debug.Log(type + " " + grade + " " + itemCode + " " + getItemName());
     }
     public string getItemName()
     {
@@ -115,7 +137,6 @@ public class Item
             default:
                 return null;
         }
-        return null;
     }
     public Item(int type, int grade, int itemCode)
     {

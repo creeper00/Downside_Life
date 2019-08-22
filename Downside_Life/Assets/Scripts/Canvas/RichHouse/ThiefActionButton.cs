@@ -45,7 +45,7 @@ public class ThiefActionButton : MonoBehaviour
                         switch(floor)
                         {
                             case 1:
-                                item = new Item(0, Random.Range(0, 3), Random.Range(0, 3));
+                                item = new Item(0);
                                 if (item.grade == 0 && item.itemCode == 1)
                                 {
                                     //사기꾼 공짜 고용
@@ -57,7 +57,7 @@ public class ThiefActionButton : MonoBehaviour
                                 //사기꾼 아이템
                                 break;
                             case 2:
-                                item = new Item(1, Random.Range(0, 3), Random.Range(0, 3));
+                                item = new Item(1);
                                 if (item.grade == 0 && item.itemCode == 1)
                                 {
                                     //꽃뱀 공짜 고용
@@ -69,7 +69,7 @@ public class ThiefActionButton : MonoBehaviour
                                 //꽃뱀 아이템
                                 break;
                             case 3:
-                                item = new Item(1, Random.Range(0, 3), Random.Range(0, 3));
+                                item = new Item(2);
                                 if (item.grade == 0 && item.itemCode == 1)
                                 {
                                     //갱단 공짜 고용
@@ -97,7 +97,7 @@ public class ThiefActionButton : MonoBehaviour
                     if (percentage < randomItemPercentage)
                     {
                         Debug.Log("steal item");
-                        Item item = new Item(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
+                        Item item = new Item();
                         if ((item.grade == 0 && item.itemCode == 1))
                         {
                             //공짜 고용
@@ -111,8 +111,8 @@ public class ThiefActionButton : MonoBehaviour
                     else if (percentage < randomItemPercentage + randomDoubleItemPercentage)
                     {
                         Debug.Log("steal double item");
-                        Item item1 = new Item(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
-                        Item item2 = new Item(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
+                        Item item1 = new Item();
+                        Item item2 = new Item();
                         if ((item1.grade == 0 && item1.itemCode == 1))
                         {
                             //공짜 고용

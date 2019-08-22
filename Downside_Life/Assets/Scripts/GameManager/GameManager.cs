@@ -104,6 +104,44 @@ public partial class GameManager : MonoBehaviour
         snakeType.Add(2);
         gangType.Add(0);
         gangType.Add(2);
+        crookListItems = new List<List<int>>();
+        snakeListItems = new List<List<int>>();
+        gangListItems = new List<List<int>>();
+        List<int> crookNormal = new List<int>();
+        crookNormal.Add(0); crookNormal.Add(1); crookNormal.Add(2);
+        crookListItems.Add(crookNormal);
+
+        List<int> crookRare = new List<int>();
+        crookRare.Add(0); crookRare.Add(1);
+        crookListItems.Add(crookRare);
+
+        List<int> crookLegend = new List<int>();
+        crookLegend.Add(0);
+        crookListItems.Add(crookLegend);
+
+        List<int> snakeNormal = new List<int>();
+        snakeNormal.Add(0); snakeNormal.Add(1);
+        snakeListItems.Add(snakeNormal);
+
+        List<int> snakeRare = new List<int>();
+        snakeRare.Add(0); snakeRare.Add(1);
+        snakeListItems.Add(snakeRare);
+
+        List<int> snakeLegend = new List<int>();
+        snakeLegend.Add(0);
+        snakeListItems.Add(snakeLegend);
+
+        List<int> gangNormal = new List<int>();
+        gangNormal.Add(0); gangNormal.Add(1); gangNormal.Add(2);
+        gangListItems.Add(gangNormal);
+
+        List<int> gangRare = new List<int>();
+        gangRare.Add(0); gangRare.Add(1); gangRare.Add(2);
+        gangListItems.Add(gangRare);
+
+        List<int> gangLegend = new List<int>();
+        gangLegend.Add(0);
+        gangListItems.Add(gangLegend);
         ResourceManage();
     }
 
