@@ -10,6 +10,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
     public int unitIndex;
     [SerializeField]
     private GameManager.Job kindOfUnit;
+    private string itemInfo;
 
     public GameObject item
     {
