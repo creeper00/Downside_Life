@@ -6,8 +6,8 @@ public partial class GameManager : MonoBehaviour
 {
     public void EndTurn()
     {
-        ResourceManage();
         FactoryAttack();
+        ResourceManage();
         FactoryBehavior();
         EventManage();
         SetStamina((stamina > 2) ? 10 : stamina + 8);
@@ -15,6 +15,5 @@ public partial class GameManager : MonoBehaviour
         GangReroll(false);
         SnakeReroll(false);
         ShowMainScreenUnits();
-        Debug.Log("richDesperate : " + richDesperate);
     }
 }
