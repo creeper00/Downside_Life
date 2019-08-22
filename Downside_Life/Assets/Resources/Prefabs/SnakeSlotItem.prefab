@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 6606099013750439033}
   - component: {fileID: 402630477828342795}
   - component: {fileID: 8759145223144735632}
+  - component: {fileID: 5008644576874018310}
   m_Layer: 5
   m_Name: AttributeIcon
   m_TagString: Untagged
@@ -171,9 +172,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 5008644576874018310}
+          m_MethodName: infopopup
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -188,9 +189,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 5008644576874018310}
+          m_MethodName: infopopdown
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -201,6 +202,18 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &5008644576874018310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4442086096714877850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f037f9d10995747851a16603752961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5385047837755479297
 GameObject:
   m_ObjectHideFlags: 0

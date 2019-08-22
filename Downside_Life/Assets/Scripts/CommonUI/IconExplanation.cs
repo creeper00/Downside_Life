@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CrookIconExplanation : MonoBehaviour
+public class IconExplanation : MonoBehaviour
 {
     GameObject popUp;
     GameObject unitExplanationCanvas;
@@ -26,6 +26,10 @@ public class CrookIconExplanation : MonoBehaviour
         if(gameObject.name == "ReturnIcon" || gameObject.name == "ReturnPercentageIcon")
         {
             unitExplanationText.GetComponent<Text>().text = "플레이어에게 들고오는 돈";
+        }
+        if(gameObject.name == "AttributeIcon")
+        {
+            unitExplanationText.GetComponent<Text>().text = "꽃뱀의 특수능력";
         }
     }
 

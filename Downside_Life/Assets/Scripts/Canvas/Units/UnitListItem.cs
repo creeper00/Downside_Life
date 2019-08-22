@@ -8,11 +8,16 @@ public class UnitListItem : MonoBehaviour
     [HideInInspector]
     public int index;
 
+    public int job;
+    public int type;
+
     /// <summary>스크롤 뷰의 한 슬롯에 유닛 정보들을 표시</summary>
     public void SetUnitInformation(int index, GameManager.Crook crook)
     {
         this.index = index;
 
+        job = 0;
+        type = crook.type;
         string statusText = "Lv " + crook.level;
         Sprite sprite = null;
         Image icon = transform.Find("Icon").GetComponent<Image>();
@@ -39,6 +44,8 @@ public class UnitListItem : MonoBehaviour
     {
         this.index = index;
 
+        job = 1;
+        type = snake.type;
         string statusText = "Lv " + snake.level;
         Sprite sprite = null;
         Image icon = transform.Find("Icon").GetComponent<Image>();
@@ -75,6 +82,8 @@ public class UnitListItem : MonoBehaviour
     {
         this.index = index;
 
+        job = 2;
+        type = gang.type;
         string statusText = "Lv " + gang.level;
         statusText += gang.GetType() + " 갱단";
         transform.Find("Status").GetComponent<Text>().text = statusText;
