@@ -36,8 +36,9 @@ public class Technology : MonoBehaviour
         minLevelIncrease,
         giveAdditionalMoney,
         //Common
-        passive
-
+        passive,
+        vacation,
+        tuja
     }
     [HideInInspector]
     public bool isResearched;
@@ -198,7 +199,6 @@ public class Technology : MonoBehaviour
                                 GameManager.instance.snakeType.Add((int)values[0]);
                             }
                         }
-                        
                         break;
                 }
                 break;
@@ -289,6 +289,19 @@ public class Technology : MonoBehaviour
                         GameManager.instance.snakeMaxLevel = (int)values[skillLevel * 2 + 1];
                         break;
                 }
+                break;
+            case Upgrade.vacation:
+                if (GameManager.instance.doVacation)
+                {
+                    GameManager.instance.factoryCoolDown += skillLevel == 1 ? 4 : 0;
+                    if (skillLevel == 1)
+                    {
+                        GameManager.instance.doVacation = false;
+                    }
+                }
+                
+                break;
+            case Upgrade.tuja:
                 break;
         }
         GameManager.instance.storeCanvas.SetActive(true);

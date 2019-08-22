@@ -39,7 +39,7 @@ public partial class GameManager : MonoBehaviour
     private double richDesperateBound;
     [SerializeField]
     private int fasterSetupFactory;
-    private int factoryCoolDown = 3;                    //현재 턴 수
+    public int factoryCoolDown = 3;                    //현재 턴 수
 
     [SerializeField]
     private GameObject desperateGauge;
@@ -206,7 +206,7 @@ public partial class GameManager : MonoBehaviour
         int ret = 3;
         for(int i=0;i<attatchedSnakes.Length;i++)
         {
-            if (attatchedSnakes[i] != null && attatchedSnakes[i].type == 3) ret++;
+            if (attatchedSnakes[i] != null && attatchedSnakes[i].type == 3) ret += attatchedSnakes[i].RichCycleIncrease();
         }
         Debug.Log(ret.ToString());
         ret += factoryCoolDownDecrease;

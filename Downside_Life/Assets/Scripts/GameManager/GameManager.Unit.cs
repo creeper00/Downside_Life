@@ -44,7 +44,7 @@ public partial class GameManager : MonoBehaviour
     public float desConInit, desConPerLevel, desConTech, itemPriceTech, itemPercent, behaviorCostInit, behaviorCostPerLevel, behaviorCostTech, itemPriceItemsLowerBound, itemPriceItemsLowerBoundPerLevel, itemPriceItemsUpperBound, itemPriceItemsUpperBoundPerLevel, snakeDecreaseUnitCost;
 
     public List<float> itemPriceItems, snakeUnitCostInit, snakeUnitCostPerLevel;
-    public bool doRichDesperateDown;
+    public bool doRichDesperateDown, doVacation;
 
     [Header("갱단")]
     [SerializeField]
@@ -749,6 +749,7 @@ public partial class GameManager : MonoBehaviour
                 LevelUpFactories(pos);
             }
             factoryCoolDown = FactoryCooldown();
+            Debug.Log(factoryCoolDown);
         }
     }
     void LevelUpFactories(int pos)
