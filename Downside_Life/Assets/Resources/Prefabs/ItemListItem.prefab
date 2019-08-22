@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 3227303804131090256}
   - component: {fileID: 3227303804131090262}
   - component: {fileID: 3227303804131090263}
+  - component: {fileID: 8571156291225221390}
+  - component: {fileID: 7155640288128408152}
+  - component: {fileID: 4506822038449162723}
   m_Layer: 5
   m_Name: ItemListItem
   m_TagString: Untagged
@@ -37,7 +40,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3227303804131090262
 MonoBehaviour:
@@ -52,24 +55,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  crookNormal1: {fileID: 21300000, guid: 0906dad2ab87e4c418eb94e430829bb9, type: 3}
-  crookNormal2: {fileID: 21300000, guid: 6be898d6318ca5e429addbfe2f7fb11c, type: 3}
-  crookRare1: {fileID: 21300000, guid: fbede8771704e6e42862a90b578dad82, type: 3}
-  crookRare2: {fileID: 21300000, guid: 48419ae0e4dcbf1449dcd96e178c8fc3, type: 3}
-  crookRare3: {fileID: 21300000, guid: 2f907ffa103b92a4ba373ff39e0710db, type: 3}
-  crookLengendary: {fileID: 21300000, guid: e8349aa9c8985db4091650c09052a26d, type: 3}
-  snakeNormal1: {fileID: 21300000, guid: b81cc8ef5a9a68149b495dc6a1c69d67, type: 3}
-  snakeNormal2: {fileID: 21300000, guid: 9c755a98a34699748bdf96e7356db82d, type: 3}
-  snakeRare1: {fileID: 21300000, guid: fa03ff13f40bd6445b28c6a24aeefa93, type: 3}
-  snakeRare2: {fileID: 21300000, guid: 88ac0f32893e5bc45bbb73d3906d9542, type: 3}
-  snakeLengendary: {fileID: 21300000, guid: bd86d5aacc49d384aa64b29e4bac0014, type: 3}
-  gangNormal1: {fileID: 21300000, guid: 176514531e1ed4c4c9e061a9e97c02f7, type: 3}
-  gangNormal2: {fileID: 21300000, guid: 8ce19728f7375f743943c4c18a66af5d, type: 3}
-  gangNormal3: {fileID: 21300000, guid: d60618a09b50bdc449c2c1f368bae6c9, type: 3}
-  gangRare1: {fileID: 21300000, guid: 60aeb90329e56be41a543003ec4ffff3, type: 3}
-  gangRare2: {fileID: 21300000, guid: c0a47cb116bb5344c8ff3deb281b3eae, type: 3}
-  gangRare3: {fileID: 21300000, guid: af073b2d7499f8a4e8bb605a57e2a861, type: 3}
-  gangLengendary: {fileID: 21300000, guid: b7ad7cea4681f9a4886753b09954bd0c, type: 3}
 --- !u!114 &3227303804131090263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +67,99 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547a4967df0be5942b5680c88d6dbd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8571156291225221390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227303804131090257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3227303804131090262}
+        m_MethodName: ClickForGangItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!222 &7155640288128408152
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227303804131090257}
+  m_CullTransparentMesh: 0
+--- !u!114 &4506822038449162723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227303804131090257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
 --- !u!1 &4197770191023181823
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
