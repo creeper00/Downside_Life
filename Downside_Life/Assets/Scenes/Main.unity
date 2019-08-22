@@ -17578,7 +17578,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 7.1e-43, y: 4.640073e-13, z: 4.5905e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -24580,6 +24580,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
+      propertyPath: values.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
       propertyPath: skillPointNeededNum
       value: 14
       objectReference: {fileID: 0}
@@ -24621,7 +24626,12 @@ PrefabInstance:
     - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}
       propertyPath: upgrade
-      value: 14
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254486848621272630, guid: e6dc9d8e16fd0864784f84ef8067798c,
+        type: 3}
+      propertyPath: values.Array.data[0]
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8254486848621272635, guid: e6dc9d8e16fd0864784f84ef8067798c,
         type: 3}

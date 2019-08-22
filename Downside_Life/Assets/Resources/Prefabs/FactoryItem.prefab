@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 4502492523314567269}
   - component: {fileID: 439729583159712820}
   m_Layer: 5
-  m_Name: IsUpgrade
+  m_Name: Status
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

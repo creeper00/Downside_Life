@@ -87,7 +87,7 @@ public class UnitListItem : MonoBehaviour
         string statusText = "Lv " + gang.level;
         statusText += gang.GetType() + " 갱단";
         transform.Find("Status").GetComponent<Text>().text = statusText;
-        transform.Find("Attack").GetComponent<Text>().text = gang.attack().ToString();
-        transform.Find("Return").GetComponent<Text>().text = gang.returnMoney().ToString();
+        transform.Find("Attack").GetComponent<Text>().text = gang.type == 4 ? "" : gang.attack().ToString();
+        transform.Find("Return").GetComponent<Text>().text = gang.type == 4 ? "" : gang.returnMoney().ToString();
     }
 }

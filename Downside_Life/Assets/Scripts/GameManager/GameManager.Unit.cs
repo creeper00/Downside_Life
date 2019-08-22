@@ -130,6 +130,11 @@ public partial class GameManager : MonoBehaviour
             debuffGangRatio[1] = debuffGangRatio[2];
             debuffGangRatio[2] = 1;
             Debug.Log("debuff : " + debuff);
+
+            if (isConquered > 0)
+            {
+                isConquered--;
+            }
             return RateOfOperation() / 100 * income * debuff;
         }
         public Factory(FactoryType factoryType, int value)
@@ -834,7 +839,7 @@ public partial class GameManager : MonoBehaviour
     {
         for (int i = 0; i < factories.Length; i++)              //공장이 레벨 업 하는 부분
         {
-            if (factories[i] != null && factories[i].isUpgrade )
+            if (factories[i] != null && factories[i].isUpgrade && factories[i].isConquered == 0)
             {
                 factories[i].FactoryLevelup();
             }
@@ -927,8 +932,7 @@ public partial class GameManager : MonoBehaviour
                             multiAttackMoney += (int)attachedGangs[i][j].returnMoney();
                             break;
                         case 4:
-                            attack += (int)attachedGangs[i][j].attack();
-                            totalMoney += (int)attachedGangs[i][j].returnMoney();
+                            factories[i].isConquered += 4;
                             break;
                     }
                 }

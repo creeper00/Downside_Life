@@ -259,7 +259,8 @@ public class Factory : MonoBehaviour
                 break;
         }
         ApplyFactoryLevel(factory);
-        transform.Find("IsUpgrade").GetComponent<Text>().text = factory.isUpgrade ? "업그레이드중" : "";
+        transform.Find("Status").GetComponent<Text>().text = factory.isUpgrade ? "업그레이드중" : "";
+        transform.Find("Status").GetComponent<Text>().text = factory.isConquered > 0 ? "점령중" : transform.Find("Status").GetComponent<Text>().text;
     }
 
 }

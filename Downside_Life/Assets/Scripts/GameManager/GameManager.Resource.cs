@@ -27,6 +27,7 @@ public partial class GameManager : MonoBehaviour
 
     int crookIncome = 0;
     int snakeCost = 0;
+    int factoryRichIncome = 0, factoryPlayerIncome = 0;
 
     [Header("부자의 스탯")]
     public int richInitialMoney;
@@ -59,6 +60,21 @@ public partial class GameManager : MonoBehaviour
 
     void ResourceManage()
     {
+        factoryPlayerIncome = 0;
+        factoryRichIncome = 0;
+        for (int i = 0; i < factories.Length; i++)
+        {
+            if (factories[i] != null)
+            {
+                if (factories[i].isConquered == 0)
+                {
+                    factoryRichIncome += (int)factories[i].CalculateIncome();//공장 수입
+                } else
+                {
+                    factoryPlayerIncome += (int)factories[i].CalculateIncome();
+                }
+            }
+        }
         float crookConstantIncome = 0;
         float crookPercentageIncome = 0;
         for (int i = 0; i < attatchedCrooks.Length; i++)
@@ -211,21 +227,9 @@ public partial class GameManager : MonoBehaviour
     }
     int RichSalary()
     {
-        int factoryIncome = 0;
-        for (int i=0; i<factories.Length; i++)
-        {
-            if (factories[i] != null)
-            {
-                if (factories[i].isConquered == 0)
-                {
-                    factoryIncome += (int)factories[i].CalculateIncome();//공장 수입
-                }
-                
-            }
-        }
-        ChangeRichMoney(-factoryIncome, false);
+        ChangeRichMoney(-factoryRichIncome, false);
         ChangeRichMoney(crookIncome + snakeCost , true);
-        return factoryIncome - crookIncome - snakeCost;
+        return factoryRichIncome - crookIncome - snakeCost;
     }
 
     int PlayerSalary()
@@ -255,6 +259,6 @@ public partial class GameManager : MonoBehaviour
             playerMoney += snakeStealMoney;
             UpdateResourcesUI();
         }
-        return (int)(crookIncome * ratio);
+        return (int)(crookIncome * ratio) + factoryPlayerIncome;
     }
 }
