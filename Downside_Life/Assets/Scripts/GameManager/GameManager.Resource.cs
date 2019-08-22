@@ -127,7 +127,7 @@ public partial class GameManager : MonoBehaviour
     ///<summary>UI에 표시된 내 재산을 업데이트</summary>
     public void UpdateMoneyText()
     {
-        moneyText.text = playerMoney + "";
+        moneyText.text = playerMoney + "만 원";
         
     }
 

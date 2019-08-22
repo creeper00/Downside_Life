@@ -165,7 +165,7 @@ public class ThiefActionButton : MonoBehaviour
 
         if (tempMoney > 0)
         {
-            thiefResultText2.text = tempMoney.ToString() + "원을 훔쳐왔다!";
+            thiefResultText2.text = tempMoney.ToString() + "만 원을 훔쳐왔다!";
             if (items.Count != 0)
             {
                 thiefResultText2.text += "\n 그리고";
