@@ -244,7 +244,7 @@ public partial class GameManager : MonoBehaviour
                 return false;
             } else
             {
-                if (item.itemCode == 1 && item.grade == 1)
+                if (movingItem.itemCode == 1 && movingItem.grade == 1)
                 {
                     //유형 변경
                     return false;
