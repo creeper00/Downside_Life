@@ -38,7 +38,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                 case GameManager.Job.crook:
                     if ( GameManager.instance.attatchedCrooks[unitIndex] != null )
                     {
-                        succeedAttach = GameManager.instance.attatchedCrooks[unitIndex].putItem(itemIndex);     //만약 가능하면 데이터 상으로 아이템을 이동
+                        succeedAttach = GameManager.instance.attatchedCrooks[unitIndex].putItem(itemIndex, unitIndex);     //만약 가능하면 데이터 상으로 아이템을 이동
 
                     }
                     if (succeedAttach)
@@ -53,7 +53,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                 case GameManager.Job.snake:
                     if (GameManager.instance.attatchedSnakes[unitIndex] != null)
                     {
-                        succeedAttach = GameManager.instance.attatchedSnakes[unitIndex].putItem(itemIndex);
+                        succeedAttach = GameManager.instance.attatchedSnakes[unitIndex].putItem(itemIndex, unitIndex);
                     }
                     if (succeedAttach)
                     {

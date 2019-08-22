@@ -47,7 +47,7 @@ public class ItemListItem : MonoBehaviour
         if ( GangItemCheck.activeSelf)
         {
             var pointer = GameManager.instance.attachedGangs[Slot.currentActiveSlotIndex];
-            pointer[pointer.Count - 1].PutItem(index);
+            pointer[pointer.Count - 1].PutItem(index, Slot.currentActiveSlotIndex);
             GameManager.instance.gangItems.RemoveAt(index);
             GameObject.Find("Popups").transform.Find("UnitExplanationCanvas").gameObject.SetActive(false);
             UnitsManager.instance.ShowGangItems();

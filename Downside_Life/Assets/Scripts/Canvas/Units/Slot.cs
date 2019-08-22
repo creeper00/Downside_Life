@@ -110,7 +110,7 @@ public class Slot : MonoBehaviour, IDropHandler
         }
     }
     /// <summary>슬롯에 유닛 정보를 띄움</summary>
-    private void InitializeSlotObject()
+    public void InitializeSlotObject()
     {
         string statusText;
         switch (kindOfUnit)
