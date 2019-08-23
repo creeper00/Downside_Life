@@ -13941,7 +13941,7 @@ MonoBehaviour:
   moneyText: {fileID: 352180210}
   staminaText: {fileID: 872225099}
   snakeMoneyText: {fileID: 824633200}
-  factoryHealthPerLevel: b80b000088130000581b000028230000f82a0000
+  factoryHealthPerLevel: 88130000581b000028230000f82a0000c8320000
   factoryValue: 00000000000000000a000000050000001e000000
   factoryIncome: 50c30000a0860100e093040020a1070040420f00
   crookConstantTech: 1

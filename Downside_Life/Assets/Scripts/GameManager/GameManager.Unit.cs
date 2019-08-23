@@ -951,11 +951,7 @@ public partial class GameManager : MonoBehaviour
     {
         if (factories[pos].level < 4)
         {
-            if (Random.Range(0, 100) < 40)
-            {
-                factories[pos].isUpgrade = true;
-            }
-
+            factories[pos].isUpgrade = true;
         }
         else
         {
