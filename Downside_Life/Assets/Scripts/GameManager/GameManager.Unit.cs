@@ -687,6 +687,7 @@ public partial class GameManager : MonoBehaviour
                 attachedGangs[slotIndex].Add(movingGang);
                 break;
         }
+        ShowMainScreenUnits();
     }
 
     /// <summary>붙인 유닛을 뗄 수 있는지 확인</summary>
@@ -760,6 +761,7 @@ public partial class GameManager : MonoBehaviour
                 break;
         }
         UnitsManager.instance.UpdateRichMoneyChange();
+        ShowMainScreenUnits();
     }
     
     public void CrookReroll(bool isMoney)
