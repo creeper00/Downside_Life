@@ -300,12 +300,13 @@ public class Technology : MonoBehaviour
             case Upgrade.vacation:
                 if (!GameManager.instance.doVacation)
                 {
-                    GameManager.instance.factoryCoolDown += skillLevel == 1 ? 4 : 0;
-                    TechPopUp.GetComponent<Text>().text = "바캉스!!";
-                    Debug.Log("Yeah");
-                    StartCoroutine("showPopup");
+                    
                     if (skillLevel == 1)
                     {
+                        GameManager.instance.factoryCoolDown += skillLevel == 1 ? 4 : 0;
+                        TechPopUp.GetComponent<Text>().text = "바캉스!!";
+                        Debug.Log("Yeah");
+                        StartCoroutine("showPopup");
                         GameManager.instance.doVacation = true;                   
                     }                 
 
