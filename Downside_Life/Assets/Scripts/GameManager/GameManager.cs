@@ -30,6 +30,12 @@ public partial class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject FolderUI;
     private float folderUpYAxis = 160, folderDownYAxis = -370, folderMoveYDistance;
+    [Header("튜토리얼")]
+    [SerializeField]
+    private GameObject mainScreenExplain;
+    [SerializeField]
+    private GameObject firstTechTree, firstUnit, firstStore, firstRichHouse;
+    private bool mainScreenExplainDone = false, firstTechTreeDone = false, firstUnitDone = false, firstStoreDone = false, firstRichHouseDone = false;
     [Header("팝업창")]
     public GameObject notEnoughStaminaCanvas;
     public GameObject itemTypeNotMatchCanvas, alreadyHasItemCanvas, snakeSteallSuccessCanvas;
@@ -94,6 +100,9 @@ public partial class GameManager : MonoBehaviour
             attachedGangs[i] = new List<Gang>();
         }
         storeCanvas.SetActive(true);
+
+        //튜토리얼 표시
+        mainScreenExplain.SetActive(true);
     }
 
     private void Start()
