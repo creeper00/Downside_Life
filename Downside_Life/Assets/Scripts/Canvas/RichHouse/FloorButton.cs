@@ -8,7 +8,7 @@ public class FloorButton : MonoBehaviour
     public GameObject GoBackButton;
     public void GotoFirstFloor()
     {
-        if (GameManager.instance.CheckStamina(3))
+        if (GameManager.instance.CheckStamina(GameManager.instance.StealStaminaDecrease))
         {
             GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.firstFloor);
             
@@ -16,7 +16,7 @@ public class FloorButton : MonoBehaviour
     }
     public void GotoSecondFloor()
     {
-        if (GameManager.instance.CheckStamina(3))
+        if (GameManager.instance.CheckStamina(GameManager.instance.StealStaminaDecrease))
         {
             GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.secondFloor);
             
@@ -24,7 +24,7 @@ public class FloorButton : MonoBehaviour
     }
     public void GotoThirdFloor()
     {
-        if (GameManager.instance.CheckStamina(3))
+        if (GameManager.instance.CheckStamina(GameManager.instance.StealStaminaDecrease))
         {
             GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.thirdFloor);
             
@@ -32,7 +32,7 @@ public class FloorButton : MonoBehaviour
     }
     public void GotoFourthFloor()
     {
-        if (GameManager.instance.CheckStamina(3))
+        if (GameManager.instance.CheckStamina(GameManager.instance.StealStaminaDecrease))
         {
             GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.fourthFloor);
             
@@ -40,7 +40,7 @@ public class FloorButton : MonoBehaviour
     }
     public void GotoFifthFloor()
     {
-        if (GameManager.instance.CheckStamina(3))
+        if (GameManager.instance.CheckStamina(GameManager.instance.StealStaminaDecrease))
         {
             GameManager.instance.ChangeCanvasInHouse(GameManager.Screen.fifthFloor);
             
