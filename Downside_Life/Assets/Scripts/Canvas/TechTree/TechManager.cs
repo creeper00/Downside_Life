@@ -27,6 +27,8 @@ public class TechManager : MonoBehaviour
         tier = new int[4];
         temporaryJobSkillPoint = new int[4];
         neededMaxSkillPoint = new int[4];
+        //튜토리얼
+        GameManager.instance.firstTechTree.SetActive(true);
     }
 
     private void Start()

@@ -50,6 +50,9 @@ public class UnitsManager : MonoBehaviour
     {
         currentTab = Tabs.initialnull;
         ChangeTab(Tabs.crook);
+
+        //튜토리얼
+        GameManager.instance.firstUnit.SetActive(true);
     }
 
     private void ResetUnitScrollView()

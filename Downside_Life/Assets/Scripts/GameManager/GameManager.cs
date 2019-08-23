@@ -33,8 +33,7 @@ public partial class GameManager : MonoBehaviour
     [Header("튜토리얼")]
     [SerializeField]
     private GameObject mainScreenExplain;
-    [SerializeField]
-    private GameObject firstTechTree, firstUnit, firstStore, firstRichHouse;
+    public GameObject firstTechTree, firstUnit, firstStore, firstRichHouse;
     private bool mainScreenExplainDone = false, firstTechTreeDone = false, firstUnitDone = false, firstStoreDone = false, firstRichHouseDone = false;
     [Header("팝업창")]
     public GameObject notEnoughStaminaCanvas;

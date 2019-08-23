@@ -33,6 +33,13 @@ public class StoreManager : MonoBehaviour
         isSnakeBuyed = new List<bool>();
         isGangBuyed = new List<bool>();
     }
+
+    public void Start()
+    {
+        //튜토리얼
+        GameManager.instance.firstStore.SetActive(true);
+    }
+
     public void resetScrollView(GameManager.Job job)
     {
         switch (job)
