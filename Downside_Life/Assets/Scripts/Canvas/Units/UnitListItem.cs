@@ -29,7 +29,7 @@ public class UnitListItem : MonoBehaviour
             case 3: statusText += " 호구형"; break;
         }*/
         statusText += (" " + crook.GetType());
-        sprite = crook.GetSprite();
+        sprite = crook.GetIcon();
         statusText += " 사기꾼";
         transform.Find("Status").GetComponent<Text>().text = statusText;
         transform.Find("Attack").GetComponent<Text>().text = crook.GetRichConstantDown() + " + " + crook.GetRichRatioDown() + "%";
@@ -58,7 +58,7 @@ public class UnitListItem : MonoBehaviour
             
         }*/
         statusText += (" " + snake.GetType());
-        sprite = snake.GetSprite();
+        sprite = snake.GetIcon();
         statusText += " 꽃뱀";
         transform.Find("Status").GetComponent<Text>().text = statusText;
 
@@ -89,5 +89,12 @@ public class UnitListItem : MonoBehaviour
         transform.Find("Status").GetComponent<Text>().text = statusText;
         transform.Find("Attack").GetComponent<Text>().text = gang.type == 4 ? "" : gang.attack().ToString();
         transform.Find("Return").GetComponent<Text>().text = gang.type == 4 ? "" : gang.returnMoney().ToString();
+
+        Image icon = transform.Find("Icon").GetComponent<Image>();
+        Sprite sprite = gang.GetIcon();
+        if ( sprite != null )
+        {
+            icon.sprite = sprite;
+        }
     }
 }

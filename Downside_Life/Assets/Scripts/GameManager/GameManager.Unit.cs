@@ -200,6 +200,7 @@ public partial class GameManager : MonoBehaviour
         public int type;
         Item item;
         Sprite sprite = null;
+        Sprite icon = null;
 
         public string GetType()
         {
@@ -240,6 +241,31 @@ public partial class GameManager : MonoBehaviour
                 sprite = Resources.Load<Sprite>("Characters/" + spriteName);
             }
             return sprite;
+        }
+
+        public Sprite GetIcon()
+        {
+            if (icon == null)
+            {
+                string spriteName = "crook";
+                switch (type)
+                {
+                    case 0:
+                        spriteName += "Constant";
+                        break;
+                    case 1:
+                        spriteName += "Rate";
+                        break;
+                    case 2:
+                        spriteName += "Balanced";
+                        break;
+                    case 3:
+                        spriteName += "Idiot";
+                        break;
+                }
+                icon = Resources.Load<Sprite>("Characters/" + spriteName + "Icon");
+            }
+            return icon;
         }
 
 
@@ -316,6 +342,7 @@ public partial class GameManager : MonoBehaviour
         public int type; // 0 = 절박함 증가 억제, 1 = 환금형 아이템, 2 = 행동 비용 증가, 3 = 행동 주기 증가, 4 = 만렙 특성
         Item item;
         Sprite sprite = null;
+        Sprite icon = null;
 
         public string GetType()
         {
@@ -356,6 +383,31 @@ public partial class GameManager : MonoBehaviour
                 sprite = Resources.Load<Sprite>("Characters/" + spriteName);
             }
             return sprite;
+        }
+
+        public Sprite GetIcon()
+        {
+            if (icon == null)
+            {
+                string spriteName = "snake";
+                switch (type)
+                {
+                    case 0:
+                        spriteName += "Desp";
+                        break;
+                    case 1:
+                        spriteName += "Waste";
+                        break;
+                    case 2:
+                        spriteName += "Slow";
+                        break;
+                    case 3:
+                        spriteName += "Money";
+                        break;
+                }
+                icon = Resources.Load<Sprite>("Characters/" + spriteName + "Icon");
+            }
+            return icon;
         }
 
         public float unitPrice()
@@ -474,6 +526,7 @@ public partial class GameManager : MonoBehaviour
     public class Gang
     {
         private Sprite sprite = null;
+        private Sprite icon = null;
 
         public Sprite GetSprite()
         {
@@ -501,6 +554,34 @@ public partial class GameManager : MonoBehaviour
                 sprite = Resources.Load<Sprite>("Characters/" + spriteName);
             }
             return sprite;
+        }
+
+        public Sprite GetIcon()
+        {
+            if (icon == null)
+            {
+                string spriteName = "gang";
+                switch (type)
+                {
+                    case 0:
+                        spriteName += "Strong";
+                        break;
+                    case 1:
+                        spriteName += "Money";
+                        break;
+                    case 2:
+                        spriteName += "Debuff";
+                        break;
+                    case 3:
+                        spriteName += "Global";
+                        break;
+                    case 4:
+                        spriteName += "Conquer";
+                        break;
+                }
+                icon = Resources.Load<Sprite>("Characters/" + spriteName + "Icon");
+            }
+            return icon;
         }
 
         public string GetType()

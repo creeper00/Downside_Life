@@ -10,9 +10,9 @@ public class AttachedGangListItem : MonoBehaviour
 
     public void SetGangUnitInformation(GameManager.Gang gang)
     {
-        Sprite sprite = null;
+        Sprite sprite = gang.GetIcon();
         Image icon = transform.Find("Icon").GetComponent<Image>();
-
+        /*
         switch (gang.type)
         {
             case 0:
@@ -31,6 +31,7 @@ public class AttachedGangListItem : MonoBehaviour
                 sprite = levelMaxGang;
                 break;
         }
+        */
         icon.sprite = sprite;
     }
 

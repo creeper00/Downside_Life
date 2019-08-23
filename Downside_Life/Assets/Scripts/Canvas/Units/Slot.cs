@@ -126,7 +126,7 @@ public class Slot : MonoBehaviour, IDropHandler
                     case 3: statusText += " 호구형"; break;
                 }*/
                 statusText += " " + currentCrook.GetType();
-                item.transform.Find("CrookImage").GetComponent<Image>().sprite = currentCrook.GetSprite();
+                item.transform.Find("CrookImage").GetComponent<Image>().sprite = currentCrook.GetIcon();
                 statusText += " 사기꾼";
                 item.transform.Find("Status").GetComponent<Text>().text = statusText;
 
@@ -140,7 +140,7 @@ public class Slot : MonoBehaviour, IDropHandler
             case GameManager.Job.snake:
                 GameManager.Snake currentSnake = GameManager.instance.attatchedSnakes[slotIndex];
                 statusText = "Lv " + currentSnake.level + " "+currentSnake.GetType()+" 꽃뱀";
-                item.transform.Find("SnakeImage").GetComponent<Image>().sprite = currentSnake.GetSprite();
+                item.transform.Find("SnakeImage").GetComponent<Image>().sprite = currentSnake.GetIcon();
                 item.transform.Find("Status").GetComponent<Text>().text = statusText;
 
                 item.transform.Find("ItemSlot").GetComponent<ItemSlot>().unitIndex = slotIndex;
